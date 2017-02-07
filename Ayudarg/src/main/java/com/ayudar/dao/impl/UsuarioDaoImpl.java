@@ -12,8 +12,7 @@ import com.ayudarg.model.Usuario;
 
 public class UsuarioDaoImpl implements UsuarioDAO {
 	private SessionFactory sessionFactory;
-//	private static final Logger logger = (Logger) LoggerFactory.getLogger(UsuarioDaoImpl.class);
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Usuario> listUsuarios() {
@@ -29,11 +28,12 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	public SessionFactory getSessionFactory(){
 		return sessionFactory;
 	}
-
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean usuarioByUsernameAndPassword(String email, String password) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Usuario usuario = (Usuario) session.createQuery("from Usuario as us WHERE us.email=" + email + "AND contrasenia =" + password).uniqueResult();
+		Usuario usuario = (Usuario) session.createQuery("from Usuario WHERE email='"+ email + "' AND contrasenia='" + password + "'").uniqueResult();
 		if(usuario != null)
 			return true;
 		else 

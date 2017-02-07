@@ -20,16 +20,16 @@ import com.ayudarg.service.UsuarioService;
  * Handles requests for the application home page.
  */
 @Controller
-public class HomeController {
+public class RegistrarseController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+//	private static final Logger logger = LoggerFactory.getLogger(RegistraseController.class);
 
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/registrarse", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		return "home";
+		return "registrarse";
 	}
 	
 }

@@ -10,20 +10,11 @@
 	rel="stylesheet">
 <html>
 <head>
-<title>Home</title>
-<style type="text/css">
-#mapa {
-	height: 500px;
-}
-</style>
+<title>Ayudarg</title>
 </head>
 <body>
-	<div id="mapa"></div>
-
 	<div class="container"
 		style="width: 275px; margin-left: auto; margin-rigth: auto; margin-top: 50px;">
-		
-		
         <form:form id="loginForm" method="post" action="dashboard" modelAttribute="loginbean" class="form-signin">
 			<h2 class="form-signin-heading" style="text-align: center;">Ayudarg</h2>
 			<label for="inputEmail" class="sr-only">Email address</label> <input
@@ -38,6 +29,8 @@
 					Remember me
 				</label>
 			</div>
+			<a href="/app/registrarse">Registrarse</a>
+			
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
 				in</button>
         </form:form>

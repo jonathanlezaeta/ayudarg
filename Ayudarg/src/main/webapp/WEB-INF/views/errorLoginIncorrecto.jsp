@@ -10,7 +10,7 @@
 	rel="stylesheet">
 <html>
 <head>
-<title>Home</title>
+<title>Error Login</title>
 <style type="text/css">
 #mapa {
 	height: 500px;
