@@ -6,4 +6,5 @@ import com.ayudarg.model.Usuario;
 
 public interface UsuarioService {
 	public List<Usuario> listUsuarios();
+	public boolean usuarioByUsernameAndPassword(String email, String password);
 }

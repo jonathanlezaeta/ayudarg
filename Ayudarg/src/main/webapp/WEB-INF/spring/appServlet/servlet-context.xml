@@ -52,6 +52,8 @@
 		</beans:property>
 	</beans:bean>
 
+
+	<!-- USUARIO -->
 	<beans:bean id="UsuarioDAO" class="com.ayudar.dao.impl.UsuarioDaoImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate4AnnotatedSessionFactory" />
@@ -60,6 +62,66 @@
 	<beans:bean id="UsuarioService"
 		class="com.ayudarg.services.impl.UsuarioServiceImpl">
 		<beans:property name="usuarioDao" ref="UsuarioDAO"></beans:property>
+	</beans:bean>
+	
+		<!-- ROL -->
+	
+	<beans:bean id="RolDAO" class="com.ayudar.dao.impl.RolDaoImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="RolService"
+		class="com.ayudarg.services.impl.RolServiceImpl">
+		<beans:property name="rolDao" ref="RolDAO"></beans:property>
+	</beans:bean>
+	
+		<!-- RECURSO -->
+	
+	<beans:bean id="RecursoDAO" class="com.ayudar.dao.impl.RecursoDaoImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="RecursoService"
+		class="com.ayudarg.services.impl.RecursoServiceImpl">
+		<beans:property name="recursoDao" ref="RecursoDAO"></beans:property>
+	</beans:bean>
+	
+		<!-- RECURSOHASCATEGORIA -->
+	
+	<beans:bean id="RecursoHasCategoriaDAO" class="com.ayudar.dao.impl.RecursoHasCategoriaDaoImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="RecursoHasCategoriaService" 
+	class="com.ayudarg.services.impl.RecursoHasCategoriaServiceImpl">
+		<beans:property name="recursoHasCategoriaDao" ref="RecursoHasCategoriaDAO"></beans:property>
+	</beans:bean>
+	
+		<!-- INSTITUCION -->
+	
+	<beans:bean id="InstitucionDAO" class="com.ayudar.dao.impl.InstitucionDaoImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="InstitucionService"
+		class="com.ayudarg.services.impl.InstitucionServiceImpl">
+		<beans:property name="institucionDao" ref="InstitucionDAO"></beans:property>
+	</beans:bean>
+	
+		<!-- CATEGORIA -->
+		
+	<beans:bean id="CategoriaDAO" class="com.ayudar.dao.impl.CategoriaDaoImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="CategoriaService"
+		class="com.ayudarg.services.impl.CategoriaServiceImpl">
+		<beans:property name="categoriaDao" ref="CategoriaDAO"></beans:property>
 	</beans:bean>
 	
 	<context:component-scan base-package="com.journaldev.spring" />

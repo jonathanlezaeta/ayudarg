@@ -25,5 +25,11 @@ public class UsuarioServiceImpl implements UsuarioService{
 	public void setUsuarioDao(UsuarioDAO usuarioDao) {
 		this.usuarioDao = usuarioDao;
 	}
+	
+	@Transactional
+	@Override
+	public boolean usuarioByUsernameAndPassword(String email, String password) {
+		return usuarioDao.usuarioByUsernameAndPassword(email, password);
+	}
 
 }

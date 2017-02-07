@@ -19,9 +19,6 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	public List<Usuario> listUsuarios() {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<Usuario> usuarioList = session.createQuery("from Usuario").list();
-		for(Usuario us : usuarioList){
-//			logger.info("Usuario List::"+us);
-		}
 		return usuarioList;
 	}
 	
@@ -31,6 +28,16 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	
 	public SessionFactory getSessionFactory(){
 		return sessionFactory;
+	}
+
+	@Override
+	public boolean usuarioByUsernameAndPassword(String email, String password) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Usuario usuario = (Usuario) session.createQuery("from Usuario as us WHERE us.email=" + email + "AND contrasenia =" + password).uniqueResult();
+		if(usuario != null)
+			return true;
+		else 
+			return false;
 	}
 
 }
