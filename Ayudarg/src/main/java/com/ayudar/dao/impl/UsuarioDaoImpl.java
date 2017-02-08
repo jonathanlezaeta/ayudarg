@@ -1,5 +1,6 @@
 package com.ayudar.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -38,6 +39,29 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 			return true;
 		else 
 			return false;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void insertUsuario(int rolIdRol, String usuario, String contrasenia, String nombre, String email,
+			String telefono, String celular, Date fechaDeNacimiento, String ciudadOrigen) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.getTransaction();
+		Usuario us = new Usuario();
+		us.setRolIdRol(rolIdRol);
+		us.setUsuario(usuario);
+		us.setContrasenia(contrasenia);
+		us.setNombre(nombre);
+		us.setEmail(email);
+		us.setTelefono(telefono);
+		us.setCelular(celular);
+		us.setFechaDeNacimiento(fechaDeNacimiento);
+		us.setCiudadOrigen(ciudadOrigen);
+        //Save the employee in database
+        session.save(us);
+        //Commit the transaction
+        session.getTransaction().commit(); 
+        session.flush();
 	}
 
 }

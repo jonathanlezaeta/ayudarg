@@ -17,7 +17,6 @@ public class Usuario {
 	@Id
 	@Column(name="idUsuario")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	
 	private int idUsuario;
 	private int rolIdRol;
 	private String usuario;

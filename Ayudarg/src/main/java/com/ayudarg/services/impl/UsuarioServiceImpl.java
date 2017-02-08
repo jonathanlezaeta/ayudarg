@@ -1,5 +1,6 @@
 package com.ayudarg.services.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +31,13 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Override
 	public boolean usuarioByUsernameAndPassword(String email, String password) {
 		return usuarioDao.usuarioByUsernameAndPassword(email, password);
+	}
+
+	@Transactional
+	@Override
+	public void insertUsuario(int rolIdRol, String usuario, String contrasenia, String nombre, String email,
+			String telefono, String celular, Date fechaDeNacimiento, String ciudadOrigen) {
+		usuarioDao.insertUsuario(rolIdRol, usuario, contrasenia, nombre, email, telefono, celular, fechaDeNacimiento, ciudadOrigen);
 	}
 
 }

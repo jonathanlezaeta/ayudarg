@@ -1,11 +1,9 @@
 package com.ayudar.view.beans;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class UsuarioBean {
 	
-	private int idUsuario;
-	private int rolIdRol;
 	private String usuario;
 	private String contrasenia;
 	private String nombre;
@@ -15,18 +13,18 @@ public class UsuarioBean {
 	private Date fechaDeNacimiento;
 	private String ciudadOrigen;
 	
-	public int getIdUsuario() {
-		return idUsuario;
-	}
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
-	}
-	public int getRolIdRol() {
-		return rolIdRol;
-	}
-	public void setRolIdRol(int rolIdRol) {
-		this.rolIdRol = rolIdRol;
-	}
+//	public int getIdUsuario() {
+//		return idUsuario;
+//	}
+//	public void setIdUsuario(int idUsuario) {
+//		this.idUsuario = idUsuario;
+//	}
+//	public int getRolIdRol() {
+//		return rolIdRol;
+//	}
+//	public void setRolIdRol(int rolIdRol) {
+//		this.rolIdRol = rolIdRol;
+//	}
 	public String getUsuario() {
 		return usuario;
 	}
