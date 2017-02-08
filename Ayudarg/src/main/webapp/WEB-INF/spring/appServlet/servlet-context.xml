@@ -100,6 +100,18 @@
 		<beans:property name="recursoHasCategoriaDao" ref="RecursoHasCategoriaDAO"></beans:property>
 	</beans:bean>
 	
+	<!-- USUARIOHASROL -->
+	
+	<beans:bean id="UsuarioHasRolDAO" class="com.ayudar.dao.impl.UsuarioHasRolDaoImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="UsuarioHasRolService" 
+	class="com.ayudarg.services.impl.UsuarioHasRolServiceImpl">
+		<beans:property name="usuarioHasRolDao" ref="UsuarioHasRolDAO"></beans:property>
+	</beans:bean>
+	
 		<!-- INSTITUCION -->
 	
 	<beans:bean id="InstitucionDAO" class="com.ayudar.dao.impl.InstitucionDaoImpl">

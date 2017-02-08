@@ -22,8 +22,8 @@ public class Institucion {
 	private String tipo;
 	private String nombre;
 	private String direccion;
-	private int telefono;
-	private int celular;
+	private String telefono;
+	private String celular;
 	private String sitioWeb;
 	private String email;
 	
@@ -63,16 +63,16 @@ public class Institucion {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	public int getCelular() {
+	public String getCelular() {
 		return celular;
 	}
-	public void setCelular(int celular) {
+	public void setCelular(String celular) {
 		this.celular = celular;
 	}
 	public String getSitioWeb() {
