@@ -18,18 +18,18 @@ public class UsuarioHasRolServiceImpl implements UsuarioHasRolService{
 	
 	private UsuarioHasRolDAO usuarioHasRolDao;
 	
-	@Transactional
-	@Override
-	public List<UsuarioHasRol> listUsuarioHasRol() {
-		return usuarioHasRolDao.listUsuarioHasRol();
-	}
-
 	public UsuarioHasRolDAO getUsuarioHasRolDao() {
 		return usuarioHasRolDao;
 	}
 
-	public void setUsuarioHasRol(UsuarioHasRolDAO usuarioHasRolDao) {
+	public void setUsuarioHasRolDao(UsuarioHasRolDAO usuarioHasRolDao) {
 		this.usuarioHasRolDao = usuarioHasRolDao;
+	}
+
+	@Transactional
+	@Override
+	public List<UsuarioHasRol> listUsuarioHasRol() {
+		return usuarioHasRolDao.listUsuarioHasRol();
 	}
 
 }
