@@ -29,4 +29,12 @@ public class InstitucionServiceImpl implements InstitucionService{
 		this.institucionDao = institucionDao;
 	}
 
+	@Transactional
+	@Override
+	public void insertInstitucion(String director, String ciudad, String tipo, String nombre, String direccion,
+			String telefono, String celular, String sitioWeb, String email) {
+		institucionDao.insertInstitucion(director, ciudad, tipo, nombre, direccion, telefono, celular, sitioWeb, email);
+		
+	}
+
 }

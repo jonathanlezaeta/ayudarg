@@ -1,28 +1,7 @@
-package com.ayudarg.model;
+package com.ayudar.view.beans;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="Institucion")
-
-public class Institucion {
-
-	@Id
-	@Column(name="idInstitucion")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+public class InstitucionBean {
 	
-	private int idInstitucion;
 	private String director;
 	private String ciudad;
 	private String tipo;
@@ -34,21 +13,6 @@ public class Institucion {
 	private String email;
 	private boolean activo;
 	
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Recurso> recurso = new HashSet<Recurso>(0);
-	
-    public boolean getActivo() {
-		return activo;
-	}
-	public void setActivo(boolean activo) {
-		this.activo = activo;
-	}
-    public int getIdInstitucion() {
-		return idInstitucion;
-	}
-	public void setIdInstitucion(int idInstitucion) {
-		this.idInstitucion = idInstitucion;
-	}
 	public String getDirector() {
 		return director;
 	}
@@ -103,10 +67,12 @@ public class Institucion {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Set<Recurso> getRecursos() {
-		return this.recurso;
+	public boolean getActivo() {
+		return activo;
 	}
-	public void setRecurso(Set<Recurso> recurso) {
-		this.recurso = recurso;
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
+	
+
 }

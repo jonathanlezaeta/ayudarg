@@ -25,6 +25,7 @@ public class Rol {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idRol;
 	private String nombre;
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "UsuarioHasRol", 
 	    joinColumns = { @JoinColumn(name = "usuarioIdUsuario") }, 
