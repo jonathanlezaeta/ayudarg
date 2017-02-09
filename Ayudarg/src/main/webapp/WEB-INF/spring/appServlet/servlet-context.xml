@@ -41,6 +41,7 @@
 		<beans:property name="annotatedClasses">
 			<beans:list>
 				<beans:value>com.ayudarg.model.Usuario</beans:value>
+				<beans:value>com.ayudarg.model.Rol</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -102,15 +103,15 @@
 	
 	<!-- USUARIOHASROL -->
 	
-	<beans:bean id="UsuarioHasRolDAO" class="com.ayudar.dao.impl.UsuarioHasRolDaoImpl">
-		<beans:property name="sessionFactory"
-			ref="hibernate4AnnotatedSessionFactory" />
-	</beans:bean>
+<!-- 	<beans:bean id="UsuarioHasRolDAO" class="com.ayudar.dao.impl.UsuarioHasRolDaoImpl"> -->
+<!-- 		<beans:property name="sessionFactory" -->
+<!-- 			ref="hibernate4AnnotatedSessionFactory" /> -->
+<!-- 	</beans:bean> -->
 	
-	<beans:bean id="UsuarioHasRolService" 
-	class="com.ayudarg.services.impl.UsuarioHasRolServiceImpl">
-		<beans:property name="usuarioHasRolDao" ref="UsuarioHasRolDAO"></beans:property>
-	</beans:bean>
+<!-- 	<beans:bean id="UsuarioHasRolService"  -->
+<!-- 	class="com.ayudarg.services.impl.UsuarioHasRolServiceImpl"> -->
+<!-- 		<beans:property name="usuarioHasRolDao" ref="UsuarioHasRolDAO"></beans:property> -->
+<!-- 	</beans:bean> -->
 	
 		<!-- INSTITUCION -->
 	

@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.slf4j.LoggerFactory;
 
 import com.ayudarg.dao.UsuarioDAO;
+import com.ayudarg.model.Rol;
 import com.ayudarg.model.Usuario;
 
 public class UsuarioDaoImpl implements UsuarioDAO {
@@ -46,9 +47,10 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	public void insertUsuario(int rolIdRol, String usuario, String contrasenia, String nombre, String email,
 			String telefono, String celular, Date fechaDeNacimiento, String ciudadOrigen) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.getTransaction();
+		Rol r = new Rol();
+		r.setNombre("A");
+		r.setIdRol(1);
 		Usuario us = new Usuario();
-		us.setRolIdRol(rolIdRol);
 		us.setUsuario(usuario);
 		us.setContrasenia(contrasenia);
 		us.setNombre(nombre);
@@ -57,10 +59,11 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 		us.setCelular(celular);
 		us.setFechaDeNacimiento(fechaDeNacimiento);
 		us.setCiudadOrigen(ciudadOrigen);
+		us.getRol().add(r);
         //Save the employee in database
         session.save(us);
         //Commit the transaction
-        session.getTransaction().commit(); 
+//        session.getTransaction().commit(); 
         session.flush();
 	}
 

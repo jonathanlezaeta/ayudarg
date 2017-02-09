@@ -1,6 +1,8 @@
 package com.ayudarg.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,17 +10,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 @Table(name="Usuario")
-
 public class Usuario {
 
 	@Id
 	@Column(name="idUsuario")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idUsuario;
-	private int rolIdRol;
 	private String usuario;
 	private String contrasenia;
 	private String nombre;
@@ -27,18 +32,18 @@ public class Usuario {
 	private String celular;
 	private Date fechaDeNacimiento;
 	private String ciudadOrigen;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "UsuarioHasRol", 
+             joinColumns = { @JoinColumn(name = "usuarioIdUsuario") }, 
+             inverseJoinColumns = { @JoinColumn(name = "rolIdRol") })
+//	 @ManyToMany
+	private Set<Rol> rol = new HashSet<Rol>(0);
 	
 	public int getIdUsuario() {
 		return idUsuario;
 	}
 	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
-	}
-	public int getRolIdRol() {
-		return rolIdRol;
-	}
-	public void setRolIdRol(int rolIdRol) {
-		this.rolIdRol = rolIdRol;
 	}
 	public String getUsuario() {
 		return usuario;
@@ -87,6 +92,12 @@ public class Usuario {
 	}
 	public void setCiudadOrigen(String ciudadOrigen) {
 		this.ciudadOrigen = ciudadOrigen;
+	}
+	public Set<Rol> getRol() {
+		return rol;
+	}
+	public void setRol(Set<Rol> rol) {
+		this.rol = rol;
 	}
 	
 

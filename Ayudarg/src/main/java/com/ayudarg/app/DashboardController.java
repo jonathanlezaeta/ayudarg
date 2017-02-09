@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ayudar.view.beans.LoginBean;
-import com.ayudarg.model.Usuario;
 import com.ayudarg.service.UsuarioService;
-import com.ayudarg.services.impl.UsuarioServiceImpl;
 
 @Controller
 public class DashboardController {
@@ -24,15 +22,11 @@ public class DashboardController {
 	public UsuarioService getServiceUsuarios() {
 		return serviceUsuarios;
 	}
-
-	public void setServiceUsuarios(UsuarioService serviceUsuarios) {
-		this.serviceUsuarios = serviceUsuarios;
-	}
-
+	
 	@Autowired(required = true)
 	@Qualifier(value = "UsuarioService")
-	public void setPersonService(UsuarioService ps) {
-		this.serviceUsuarios = ps;
+	public void setServiceUsuarios(UsuarioService serviceUsuarios) {
+		this.serviceUsuarios = serviceUsuarios;
 	}
 
 	// private static final Logger logger =
