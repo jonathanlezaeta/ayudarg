@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -34,6 +35,9 @@ public class Categoria {
 	    joinColumns = { @JoinColumn(name = "recursoIdRecurso") }, 
 	    inverseJoinColumns = { @JoinColumn(name = "categoriaIdCategoria") })
 	private Set<Recurso> recurso = new HashSet<Recurso>(0);
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private Set<Categoria> categoria = new HashSet<Categoria>(0);
 	
 	public int getIdCategoria() {
 		return idCategoria;

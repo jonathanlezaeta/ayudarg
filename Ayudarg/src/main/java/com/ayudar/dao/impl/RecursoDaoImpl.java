@@ -1,5 +1,6 @@
 package com.ayudar.dao.impl;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -9,7 +10,10 @@ import org.slf4j.LoggerFactory;
 
 import com.ayudarg.dao.RecursoDAO;
 import com.ayudarg.dao.UsuarioDAO;
+import com.ayudarg.model.Categoria;
+import com.ayudarg.model.Institucion;
 import com.ayudarg.model.Recurso;
+import com.ayudarg.model.Rol;
 import com.ayudarg.model.Usuario;
 
 public class RecursoDaoImpl implements RecursoDAO {
@@ -33,6 +37,32 @@ public class RecursoDaoImpl implements RecursoDAO {
 	
 	public SessionFactory getSessionFactory(){
 		return sessionFactory;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void insertRecurso(int idRecurso, String nombre, Date fechaCreacion, int usuarioIdUsuario, int usuarioRolIdRol, int institucionIdInstitucion, int cantidad) {
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		Categoria c = new Categoria();
+		c.setIdCategoria();
+		c.setNombre();
+		c.setFechaCreacion(fechaCreacion);
+		c.setCategoriaIdCategoria();
+		
+		Recurso us = new Recurso();
+		us.setIdRecuso(idRecurso);
+		us.setNombre(nombre);
+		us.setFechaCreacion(fechaCreacion);
+		us.setUsuarioIdUsuario(usuarioIdUsuario);
+		us.setUsuarioRolIdRol(usuarioRolIdRol);
+		us.setInstitucionIdInstitucion(institucionIdInstitucion);
+		us.setCantidad(cantidad);
+        //Save the employee in database
+        session.save(us);
+        //Commit the transaction
+        //session.getTransaction().commit(); 
+        session.flush();
 	}
 
 }

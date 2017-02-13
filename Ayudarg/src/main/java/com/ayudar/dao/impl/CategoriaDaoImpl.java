@@ -1,5 +1,6 @@
 package com.ayudar.dao.impl;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import com.ayudarg.dao.CategoriaDAO;
 import com.ayudarg.dao.UsuarioDAO;
 import com.ayudarg.model.Categoria;
+import com.ayudarg.model.Recurso;
 import com.ayudarg.model.Usuario;
 
 public class CategoriaDaoImpl implements CategoriaDAO {
@@ -33,6 +35,23 @@ public class CategoriaDaoImpl implements CategoriaDAO {
 	
 	public SessionFactory getSessionFactory(){
 		return sessionFactory;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void insertCategoria(int idCategoria, String nombre, Date fechaCreacion, int categoriaIdCategoria) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Categoria us = new Categoria();
+		us.setIdCategoria(idCategoria);
+		us.setNombre(nombre);
+		us.setFechaCreacion(fechaCreacion);
+		us.setCategoriaIdCategoria(categoriaIdCategoria);
+
+        //Save the employee in database
+        session.save(us);
+        //Commit the transaction
+        //session.getTransaction().commit(); 
+        session.flush();
 	}
 
 }

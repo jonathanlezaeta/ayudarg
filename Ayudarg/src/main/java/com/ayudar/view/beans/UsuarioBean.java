@@ -13,18 +13,6 @@ public class UsuarioBean {
 	private Date fechaDeNacimiento;
 	private String ciudadOrigen;
 	
-//	public int getIdUsuario() {
-//		return idUsuario;
-//	}
-//	public void setIdUsuario(int idUsuario) {
-//		this.idUsuario = idUsuario;
-//	}
-//	public int getRolIdRol() {
-//		return rolIdRol;
-//	}
-//	public void setRolIdRol(int rolIdRol) {
-//		this.rolIdRol = rolIdRol;
-//	}
 	public String getUsuario() {
 		return usuario;
 	}
