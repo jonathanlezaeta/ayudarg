@@ -13,41 +13,99 @@
 <title>Registrar Institucion</title>
 </head>
 <body>
-	<div class="row">
-  		<div class="col-md-6 col-md-offset-3">
-	        <form:form id="registrarseForm" method="post" action="submitAltaInstitucion" modelAttribute="institucionBean" class="form-signin">
-				<h2 class="form-signin-heading" style="text-align: center;">Ayudarg</h2>
-				<label for="inputEmail" class="sr-only">Director</label> 
-				<input type="text" id="director" class="form-control" placeholder="Ingrese Director de la Institucion" required="" autofocus="" name="director"> 
-				<br>
-				<label for="inputEmail" class="sr-only">Ciudad</label> 
-				<input type="text" id="ciudad" class="form-control" placeholder="Ingrese Ciudad de la Institucion" required="" autofocus="" name="ciudad"> 
-				<br>
-				<label for="inputEmail" class="sr-only">Tipo</label> 
-				<input type="text" id="tipo" class="form-control" placeholder="Ingrese Tipo de la Institucion" required="" autofocus="" name="tipo"> 
-				<br>
-				<label for="inputEmail" class="sr-only">Nombre</label> 
-				<input type="text" id="nombre" class="form-control" placeholder="Ingrese Nombre de la Institucion" required="" autofocus="" name="nombre"> 
-				<br>
-				<label for="inputEmail" class="sr-only">Direccion</label> 
-				<input type="text" id="direccion" class="form-control" placeholder="Ingrese Dirección de la Institucion" required="" autofocus="" name="direccion"> 
-				<br>
-				<label for="inputEmail" class="sr-only">Telefono</label> 
-				<input type="text" id="telefono" class="form-control" placeholder="Ingrese Telefono de la Institucion" required="" autofocus="" name="telefono"> 
-				<br>
-				<label for="inputEmail" class="sr-only">Celular</label> 
-				<input type="text" id="celular" class="form-control" placeholder="Ingrese Celular de la Institucion" required="" autofocus="" name="celular"> 
-				<br>
-				<label for="inputEmail" class="sr-only">Sitio Web</label> 
-				<input type="text" id="sitioWeb" class="form-control" placeholder="Ingrese Sitio Web de la Institucion" required="" autofocus="" name="sitioWeb"> 
-				<br>
-				<label for="inputEmail" class="sr-only">Email</label> 
-				<input type="text" id="email" class="form-control" placeholder="Ingrese Email de la Institucion" required="" autofocus="" name="email"> 
-				<br>
-				<button class="btn btn-lg btn-primary btn-block" style="width:50%; margin-left:auto; margin-right:auto;" type="submit">Aceptar</button>
-	        </form:form>
-        </div>
-	</div>
-	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
+				<div class="row">
+			<div class="col-md-8">
+				<div class="panel panel-default">
+					<div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Complete sus datos</div>
+					<div class="panel-body">
+						<form class="form-horizontal" action="" method="post">
+							<fieldset>
+							
+								<!-- Director input-->
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="director">Director</label>
+									<div class="col-md-9">
+									<input id="director" name="director" type="text" placeholder="Ingrese director de la Institucion" class="form-control">
+									</div>
+								</div>
+							
+								<!-- Ciudad input-->
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="ciudad">Ciudad</label>
+									<div class="col-md-9">
+										<input id="ciudad" name="ciudad" type="text" placeholder="Ingrese ciudad de la Institucion" class="form-control">
+									</div>
+								</div>
+								
+								<!-- Tipo input-->
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="tipo">Tipo</label>
+									<div class="col-md-9">
+										<input id="tipo" name="tipo" type="text" placeholder="Ingrese tipo de Institucion" class="form-control">
+									</div>
+								</div>
+								
+								<!-- Nombre input-->
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="nombre">Nombre</label>
+									<div class="col-md-9">
+										<input id="nombre" name="nombre" type="text" placeholder="Ingrese nombre de la Institucion" class="form-control">
+									</div>
+								</div>
+								
+								<!-- Direccion input-->
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="direccion">Direccion</label>
+									<div class="col-md-9">
+										<input id="direccion" name="direccion" type="text" placeholder="Ingrese direccion de la Institucion" class="form-control">
+									</div>
+								</div>
+								
+								<!-- Telefono input-->
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="telefono">Telefono</label>
+									<div class="col-md-9">
+										<input id="telefono" name="telefono" type="text" placeholder="Ingrese telefono de la Institucion" class="form-control">
+									</div>
+								</div>
+								
+								<!-- Celular input-->
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="celular">Celular</label>
+									<div class="col-md-9">
+										<input id="celular" name="celular" type="text" placeholder="Ingrese celular de la Institucion" class="form-control">
+									</div>
+								</div>
+								
+								<!-- SitioWeb input-->
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="sitioWeb">Sitio Web</label>
+									<div class="col-md-9">
+										<input id="sitioWeb" name="sitioWeb" type="text" placeholder="Ingrese sitio web de la Institucion" class="form-control">
+									</div>
+								</div>
+								
+								<!-- Email input-->
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="email">Email</label>
+									<div class="col-md-9">
+										<input id="email" name="email" type="text" placeholder="Ingrese email de la Institucion" class="form-control">
+									</div>
+								</div>
+								
+								
+								<!-- Form actions -->
+								<div class="form-group">
+									<div class="col-md-12 widget-right">
+										<button type="submit" class="btn btn-default btn-md pull-right">Donar</button>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+
+
 </body>
 </html>

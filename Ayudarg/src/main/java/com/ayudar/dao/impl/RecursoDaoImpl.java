@@ -41,7 +41,7 @@ public class RecursoDaoImpl implements RecursoDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void insertRecurso(String nombre, Date fechaCreacion, int cantidad) {
+	public void insertRecurso(int idRecurso, String nombre, Date fechaCreacion, int usuarioIdUsuario, int usuarioRolIdRol, int institucionIdInstitucion, int cantidad){
 		Session session = this.sessionFactory.getCurrentSession();
 		
 		Categoria c = new Categoria();
@@ -51,12 +51,12 @@ public class RecursoDaoImpl implements RecursoDAO {
 		c.setCategoriaIdCategoria(1);
 
 		Recurso us = new Recurso();
-//		us.setIdRecuso(idRecurso);
+		us.setIdRecuso(idRecurso);
 		us.setNombre(nombre);
 		us.setFechaCreacion(fechaCreacion);
-//		us.setUsuarioIdUsuario(usuarioIdUsuario);
-//		us.setUsuarioRolIdRol(usuarioRolIdRol);
-//		us.setInstitucionIdInstitucion(institucionIdInstitucion);
+		us.setUsuarioIdUsuario(usuarioIdUsuario);
+		us.setUsuarioRolIdRol(usuarioRolIdRol);
+		us.setInstitucionIdInstitucion(institucionIdInstitucion);
 		us.setCantidad(cantidad);
         //Save the employee in database
         session.save(us);

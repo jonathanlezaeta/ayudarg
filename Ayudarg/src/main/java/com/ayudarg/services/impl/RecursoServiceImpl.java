@@ -1,6 +1,7 @@
 package com.ayudarg.services.impl;
 
 import java.util.Date;
+
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -31,9 +32,7 @@ public class RecursoServiceImpl implements RecursoService{
 	}
 
 	@Override
-	public void insertRecurso(String nombre, Date fechaCreacion, int cantidad) {
-		recursoDao.insertRecurso(nombre, fechaCreacion, cantidad);
-		
-	}
-
+	public void insertRecurso(int idRecurso, String nombre, Date fechaCreacion, int usuarioIdUsuario, int usuarioRolIdRol, int institucionIdInstitucion, int cantidad) {
+		recursoDao.insertRecurso(idRecurso, nombre, fechaCreacion, usuarioIdUsuario, usuarioRolIdRol, institucionIdInstitucion, cantidad);
+	}	
 }

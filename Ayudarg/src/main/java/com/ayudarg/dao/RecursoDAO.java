@@ -6,5 +6,6 @@ import com.ayudarg.model.Recurso;
 
 public interface RecursoDAO {
 	public List<Recurso> listRecursos();
-	public void insertRecurso(String nombre, Date fechaCreacion, int cantidad);
+	void insertRecurso(int idRecurso, String nombre, Date fechaCreacion, int usuarioIdUsuario, int usuarioRolIdRol,
+			int institucionIdInstitucion, int cantidad);
 }
