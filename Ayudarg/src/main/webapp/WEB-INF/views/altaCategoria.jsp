@@ -10,7 +10,7 @@
 	rel="stylesheet">
 <html>
 <head>
-<title>Registrar Institucion</title>
+<title>Registrar Categoria</title>
 </head>
 <body>
 
