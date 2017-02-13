@@ -15,6 +15,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 @Table(name="Usuario")
@@ -32,13 +33,23 @@ public class Usuario {
 	private String celular;
 	private Date fechaDeNacimiento;
 	private String ciudadOrigen;
+	private boolean activo;
+	
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "UsuarioHasRol", 
              joinColumns = { @JoinColumn(name = "usuarioIdUsuario") }, 
              inverseJoinColumns = { @JoinColumn(name = "rolIdRol") })
-//	 @ManyToMany
 	private Set<Rol> rol = new HashSet<Rol>(0);
-	
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Recurso> recurso = new HashSet<Recurso>(0);
+    
+	public boolean getActivo() {
+		return activo;
+	}
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
 	public int getIdUsuario() {
 		return idUsuario;
 	}
@@ -99,6 +110,10 @@ public class Usuario {
 	public void setRol(Set<Rol> rol) {
 		this.rol = rol;
 	}
-	
-
+	public Set<Recurso> getRecursos() {
+		return this.recurso;
+	}
+	public void setRecurso(Set<Recurso> recurso) {
+		this.recurso = recurso;
+	}
 }

@@ -54,8 +54,8 @@ public class RegistrarseController {
 	public String submitRegistrar(Model model, @ModelAttribute("usuarioBean") UsuarioBean usuarioBean) {
 		serviceUsuarios.insertUsuario(1, usuarioBean.getUsuario(), usuarioBean.getContrasenia(),
 				usuarioBean.getNombre(), usuarioBean.getEmail(), usuarioBean.getTelefono(), usuarioBean.getCelular(),
-				usuarioBean.getFechaDeNacimiento(), usuarioBean.getCiudadOrigen());
-		return "errorLoginIncorrecto";
+				usuarioBean.getFechaDeNacimiento(), usuarioBean.getCiudadOrigen());		
+		return "registrarseCorrectamente";
 	}
 
 }
