@@ -22,15 +22,12 @@
 				<br>
 				<label for="inputPassword" class="sr-only">Contraseña</label>
 				<input type="password" id="contrasenia" class="form-control" placeholder="Contraseña" required="" name="contrasenia">
-<!-- 				<br> -->
-<!-- 				<label for="inputPassword" class="sr-only">Repetir contraseña</label> -->
-<!-- 				<input type="password" id="contrasenia" class="form-control" placeholder="Repetir Contraseña" required=""> -->
 				<br>
 				<label for="inputPassword" class="sr-only">Nombre y Apellido</label>
 				<input type="text" id="nombre" class="form-control" placeholder="Nombre y Apellido" required="" name="nombre">
 				<br>
 				<label for="inputPassword" class="sr-only">Email</label>
-				<input type="mail" id="email" class="form-control" placeholder="Email" required="" name="email">
+				<input type="email" id="email" class="form-control" placeholder="Email" required="" name="email">
 				<br>
 				<label for="inputPassword" class="sr-only">Telefono</label>
 				<input type="text" id="telefono" class="form-control" placeholder="Telefono" required="" name="telefono">

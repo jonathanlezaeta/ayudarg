@@ -49,7 +49,7 @@ public class DashboardController {
 		// model.addAttribute("serverTime", formattedDate);
 
 		return "dashboard";
-	}
+	}	
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String submit(Model model, @ModelAttribute("loginbean") LoginBean loginBean) {

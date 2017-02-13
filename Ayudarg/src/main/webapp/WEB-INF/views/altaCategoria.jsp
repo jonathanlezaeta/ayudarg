@@ -1,20 +1,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
-<link href="<c:url value="/resources/css/datepicker3.css" />"
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<link href="<c:url value="/resources/css/css/datepicker3.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/styles.css" />"
 	rel="stylesheet">
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Demandas</title>
+<title>Registrar Institucion</title>
 </head>
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
@@ -35,7 +35,7 @@
 <!-- 					</li> -->
 				</ul>
 			</div>
-							
+			
 		</div><!-- /.container-fluid -->
 	</nav>
 		
@@ -45,7 +45,7 @@
 <!-- 			<input type="text" class="form-control" placeholder="Search"> --> 
 <!--  			</div> --> 
 <%-- 		</form> --%>
-			<ul class="nav menu">
+		<ul class="nav menu">
 			<li><a href="/app/dashboard"><svg class="glyph stroked dashboard-dial"><use xlink:href="/dashboard"></use></svg> Inicio</a></li>
 			<li><a href="/app/donar"><svg class="glyph stroked calendar"><use xlink:href="/donar"></use></svg> Donar</a></li>
 			<li><a href="/app/demandar"><svg class="glyph stroked line-graph"><use xlink:href="/demandar"></use></svg> Demandar</a></li>
@@ -53,94 +53,44 @@
 			<li><a href="/app/altaCategoria"><svg class="glyph stroked line-graph"><use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
 		</ul>
 
-		
-	</div><!--/.main-->		
-
-	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/chart.min.js"></script>
-	<script src="js/chart-data.js"></script>
-	<script src="js/easypiechart.js"></script>
-	<script src="js/easypiechart-data.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
-	<script>
-		!function ($) {
-			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
-				$(this).find('em:first').toggleClass("glyphicon-minus");	  
-			}); 
-			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-		}(window.jQuery);
-
-		$(window).on('resize', function () {
-		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-		})
-		$(window).on('resize', function () {
-		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-		})
-	</script>	
-</body>
-
+	</div><!--/.sidebar-->
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-		
-		
 				<div class="row">
 			<div class="col-md-8">
 				<div class="panel panel-default">
-					<div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Complete sus datos</div>
+					<div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Registrar Categoria</div>
 					<div class="panel-body">
 						<form class="form-horizontal" action="" method="post">
 							<fieldset>
-								<!-- Categoria input-->
+							
+								<!-- Nombre put-->
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="name">Categoria</label>
+									<label class="col-md-3 control-label" for="director">Nombre</label>
 									<div class="col-md-9">
-									<input id="name" name="name" type="text" placeholder="Tu categoria" class="form-control">
+									<input id="nombre" name="nombre" type="text" placeholder="Ingrese nombre de la categoria" class="form-control">
 									</div>
 								</div>
 							
-								<!-- Recurso input-->
+								<!-- SubCategoria input-->
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="email">Recurso</label>
+									<label class="col-md-3 control-label" for="ciudad">Subcategoria</label>
 									<div class="col-md-9">
-										<input id="email" name="email" type="text" placeholder="Nombre del recurso" class="form-control">
+										<input id="ciudad" name="ciudad" type="text" placeholder="Elija (o no) subcategoria" class="form-control">
 									</div>
 								</div>
 								
-								<!-- Institución input-->
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="email">Institución</label>
-									<div class="col-md-9">
-										<input id="email" name="email" type="text" placeholder="Establecimiiento donde realizará la demanda" class="form-control">
-									</div>
-								</div>
-								
-								<!-- Cantidad input-->
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="email">Cantidad</label>
-									<div class="col-md-9">
-										<input id="email" name="email" type="text" placeholder="Cantidad que solicitará" class="form-control">
-									</div>
-								</div>
-								
-								
-<!-- 								Descripción body -->
-<!-- 								<div class="form-group"> -->
-<!-- 									<label class="col-md-3 control-label" for="message">Descripción</label> -->
-<!-- 									<div class="col-md-9"> -->
-<!-- 										<textarea class="form-control" id="message" name="message" placeholder="Comentarios..." rows="5"></textarea> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
 								
 								<!-- Form actions -->
 								<div class="form-group">
 									<div class="col-md-12 widget-right">
-										<button type="submit" class="btn btn-default btn-md pull-right">Solicitar</button>
+										<button type="submit" class="btn btn-default btn-md pull-right">Registrar</button>
 									</div>
 								</div>
 							</fieldset>
 						</form>
 					</div>
 				</div>
+
 
 </body>
 </html>
