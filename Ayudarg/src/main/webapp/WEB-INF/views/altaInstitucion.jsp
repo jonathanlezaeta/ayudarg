@@ -39,7 +39,7 @@
 				<input type="text" id="celular" class="form-control" placeholder="Ingrese Celular de la Institucion" required="" autofocus="" name="celular"> 
 				<br>
 				<label for="inputEmail" class="sr-only">Sitio Web</label> 
-				<input type="text" id="sitioWeb" class="form-control" placeholder="Ingrese Sitio Web de la Institucion" required="" autofocus="" name="sitio web"> 
+				<input type="text" id="sitioWeb" class="form-control" placeholder="Ingrese Sitio Web de la Institucion" required="" autofocus="" name="sitioWeb"> 
 				<br>
 				<label for="inputEmail" class="sr-only">Email</label> 
 				<input type="text" id="email" class="form-control" placeholder="Ingrese Email de la Institucion" required="" autofocus="" name="email"> 

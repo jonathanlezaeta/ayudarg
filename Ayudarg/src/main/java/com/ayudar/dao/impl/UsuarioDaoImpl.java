@@ -48,7 +48,7 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 			String telefono, String celular, Date fechaDeNacimiento, String ciudadOrigen) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Rol r = new Rol();
-		r.setNombre("A");
+		r.setNombre("U");
 		r.setIdRol(1);
 		Usuario us = new Usuario();
 		us.setUsuario(usuario);

@@ -55,7 +55,8 @@ public class RegistrarseController {
 		serviceUsuarios.insertUsuario(1, usuarioBean.getUsuario(), usuarioBean.getContrasenia(),
 				usuarioBean.getNombre(), usuarioBean.getEmail(), usuarioBean.getTelefono(), usuarioBean.getCelular(),
 				usuarioBean.getFechaDeNacimiento(), usuarioBean.getCiudadOrigen());		
-		return "registrarseCorrectamente";
+	    model.addAttribute("menssage", "Su registro fue exitoso y ya puede acceder a la plataforma.");
+		return "menssage";
 	}
 
 }
