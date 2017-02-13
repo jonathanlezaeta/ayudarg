@@ -70,10 +70,14 @@
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="icon-grid">
-						
-						
-						
-						
+							<div class="col-lg-3 col-md-4 col-sm-6">
+								<svg class="glyph stroked app window with content"><use xlink:href="#stroked-app-window-with-content"/></svg>
+								<pre>&lt;svg class="glyph stroked app window with content">&lt;use xlink:href="#stroked-app-window-with-content"/>&lt;/svg></pre>
+							</div>
+							<div class="col-lg-3 col-md-4 col-sm-6">
+								<svg class="glyph stroked app-window"><use xlink:href="#stroked-app-window"></use></svg>
+								<pre>&lt;svg class="glyph stroked app-window">&lt;use xlink:href="#stroked-app-window">&lt;/use>&lt;/svg></pre>
+							</div>
 
 						</div>
 					</div>
@@ -83,12 +87,14 @@
 		
 		
 	</div><!--/.main-->
+		
+	</div><!--/.main-->
 
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Pedidos</h1>
+				<h1 class="page-header">Demandas</h1>
 			</div>
 		</div><!--/.row-->
 				
