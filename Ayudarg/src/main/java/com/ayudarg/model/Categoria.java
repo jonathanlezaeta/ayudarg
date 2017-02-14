@@ -7,12 +7,14 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,16 +30,20 @@ public class Categoria {
 	private int idCategoria;
 	private String nombre;
 	private Date fechaCreacion;
-	private int categoriaIdCategoria;
+//	private int categoriaIdCategoria;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "RecursoHasCategoria", 
 	    joinColumns = { @JoinColumn(name = "recursoIdRecurso") }, 
 	    inverseJoinColumns = { @JoinColumn(name = "categoriaIdCategoria") })
 	private Set<Recurso> recurso = new HashSet<Recurso>(0);
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	private Set<Categoria> categoria = new HashSet<Categoria>(0);
+		
+	@ManyToOne(cascade={CascadeType.ALL})
+	@JoinColumn(name="categoriaIdCategoria")
+	private Categoria subcategoria;
+
+	@OneToMany(mappedBy="subcategoria")
+	private Set<Categoria> subcategorias = new HashSet<Categoria>();	
 	
 	public int getIdCategoria() {
 		return idCategoria;
@@ -57,16 +63,21 @@ public class Categoria {
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-	public int getCategoriaIdCategoria() {
-		return categoriaIdCategoria;
-	}
-	public void setCategoriaIdCategoria(int categoriaIdCategoria) {
-		this.categoriaIdCategoria = categoriaIdCategoria;
-	}
+//	public int getCategoriaIdCategoria() {
+//		return categoriaIdCategoria;
+//	}
+//	public void setCategoriaIdCategoria(int categoriaIdCategoria) {
+//		this.categoriaIdCategoria = categoriaIdCategoria;
+//	}
 	public Set<Recurso> getRecursos() {
 		return recurso;
 	}
 	public void setRecurso(Set<Recurso> recurso) {
 		this.recurso = recurso;
+	}
+	
+	@Override
+	public String toString(){
+		return idCategoria + "-" + nombre;
 	}
 }

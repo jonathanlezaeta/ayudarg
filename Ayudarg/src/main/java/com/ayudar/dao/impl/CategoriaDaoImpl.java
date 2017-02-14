@@ -22,10 +22,7 @@ public class CategoriaDaoImpl implements CategoriaDAO {
 	@Override
 	public List<Categoria> listCategorias() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Categoria> categoriasList = session.createQuery("from Categorias").list();
-		for(Categoria us : categoriasList){
-//			logger.info("Usuario List::"+us);
-		}
+		List<Categoria> categoriasList = session.createQuery("from Categoria").list();
 		return categoriasList;
 	}
 	
@@ -45,7 +42,7 @@ public class CategoriaDaoImpl implements CategoriaDAO {
 		us.setIdCategoria(idCategoria);
 		us.setNombre(nombre);
 		us.setFechaCreacion(fechaCreacion);
-		us.setCategoriaIdCategoria(categoriaIdCategoria);
+//		us.setCategoriaIdCategoria(categoriaIdCategoria);
 
         //Save the employee in database
         session.save(us);

@@ -1,6 +1,7 @@
 package com.ayudarg.app;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.ayudar.view.beans.CategoriaBean;
 import com.ayudar.view.beans.InstitucionBean;
 import com.ayudar.view.beans.UsuarioBean;
+import com.ayudarg.model.Categoria;
 import com.ayudarg.service.CategoriaService;
 import com.ayudarg.service.InstitucionService;
 import com.ayudarg.service.UsuarioService;
@@ -53,12 +55,15 @@ public class ABMCategoriaController {
 	 */
 	@RequestMapping(value = "/altaCategoria", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+		ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
+		model.addAttribute("categoria", categorias);
+		model.addAttribute("categoriaBean", new CategoriaBean());
 		return "altaCategoria";
 	}
 
 	@RequestMapping(value="/submitAltaCategoria", method = RequestMethod.POST)
 	public String submitRegistrar(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean) {
-		serviceCategoria.insertCategoria(categoriaBean.getIdCategoria(), categoriaBean.getNombre(), categoriaBean.getFechaCreacion(), categoriaBean.getCategoriaIdCategoria());
+//		serviceCategoria.insertCategoria(categoriaBean.getIdCategoria(), categoriaBean.getNombre(), categoriaBean.getFechaCreacion(), categoriaBean.getCategoriaIdCategoria());
 		return "registrarseCorrectamente";
 	}
 }

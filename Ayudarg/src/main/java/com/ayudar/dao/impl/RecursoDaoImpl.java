@@ -48,7 +48,7 @@ public class RecursoDaoImpl implements RecursoDAO {
 		c.setIdCategoria(1);
 		c.setNombre("Alimentos");
 //		c.setFechaCreacion();
-		c.setCategoriaIdCategoria(1);
+//		c.setCategoriaIdCategoria(1);
 
 		Recurso us = new Recurso();
 		us.setIdRecuso(idRecurso);

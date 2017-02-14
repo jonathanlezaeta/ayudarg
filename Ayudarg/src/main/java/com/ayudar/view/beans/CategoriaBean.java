@@ -1,38 +1,25 @@
 package com.ayudar.view.beans;
 
 import java.sql.Date;
+import java.util.ArrayList;
+
+import com.ayudarg.model.Categoria;
 
 public class CategoriaBean {
 	
-	private int idCategoria;
 	private String nombre;
-	private Date fechaCreacion;
-	private int categoriaIdCategoria;
+	private ArrayList<Categoria> categoria;
 	
-	public int getIdCategoria() {
-		return idCategoria;
-	}
-	public void setIdCategoria(int idCategoria) {
-		this.idCategoria = idCategoria;
-	}
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Date getFechaCreacion() {
-		return fechaCreacion;
+	public ArrayList<Categoria> getCategoria() {
+		return categoria;
 	}
-	public void setFechaCreacion(Date fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
+	public void setCategoria(ArrayList<Categoria> categoria) {
+		this.categoria = categoria;
 	}
-	public int getCategoriaIdCategoria() {
-		return categoriaIdCategoria;
-	}
-	public void setCategoriaIdCategoria(int categoriaIdCategoria) {
-		this.categoriaIdCategoria = categoriaIdCategoria;
-	}
-	
-
 }

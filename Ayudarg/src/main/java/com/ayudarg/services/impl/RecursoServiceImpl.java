@@ -12,12 +12,11 @@ import com.ayudarg.model.Recurso;
 import com.ayudarg.model.Usuario;
 import com.ayudarg.service.RecursoService;
 import com.ayudarg.service.UsuarioService;
-
+@Transactional
 public class RecursoServiceImpl implements RecursoService{
 	
 	private RecursoDAO recursoDao;
-	
-	@Transactional
+
 	@Override
 	public List<Recurso> listRecursos() {
 		return recursoDao.listRecursos();
@@ -32,7 +31,7 @@ public class RecursoServiceImpl implements RecursoService{
 	}
 
 	@Override
-	public void insertRecurso(int idRecurso, String nombre, Date fechaCreacion, int usuarioIdUsuario, int usuarioRolIdRol, int institucionIdInstitucion, int cantidad) {
+	public void insertRecurso(int idRecurso, String nombre, java.sql.Date fechaCreacion, int usuarioIdUsuario, int usuarioRolIdRol, int institucionIdInstitucion, int cantidad) {
 		recursoDao.insertRecurso(idRecurso, nombre, fechaCreacion, usuarioIdUsuario, usuarioRolIdRol, institucionIdInstitucion, cantidad);
 	}	
 }
