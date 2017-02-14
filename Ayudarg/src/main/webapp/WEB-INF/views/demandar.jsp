@@ -90,35 +90,44 @@
 					<div class="panel-body">
 						<form class="form-horizontal" action="" method="post">
 							<fieldset>
+								
 								<!-- Categoria input-->
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="name">Categoria</label>
+									<label class="col-md-3 control-label" for="categoriaIdCategoria">Categoria</label>
 									<div class="col-md-9">
-									<input id="name" name="name" type="text" placeholder="Tu categoria" class="form-control">
+									<input id="categoriaIdCategoria" name="categoriaIdCategoria" type="text" placeholder="Categoria del recurso" class="form-control">
 									</div>
 								</div>
 							
 								<!-- Recurso input-->
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="email">Recurso</label>
+									<label class="col-md-3 control-label" for="nombre">Recurso</label>
 									<div class="col-md-9">
-										<input id="email" name="email" type="text" placeholder="Nombre del recurso" class="form-control">
+										<input id="nombre" name="nombre" type="text" placeholder="Nombre del recurso" class="form-control">
+									</div>
+								</div>
+								
+								<!-- Fecha input-->
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="fechaCreacion">Fecha demanda</label>
+									<div class="col-md-9">
+										<input id="fechaCreacion" name="fechaCreacion" type="date" placeholder="Fecha de hoy" class="form-control">
 									</div>
 								</div>
 								
 								<!-- Institución input-->
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="email">Institución</label>
+									<label class="col-md-3 control-label" for="institucionIdinstitucion">Institución</label>
 									<div class="col-md-9">
-										<input id="email" name="email" type="text" placeholder="Establecimiiento donde realizará la demanda" class="form-control">
+										<input id="institucionIdinstitucion" name="institucionIdInstitucion" type="text" placeholder="Establecimiento donde realizará la demanda" class="form-control">
 									</div>
 								</div>
 								
 								<!-- Cantidad input-->
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="email">Cantidad</label>
+									<label class="col-md-3 control-label" for="cantidad">Cantidad</label>
 									<div class="col-md-9">
-										<input id="email" name="email" type="text" placeholder="Cantidad que solicitará" class="form-control">
+										<input id="cantidad" name="cantidad" type="text" placeholder="Cantidad que demandará" class="form-control">
 									</div>
 								</div>
 								

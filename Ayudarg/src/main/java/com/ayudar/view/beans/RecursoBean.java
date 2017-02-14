@@ -4,6 +4,10 @@ import java.sql.Date;
 
 public class RecursoBean {
 	
+	
+	private int categoriaIdCategoria;
+	private boolean activo;
+	
 	private int idRecurso;
 	private String nombre;
 	private Date fechaCreacion;
@@ -53,6 +57,18 @@ public class RecursoBean {
 	}
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+	public int getCategoriaIdCategoria() {
+		return categoriaIdCategoria;
+	}
+	public void setCategoriaIdCategoria(int categoriaIdCategoria) {
+		this.categoriaIdCategoria = categoriaIdCategoria;
+	}
+	public boolean getActivo() {
+		return activo;
+	}
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 
 }

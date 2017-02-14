@@ -31,6 +31,7 @@ public class Recurso {
 	private int usuarioRolIdRol;
 	private int institucionIdInstitucion;
 	private int cantidad;
+	private boolean activo;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "RecursoHasCategoria", 
@@ -85,6 +86,12 @@ public class Recurso {
 	}
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+	public boolean getActivo() {
+		return activo;
+	}
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 	
 }

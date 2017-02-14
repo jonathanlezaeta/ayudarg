@@ -31,7 +31,10 @@ public class RecursoServiceImpl implements RecursoService{
 	}
 
 	@Override
-	public void insertRecurso(int idRecurso, String nombre, java.sql.Date fechaCreacion, int usuarioIdUsuario, int usuarioRolIdRol, int institucionIdInstitucion, int cantidad) {
-		recursoDao.insertRecurso(idRecurso, nombre, fechaCreacion, usuarioIdUsuario, usuarioRolIdRol, institucionIdInstitucion, cantidad);
-	}	
+	public void insertRecurso(int categoriaIdCategoria, String nombre, java.sql.Date fechaCreacion,
+			int institucionIdInstitucion, int cantidad, boolean activo) {
+		recursoDao.insertRecurso(categoriaIdCategoria, nombre, fechaCreacion, institucionIdInstitucion, cantidad, activo);
+	}
+	
 }
+		
