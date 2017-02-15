@@ -1,6 +1,7 @@
 package com.ayudar.dao.impl;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -36,12 +37,13 @@ public class CategoriaDaoImpl implements CategoriaDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void insertCategoria(int idCategoria, String nombre, Date fechaCreacion, int categoriaIdCategoria) {
+	public void insertCategoria(String nombre, ArrayList<Categoria> subcategorias){
 		Session session = this.sessionFactory.getCurrentSession();
 		Categoria us = new Categoria();
-		us.setIdCategoria(idCategoria);
+		
 		us.setNombre(nombre);
-		us.setFechaCreacion(fechaCreacion);
+		us.setIdCategoria(0);;
+//		us.setFechaCreacion(fechaCreacion);
 //		us.setCategoriaIdCategoria(categoriaIdCategoria);
 
         //Save the employee in database

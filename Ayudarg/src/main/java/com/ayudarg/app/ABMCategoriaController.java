@@ -63,7 +63,7 @@ public class ABMCategoriaController {
 
 	@RequestMapping(value="/submitAltaCategoria", method = RequestMethod.POST)
 	public String submitRegistrar(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean) {
-//		serviceCategoria.insertCategoria(categoriaBean.getIdCategoria(), categoriaBean.getNombre(), categoriaBean.getFechaCreacion(), categoriaBean.getCategoriaIdCategoria());
+		serviceCategoria.insertCategoria(categoriaBean.getNombre(), categoriaBean.getCategoria());
 		return "registrarseCorrectamente";
 	}
 }

@@ -75,7 +75,7 @@
 						Registrar Categoria
 					</div>
 					<div class="panel-body">
-	        <form:form id="altaCategoriaForm" method="post" action="submitRegistrar" modelAttribute="categoriaBean" class="form-signin">
+	        <form:form id="altaCategoriaForm" method="post" action="submitAltaCategoria" modelAttribute="categoriaBean" class="form-signin">
 							<fieldset>
 
 								<!-- Nombre put-->

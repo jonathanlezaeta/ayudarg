@@ -1,6 +1,7 @@
 package com.ayudarg.services.impl;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -31,8 +32,8 @@ public class CategoriaServiceImpl implements CategoriaService{
 	}
 
 	@Override
-	public void insertCategoria(int idCategoria, String nombre, Date fechaCreacion, int categoriaIdCategoria) {
-		categoriaDao.insertCategoria(idCategoria, nombre, fechaCreacion, categoriaIdCategoria);
+	public void insertCategoria(String nombre, ArrayList<Categoria> subcategorias ) {
+		categoriaDao.insertCategoria(nombre, subcategorias);
 		
 	}
 
