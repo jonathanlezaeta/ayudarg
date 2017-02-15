@@ -88,7 +88,8 @@
 				<div class="panel panel-default">
 					<div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Complete sus datos</div>
 					<div class="panel-body">
-						<form class="form-horizontal" action="" method="post">
+					
+						<<form:form id="recursoForm" method="post" action="submitAltaDemanda" modelAttribute="recursoBean" class="form-signin">
 							<fieldset>
 								
 								<!-- Categoria input-->
@@ -147,7 +148,7 @@
 									</div>
 								</div>
 							</fieldset>
-						</form>
+						</form:form>
 					</div>
 				</div>
 

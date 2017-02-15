@@ -61,7 +61,8 @@
 				<div class="panel panel-default">
 					<div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Registrar Institucion</div>
 					<div class="panel-body">
-						<form class="form-horizontal" action="" method="post">
+					
+						<form:form id="institucionForm" method="post" action="submitAltaInstitucion" modelAttribute="institucionBean" class="form-signin">
 							<fieldset>
 							
 								<!-- Director input-->
@@ -144,7 +145,7 @@
 									</div>
 								</div>
 							</fieldset>
-						</form>
+						 </form:form>
 					</div>
 				</div>
 
