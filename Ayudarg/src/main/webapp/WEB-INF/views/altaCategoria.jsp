@@ -93,7 +93,6 @@
 									<label class="col-md-3 control-label" for="ciudad">Subcategoria</label>
 									<div class="col-md-9">
 										<form:select path="categoria" multiple="false">
-											<form:option value="-" label="--Elija una" />
 											<form:options items="${categoria}" itemValue="idCategoria"
 												itemLabel="nombre" />
 										</form:select>

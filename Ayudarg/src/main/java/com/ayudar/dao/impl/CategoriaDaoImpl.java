@@ -37,19 +37,25 @@ public class CategoriaDaoImpl implements CategoriaDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void insertCategoria(String nombre, ArrayList<Categoria> subcategorias){
+	public Categoria getCategoriaById(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Categoria us = new Categoria();
-		
-		us.setNombre(nombre);
-		us.setIdCategoria(0);;
-//		us.setFechaCreacion(fechaCreacion);
-//		us.setCategoriaIdCategoria(categoriaIdCategoria);
-
-        //Save the employee in database
-        session.save(us);
+		Categoria c = (Categoria) session.createQuery("from Categoria WHERE idCategoria='"+id+"'").uniqueResult();
+		return c;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void insertCategoria(String nombre, String subcategorias){
+		Session session = this.sessionFactory.getCurrentSession();
+		Categoria categoria = new Categoria();
+		Categoria superior = getCategoriaById(subcategorias);
+		categoria.setNombre(nombre);
+        java.sql.Date fechaCreacion = new java.sql.Date(new java.util.Date().getTime());
+        categoria.setFechaCreacion(fechaCreacion);
+        categoria.setSubcategoria(superior);
+        session.save(categoria);
         //Commit the transaction
-        //session.getTransaction().commit(); 
+//        session.getTransaction().commit(); 
         session.flush();
 	}
 

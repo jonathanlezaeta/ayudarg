@@ -7,7 +7,6 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,13 +37,30 @@ public class Categoria {
 	    inverseJoinColumns = { @JoinColumn(name = "categoriaIdCategoria") })
 	private Set<Recurso> recurso = new HashSet<Recurso>(0);
 		
+	public Set<Recurso> getRecurso() {
+		return recurso;
+	}
+
 	@ManyToOne(cascade={CascadeType.ALL})
 	@JoinColumn(name="categoriaIdCategoria")
 	private Categoria subcategoria;
 
+	public Categoria getSubcategoria() {
+		return subcategoria;
+	}
+	public void setSubcategoria(Categoria subcategoria) {
+		this.subcategoria = subcategoria;
+	}
+
 	@OneToMany(mappedBy="subcategoria")
 	private Set<Categoria> subcategorias = new HashSet<Categoria>();	
 	
+	public Set<Categoria> getSubcategorias() {
+		return subcategorias;
+	}
+	public void setSubcategorias(Set<Categoria> subcategorias) {
+		this.subcategorias = subcategorias;
+	}
 	public int getIdCategoria() {
 		return idCategoria;
 	}
@@ -76,8 +92,9 @@ public class Categoria {
 		this.recurso = recurso;
 	}
 	
-	@Override
-	public String toString(){
-		return idCategoria + "-" + nombre;
-	}
+    @Override
+    public String toString() {
+        return "CategoriaBean [id=" + idCategoria + ", name=" + nombre + "]";
+    }
 }
+

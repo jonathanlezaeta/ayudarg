@@ -7,17 +7,14 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ayudarg.dao.CategoriaDAO;
-import com.ayudarg.dao.UsuarioDAO;
 import com.ayudarg.model.Categoria;
-import com.ayudarg.model.Usuario;
 import com.ayudarg.service.CategoriaService;
-import com.ayudarg.service.UsuarioService;
 
+@Transactional
 public class CategoriaServiceImpl implements CategoriaService{
 	
 	private CategoriaDAO categoriaDao;
 	
-	@Transactional
 	@Override
 	public List<Categoria> listCategorias() {
 		return categoriaDao.listCategorias();
@@ -32,7 +29,7 @@ public class CategoriaServiceImpl implements CategoriaService{
 	}
 
 	@Override
-	public void insertCategoria(String nombre, ArrayList<Categoria> subcategorias ) {
+	public void insertCategoria(String nombre, String subcategorias ) {
 		categoriaDao.insertCategoria(nombre, subcategorias);
 		
 	}
