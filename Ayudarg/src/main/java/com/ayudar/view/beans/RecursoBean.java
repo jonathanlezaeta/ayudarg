@@ -10,7 +10,7 @@ public class RecursoBean {
 	private String nombre;
 	private Date fechaCreacion;
 	private int cantidad;
-	private String categoriaIdCategoria;
+//	private String categoriaIdCategoria;
 	private String intistucionIdInstitucion;
 	
 //	private int idRecurso;
@@ -50,23 +50,24 @@ public class RecursoBean {
 //	public void setUsuarioRolIdRol(int usuarioRolIdRol) {
 //		this.usuarioRolIdRol = usuarioRolIdRol;
 //	}
-	public String getIntistucionIdInstitucion() {
-		return intistucionIdInstitucion;
-	}
-	public void setIntistucionIdInstitucion(String intistucionIdInstitucion) {
-		this.intistucionIdInstitucion = intistucionIdInstitucion;
-	}
+
 	public int getCantidad() {
 		return cantidad;
 	}
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-	public String getCategoriaIdCategoria() {
-		return categoriaIdCategoria;
+//	public String getCategoriaIdCategoria() {
+//		return categoriaIdCategoria;
+//	}
+//	public void setCategoriaIdCategoria(String categoriaIdCategoria) {
+//		this.categoriaIdCategoria = categoriaIdCategoria;
+//	}
+	public String getIntistucionIdInstitucion() {
+		return intistucionIdInstitucion;
 	}
-	public void setCategoriaIdCategoria(String categoriaIdCategoria) {
-		this.categoriaIdCategoria = categoriaIdCategoria;
+	public void setIntistucionIdInstitucion(String intistucionIdInstitucion) {
+		this.intistucionIdInstitucion = intistucionIdInstitucion;
 	}
 //	public boolean getActivo() {
 //		return activo;

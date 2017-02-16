@@ -91,16 +91,16 @@
 						<form:form id="donarForm" method="post" action="submitAltaDonacion" modelAttribute="recursoBean" class="form-signin">
 							<fieldset>
 							
-								<!-- Categoria input-->
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="ciudad">Categoria</label>
-									<div class="col-md-9">
-										<form:select path="categoria" multiple="false">
-											<form:options items="${categoria}" itemValue="categoriaIdCategoria"
-												itemLabel="nombre" />
-										</form:select>
-									</div>
-								</div>
+<!-- 								Categoria input -->
+<!-- 								<div class="form-group"> -->
+<!-- 									<label class="col-md-3 control-label" for="ciudad">Categoria</label> -->
+<!-- 									<div class="col-md-9"> -->
+<%-- 										<form:select path="categoria" multiple="false"> --%>
+<%-- 											<form:options items="${categoria}" itemValue="categoriaIdCategoria" --%>
+<%-- 												itemLabel="nombre" /> --%>
+<%-- 										</form:select> --%>
+<!-- 									</div> -->
+<!-- 								</div> -->
 							
 								<!-- Recurso input-->
 								<div class="form-group">
@@ -118,14 +118,14 @@
 									</div>
 								</div>
 				
-								<!-- Institución input-->
+								Institución input
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="institucion">Institucion</label>
 									<div class="col-md-9">
 										<form:select path="institucion" multiple="false">
-											<form:options items="${institucion}" itemValue="institucionIdInstitucion"
-												itemLabel="nombre" />
-										</form:select>
+											<form:options items="${recurso}" itemValue="institucionIdInstitucion"
+ 												itemLabel="nombre" />
+ 										</form:select> 
 									</div>
 								</div>
 								

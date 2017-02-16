@@ -126,4 +126,9 @@ public class Institucion {
 	public void setRecurso(Set<Recurso> recurso) {
 		this.recurso = recurso;
 	}
+	
+	@Override
+	public String toString() {
+		return "InstitucionBean [id=" + idInstitucion + ", name=" + nombre + "]";
+	}
 }
