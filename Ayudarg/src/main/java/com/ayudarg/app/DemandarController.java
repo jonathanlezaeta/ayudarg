@@ -57,9 +57,9 @@ public class DemandarController {
 		Recurso rec = new Recurso();
 		rec.setNombre(nombre);
 
-		if(rec.getNombre().equals(recursoBean.getNombre()) && recursoBean.getCantidad() > 0)
+//		if(rec.getNombre().equals(recursoBean.getNombre()) && recursoBean.getCantidad() > 0)
 			//recursoBean.setActivo(false);
-			recursoBean.setCantidad(recursoBean.getCantidad()-1);
+//			recursoBean.setCantidad(recursoBean.getCantidad()-1);
 		return "No hay stock del producto que desea";
 		
 	}

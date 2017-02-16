@@ -90,11 +90,10 @@ public class DonarController {
 		
 		ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
 		model.addAttribute("categoria", categorias);
-		model.addAttribute("categoriaBean", new CategoriaBean());
+		model.addAttribute("recursoBean", new RecursoBean());
 		
 		ArrayList<Institucion> institucion = (ArrayList<Institucion>) serviceInstitucion.listInstituciones();
 		model.addAttribute("institucion", institucion);
-		model.addAttribute("institucionBean", new InstitucionBean());
 		
 		return "donar";
 	}

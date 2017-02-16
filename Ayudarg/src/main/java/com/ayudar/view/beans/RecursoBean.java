@@ -1,79 +1,34 @@
 package com.ayudar.view.beans;
 
-import java.sql.Date;
-import java.util.ArrayList;
-
-import com.ayudarg.model.Categoria;
-
 public class RecursoBean {
 	
 	private String nombre;
-	private Date fechaCreacion;
-	private int cantidad;
-//	private String categoriaIdCategoria;
-	private String intistucionIdInstitucion;
+	private String categoria;
+	private String cantidad;
+	private String institucion;
 	
-//	private int idRecurso;
-//	private boolean activo;
-//	private int usuarioIdUsuario;
-//	private int usuarioRolIdRol;
-
-
-	
-//	public int getIdRecurso() {
-//		return idRecurso;
-//	}
-//	public void setIdRecurso(int idRecurso) {
-//		this.idRecurso = idRecurso;
-//	}
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Date getFechaCreacion() {
-		return fechaCreacion;
+	public String getCategoria() {
+		return categoria;
 	}
-	public void setFechaCreacion(Date fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
-//	public int getUsuarioIdUsuario() {
-//		return usuarioIdUsuario;
-//	}
-//	public void setUsuarioIdUsuario(int usuarioIdUsuario) {
-//		this.usuarioIdUsuario = usuarioIdUsuario;
-//	}
-//	public int getUsuarioRolIdRol() {
-//		return usuarioRolIdRol;
-//	}
-//	public void setUsuarioRolIdRol(int usuarioRolIdRol) {
-//		this.usuarioRolIdRol = usuarioRolIdRol;
-//	}
-
-	public int getCantidad() {
+	public String getCantidad() {
 		return cantidad;
 	}
-	public void setCantidad(int cantidad) {
+	public void setCantidad(String cantidad) {
 		this.cantidad = cantidad;
 	}
-//	public String getCategoriaIdCategoria() {
-//		return categoriaIdCategoria;
-//	}
-//	public void setCategoriaIdCategoria(String categoriaIdCategoria) {
-//		this.categoriaIdCategoria = categoriaIdCategoria;
-//	}
-	public String getIntistucionIdInstitucion() {
-		return intistucionIdInstitucion;
+	public String getInstitucion() {
+		return institucion;
 	}
-	public void setIntistucionIdInstitucion(String intistucionIdInstitucion) {
-		this.intistucionIdInstitucion = intistucionIdInstitucion;
+	public void setInstitucion(String institucion) {
+		this.institucion = institucion;
 	}
-//	public boolean getActivo() {
-//		return activo;
-//	}
-//	public void setActivo(boolean activo) {
-//		this.activo = activo;
-//	}
-
 }
