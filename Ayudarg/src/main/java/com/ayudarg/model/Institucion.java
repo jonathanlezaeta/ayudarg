@@ -10,6 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -33,6 +36,20 @@ public class Institucion {
 	private String sitioWeb;
 	private String email;
 	private boolean activo;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "InstitucionHasCategoria", 
+	    joinColumns = { @JoinColumn(name = "institucionIdInstitucion") }, 
+	    inverseJoinColumns = { @JoinColumn(name = "categoriaIdCategoria") })
+	private Set<Categoria> categoria = new HashSet<Categoria>(0);
+		
+	public Set<Categoria> getCategoria() {
+		return categoria;
+	}
+	
+	public void setCategoria(Set<Categoria> categoria) {
+		this.categoria = categoria;
+	}
 	
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Recurso> recurso = new HashSet<Recurso>(0);

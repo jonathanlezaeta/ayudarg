@@ -41,24 +41,38 @@ public class RecursoDaoImpl implements RecursoDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void insertRecurso(int categoriaIdCategoria, String nombre, Date fechaCreacion, int institucionIdInstitucion, int cantidad, boolean activo){
+	public Categoria getCategoriaById(String id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Categoria c = (Categoria) session.createQuery("from Categoria WHERE idCategoria='"+id+"'").uniqueResult();
+		return c;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Institucion getInstitucionById(String idIns) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Institucion i = (Institucion) session.createQuery("from Categoria WHERE idInstitucion='"+idIns+"'").uniqueResult();
+		return i;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void insertRecurso(String categoriaIdCategoria, String nombre, Date fechaCreacion, String institucionIdInstitucion, int cantidad){
 		Session session = this.sessionFactory.getCurrentSession();
 		
-		Categoria c = new Categoria();
-		c.setIdCategoria(1);
-		c.setNombre("Alimentos");
-//		c.setFechaCreacion();
-//		c.setCategoriaIdCategoria(1);
+		Categoria c = getCategoriaById(categoriaIdCategoria);
 
+		Institucion i = getInstitucionById(institucionIdInstitucion);
+		
 		Recurso us = new Recurso();
 //		us.setIdRecuso(idRecurso);
 		us.setNombre(nombre);
 		us.setFechaCreacion(fechaCreacion);
 //		us.setUsuarioIdUsuario(usuarioIdUsuario);
 //		us.setUsuarioRolIdRol(usuarioRolIdRol);
-		us.setInstitucionIdInstitucion(institucionIdInstitucion);
+//		us.setInstitucionIdInstitucion(institucionIdInstitucion);
 		us.setCantidad(cantidad);
-		us.setActivo(true);
+//		us.setActivo(true);
         //Save the employee in database
         session.save(us);
         //Commit the transaction

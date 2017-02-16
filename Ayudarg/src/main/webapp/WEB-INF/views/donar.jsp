@@ -93,9 +93,12 @@
 							
 								<!-- Categoria input-->
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="categoriaIdCategoria">Categoria</label>
+									<label class="col-md-3 control-label" for="ciudad">Categoria</label>
 									<div class="col-md-9">
-									<input id="categoriaIdCategoria" name="categoriaIdCategoria" type="text" placeholder="Categoria del recurso" class="form-control">
+										<form:select path="categoria" multiple="false">
+											<form:options items="${categoria}" itemValue="categoriaIdCategoria"
+												itemLabel="nombre" />
+										</form:select>
 									</div>
 								</div>
 							
@@ -117,9 +120,12 @@
 				
 								<!-- Institución input-->
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="institucionIdinstitucion">Institución</label>
+									<label class="col-md-3 control-label" for="institucion">Institucion</label>
 									<div class="col-md-9">
-										<input id="institucionIdinstitucion" name="institucionIdInstitucion" type="text" placeholder="Establecimiento donde realizará la donación" class="form-control">
+										<form:select path="institucion" multiple="false">
+											<form:options items="${institucion}" itemValue="institucionIdInstitucion"
+												itemLabel="nombre" />
+										</form:select>
 									</div>
 								</div>
 								

@@ -40,7 +40,21 @@ public class Categoria {
 	public Set<Recurso> getRecurso() {
 		return recurso;
 	}
-
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "InstitucionHasCategoria", 
+	    joinColumns = { @JoinColumn(name = "institucionIdInstitucion") }, 
+	    inverseJoinColumns = { @JoinColumn(name = "categoriaIdCategoria") })
+	private Set<Institucion> institucion = new HashSet<Institucion>(0);
+		
+	public Set<Institucion> getInstitucion() {
+		return institucion;
+	}
+	
+	public void setInstitucion(Set<Institucion> institucion) {
+		this.institucion = institucion;
+	}
+	
 	@ManyToOne(cascade={CascadeType.ALL})
 	@JoinColumn(name="categoriaIdCategoria")
 	private Categoria subcategoria;

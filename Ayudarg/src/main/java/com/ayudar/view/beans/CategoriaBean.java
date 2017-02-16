@@ -10,6 +10,7 @@ public class CategoriaBean {
 	private String nombre;
 //	private ArrayList<Categoria> categoria;
 	private String categoria;
+	
 	public String getNombre() {
 		return nombre;
 	}

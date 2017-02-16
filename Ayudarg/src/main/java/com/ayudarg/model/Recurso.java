@@ -28,10 +28,11 @@ public class Recurso {
 	private String nombre;
 	private Date fechaCreacion;
 	private int usuarioIdUsuario;
-	private int usuarioRolIdRol;
+//	private int usuarioRolIdRol;
 	private int institucionIdInstitucion;
 	private int cantidad;
 	private boolean activo;
+	private int categoriaIdCategoria;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "RecursoHasCategoria", 
@@ -57,18 +58,18 @@ public class Recurso {
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-	public int getUsuarioIdUsuario() {
-		return usuarioIdUsuario;
-	}
-	public void setUsuarioIdUsuario(int usuarioIdUsuario) {
-		this.usuarioIdUsuario = usuarioIdUsuario;
-	}
-	public int getUsuarioRolIdRol() {
-		return usuarioRolIdRol;
-	}
-	public void setUsuarioRolIdRol(int usuarioRolIdRol) {
-		this.usuarioRolIdRol = usuarioRolIdRol;
-	}
+//	public int getUsuarioIdUsuario() {
+//		return usuarioIdUsuario;
+//	}
+//	public void setUsuarioIdUsuario(int usuarioIdUsuario) {
+//		this.usuarioIdUsuario = usuarioIdUsuario;
+//	}
+//	public int getUsuarioRolIdRol() {
+//		return usuarioRolIdRol;
+//	}
+//	public void setUsuarioRolIdRol(int usuarioRolIdRol) {
+//		this.usuarioRolIdRol = usuarioRolIdRol;
+//	}
 	public int getInstitucionIdInstitucion() {
 		return institucionIdInstitucion;
 	}
@@ -92,6 +93,13 @@ public class Recurso {
 	}
 	public void setActivo(boolean activo) {
 		this.activo = activo;
+	}
+	
+	public int getCategoriaIdCategoria() {
+		return categoriaIdCategoria;
+	}
+	public void setCategoriaIdCategoria(int categoriaIdCategoria) {
+		this.categoriaIdCategoria = categoriaIdCategoria;
 	}
 	
 }

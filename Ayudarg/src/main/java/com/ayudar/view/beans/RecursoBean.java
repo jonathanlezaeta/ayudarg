@@ -1,27 +1,31 @@
 package com.ayudar.view.beans;
 
 import java.sql.Date;
+import java.util.ArrayList;
+
+import com.ayudarg.model.Categoria;
 
 public class RecursoBean {
 	
-	
-	private int categoriaIdCategoria;
-	private boolean activo;
-	
-	private int idRecurso;
 	private String nombre;
 	private Date fechaCreacion;
-	private int usuarioIdUsuario;
-	private int usuarioRolIdRol;
-	private int intistucionIdInstitucion;
 	private int cantidad;
+	private String categoriaIdCategoria;
+	private String intistucionIdInstitucion;
 	
-	public int getIdRecurso() {
-		return idRecurso;
-	}
-	public void setIdRecurso(int idRecurso) {
-		this.idRecurso = idRecurso;
-	}
+//	private int idRecurso;
+//	private boolean activo;
+//	private int usuarioIdUsuario;
+//	private int usuarioRolIdRol;
+
+
+	
+//	public int getIdRecurso() {
+//		return idRecurso;
+//	}
+//	public void setIdRecurso(int idRecurso) {
+//		this.idRecurso = idRecurso;
+//	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -34,22 +38,22 @@ public class RecursoBean {
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-	public int getUsuarioIdUsuario() {
-		return usuarioIdUsuario;
-	}
-	public void setUsuarioIdUsuario(int usuarioIdUsuario) {
-		this.usuarioIdUsuario = usuarioIdUsuario;
-	}
-	public int getUsuarioRolIdRol() {
-		return usuarioRolIdRol;
-	}
-	public void setUsuarioRolIdRol(int usuarioRolIdRol) {
-		this.usuarioRolIdRol = usuarioRolIdRol;
-	}
-	public int getIntistucionIdInstitucion() {
+//	public int getUsuarioIdUsuario() {
+//		return usuarioIdUsuario;
+//	}
+//	public void setUsuarioIdUsuario(int usuarioIdUsuario) {
+//		this.usuarioIdUsuario = usuarioIdUsuario;
+//	}
+//	public int getUsuarioRolIdRol() {
+//		return usuarioRolIdRol;
+//	}
+//	public void setUsuarioRolIdRol(int usuarioRolIdRol) {
+//		this.usuarioRolIdRol = usuarioRolIdRol;
+//	}
+	public String getIntistucionIdInstitucion() {
 		return intistucionIdInstitucion;
 	}
-	public void setIntistucionIdInstitucion(int intistucionIdInstitucion) {
+	public void setIntistucionIdInstitucion(String intistucionIdInstitucion) {
 		this.intistucionIdInstitucion = intistucionIdInstitucion;
 	}
 	public int getCantidad() {
@@ -58,17 +62,17 @@ public class RecursoBean {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-	public int getCategoriaIdCategoria() {
+	public String getCategoriaIdCategoria() {
 		return categoriaIdCategoria;
 	}
-	public void setCategoriaIdCategoria(int categoriaIdCategoria) {
+	public void setCategoriaIdCategoria(String categoriaIdCategoria) {
 		this.categoriaIdCategoria = categoriaIdCategoria;
 	}
-	public boolean getActivo() {
-		return activo;
-	}
-	public void setActivo(boolean activo) {
-		this.activo = activo;
-	}
+//	public boolean getActivo() {
+//		return activo;
+//	}
+//	public void setActivo(boolean activo) {
+//		this.activo = activo;
+//	}
 
 }
