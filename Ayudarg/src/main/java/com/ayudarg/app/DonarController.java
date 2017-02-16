@@ -100,7 +100,7 @@ public class DonarController {
 
 	@RequestMapping(value="/submitAltaDonacion", method = RequestMethod.POST)
 	public String submitRegistrar(Model model, @ModelAttribute("recursoBean") RecursoBean recursoBean) {
-	//	serviceRecurso.insertRecurso(recursoBean.getCategoriaIdCategoria(), recursoBean.getNombre(), recursoBean.getFechaCreacion(), recursoBean.getIntistucionIdInstitucion(), recursoBean.getCantidad());
+		serviceRecurso.insertRecurso(recursoBean.getNombre(), recursoBean.getCantidad(), recursoBean.getCategoria(), recursoBean.getInstitucion());
 		return "registrarseCorrectamente";
 	}
 

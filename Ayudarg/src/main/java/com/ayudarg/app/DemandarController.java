@@ -1,6 +1,7 @@
 package com.ayudarg.app;
 
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 import com.ayudar.view.beans.RecursoBean;
+import com.ayudarg.model.Categoria;
+import com.ayudarg.model.Institucion;
 import com.ayudarg.model.Recurso;
+import com.ayudarg.service.CategoriaService;
+import com.ayudarg.service.InstitucionService;
 import com.ayudarg.service.RecursoService;
 
 
@@ -23,11 +28,19 @@ import com.ayudarg.service.RecursoService;
 @Controller
 public class DemandarController {
 
-	// private static final Logger logger =
-	// LoggerFactory.getLogger(RegistraseController.class);
 	private RecursoService serviceRecurso;
+	private CategoriaService serviceCategoria;
+	private InstitucionService serviceInstitucion;
 	
 
+	public CategoriaService getServiceCategoria() {
+		return serviceCategoria;
+	}
+
+	public void setServiceCategoria(CategoriaService serviceCategoria) {
+		this.serviceCategoria = serviceCategoria;
+	}
+	
 	public RecursoService getServiceRecurso() {
 		return serviceRecurso;
 	}
@@ -36,11 +49,30 @@ public class DemandarController {
 		this.serviceRecurso = serviceRecurso;
 	}
 
+	public InstitucionService getServiceInstitucion() {
+		return serviceInstitucion;
+	}
+
+	public void setServiceInstitucion(InstitucionService serviceInstitucion) {
+		this.serviceInstitucion = serviceInstitucion;
+	}
 	
 	@Autowired(required = true)
 	@Qualifier(value = "RecursoService")
 	public void setRecursoService(RecursoService ps) {
 		this.serviceRecurso = ps;
+	}
+	
+	@Autowired(required = true)
+	@Qualifier(value = "CategoriaService")
+	public void setCategoriaService(CategoriaService cs) {
+		this.serviceCategoria = cs;
+	}
+	
+	@Autowired(required = true)
+	@Qualifier(value = "InstitucionService")
+	public void setInstitucionService(InstitucionService is) {
+		this.serviceInstitucion = is;
 	}
 
 	/**
@@ -48,19 +80,22 @@ public class DemandarController {
 	 */
 	@RequestMapping(value = "/demandar", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+		
+		ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
+		model.addAttribute("categoria", categorias);
+		model.addAttribute("recursoBean", new RecursoBean());
+		
+		ArrayList<Institucion> institucion = (ArrayList<Institucion>) serviceInstitucion.listInstituciones();
+		model.addAttribute("institucion", institucion);
+		
 		return "demandar";
 	}
 
 	@RequestMapping(value="/submitAltaDemanda", method = RequestMethod.POST)
-	public String submitUpdate(String nombre, Model model, @ModelAttribute("recursoBean") RecursoBean recursoBean) {
-
-		Recurso rec = new Recurso();
-		rec.setNombre(nombre);
-
-//		if(rec.getNombre().equals(recursoBean.getNombre()) && recursoBean.getCantidad() > 0)
-			//recursoBean.setActivo(false);
-//			recursoBean.setCantidad(recursoBean.getCantidad()-1);
-		return "No hay stock del producto que desea";
-		
+	public String submitRegistrar(Model model, @ModelAttribute("recursoBean") RecursoBean recursoBean) {
+		serviceRecurso.deleteRecurso(recursoBean.getNombre(), recursoBean.getCategoria());
+		System.out.printf("asd");
+		return null;
 	}
+
 }

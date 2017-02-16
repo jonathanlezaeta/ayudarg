@@ -7,5 +7,6 @@ import com.ayudarg.model.Recurso;
 
 public interface RecursoService {
 	public List<Recurso> listRecursos();
-	public void insertRecurso(String categoriaIdCategoria, String nombre, Date fechaCreacion, String intistucionIdInstitucion, int cantidad);
+	public void insertRecurso(String nombre, String cantidad, String categoria, String institucion);
+	public void deleteRecurso(String nombre, String categoria);
 }

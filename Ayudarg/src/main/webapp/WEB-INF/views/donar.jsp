@@ -72,9 +72,10 @@
 					<div class="panel-heading">
 						<svg class="glyph stroked email">
 							<use xlink:href="#stroked-email"></use></svg>
-						Registrar Categoria
+						Donaciones
 					</div>
 					<div class="panel-body">
+						
 						<form:form id="donarForm" method="post"
 							action="submitAltaDonacion" modelAttribute="recursoBean"
 							class="form-signin">
@@ -121,7 +122,7 @@
 								<div class="form-group">
 									<div class="col-md-12 widget-right">
 										<button type="submit"
-											class="btn btn-default btn-md pull-right">Registrar</button>
+											class="btn btn-default btn-md pull-right">Donar</button>
 									</div>
 								</div>
 							</fieldset>
