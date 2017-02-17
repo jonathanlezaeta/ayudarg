@@ -10,7 +10,7 @@
 	rel="stylesheet">
 <html>
 <head>
-<title>Registrar Categoria</title>
+<title>Baja Usuario</title>
 </head>
 <body>
 
@@ -76,27 +76,17 @@
 						Registrar Categoria
 					</div>
 					<div class="panel-body">
-	        <form:form id="altaCategoriaForm" method="post" action="submitAltaCategoria" modelAttribute="categoriaBean" class="form-signin">
+	        <form:form id="usuarioBajaForm" method="post" action="submitBajaUsuario" modelAttribute="usuarioBajaBean" class="form-signin">
 							<fieldset>
-
-								<!-- Nombre put-->
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="director">Nombre</label>
-									<div class="col-md-9">
-										<input id="nombre" name="nombre" type="text"
-											placeholder="Ingrese nombre de la categoria"
-											class="form-control">
-									</div>
-								</div>
 
 								<!-- SubCategoria input-->
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="ciudad">Subcategoria</label>
+									<label class="col-md-3 control-label" for="usuario">Usuario</label>
 									<div class="col-md-9">
-										<form:select path="categoria" multiple="false" class="form-control">
-											<form:options items="${categoria}" itemValue="idCategoria"
-												itemLabel="nombre" />
-										</form:select>
+										<form:select path="idUsuario" multiple="false" class="form-control">
+											<form:options items="${usuario}" itemValue="idUsuario"
+												itemLabel="nombre" /> 
+ 										</form:select> 
 									</div>
 								</div>
 
@@ -105,7 +95,7 @@
 								<div class="form-group">
 									<div class="col-md-12 widget-right">
 										<button type="submit"
-											class="btn btn-default btn-md pull-right">Registrar</button>
+											class="btn btn-default btn-md pull-right">Eliminar</button>
 									</div>
 								</div>
 							</fieldset>

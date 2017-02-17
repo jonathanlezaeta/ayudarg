@@ -116,4 +116,9 @@ public class Usuario {
 	public void setRecurso(Set<Recurso> recurso) {
 		this.recurso = recurso;
 	}
+	
+	 @Override
+    public String toString() {
+		 return "UsuarioBajaBean [id=" + idUsuario + ", name=" + nombre + "]";
+	    }
 }

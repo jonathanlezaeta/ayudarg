@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.slf4j.LoggerFactory;
 
 import com.ayudarg.dao.UsuarioDAO;
+import com.ayudarg.model.Categoria;
 import com.ayudarg.model.Rol;
 import com.ayudarg.model.Usuario;
 
@@ -40,6 +41,14 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 			return true;
 		else 
 			return false;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Usuario getUsuarioById(String id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Usuario u = (Usuario) session.createQuery("from Usuario WHERE idUsuario='"+id+"'").uniqueResult();
+		return u;
 	}
 	
 	@SuppressWarnings("unchecked")
