@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,16 +30,26 @@ public class Recurso {
 	private Date fechaCreacion;
 	private int usuarioIdUsuario;
 //	private int usuarioRolIdRol;
-	private int institucionIdInstitucion;
+//	private int institucionIdInstitucion;
 	private int cantidad;
 	private boolean activo;
-	private int categoriaIdCategoria;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "RecursoHasCategoria", 
              joinColumns = { @JoinColumn(name = "recursoIdRecurso") }, 
              inverseJoinColumns = { @JoinColumn(name = "categoriaIdCategoria") })
 	private Set<Categoria> categoria = new HashSet<Categoria>(0);
+	
+	@ManyToOne(cascade={CascadeType.ALL})
+	@JoinColumn(name="institucionIdInstitucion")
+	private Institucion institucion;
+
+	public Institucion getInstitucion() {
+		return institucion;
+	}
+	public void setSubInstitucion(Institucion institucion) {
+		this.institucion = institucion;
+	}
 	
 	public int getIdRecuso() {
 		return idRecurso;
@@ -70,12 +81,12 @@ public class Recurso {
 //	public void setUsuarioRolIdRol(int usuarioRolIdRol) {
 //		this.usuarioRolIdRol = usuarioRolIdRol;
 //	}
-	public int getInstitucionIdInstitucion() {
-		return institucionIdInstitucion;
-	}
-	public void setInstitucionIdInstitucion(int institucionIdInstitucion) {
-		this.institucionIdInstitucion = institucionIdInstitucion;
-	}
+//	public int getInstitucionIdInstitucion() {
+//		return institucionIdInstitucion;
+//	}
+//	public void setInstitucionIdInstitucion(int institucionIdInstitucion) {
+//		this.institucionIdInstitucion = institucionIdInstitucion;
+//	}
 	public Set<Categoria> getCategorias() {
 		return categoria;
 	}
@@ -95,11 +106,11 @@ public class Recurso {
 		this.activo = activo;
 	}
 	
-	public int getCategoriaIdCategoria() {
-		return categoriaIdCategoria;
+	public int getUsuarioIdUsuario() {
+		return usuarioIdUsuario;
 	}
-	public void setCategoriaIdCategoria(int categoriaIdCategoria) {
-		this.categoriaIdCategoria = categoriaIdCategoria;
+	public void setUsuarioIdUsuario(int usuarioIdUsuario) {
+		this.usuarioIdUsuario = usuarioIdUsuario;
 	}
 	
 }

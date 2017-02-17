@@ -91,62 +91,57 @@
 					<div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Complete sus datos</div>
 					<div class="panel-body">
 					
-						<<form:form id="recursoForm" method="post" action="submitAltaDemanda" modelAttribute="recursoBean" class="form-signin">
+						<form:form id="demandarForm" method="post"
+							action="submitAltaDemanda" modelAttribute="recursoBean"
+							class="form-signin">
 							<fieldset>
-								
-								<!-- Categoria input-->
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="categoriaIdCategoria">Categoria</label>
-									<div class="col-md-9">
-									<input id="categoriaIdCategoria" name="categoriaIdCategoria" type="text" placeholder="Categoria del recurso" class="form-control">
-									</div>
-								</div>
-							
+
+
 								<!-- Recurso input-->
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="nombre">Recurso</label>
 									<div class="col-md-9">
-										<input id="nombre" name="nombre" type="text" placeholder="Nombre del recurso" class="form-control">
+										<input id="nombre" name="nombre" type="text"
+											placeholder="Nombre del recurso" class="form-control">
 									</div>
 								</div>
 								
-								<!-- Fecha input-->
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="fechaCreacion">Fecha demanda</label>
-									<div class="col-md-9">
-										<input id="fechaCreacion" name="fechaCreacion" type="date" placeholder="Fecha de hoy" class="form-control">
-									</div>
-								</div>
-								
-								<!-- Institución input-->
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="institucionIdinstitucion">Institución</label>
-									<div class="col-md-9">
-										<input id="institucionIdinstitucion" name="institucionIdInstitucion" type="text" placeholder="Establecimiento donde realizará la demanda" class="form-control">
-									</div>
-								</div>
-								
-								<!-- Cantidad input-->
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="cantidad">Cantidad</label>
-									<div class="col-md-9">
-										<input id="cantidad" name="cantidad" type="text" placeholder="Cantidad que demandará" class="form-control">
-									</div>
-								</div>
-								
-								
-<!-- 								Descripción body -->
+<!-- 								Cantidad input -->
 <!-- 								<div class="form-group"> -->
-<!-- 									<label class="col-md-3 control-label" for="message">Descripción</label> -->
+<!-- 									<label class="col-md-3 control-label" for="cantidad">Cantidad</label> -->
 <!-- 									<div class="col-md-9"> -->
-<!-- 										<textarea class="form-control" id="message" name="message" placeholder="Comentarios..." rows="5"></textarea> -->
+<!-- 										<input id="cantidad" name="cantidad" type="text" -->
+<!-- 											placeholder="Cantidad que donará" class="form-control"> -->
 <!-- 									</div> -->
 <!-- 								</div> -->
 								
+								<!-- Categoria input -->
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="ciudad">Categoria</label>
+									<div class="col-md-9">
+										<form:select path="categoria" multiple="false" class="form-control">
+											<form:options items="${categoria}" itemValue="idCategoria"
+												itemLabel="nombre" />
+										</form:select>
+									</div>
+								</div>
+								
+<!-- 								Institución input -->
+<!-- 								<div class="form-group"> -->
+<!-- 									<label class="col-md-3 control-label" for="institucion">Institucion</label> -->
+<!-- 									<div class="col-md-9"> -->
+<%-- 										<form:select path="institucion" multiple="false" class="form-control"> --%>
+<%-- 											<form:options items="${institucion}" --%>
+<%-- 												itemValue="idInstitucion" itemLabel="nombre" /> --%>
+<%-- 										</form:select> --%>
+<!-- 									</div> -->
+<!-- 								</div> -->
+
 								<!-- Form actions -->
 								<div class="form-group">
 									<div class="col-md-12 widget-right">
-										<button type="submit" class="btn btn-default btn-md pull-right">Solicitar</button>
+										<button type="submit"
+											class="btn btn-default btn-md pull-right">Solicitar</button>
 									</div>
 								</div>
 							</fieldset>
