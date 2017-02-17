@@ -73,7 +73,7 @@
 					<div class="panel-heading">
 						<svg class="glyph stroked email">
 							<use xlink:href="#stroked-email"></use></svg>
-						Registrar Categoria
+						Eliminar Usuario
 					</div>
 					<div class="panel-body">
 	        <form:form id="usuarioBajaForm" method="post" action="submitBajaUsuario" modelAttribute="usuarioBajaBean" class="form-signin">
