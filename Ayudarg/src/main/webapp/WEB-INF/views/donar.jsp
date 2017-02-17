@@ -61,6 +61,7 @@
 			<li><a href="/app/altaCategoria"><svg
 						class="glyph stroked line-graph">
 						<use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
+			<li><a href="/app/bajaUsuario"><svg class="glyph stroked line-graph"><use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
 		</ul>
 
 	</div>

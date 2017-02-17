@@ -53,6 +53,7 @@
 			<li><a href="/app/demandar"><svg class="glyph stroked line-graph"><use xlink:href="/demandar"></use></svg> Demandar</a></li>
 			<li><a href="/app/altaInstitucion"><svg class="glyph stroked line-graph"><use xlink:href="/altaInstitucion"></use></svg> Institucion</a></li>
 			<li><a href="/app/altaCategoria"><svg class="glyph stroked line-graph"><use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
+			<li><a href="/app/bajaUsuario"><svg class="glyph stroked line-graph"><use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
 		</ul>
 
 		
@@ -136,7 +137,7 @@
 <%-- 										</form:select> --%>
 <!-- 									</div> -->
 <!-- 								</div> -->
-
+I
 								<!-- Form actions -->
 								<div class="form-group">
 									<div class="col-md-12 widget-right">
