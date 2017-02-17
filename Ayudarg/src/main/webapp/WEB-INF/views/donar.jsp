@@ -10,7 +10,7 @@
 	rel="stylesheet">
 <html>
 <head>
-<title>Registrar Categoria</title>
+<title>Donaciones</title>
 </head>
 <body>
 
@@ -57,7 +57,7 @@
 						<use xlink:href="/demandar"></use></svg> Demandar</a></li>
 			<li><a href="/app/altaInstitucion"><svg
 						class="glyph stroked line-graph">
-						<use xlink:href="/altaInstitucion"></use></svg> Institucion</a></li>
+						<use xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
 			<li><a href="/app/altaCategoria"><svg
 						class="glyph stroked line-graph">
 						<use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
@@ -73,7 +73,7 @@
 					<div class="panel-heading">
 						<svg class="glyph stroked email">
 							<use xlink:href="#stroked-email"></use></svg>
-						Donaciones
+						Complete sus datos
 					</div>
 					<div class="panel-body">
 						

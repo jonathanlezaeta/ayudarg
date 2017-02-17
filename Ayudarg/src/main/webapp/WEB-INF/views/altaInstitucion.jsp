@@ -10,7 +10,7 @@
 	rel="stylesheet">
 <html>
 <head>
-<title>Registrar Institucion</title>
+<title>Instituciones</title>
 </head>
 <body>
 
@@ -50,7 +50,7 @@
 			<li><a href="/app/dashboard"><svg class="glyph stroked dashboard-dial"><use xlink:href="/dashboard"></use></svg> Inicio</a></li>
 			<li><a href="/app/donar"><svg class="glyph stroked calendar"><use xlink:href="/donar"></use></svg> Donar</a></li>
 			<li><a href="/app/demandar"><svg class="glyph stroked line-graph"><use xlink:href="/demandar"></use></svg> Demandar</a></li>
-			<li><a href="/app/altaInstitucion"><svg class="glyph stroked line-graph"><use xlink:href="/altaInstitucion"></use></svg> Institucion</a></li>
+			<li><a href="/app/altaInstitucion"><svg class="glyph stroked line-graph"><use xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
 			<li><a href="/app/altaCategoria"><svg class="glyph stroked line-graph"><use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
 			<li><a href="/app/bajaUsuario"><svg class="glyph stroked line-graph"><use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
 		</ul>
@@ -65,17 +65,17 @@
 					<div class="panel-heading">
 						<svg class="glyph stroked email">
 							<use xlink:href="#stroked-email"></use></svg>
-						Registrar Institucion
+						Instituciones
 					</div>
 					<div class="panel-body">
 
 						<div class="container">
 							<div id="exTab2" class="col-md-10">
 								<ul class="nav nav-tabs">
-									<li class="active"><a href="#1" data-toggle="tab">Alta</a>
+									<li class="active"><a href="#1" data-toggle="tab">Registar</a>
 									</li>
-									<li><a href="#2" data-toggle="tab">Baja</a></li>
-									<li><a href="#3" data-toggle="tab">Modificacion</a></li>
+									<li><a href="#2" data-toggle="tab">Eliminar</a></li>
+									<li><a href="#3" data-toggle="tab">Modificar</a></li>
 								</ul>
 
 								<div class="tab-content ">
@@ -187,10 +187,17 @@
 											</fieldset>
 										</form:form>
 									</div>
+									
+									
+									
 									<div class="tab-pane" id="2">
 										<h3>Notice the gap between the content and tab after
 											applying a background color</h3>
 									</div>
+									
+									
+									
+									
 									<div class="tab-pane" id="3">
 										<h3>add clearfix to tab-content (see the css)</h3>
 									</div>

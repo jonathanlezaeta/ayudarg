@@ -66,4 +66,11 @@ public class ABMCategoriaController {
 		serviceCategoria.insertCategoria(categoriaBean.getNombre(), categoriaBean.getCategoria());
 		return "registrarseCorrectamente";
 	}
+
+	
+	@RequestMapping(value="/submitDeleteCategoria", method = RequestMethod.POST)
+	public String submitRegistrar2(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean) {
+		serviceCategoria.deleteCategoria(categoriaBean.getCategoria());
+		return "borradoCorrectamente";
+	}
 }

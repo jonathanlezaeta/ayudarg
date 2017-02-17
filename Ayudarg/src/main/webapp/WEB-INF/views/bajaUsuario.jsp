@@ -10,7 +10,7 @@
 	rel="stylesheet">
 <html>
 <head>
-<title>Baja Usuario</title>
+<title>Usuarios</title>
 </head>
 <body>
 
@@ -47,59 +47,81 @@
 		<!--  			</div> -->
 		<%-- 		</form> --%>
 		<ul class="nav menu">
-			<li><a href="/app/dashboard"><svg
-						class="glyph stroked dashboard-dial">
-						<use xlink:href="/dashboard"></use></svg> Inicio</a></li>
-			<li><a href="/app/donar"><svg class="glyph stroked calendar">
-						<use xlink:href="/donar"></use></svg> Donar</a></li>
-			<li><a href="/app/demandar"><svg
-						class="glyph stroked line-graph">
-						<use xlink:href="/demandar"></use></svg> Demandar</a></li>
-			<li><a href="/app/altaInstitucion"><svg
-						class="glyph stroked line-graph">
-						<use xlink:href="/altaInstitucion"></use></svg> Institucion</a></li>
-			<li><a href="/app/altaCategoria"><svg
-						class="glyph stroked line-graph">
-						<use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
+			<li><a href="/app/dashboard"><svg class="glyph stroked dashboard-dial"><use xlink:href="/dashboard"></use></svg> Inicio</a></li>
+			<li><a href="/app/donar"><svg class="glyph stroked calendar"><use xlink:href="/donar"></use></svg> Donar</a></li>
+			<li><a href="/app/demandar"><svg class="glyph stroked line-graph"><use xlink:href="/demandar"></use></svg> Demandar</a></li>
+			<li><a href="/app/altaInstitucion"><svg class="glyph stroked line-graph"><use xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
+			<li><a href="/app/altaCategoria"><svg class="glyph stroked line-graph"><use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
 			<li><a href="/app/bajaUsuario"><svg class="glyph stroked line-graph"><use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
 		</ul>
+
 
 	</div>
 	<!--/.sidebar-->
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<svg class="glyph stroked email">
 							<use xlink:href="#stroked-email"></use></svg>
-						Eliminar Usuario
-					</div>
+						Usuarios
+				</div>
 					<div class="panel-body">
-	        <form:form id="usuarioBajaForm" method="post" action="submitBajaUsuario" modelAttribute="usuarioBajaBean" class="form-signin">
-							<fieldset>
 
-								<!-- SubCategoria input-->
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="usuario">Usuario</label>
-									<div class="col-md-9">
-										<form:select path="idUsuario" multiple="false" class="form-control">
-											<form:options items="${usuario}" itemValue="idUsuario"
-												itemLabel="nombre" /> 
- 										</form:select> 
+						<div class="container">
+							<div id="exTab2" class="col-md-10">
+								<ul class="nav nav-tabs">
+									<li><a href="#2" data-toggle="tab">Eliminar</a></li>
+									<li><a href="#3" data-toggle="tab">Modificar</a></li>
+								</ul>
+
+								<div class="tab-content ">
+										<div class="tab-pane active" id="2">
+											<form:form id="usuarioBajaForm" method="post"
+												action="submitBajaUsuario" modelAttribute="usuarioBajaBean"
+												class="form-signin">
+												<fieldset>
+
+													<!-- SubCategoria input-->
+													<div class="form-group">
+														<label class="col-md-3 control-label" for="usuario">Usuario</label>
+														<div class="col-md-9">
+															<form:select path="idUsuario" multiple="false"
+																class="form-control">
+																<form:options items="${usuario}" itemValue="idUsuario"
+																	itemLabel="nombre" />
+															</form:select>
+														</div>
+													</div>
+
+
+														<!-- Form actions -->
+												<div class="form-group">
+													<div class="col-md-12 widget-right">
+														<button type="submit"
+															class="btn btn-default btn-md pull-right">Eliminar</button>
+													</div>
+												</div>
+											</fieldset>
+										</form:form>
+									</div>
+									<div class="tab-pane" id="3">
+										<h3>add clearfix to tab-content (see the css)</h3>
 									</div>
 								</div>
+							</div>
+						</div>
 
 
-								<!-- Form actions -->
-								<div class="form-group">
-									<div class="col-md-12 widget-right">
-										<button type="submit"
-											class="btn btn-default btn-md pull-right">Eliminar</button>
-									</div>
-								</div>
-							</fieldset>
-						</form:form>
+
+						<script
+							src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+						<script
+							src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+
 					</div>
 				</div>
 </body>

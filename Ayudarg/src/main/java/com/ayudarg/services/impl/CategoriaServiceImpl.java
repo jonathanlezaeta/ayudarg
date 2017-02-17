@@ -33,5 +33,12 @@ public class CategoriaServiceImpl implements CategoriaService{
 		categoriaDao.insertCategoria(nombre, subcategorias);
 		
 	}
+	
+	@Override
+	public void deleteCategoria(String categoria) {
+		categoriaDao.deleteCategoria(categoria);
+		
+	}
+
 
 }

@@ -58,5 +58,14 @@ public class CategoriaDaoImpl implements CategoriaDAO {
 //        session.getTransaction().commit(); 
         session.flush();
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void deleteCategoria(String categoria){
+		Session session = this.sessionFactory.getCurrentSession();
+		Categoria superior = getCategoriaById(categoria);
+		session.delete(superior);
+		session.flush();
+        session.close();
+	}
 }

@@ -10,7 +10,7 @@
 	rel="stylesheet">
 <html>
 <head>
-<title>Login Correcto</title>
+<title>Registro Correcto</title>
 <style type="text/css">
 #mapa {
 	height: 500px;
