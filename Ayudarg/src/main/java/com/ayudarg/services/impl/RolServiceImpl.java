@@ -11,11 +11,11 @@ import com.ayudarg.model.Usuario;
 import com.ayudarg.service.RolService;
 import com.ayudarg.service.UsuarioService;
 
+@Transactional
 public class RolServiceImpl implements RolService{
 	
 	private RolDAO rolDao;
 	
-	@Transactional
 	@Override
 	public List<Rol> listRoles() {
 		return rolDao.listRoles();

@@ -47,7 +47,7 @@ public class Institucion {
 		return categoria;
 	}
 	
-	public void setCategoria(Set<Categoria> categoria) {
+	public void setCategoria(Set<Categoria> categoriia) {
 		this.categoria = categoria;
 	}
 	

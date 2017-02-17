@@ -66,6 +66,5 @@ public class CategoriaDaoImpl implements CategoriaDAO {
 		Categoria superior = getCategoriaById(categoria);
 		session.delete(superior);
 		session.flush();
-        session.close();
 	}
 }

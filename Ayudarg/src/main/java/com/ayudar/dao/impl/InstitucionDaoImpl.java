@@ -39,6 +39,15 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	public Institucion getInstitucionById(String idIns) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Institucion i = (Institucion) session.createQuery("from Institucion WHERE idInstitucion='"+idIns+"'").uniqueResult();
+		return i;
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	@Override
 	public void insertInstitucion(String director, String ciudad, String tipo, String nombre, String direccion,
 			String telefono, String celular, String sitioWeb, String email) {
 		Session session = this.sessionFactory.getCurrentSession();
@@ -58,4 +67,16 @@ public class InstitucionDaoImpl implements InstitucionDAO {
         //session.getTransaction().commit(); 
         session.flush();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void deleteInstitucion(String institucion) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Institucion insti = new Institucion ();
+		insti.setIdInstitucion(Integer.parseInt(institucion));
+		session.delete(insti);
+		session.flush();
+      
+	}
 }
+	
