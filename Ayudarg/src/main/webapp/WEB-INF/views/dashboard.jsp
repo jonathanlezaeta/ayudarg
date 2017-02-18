@@ -37,24 +37,65 @@
 							
 		</div><!-- /.container-fluid -->
 	</nav>
-		
-	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-<%-- 		<form role="search"> --%>
-<!-- 			<div class="form-group"> --> 
-<!-- 			<input type="text" class="form-control" placeholder="Search"> --> 
-<!--  			</div> --> 
-<%-- 		</form> --%>
-			<ul class="nav menu">
-			<li><a href="/app/dashboard"><svg class="glyph stroked dashboard-dial"><use xlink:href="/dashboard"></use></svg> Inicio</a></li>
-			<li><a href="/app/donar"><svg class="glyph stroked calendar"><use xlink:href="/donar"></use></svg> Donar</a></li>
-			<li><a href="/app/demandar"><svg class="glyph stroked line-graph"><use xlink:href="/demandar"></use></svg> Demandar</a></li>
-			<li><a href="/app/altaInstitucion"><svg class="glyph stroked line-graph"><use xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
-			<li><a href="/app/altaCategoria"><svg class="glyph stroked line-graph"><use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
-			<li><a href="/app/bajaUsuario"><svg class="glyph stroked line-graph"><use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
-		</ul>
-
-		
-
+		<c:choose>
+			<c:when test="${rol.equals('A')}">
+				<ul class="nav menu">
+					<li><a href="/app/dashboard"><svg
+								class="glyph stroked dashboard-dial">
+						<use xlink:href="/dashboard"></use></svg> Inicio</a></li>
+					<li><a href="/app/donar"><svg
+								class="glyph stroked calendar">
+						<use xlink:href="/donar"></use></svg> Donar</a></li>
+					<li><a href="/app/demandar"><svg
+								class="glyph stroked line-graph">
+						<use xlink:href="/demandar"></use></svg> Demandar</a></li>
+					<li><a href="/app/altaInstitucion"><svg
+								class="glyph stroked line-graph">
+						<use xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
+					<li><a href="/app/altaCategoria"><svg
+								class="glyph stroked line-graph">
+						<use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
+					<li><a href="/app/bajaUsuario"><svg
+								class="glyph stroked line-graph">
+						<use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
+				</ul>
+			</c:when>
+			<c:when test="${rol.equals('U')}">
+				<ul class="nav menu">
+					<li><a href="/app/dashboard"><svg
+								class="glyph stroked dashboard-dial">
+						<use xlink:href="/dashboard"></use></svg> Inicio</a></li>
+					<li><a href="/app/donar"><svg
+								class="glyph stroked calendar">
+						<use xlink:href="/donar"></use></svg> Donar</a></li>
+					<li><a href="/app/demandar"><svg
+								class="glyph stroked line-graph">
+						<use xlink:href="/demandar"></use></svg>Solicitar un recurso</a></li>
+				</ul>
+			</c:when>
+			<c:when test="${rol.equals('I')}">
+				<ul class="nav menu">
+					<li><a href="/app/dashboard"><svg
+								class="glyph stroked dashboard-dial">
+						<use xlink:href="/dashboard"></use></svg> Inicio</a></li>
+					<li><a href="/app/donar"><svg
+								class="glyph stroked calendar">
+						<use xlink:href="/donar"></use></svg> Donar</a></li>
+					<li><a href="/app/demandar"><svg
+								class="glyph stroked line-graph">
+						<use xlink:href="/demandar"></use></svg> Demandar</a></li>
+					<li><a href="/app/altaInstitucion"><svg
+								class="glyph stroked line-graph">
+						<use xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
+					<li><a href="/app/altaCategoria"><svg
+								class="glyph stroked line-graph">
+						<use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
+					<li><a href="/app/bajaUsuario"><svg
+								class="glyph stroked line-graph">
+						<use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
+				</ul>
+			</c:when>
+		</c:choose>
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			

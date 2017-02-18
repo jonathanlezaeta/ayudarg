@@ -27,7 +27,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 	}
 	
 	@Override
-	public boolean usuarioByUsernameAndPassword(String email, String password) {
+	public UsuarioSQL usuarioByUsernameAndPassword(String email, String password) {
 		return usuarioDao.usuarioByUsernameAndPassword(email, password);
 	}
 	

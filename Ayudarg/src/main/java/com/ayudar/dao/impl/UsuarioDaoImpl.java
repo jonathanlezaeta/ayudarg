@@ -34,20 +34,17 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean usuarioByUsernameAndPassword(String email, String password) {
+	public UsuarioSQL usuarioByUsernameAndPassword(String email, String password) {
 		Session session = this.sessionFactory.getCurrentSession();
-		UsuarioSQL usuario = (UsuarioSQL) session.createQuery("from Usuario WHERE email='"+ email + "' AND contrasenia='" + password + "'").uniqueResult();
-		if(usuario != null)
-			return true;
-		else 
-			return false;
+		UsuarioSQL usuario = (UsuarioSQL) session.createQuery("from UsuarioSQL WHERE email='"+ email + "' AND contrasenia='" + password + "'").uniqueResult();
+		return usuario;
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public UsuarioSQL getUsuarioById(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		UsuarioSQL u = (UsuarioSQL) session.createQuery("from Usuario WHERE idUsuario='"+id+"'").uniqueResult();
+		UsuarioSQL u = (UsuarioSQL) session.createQuery("from UsuarioSQL WHERE idUsuario='"+id+"'").uniqueResult();
 		return u;
 	}
 	

@@ -1,7 +1,12 @@
 package com.ayudarg.app;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Locale;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,13 +17,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ayudar.view.beans.LoginBean;
+import com.ayudarg.model.Rol;
+import com.ayudarg.model.UsuarioSQL;
+import com.ayudarg.service.RolService;
 import com.ayudarg.service.UsuarioService;
 
 @Controller
-public class DashboardController {
-
+public class DashboardController extends HttpServlet {
+	private static final long serialVersionUID = -3450969163801147075L;
 	private UsuarioService serviceUsuarios;
-
+	private RolService serviceRol;
+	
 	public UsuarioService getServiceUsuarios() {
 		return serviceUsuarios;
 	}
@@ -27,6 +36,16 @@ public class DashboardController {
 	@Qualifier(value = "UsuarioService")
 	public void setServiceUsuarios(UsuarioService serviceUsuarios) {
 		this.serviceUsuarios = serviceUsuarios;
+	}
+	
+	public RolService getServiceRol() {
+		return serviceRol;
+	}
+	
+	@Autowired(required = true)
+	@Qualifier(value = "RolService")
+	public void setServiceRol(RolService serviceRol) {
+		this.serviceRol = serviceRol;
 	}
 
 	// private static final Logger logger =
@@ -52,11 +71,21 @@ public class DashboardController {
 	}	
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String submit(Model model, @ModelAttribute("loginbean") LoginBean loginBean) {
-		if (serviceUsuarios.usuarioByUsernameAndPassword(loginBean.getUsuario(), loginBean.getContrasenia())) {
+	public String submit(Model model, @ModelAttribute("loginbean") LoginBean loginBean, HttpServletRequest request) {
+		UsuarioSQL usuario = serviceUsuarios.usuarioByUsernameAndPassword(loginBean.getUsuario(), loginBean.getContrasenia());
+		if(usuario != null ){
+			HttpSession session = request.getSession(true);
+			Iterator rolIterator = usuario.getRol().iterator();
+			while(rolIterator.hasNext()){
+				Rol rolAsignado = (Rol) rolIterator.next();
+				session.setAttribute("rol", rolAsignado.getNombre());
+				model.addAttribute("rol", rolAsignado.getNombre());
+			}
+			session.setAttribute("usuario",usuario);
 			return "dashboard";
+		}else{
+			return "errorLoginIncorrecto";
 		}
-		return "errorLoginIncorrecto";
 	}
 
 }

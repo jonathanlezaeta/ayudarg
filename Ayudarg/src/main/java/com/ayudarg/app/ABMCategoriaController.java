@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +23,7 @@ import com.ayudar.view.beans.CategoriaBean;
 import com.ayudar.view.beans.InstitucionBean;
 import com.ayudar.view.beans.UsuarioBean;
 import com.ayudarg.model.Categoria;
+import com.ayudarg.model.UsuarioSQL;
 import com.ayudarg.service.CategoriaService;
 import com.ayudarg.service.InstitucionService;
 import com.ayudarg.service.UsuarioService;
@@ -54,11 +58,22 @@ public class ABMCategoriaController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/altaCategoria", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model, HttpServletRequest request) {
 		ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
 		model.addAttribute("categoria", categorias);
 		model.addAttribute("categoriaBean", new CategoriaBean());
-		return "categoriaView";
+		HttpSession session = request.getSession();
+		model.addAttribute("usuario", session.getAttribute("usuario"));
+		model.addAttribute("rol", session.getAttribute("rol"));
+		if(session.getAttribute("usuario")!= null){
+			return "categoriaView";
+		}else{
+		    model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
+			return "menssage";
+		}
+		
+
+
 	}
 
 	@RequestMapping(value="/submitAltaCategoria", method = RequestMethod.POST)

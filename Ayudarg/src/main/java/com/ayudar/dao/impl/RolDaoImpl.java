@@ -21,9 +21,6 @@ public class RolDaoImpl implements RolDAO {
 	public List<Rol> listRoles() {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<Rol> rolesList = session.createQuery("from Rol").list();
-		for(Rol us : rolesList){
-//			logger.info("Rol List::"+us);
-		}
 		return rolesList;
 	}
 	
@@ -33,6 +30,12 @@ public class RolDaoImpl implements RolDAO {
 	
 	public SessionFactory getSessionFactory(){
 		return sessionFactory;
+	}
+
+	@Override
+	public Rol getRolById(String id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		return (Rol) session.createQuery("from Ro WHERE idRol = " + id).uniqueResult();
 	}
 
 }

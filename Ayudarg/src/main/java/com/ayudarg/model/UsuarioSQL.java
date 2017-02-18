@@ -35,15 +35,28 @@ public class UsuarioSQL {
 	private String ciudadOrigen;
 	private boolean activo;
 	
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "UsuarioHasRol", 
-             joinColumns = { @JoinColumn(name = "usuarioIdUsuario") }, 
-             inverseJoinColumns = { @JoinColumn(name = "rolIdRol") })
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "UsuarioHasRol", catalog = "ayudarg", joinColumns = {
+			@JoinColumn(name = "idUsuario", nullable = false, updatable = false) },
+			inverseJoinColumns = { @JoinColumn(name = "idRol",
+					nullable = false, updatable = false) })
 	private Set<Rol> rol = new HashSet<Rol>(0);
-    
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<RecursoSQL> recurso = new HashSet<RecursoSQL>(0);
-    
+	
+	public UsuarioSQL(){}
+	
+	public UsuarioSQL(String usuario, String contrasenia, String  nombre, String email, 
+			String telefono, String celular, Date fechaDeNacimiento, String ciudadOrigen, Set<Rol> rol){
+		this.usuario = usuario;
+		this.contrasenia = contrasenia;
+		this.nombre = nombre;
+		this.email = email;
+		this.telefono = telefono;
+		this.celular = celular;
+		this.fechaDeNacimiento = fechaDeNacimiento;
+		this.ciudadOrigen = ciudadOrigen;
+		this.rol = rol;
+	}
+	
 	public boolean getActivo() {
 		return activo;
 	}
@@ -110,15 +123,5 @@ public class UsuarioSQL {
 	public void setRol(Set<Rol> rol) {
 		this.rol = rol;
 	}
-	public Set<RecursoSQL> getRecursos() {
-		return this.recurso;
-	}
-	public void setRecurso(Set<RecursoSQL> recurso) {
-		this.recurso = recurso;
-	}
 	
-	 @Override
-    public String toString() {
-		 return "UsuarioBajaBean [id=" + idUsuario + ", name=" + nombre + "]";
-	    }
 }

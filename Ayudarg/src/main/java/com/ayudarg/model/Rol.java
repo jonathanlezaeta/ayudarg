@@ -26,11 +26,21 @@ public class Rol {
 	private int idRol;
 	private String nombre;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "UsuarioHasRol", 
-	    joinColumns = { @JoinColumn(name = "usuarioIdUsuario") }, 
-	    inverseJoinColumns = { @JoinColumn(name = "rolIdRol") })
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@JoinTable(name = "UsuarioHasRol", 
+//	    joinColumns = { @JoinColumn(name = "idUsuario") }, 
+//	    inverseJoinColumns = { @JoinColumn(name = "idRol") })
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "rol")
 	private Set<UsuarioSQL> usuarios = new HashSet<UsuarioSQL>(0);
+    
+    public Rol(){
+    	
+    }
+    
+    public Rol(String nombre, Set<UsuarioSQL> usuarios){
+    	this.nombre = nombre;
+    	this.usuarios = usuarios;
+    }    
 	
 	public int getIdRol() {
 		return idRol;
