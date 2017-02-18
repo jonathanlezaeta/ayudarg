@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ayudarg.dao.UsuarioDAO;
-import com.ayudarg.model.Usuario;
+import com.ayudarg.model.UsuarioSQL;
 import com.ayudarg.service.UsuarioService;
 @Transactional
 public class UsuarioServiceImpl implements UsuarioService{
@@ -14,7 +14,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 	private UsuarioDAO usuarioDao;
 	
 	@Override
-	public List<Usuario> listUsuarios() {
+	public List<UsuarioSQL> listUsuarios() {
 		return usuarioDao.listUsuarios();
 	}
 

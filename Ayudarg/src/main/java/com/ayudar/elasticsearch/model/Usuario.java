@@ -1,29 +1,9 @@
-package com.ayudarg.model;
+package com.ayudar.elasticsearch.model;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.FetchType;
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-
-@Entity
-@Table(name="Usuario")
 public class Usuario {
 
-	@Id
-	@Column(name="idUsuario")
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idUsuario;
 	private String usuario;
 	private String contrasenia;
@@ -35,15 +15,6 @@ public class Usuario {
 	private String ciudadOrigen;
 	private boolean activo;
 	
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "UsuarioHasRol", 
-             joinColumns = { @JoinColumn(name = "usuarioIdUsuario") }, 
-             inverseJoinColumns = { @JoinColumn(name = "rolIdRol") })
-	private Set<Rol> rol = new HashSet<Rol>(0);
-    
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Recurso> recurso = new HashSet<Recurso>(0);
-    
 	public boolean getActivo() {
 		return activo;
 	}
@@ -104,21 +75,4 @@ public class Usuario {
 	public void setCiudadOrigen(String ciudadOrigen) {
 		this.ciudadOrigen = ciudadOrigen;
 	}
-	public Set<Rol> getRol() {
-		return rol;
-	}
-	public void setRol(Set<Rol> rol) {
-		this.rol = rol;
-	}
-	public Set<Recurso> getRecursos() {
-		return this.recurso;
-	}
-	public void setRecurso(Set<Recurso> recurso) {
-		this.recurso = recurso;
-	}
-	
-	 @Override
-    public String toString() {
-		 return "UsuarioBajaBean [id=" + idUsuario + ", name=" + nombre + "]";
-	    }
 }

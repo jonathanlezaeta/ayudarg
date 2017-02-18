@@ -13,10 +13,10 @@ import org.slf4j.LoggerFactory;
 import com.ayudarg.dao.RecursoDAO;
 import com.ayudarg.dao.UsuarioDAO;
 import com.ayudarg.model.Categoria;
-import com.ayudarg.model.Institucion;
-import com.ayudarg.model.Recurso;
+import com.ayudarg.model.InstitucionSQL;
+import com.ayudarg.model.RecursoSQL;
 import com.ayudarg.model.Rol;
-import com.ayudarg.model.Usuario;
+import com.ayudarg.model.UsuarioSQL;
 
 public class RecursoDaoImpl implements RecursoDAO {
 	private SessionFactory sessionFactory;
@@ -24,10 +24,10 @@ public class RecursoDaoImpl implements RecursoDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Recurso> listRecursos() {
+	public List<RecursoSQL> listRecursos() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Recurso> recursosList = session.createQuery("from Recurso").list();
-		for(Recurso us : recursosList){
+		List<RecursoSQL> recursosList = session.createQuery("from Recurso").list();
+		for(RecursoSQL us : recursosList){
 //			logger.info("Recurso List::"+us);
 		}
 		return recursosList;
@@ -51,9 +51,9 @@ public class RecursoDaoImpl implements RecursoDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public Institucion getInstitucionById(String idIns) {
+	public InstitucionSQL getInstitucionById(String idIns) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Institucion i = (Institucion) session.createQuery("from Institucion WHERE idInstitucion='"+idIns+"'").uniqueResult();
+		InstitucionSQL i = (InstitucionSQL) session.createQuery("from Institucion WHERE idInstitucion='"+idIns+"'").uniqueResult();
 		return i;
 	}
 	
@@ -64,12 +64,12 @@ public class RecursoDaoImpl implements RecursoDAO {
 		
 		Categoria c = getCategoriaById(categoria);
 
-		Institucion i = getInstitucionById(institucion);
+		InstitucionSQL i = getInstitucionById(institucion);
 		
 		HashSet<Categoria> cat = new HashSet<Categoria> ();
 		cat.add(c);
 		
-		Recurso us = new Recurso();
+		RecursoSQL us = new RecursoSQL();
 		us.setIdRecuso(1);
 		us.setNombre(nombre);
 		java.sql.Date fechaCreacion = new java.sql.Date(new java.util.Date().getTime());
@@ -92,7 +92,7 @@ public class RecursoDaoImpl implements RecursoDAO {
 	public void deleteRecurso(String nombre, String categoria){
 		Session session = this.sessionFactory.getCurrentSession();
 		
-		Recurso r = (Recurso) session.createQuery("from RecursoHasCategoria WHERE categoriaIdCategoria='"+categoria+"'").uniqueResult();
+		RecursoSQL r = (RecursoSQL) session.createQuery("from RecursoHasCategoria WHERE categoriaIdCategoria='"+categoria+"'").uniqueResult();
 	}	
 
 }

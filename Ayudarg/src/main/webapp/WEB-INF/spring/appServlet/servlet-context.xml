@@ -40,14 +40,14 @@
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="annotatedClasses">
 			<beans:list>
-				<beans:value>com.ayudarg.model.Usuario</beans:value>
+				<beans:value>com.ayudarg.model.UsuarioSQL</beans:value>
 				<beans:value>com.ayudarg.model.Rol</beans:value>
-				<beans:value>com.ayudarg.model.Recurso</beans:value>
-				<beans:value>com.ayudarg.model.Institucion</beans:value>
+				<beans:value>com.ayudarg.model.RecursoSQL</beans:value>
+				<beans:value>com.ayudarg.model.InstitucionSQL</beans:value>
 				<beans:value>com.ayudarg.model.Categoria</beans:value>
-				<beans:value>com.ayudarg.model.Institucion</beans:value>
+				<beans:value>com.ayudarg.model.InstitucionSQL</beans:value>
 				<beans:value>com.ayudarg.model.Categoria</beans:value>
-				<beans:value>com.ayudarg.model.Recurso</beans:value>
+				<beans:value>com.ayudarg.model.RecursoSQL</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">

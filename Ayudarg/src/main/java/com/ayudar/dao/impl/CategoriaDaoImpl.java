@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 import com.ayudarg.dao.CategoriaDAO;
 import com.ayudarg.dao.UsuarioDAO;
 import com.ayudarg.model.Categoria;
-import com.ayudarg.model.Recurso;
-import com.ayudarg.model.Usuario;
+import com.ayudarg.model.RecursoSQL;
+import com.ayudarg.model.UsuarioSQL;
 
 public class CategoriaDaoImpl implements CategoriaDAO {
 	private SessionFactory sessionFactory;
@@ -54,18 +54,16 @@ public class CategoriaDaoImpl implements CategoriaDAO {
         categoria.setFechaCreacion(fechaCreacion);
         categoria.setSubcategoria(superior);
         session.save(categoria);
-        //Commit the transaction
-//        session.getTransaction().commit(); 
         session.flush();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void deleteCategoria(String categoria){
+	public void deleteCategoria(String idCategoria){
 		Session session = this.sessionFactory.getCurrentSession();
-		Categoria superior = getCategoriaById(categoria);
-		session.delete(superior);
+		Categoria categoria = new Categoria();
+		categoria.setIdCategoria(Integer.valueOf(idCategoria));
+		session.delete(categoria);
 		session.flush();
-        session.close();
 	}
 }

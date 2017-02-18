@@ -35,9 +35,9 @@ public class Categoria {
 	@JoinTable(name = "RecursoHasCategoria", 
 	    joinColumns = { @JoinColumn(name = "recursoIdRecurso") }, 
 	    inverseJoinColumns = { @JoinColumn(name = "categoriaIdCategoria") })
-	private Set<Recurso> recurso = new HashSet<Recurso>(0);
+	private Set<RecursoSQL> recurso = new HashSet<RecursoSQL>(0);
 		
-	public Set<Recurso> getRecurso() {
+	public Set<RecursoSQL> getRecurso() {
 		return recurso;
 	}
 	
@@ -45,17 +45,17 @@ public class Categoria {
 	@JoinTable(name = "InstitucionHasCategoria", 
 	    joinColumns = { @JoinColumn(name = "institucionIdInstitucion") }, 
 	    inverseJoinColumns = { @JoinColumn(name = "categoriaIdCategoria") })
-	private Set<Institucion> institucion = new HashSet<Institucion>(0);
+	private Set<InstitucionSQL> institucion = new HashSet<InstitucionSQL>(0);
 		
-	public Set<Institucion> getInstitucion() {
+	public Set<InstitucionSQL> getInstitucion() {
 		return institucion;
 	}
 	
-	public void setInstitucion(Set<Institucion> institucion) {
+	public void setInstitucion(Set<InstitucionSQL> institucion) {
 		this.institucion = institucion;
 	}
 	
-	@ManyToOne(cascade={CascadeType.ALL})
+	@ManyToOne(cascade={CascadeType.REFRESH})
 	@JoinColumn(name="categoriaIdCategoria")
 	private Categoria subcategoria;
 
@@ -99,10 +99,10 @@ public class Categoria {
 //	public void setCategoriaIdCategoria(int categoriaIdCategoria) {
 //		this.categoriaIdCategoria = categoriaIdCategoria;
 //	}
-	public Set<Recurso> getRecursos() {
+	public Set<RecursoSQL> getRecursos() {
 		return recurso;
 	}
-	public void setRecurso(Set<Recurso> recurso) {
+	public void setRecurso(Set<RecursoSQL> recurso) {
 		this.recurso = recurso;
 	}
 	

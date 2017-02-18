@@ -6,8 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ayudarg.dao.InstitucionDAO;
 import com.ayudarg.dao.UsuarioDAO;
-import com.ayudarg.model.Institucion;
-import com.ayudarg.model.Usuario;
+import com.ayudarg.model.InstitucionSQL;
+import com.ayudarg.model.UsuarioSQL;
 import com.ayudarg.service.InstitucionService;
 import com.ayudarg.service.UsuarioService;
 
@@ -17,7 +17,7 @@ public class InstitucionServiceImpl implements InstitucionService{
 	
 	@Transactional
 	@Override
-	public List<Institucion>listInstituciones(){
+	public List<InstitucionSQL>listInstituciones(){
 		return institucionDao.listInstituciones();
 	}
 

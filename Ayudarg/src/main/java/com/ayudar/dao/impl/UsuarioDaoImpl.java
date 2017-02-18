@@ -11,16 +11,16 @@ import org.slf4j.LoggerFactory;
 import com.ayudarg.dao.UsuarioDAO;
 import com.ayudarg.model.Categoria;
 import com.ayudarg.model.Rol;
-import com.ayudarg.model.Usuario;
+import com.ayudarg.model.UsuarioSQL;
 
 public class UsuarioDaoImpl implements UsuarioDAO {
 	private SessionFactory sessionFactory;
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Usuario> listUsuarios() {
+	public List<UsuarioSQL> listUsuarios() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Usuario> usuarioList = session.createQuery("from Usuario").list();
+		List<UsuarioSQL> usuarioList = session.createQuery("from Usuario").list();
 		return usuarioList;
 	}
 	
@@ -36,7 +36,7 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	@Override
 	public boolean usuarioByUsernameAndPassword(String email, String password) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Usuario usuario = (Usuario) session.createQuery("from Usuario WHERE email='"+ email + "' AND contrasenia='" + password + "'").uniqueResult();
+		UsuarioSQL usuario = (UsuarioSQL) session.createQuery("from Usuario WHERE email='"+ email + "' AND contrasenia='" + password + "'").uniqueResult();
 		if(usuario != null)
 			return true;
 		else 
@@ -45,9 +45,9 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public Usuario getUsuarioById(String id) {
+	public UsuarioSQL getUsuarioById(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Usuario u = (Usuario) session.createQuery("from Usuario WHERE idUsuario='"+id+"'").uniqueResult();
+		UsuarioSQL u = (UsuarioSQL) session.createQuery("from Usuario WHERE idUsuario='"+id+"'").uniqueResult();
 		return u;
 	}
 	
@@ -59,7 +59,7 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 		Rol r = new Rol();
 		r.setNombre("U");
 		r.setIdRol(1);
-		Usuario us = new Usuario();
+		UsuarioSQL us = new UsuarioSQL();
 		us.setUsuario(usuario);
 		us.setContrasenia(contrasenia);
 		us.setNombre(nombre);

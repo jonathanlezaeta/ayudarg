@@ -4,13 +4,13 @@ import java.sql.Date;
 import java.util.List;
 
 import com.ayudarg.model.Categoria;
-import com.ayudarg.model.Institucion;
-import com.ayudarg.model.Recurso;
+import com.ayudarg.model.InstitucionSQL;
+import com.ayudarg.model.RecursoSQL;
 
 public interface RecursoDAO {
-	public List<Recurso> listRecursos();
+	public List<RecursoSQL> listRecursos();
 	Categoria getCategoriaById(String id);
-	Institucion getInstitucionById(String idIns);
+	InstitucionSQL getInstitucionById(String idIns);
 	public void insertRecurso(String nombre, String cantidad, String categoria, String institucion);
 	void deleteRecurso(String nombre, String categoria);
 }

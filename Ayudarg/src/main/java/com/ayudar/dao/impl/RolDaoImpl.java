@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import com.ayudarg.dao.RolDAO;
 import com.ayudarg.dao.UsuarioDAO;
 import com.ayudarg.model.Rol;
-import com.ayudarg.model.Usuario;
+import com.ayudarg.model.UsuarioSQL;
 
 public class RolDaoImpl implements RolDAO {
 	private SessionFactory sessionFactory;

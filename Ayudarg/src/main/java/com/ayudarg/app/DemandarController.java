@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ayudar.view.beans.RecursoBean;
 import com.ayudarg.model.Categoria;
-import com.ayudarg.model.Institucion;
-import com.ayudarg.model.Recurso;
+import com.ayudarg.model.InstitucionSQL;
+import com.ayudarg.model.RecursoSQL;
 import com.ayudarg.service.CategoriaService;
 import com.ayudarg.service.InstitucionService;
 import com.ayudarg.service.RecursoService;
@@ -85,7 +85,7 @@ public class DemandarController {
 		model.addAttribute("categoria", categorias);
 		model.addAttribute("recursoBean", new RecursoBean());
 		
-		ArrayList<Institucion> institucion = (ArrayList<Institucion>) serviceInstitucion.listInstituciones();
+		ArrayList<InstitucionSQL> institucion = (ArrayList<InstitucionSQL>) serviceInstitucion.listInstituciones();
 		model.addAttribute("institucion", institucion);
 		
 		return "demandar";

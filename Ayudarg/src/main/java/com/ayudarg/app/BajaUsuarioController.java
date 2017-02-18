@@ -20,7 +20,7 @@ import com.ayudar.view.beans.CategoriaBean;
 import com.ayudar.view.beans.UsuarioBajaBean;
 import com.ayudar.view.beans.UsuarioBean;
 import com.ayudarg.model.Categoria;
-import com.ayudarg.model.Usuario;
+import com.ayudarg.model.UsuarioSQL;
 import com.ayudarg.service.UsuarioService;
 
 /**
@@ -52,7 +52,7 @@ public class BajaUsuarioController {
 	 */
 	@RequestMapping(value = "/bajaUsuario", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-			ArrayList<Usuario> usuarios = (ArrayList<Usuario>) serviceUsuarios.listUsuarios();
+			ArrayList<UsuarioSQL> usuarios = (ArrayList<UsuarioSQL>) serviceUsuarios.listUsuarios();
 			model.addAttribute("usuario", usuarios);
 			model.addAttribute("usuarioBajaBean", new UsuarioBajaBean());
 		return "bajaUsuario";

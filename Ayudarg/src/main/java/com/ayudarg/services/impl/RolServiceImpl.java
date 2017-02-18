@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ayudarg.dao.RolDAO;
 import com.ayudarg.dao.UsuarioDAO;
 import com.ayudarg.model.Rol;
-import com.ayudarg.model.Usuario;
+import com.ayudarg.model.UsuarioSQL;
 import com.ayudarg.service.RolService;
 import com.ayudarg.service.UsuarioService;
 

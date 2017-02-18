@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Recurso")
 
-public class Recurso {
+public class RecursoSQL {
 
 	@Id
 	@Column(name="idRecurso")
@@ -40,14 +40,14 @@ public class Recurso {
              inverseJoinColumns = { @JoinColumn(name = "categoriaIdCategoria") })
 	private Set<Categoria> categoria = new HashSet<Categoria>(0);
 	
-	@ManyToOne(cascade={CascadeType.ALL})
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="institucionIdInstitucion")
-	private Institucion institucion;
+	private InstitucionSQL institucion;
 
-	public Institucion getInstitucion() {
+	public InstitucionSQL getInstitucion() {
 		return institucion;
 	}
-	public void setSubInstitucion(Institucion institucion) {
+	public void setSubInstitucion(InstitucionSQL institucion) {
 		this.institucion = institucion;
 	}
 	

@@ -30,7 +30,7 @@ public class Rol {
 	@JoinTable(name = "UsuarioHasRol", 
 	    joinColumns = { @JoinColumn(name = "usuarioIdUsuario") }, 
 	    inverseJoinColumns = { @JoinColumn(name = "rolIdRol") })
-	private Set<Usuario> usuarios = new HashSet<Usuario>(0);
+	private Set<UsuarioSQL> usuarios = new HashSet<UsuarioSQL>(0);
 	
 	public int getIdRol() {
 		return idRol;
@@ -44,10 +44,10 @@ public class Rol {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Set<Usuario> getUsuarios() {
+	public Set<UsuarioSQL> getUsuarios() {
 		return usuarios;
 	}
-	public void setUsuarios(Set<Usuario> usuarios) {
+	public void setUsuarios(Set<UsuarioSQL> usuarios) {
 		this.usuarios = usuarios;
 	}
 	

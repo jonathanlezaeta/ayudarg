@@ -10,9 +10,9 @@ import org.slf4j.LoggerFactory;
 
 import com.ayudarg.dao.InstitucionDAO;
 import com.ayudarg.dao.UsuarioDAO;
-import com.ayudarg.model.Institucion;
+import com.ayudarg.model.InstitucionSQL;
 import com.ayudarg.model.Rol;
-import com.ayudarg.model.Usuario;
+import com.ayudarg.model.UsuarioSQL;
 
 public class InstitucionDaoImpl implements InstitucionDAO {
 	private SessionFactory sessionFactory;
@@ -20,10 +20,10 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Institucion> listInstituciones() {
+	public List<InstitucionSQL> listInstituciones() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Institucion> institucionesList = session.createQuery("from Institucion").list();
-		for(Institucion us : institucionesList){
+		List<InstitucionSQL> institucionesList = session.createQuery("from Institucion").list();
+		for(InstitucionSQL us : institucionesList){
 //			logger.info("Usuario List::"+us);
 		}
 		return institucionesList;
@@ -42,7 +42,7 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 	public void insertInstitucion(String director, String ciudad, String tipo, String nombre, String direccion,
 			String telefono, String celular, String sitioWeb, String email) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Institucion us = new Institucion();
+		InstitucionSQL us = new InstitucionSQL();
 		us.setDirector(director);
 		us.setCiudad(ciudad);
 		us.setTipo(tipo);

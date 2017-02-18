@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Institucion")
 
-public class Institucion {
+public class InstitucionSQL {
 
 	@Id
 	@Column(name="idInstitucion")
@@ -52,7 +52,7 @@ public class Institucion {
 	}
 	
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<Recurso> recurso = new HashSet<Recurso>(0);
+    private Set<RecursoSQL> recurso = new HashSet<RecursoSQL>(0);
 	
     public boolean getActivo() {
 		return activo;
@@ -120,10 +120,10 @@ public class Institucion {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Set<Recurso> getRecursos() {
+	public Set<RecursoSQL> getRecursos() {
 		return this.recurso;
 	}
-	public void setRecurso(Set<Recurso> recurso) {
+	public void setRecurso(Set<RecursoSQL> recurso) {
 		this.recurso = recurso;
 	}
 	

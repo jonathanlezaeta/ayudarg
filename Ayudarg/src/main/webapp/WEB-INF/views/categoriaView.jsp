@@ -47,12 +47,23 @@
 		<!--  			</div> -->
 		<%-- 		</form> --%>
 		<ul class="nav menu">
-			<li><a href="/app/dashboard"><svg class="glyph stroked dashboard-dial"><use xlink:href="/dashboard"></use></svg> Inicio</a></li>
-			<li><a href="/app/donar"><svg class="glyph stroked calendar"><use xlink:href="/donar"></use></svg> Donar</a></li>
-			<li><a href="/app/demandar"><svg class="glyph stroked line-graph"><use xlink:href="/demandar"></use></svg> Demandar</a></li>
-			<li><a href="/app/altaInstitucion"><svg class="glyph stroked line-graph"><use xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
-			<li><a href="/app/altaCategoria"><svg class="glyph stroked line-graph"><use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
-			<li><a href="/app/bajaUsuario"><svg class="glyph stroked line-graph"><use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
+			<li><a href="/app/dashboard"><svg
+						class="glyph stroked dashboard-dial">
+						<use xlink:href="/dashboard"></use></svg> Inicio</a></li>
+			<li><a href="/app/donar"><svg class="glyph stroked calendar">
+						<use xlink:href="/donar"></use></svg> Donar</a></li>
+			<li><a href="/app/demandar"><svg
+						class="glyph stroked line-graph">
+						<use xlink:href="/demandar"></use></svg> Demandar</a></li>
+			<li><a href="/app/altaInstitucion"><svg
+						class="glyph stroked line-graph">
+						<use xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
+			<li><a href="/app/altaCategoria"><svg
+						class="glyph stroked line-graph">
+						<use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
+			<li><a href="/app/bajaUsuario"><svg
+						class="glyph stroked line-graph">
+						<use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
 		</ul>
 
 
@@ -66,7 +77,7 @@
 						<svg class="glyph stroked email">
 							<use xlink:href="#stroked-email"></use></svg>
 						Categorias
-				</div>
+					</div>
 					<div class="panel-body">
 
 						<div class="container">
@@ -81,34 +92,34 @@
 								<div class="tab-content ">
 									<div class="tab-pane active" id="1">
 										<form:form id="altaCategoriaForm" method="post"
-											action="submitAltaCategoria"
-											modelAttribute="categoriaBean" class="form-signin">
+											action="submitAltaCategoria" modelAttribute="categoriaBean"
+											class="form-signin">
 											<fieldset>
 
-													<!-- Nombre put-->
-													<div class="form-group">
-														<label class="col-md-3 control-label" for="director">Nombre</label>
-														<div class="col-md-9">
-															<input id="nombre" name="nombre" type="text"
-																placeholder="Ingrese nombre de la categoria"
-																class="form-control">
-														</div>
+												<!-- Nombre put-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="director">Nombre</label>
+													<div class="col-md-9">
+														<input id="nombre" name="nombre" type="text"
+															placeholder="Ingrese nombre de la categoria"
+															class="form-control">
 													</div>
+												</div>
 
-													<!-- SubCategoria input-->
-													<div class="form-group">
-														<label class="col-md-3 control-label" for="ciudad">Subcategoria</label>
-														<div class="col-md-9">
-															<form:select path="categoria" multiple="false"
-																class="form-control">
-																<form:options items="${categoria}"
-																	itemValue="idCategoria" itemLabel="nombre" />
-															</form:select>
-														</div>
+												<!-- SubCategoria input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="ciudad">Subcategoria</label>
+													<div class="col-md-9">
+														<form:select path="categoria" multiple="false"
+															class="form-control">
+															<form:options items="${categoria}"
+																itemValue="idCategoria" itemLabel="nombre" />
+														</form:select>
 													</div>
+												</div>
 
 
-													<!-- Form actions -->
+												<!-- Form actions -->
 												<div class="form-group">
 													<div class="col-md-12 widget-right">
 														<button type="submit"
@@ -117,41 +128,77 @@
 												</div>
 											</fieldset>
 										</form:form>
-										
+
 									</div>
-									
-									
-									
+
+
+
 									<div class="tab-pane" id="2">
-									<form:form id="altaCategoriaForm" method="post"
-											action="submitDeleteCategoria"
-											modelAttribute="categoriaBean" class="form-signin">
+										<form:form id="altaCategoriaForm" method="post"
+											action="submitDeleteCategoria" modelAttribute="categoriaBean"
+											class="form-signin">
 											<fieldset>
-										<div class="form-group">
-														<label class="col-md-3 control-label" for="ciudad">Categoria</label>
-														<div class="col-md-9">
-															<form:select path="categoria" multiple="false"
-																class="form-control">
-																<form:options items="${categoria}"
-																	itemValue="idCategoria" itemLabel="nombre" />
-															</form:select>
-														</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="ciudad">Categoria</label>
+													<div class="col-md-9">
+														<form:select path="categoria" multiple="false"
+															class="form-control">
+															<form:options items="${categoria}"
+																itemValue="idCategoria" itemLabel="nombre" />
+														</form:select>
 													</div>
-										<div class="form-group">
+												</div>
+												<div class="form-group">
 													<div class="col-md-12 widget-right">
 														<button type="submit"
 															class="btn btn-default btn-md pull-right">Eliminar</button>
 													</div>
 												</div>
-									</fieldset>
-								</form:form>
+											</fieldset>
+										</form:form>
 									</div>
-									
-									
-									
-									
+
+
+
+
 									<div class="tab-pane" id="3">
-										<h3>add clearfix to tab-content (see the css)</h3>
+										<form:form id="altaCategoriaForm" method="post"
+											action="submitAltaCategoria" modelAttribute="categoriaBean"
+											class="form-signin">
+											<fieldset>
+
+												<!-- Nombre put-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="director">Nombre</label>
+													<div class="col-md-9">
+														<input id="nombre" name="nombre" type="text"
+															placeholder="Ingrese nombre de la categoria"
+															class="form-control">
+													</div>
+												</div>
+
+												<!-- SubCategoria input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="ciudad">Subcategoria</label>
+													<div class="col-md-9">
+														<form:select path="categoria" multiple="false"
+															class="form-control">
+															<form:options items="${categoria}"
+																itemValue="idCategoria" itemLabel="nombre" />
+														</form:select>
+													</div>
+												</div>
+
+
+												<!-- Form actions -->
+												<div class="form-group">
+													<div class="col-md-12 widget-right">
+														<button type="submit"
+															class="btn btn-default btn-md pull-right">Registrar</button>
+													</div>
+												</div>
+											</fieldset>
+										</form:form>
 									</div>
 								</div>
 							</div>

@@ -58,7 +58,7 @@ public class ABMCategoriaController {
 		ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
 		model.addAttribute("categoria", categorias);
 		model.addAttribute("categoriaBean", new CategoriaBean());
-		return "altaCategoria";
+		return "categoriaView";
 	}
 
 	@RequestMapping(value="/submitAltaCategoria", method = RequestMethod.POST)
@@ -69,7 +69,13 @@ public class ABMCategoriaController {
 
 	
 	@RequestMapping(value="/submitDeleteCategoria", method = RequestMethod.POST)
-	public String submitRegistrar2(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean) {
+	public String submitDeleteCategoria(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean) {
+		serviceCategoria.deleteCategoria(categoriaBean.getCategoria());
+		return "borradoCorrectamente";
+	}
+	
+	@RequestMapping(value="/submitUpdateCategoria", method = RequestMethod.POST)
+	public String submitUpdateCategoria(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean) {
 		serviceCategoria.deleteCategoria(categoriaBean.getCategoria());
 		return "borradoCorrectamente";
 	}

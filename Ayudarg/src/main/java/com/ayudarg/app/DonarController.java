@@ -21,7 +21,7 @@ import com.ayudar.view.beans.InstitucionBean;
 import com.ayudar.view.beans.RecursoBean;
 import com.ayudar.view.beans.UsuarioBean;
 import com.ayudarg.model.Categoria;
-import com.ayudarg.model.Institucion;
+import com.ayudarg.model.InstitucionSQL;
 import com.ayudarg.service.CategoriaService;
 import com.ayudarg.service.InstitucionService;
 import com.ayudarg.service.RecursoService;
@@ -92,7 +92,7 @@ public class DonarController {
 		model.addAttribute("categoria", categorias);
 		model.addAttribute("recursoBean", new RecursoBean());
 		
-		ArrayList<Institucion> institucion = (ArrayList<Institucion>) serviceInstitucion.listInstituciones();
+		ArrayList<InstitucionSQL> institucion = (ArrayList<InstitucionSQL>) serviceInstitucion.listInstituciones();
 		model.addAttribute("institucion", institucion);
 		
 		return "donar";

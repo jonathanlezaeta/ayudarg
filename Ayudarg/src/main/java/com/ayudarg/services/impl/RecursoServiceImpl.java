@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ayudarg.dao.RecursoDAO;
 import com.ayudarg.dao.UsuarioDAO;
-import com.ayudarg.model.Recurso;
-import com.ayudarg.model.Usuario;
+import com.ayudarg.model.RecursoSQL;
+import com.ayudarg.model.UsuarioSQL;
 import com.ayudarg.service.RecursoService;
 import com.ayudarg.service.UsuarioService;
 @Transactional
@@ -18,7 +18,7 @@ public class RecursoServiceImpl implements RecursoService{
 	private RecursoDAO recursoDao;
 
 	@Override
-	public List<Recurso> listRecursos() {
+	public List<RecursoSQL> listRecursos() {
 		return recursoDao.listRecursos();
 	}
 
