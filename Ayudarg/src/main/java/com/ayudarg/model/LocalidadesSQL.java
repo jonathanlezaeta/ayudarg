@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name="Localidades")
 public class LocalidadesSQL {
 	@Id
-	@Column(name="id")
+	@Column(name="localidadesId")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private String localidad;
