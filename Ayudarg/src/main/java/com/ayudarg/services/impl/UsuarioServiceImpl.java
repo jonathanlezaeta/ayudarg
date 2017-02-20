@@ -34,9 +34,8 @@ public class UsuarioServiceImpl implements UsuarioService{
 	}
 	
 	@Override
-	public void insertUsuario(int rolIdRol, String usuario, String contrasenia, String nombre, String email,
-			String telefono, String celular, Date fechaDeNacimiento, String ciudadOrigen) {
-		usuarioDao.insertUsuario(rolIdRol, usuario, contrasenia, nombre, email, telefono, celular, fechaDeNacimiento, ciudadOrigen);
+	public void insertUsuario(String usuario, String contrasenia, String nombre, String email, String telefono, String celular, Date fechaDeCreacion, String localidadesId){
+		usuarioDao.insertUsuario(usuario, contrasenia, nombre, email, telefono, celular, fechaDeCreacion, localidadesId);
 	}
 	
 }

@@ -6,14 +6,18 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.ayudar.elasticsearch.model.Usuario;
 
 @Entity
 @Table(name="Institucion")
@@ -36,6 +40,10 @@ public class InstitucionSQL {
 	private String email;
 	private boolean activo;
 	
+    @ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id", nullable = false)
+    private LocalidadesSQL localidadesId;
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "InstitucionHasCategoria", 
 	    joinColumns = { @JoinColumn(name = "institucionIdInstitucion") }, 
@@ -50,10 +58,30 @@ public class InstitucionSQL {
 		this.categoria = categoria;
 	}
 	
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idUsuario", nullable = false)
+	private UsuarioSQL idUsuario;
+    
+	public UsuarioSQL getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(UsuarioSQL idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL)
     private Set<RecursoSQL> recurso = new HashSet<RecursoSQL>(0);
-	
-    public boolean getActivo() {
+    
+    public LocalidadesSQL getLocalidadesId() {
+		return localidadesId;
+	}
+
+	public void setLocalidadesId(LocalidadesSQL localidadesId) {
+		this.localidadesId = localidadesId;
+	}
+
+	public boolean getActivo() {
 		return activo;
 	}
 	public void setActivo(boolean activo) {

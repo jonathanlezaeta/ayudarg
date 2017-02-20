@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import com.ayudarg.dao.UsuarioDAO;
 import com.ayudarg.model.Categoria;
+import com.ayudarg.model.LocalidadesSQL;
 import com.ayudarg.model.Rol;
 import com.ayudarg.model.UsuarioSQL;
 
@@ -50,12 +51,21 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void insertUsuario(int rolIdRol, String usuario, String contrasenia, String nombre, String email,
-			String telefono, String celular, Date fechaDeNacimiento, String ciudadOrigen) {
+	public LocalidadesSQL getLocalidadesById(String id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		LocalidadesSQL l = (LocalidadesSQL) session.createQuery("from LocalidadesSQL WHERE id='"+id+"'").uniqueResult();
+		return l;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void insertUsuario(String usuario, String contrasenia, String nombre, String email,
+			String telefono, String celular, Date fechaDeNacimiento, String localidadesId) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Rol r = new Rol();
 		r.setNombre("U");
 		r.setIdRol(1);
+		LocalidadesSQL lq = getLocalidadesById(localidadesId);
 		UsuarioSQL us = new UsuarioSQL();
 		us.setUsuario(usuario);
 		us.setContrasenia(contrasenia);
@@ -64,7 +74,7 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 		us.setTelefono(telefono);
 		us.setCelular(celular);
 		us.setFechaDeNacimiento(fechaDeNacimiento);
-		us.setCiudadOrigen(ciudadOrigen);
+		us.setLocalidadesId(lq);
 		us.getRol().add(r);
         //Save the employee in database
         session.save(us);

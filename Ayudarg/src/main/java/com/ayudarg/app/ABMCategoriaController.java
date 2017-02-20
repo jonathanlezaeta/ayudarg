@@ -71,9 +71,6 @@ public class ABMCategoriaController {
 		    model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
 			return "menssage";
 		}
-		
-
-
 	}
 
 	@RequestMapping(value="/submitAltaCategoria", method = RequestMethod.POST)
@@ -92,6 +89,6 @@ public class ABMCategoriaController {
 	@RequestMapping(value="/submitUpdateCategoria", method = RequestMethod.POST)
 	public String submitUpdateCategoria(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean) {
 		serviceCategoria.deleteCategoria(categoriaBean.getCategoria());
-		return "borradoCorrectamente";
+		return "modificadoCorrectamente";
 	}
 }

@@ -1,6 +1,8 @@
 package com.ayudarg.app;
 
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -52,12 +54,20 @@ public class RegistrarseController {
 	}
 
 	@RequestMapping(value="/submitRegistrar", method = RequestMethod.POST)
-	public String submitRegistrar(Model model, @ModelAttribute("registrarseBean") RegistrarseBean usuarioBean) {
-		if(esVacio(usuarioBean.getNombre()) && esVacio(usuarioBean.getUsuario()) && esVacio(usuarioBean.getCelular())
-				&& esVacio(usuarioBean.getEmail())){
-//			serviceUsuarios.insertUsuario(1, usuarioBean.getUsuario(), usuarioBean.getContrasenia(),
-//					usuarioBean.getNombre(), usuarioBean.getEmail(), usuarioBean.getTelefono(), usuarioBean.getCelular(),
-//					usuarioBean.getFechaDeNacimiento(), usuarioBean.getCiudadOrigen());		
+	public String submitRegistrar(Model model, @ModelAttribute("registrarseBean") RegistrarseBean registrarseBean) {
+		if (!( esVacio(registrarseBean.getUsuario()) && esVacio(registrarseBean.getContrasenia()) && esVacio(registrarseBean.getNombre()) && esVacio(registrarseBean.getEmail())
+				&& esVacio(registrarseBean.getCelular())  && esVacio(registrarseBean.getProvincia()) && esVacio(registrarseBean.getLocalidad()))){
+			
+			SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+			Date fecha = null;
+			try {
+			fecha = formatoDelTexto.parse(registrarseBean.getFechaDeNacimiento());
+			} catch (ParseException ex) {
+			ex.printStackTrace();
+			}
+			
+			serviceUsuarios.insertUsuario(registrarseBean.getUsuario(), registrarseBean.getContrasenia(),registrarseBean.getNombre(), registrarseBean.getEmail(), registrarseBean.getTelefono(), registrarseBean.getCelular(),
+					fecha, registrarseBean.getLocalidad());		
 		    model.addAttribute("menssage", "Su registro fue exitoso y ya puede acceder a la plataforma.");
 			return "menssage";			
 		}else{
@@ -66,7 +76,7 @@ public class RegistrarseController {
 		}
 
 	}
-
+	
 	public boolean esVacio(String value) {
 		return value.isEmpty();
 	}

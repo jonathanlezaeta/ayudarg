@@ -14,6 +14,7 @@ public class Usuario {
 	private Date fechaDeNacimiento;
 	private String ciudadOrigen;
 	private boolean activo;
+	private String localidadesId;
 	
 	public boolean getActivo() {
 		return activo;
@@ -74,5 +75,11 @@ public class Usuario {
 	}
 	public void setCiudadOrigen(String ciudadOrigen) {
 		this.ciudadOrigen = ciudadOrigen;
+	}
+	public String getLocalidadesId() {
+		return localidadesId;
+	}
+	public void setLocalidadesId(String localidadesId) {
+		this.localidadesId = localidadesId;
 	}
 }

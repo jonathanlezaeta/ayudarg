@@ -11,7 +11,7 @@ public class UsuarioBean {
 	private String telefono;
 	private String celular;
 	private Date fechaDeNacimiento;
-	private String ciudadOrigen;
+	private String localidadesId;
 	
 	public String getUsuario() {
 		return usuario;
@@ -55,11 +55,11 @@ public class UsuarioBean {
 	public void setFechaDeNacimiento(Date fechaDeNacimiento) {
 		this.fechaDeNacimiento = fechaDeNacimiento;
 	}
-	public String getCiudadOrigen() {
-		return ciudadOrigen;
+	public String getLocalidadesId() {
+		return localidadesId;
 	}
-	public void setCiudadOrigen(String ciudadOrigen) {
-		this.ciudadOrigen = ciudadOrigen;
+	public void setLocalidadesId(String localidadesId) {
+		this.localidadesId = localidadesId;
 	}
 	
 
