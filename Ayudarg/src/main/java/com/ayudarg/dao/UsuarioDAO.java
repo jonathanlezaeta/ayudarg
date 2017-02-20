@@ -3,7 +3,6 @@ package com.ayudarg.dao;
 import java.util.Date;
 import java.util.List;
 
-import com.ayudarg.model.Categoria;
 import com.ayudarg.model.UsuarioSQL;
 
 public interface UsuarioDAO {

@@ -37,6 +37,8 @@
 							
 		</div><!-- /.container-fluid -->
 	</nav>
+		
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<c:choose>
 			<c:when test="${rol.equals('A')}">
 				<ul class="nav menu">

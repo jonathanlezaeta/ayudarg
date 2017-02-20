@@ -20,7 +20,7 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	@Override
 	public List<UsuarioSQL> listUsuarios() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<UsuarioSQL> usuarioList = session.createQuery("from Usuario").list();
+		List<UsuarioSQL> usuarioList = session.createQuery("from UsuarioSQL").list();
 		return usuarioList;
 	}
 	

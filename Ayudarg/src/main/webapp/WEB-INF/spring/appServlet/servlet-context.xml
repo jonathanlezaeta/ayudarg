@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-	
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
 	<context:component-scan base-package="com.ayudarg.app" />
-	
+
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -48,6 +50,8 @@
 				<beans:value>com.ayudarg.model.InstitucionSQL</beans:value>
 				<beans:value>com.ayudarg.model.Categoria</beans:value>
 				<beans:value>com.ayudarg.model.RecursoSQL</beans:value>
+				<beans:value>com.ayudarg.model.LocalidadesSQL</beans:value>
+				<beans:value>com.ayudarg.model.ProvinciasSQL</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -65,67 +69,85 @@
 		<beans:property name="sessionFactory"
 			ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
-	
+
 	<beans:bean id="UsuarioService"
 		class="com.ayudarg.services.impl.UsuarioServiceImpl">
 		<beans:property name="usuarioDao" ref="UsuarioDAO"></beans:property>
 	</beans:bean>
-	
-		<!-- ROL -->
-	
+
+	<!-- ROL -->
+
 	<beans:bean id="RolDAO" class="com.ayudar.dao.impl.RolDaoImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
-	
-	<beans:bean id="RolService"
-		class="com.ayudarg.services.impl.RolServiceImpl">
+
+	<beans:bean id="RolService" class="com.ayudarg.services.impl.RolServiceImpl">
 		<beans:property name="rolDao" ref="RolDAO"></beans:property>
 	</beans:bean>
-	
-		<!-- RECURSO -->
-	
+
+	<!-- RECURSO -->
+
 	<beans:bean id="RecursoDAO" class="com.ayudar.dao.impl.RecursoDaoImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
-	
+
 	<beans:bean id="RecursoService"
 		class="com.ayudarg.services.impl.RecursoServiceImpl">
 		<beans:property name="recursoDao" ref="RecursoDAO"></beans:property>
 	</beans:bean>
-	
-	
-		<!-- INSTITUCION -->
-	
+
+
+	<!-- INSTITUCION -->
+
 	<beans:bean id="InstitucionDAO" class="com.ayudar.dao.impl.InstitucionDaoImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
-	
+
 	<beans:bean id="InstitucionService"
 		class="com.ayudarg.services.impl.InstitucionServiceImpl">
 		<beans:property name="institucionDao" ref="InstitucionDAO"></beans:property>
 	</beans:bean>
-	
-		<!-- CATEGORIA -->
-		
+
+	<!-- CATEGORIA -->
+
 	<beans:bean id="CategoriaDAO" class="com.ayudar.dao.impl.CategoriaDaoImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
-	
+
 	<beans:bean id="CategoriaService"
 		class="com.ayudarg.services.impl.CategoriaServiceImpl">
 		<beans:property name="categoriaDao" ref="CategoriaDAO"></beans:property>
 	</beans:bean>
-	
+
+	<!-- GEO -->
+
+	<beans:bean id="LocalidadesDAO" class="com.ayudar.dao.impl.LocalidadesDaoImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+
+	<beans:bean id="ProvinciaasDAO" class="com.ayudar.dao.impl.ProvinciasDaoImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+
+	<beans:bean id="GeoService" class="com.ayudarg.services.impl.GeoServiceImpl">
+		<beans:property name="localidadesDao" ref="LocalidadesDAO"></beans:property>
+		<beans:property name="provinciasDao" ref="ProvinciaasDAO"></beans:property>
+	</beans:bean>
+
 	<context:component-scan base-package="com.journaldev.spring" />
-	
-	<tx:annotation-driven transaction-manager="transactionManager"/>
-	
-	<beans:bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</beans:bean>	
-	
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<beans:bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<beans:property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+
 </beans:beans>

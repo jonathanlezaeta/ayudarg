@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ayudarg.dao.LocalidadesDAO;
+import com.ayudarg.dao.ProvinciasDAO;
 import com.ayudarg.dao.UsuarioDAO;
 import com.ayudarg.model.UsuarioSQL;
 import com.ayudarg.service.UsuarioService;
@@ -36,5 +38,5 @@ public class UsuarioServiceImpl implements UsuarioService{
 			String telefono, String celular, Date fechaDeNacimiento, String ciudadOrigen) {
 		usuarioDao.insertUsuario(rolIdRol, usuario, contrasenia, nombre, email, telefono, celular, fechaDeNacimiento, ciudadOrigen);
 	}
-
+	
 }

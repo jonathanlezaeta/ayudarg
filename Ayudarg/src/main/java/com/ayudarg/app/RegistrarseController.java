@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ayudar.view.beans.RegistrarseBean;
 import com.ayudar.view.beans.UsuarioBean;
 import com.ayudarg.service.UsuarioService;
 
@@ -51,12 +52,23 @@ public class RegistrarseController {
 	}
 
 	@RequestMapping(value="/submitRegistrar", method = RequestMethod.POST)
-	public String submitRegistrar(Model model, @ModelAttribute("usuarioBean") UsuarioBean usuarioBean) {
-		serviceUsuarios.insertUsuario(1, usuarioBean.getUsuario(), usuarioBean.getContrasenia(),
-				usuarioBean.getNombre(), usuarioBean.getEmail(), usuarioBean.getTelefono(), usuarioBean.getCelular(),
-				usuarioBean.getFechaDeNacimiento(), usuarioBean.getCiudadOrigen());		
-	    model.addAttribute("menssage", "Su registro fue exitoso y ya puede acceder a la plataforma.");
-		return "menssage";
+	public String submitRegistrar(Model model, @ModelAttribute("registrarseBean") RegistrarseBean usuarioBean) {
+		if(esVacio(usuarioBean.getNombre()) && esVacio(usuarioBean.getUsuario()) && esVacio(usuarioBean.getCelular())
+				&& esVacio(usuarioBean.getEmail())){
+//			serviceUsuarios.insertUsuario(1, usuarioBean.getUsuario(), usuarioBean.getContrasenia(),
+//					usuarioBean.getNombre(), usuarioBean.getEmail(), usuarioBean.getTelefono(), usuarioBean.getCelular(),
+//					usuarioBean.getFechaDeNacimiento(), usuarioBean.getCiudadOrigen());		
+		    model.addAttribute("menssage", "Su registro fue exitoso y ya puede acceder a la plataforma.");
+			return "menssage";			
+		}else{
+		    model.addAttribute("menssage", "Un atributo requerido no fue completado.");
+			return "menssage";		
+		}
+
+	}
+
+	public boolean esVacio(String value) {
+		return value.isEmpty();
 	}
 
 }

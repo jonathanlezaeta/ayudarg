@@ -8,6 +8,8 @@
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/styles.css" />"
 	rel="stylesheet">
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <html>
 <head>
 <title>Ayudarg</title>
@@ -15,6 +17,29 @@
 	function showmydiv() {
 		document.getElementById('registrar').style.display = "block";
 	}
+	function cargarLocalidades(value){
+		$.ajax({
+			type: "POST",
+			data: $("#registrarseForm").serialize(),
+			dataType: 'json',
+			url: '/app/getLocalidadesById', 
+			success: function(data) { 
+					var res = data; 
+					var options = '';
+					options += '<option value="">Seleccione su ciudad</option>';
+					$.each(data, function (index, value) {
+						options += '<option value="' +value.value + '">' +value.option + '</option>';
+					});
+					$("select[id=selectLocalidades]").html(options);
+// 				}
+			},
+			error: function(e){ <!-- Si no ha podido conectar con el servidor -->
+				alert("Error en el servidor, por favor, intentalo de nuevo mas tarde");
+			}
+		});
+	}
+	
+
 </script>
 <style>
 body {
@@ -60,24 +85,57 @@ body {
 				style="display: none;">
 				<div class="panel-heading">Registrarse</div>
 				<div class="panel-body">
-					<form:form id="loginForm" method="post" action="dashboard"
-						modelAttribute="loginbean" class="form-signin">
-						<label for="inputEmail" class="sr-only">Email</label>
+					<form:form id="registrarseForm" method="post"
+						action="submitRegistrar" modelAttribute="registrarseBean"
+						class="form-signin">
+						<label for="inputEmail" class="sr-only">Usuario</label>
 						<input type="text" id="usuario" class="form-control"
-							placeholder="Email" required="" autofocus="" name="usuario">
+							placeholder="Ingrese un Nombre de Usuario" required=""
+							autofocus="" name="usuario">
 						<br>
 						<label for="inputPassword" class="sr-only">Contraseña</label>
 						<input type="password" id="contrasenia" class="form-control"
 							placeholder="Contraseña" required="" name="contrasenia">
 						<br>
 						<label for="inputPassword" class="sr-only">Nombre y
-							apellido</label>
-						<input type="password" id="contrasenia" class="form-control"
-							placeholder="Nombre y apellido" required="" name="contrasenia">
+							Apellido</label>
+						<input type="text" id="nombre" class="form-control"
+							placeholder="Nombre y Apellido" required="" name="nombre">
+						<br>
+						<label for="inputPassword" class="sr-only">Email</label>
+						<input type="email" id="email" class="form-control"
+							placeholder="Email" required="" name="email">
 						<br>
 						<label for="inputPassword" class="sr-only">Telefono</label>
-						<input type="password" id="contrasenia" class="form-control"
-							placeholder="Telefono" required="" name="contrasenia">
+						<input type="text" id="telefono" class="form-control"
+							placeholder="Telefono" name="telefono">
+						<br>
+						<label for="inputPassword" class="sr-only">Celular</label>
+						<input type="text" id="celular" class="form-control"
+							placeholder="Celular" required="" name="celular">
+						<br>
+						<label for="inputPassword" class="sr-only">Fecha de
+							Nacimiento</label>
+						<input type="date" id="fechaDeNacimiento" class="form-control"
+							placeholder="Fecha de Nacimiento" required=""
+							name="fechaDeNacimiento">
+						<br>
+						<div class="form-group">
+							<form:select path="provincia" required="" multiple="false"
+								class="form-control" id='selectProvincias'
+								onchange='cargarLocalidades(this.value);'>
+								<form:option value="NONE" label="Seleccione su provincia"/>
+								<form:options items="${provincias}" itemValue="id"
+									itemLabel="provincia" />
+							</form:select>
+						</div>
+						<div class="form-group">
+							<form:select path="localidad" required="" multiple="false"
+								class="form-control" id="selectLocalidades">
+								<form:options items="${ciudad}" itemValue="id"
+									itemLabel="localidad" />
+							</form:select>
+						</div>
 						<br>
 						<div class="col-md-3"></div>
 						<div class="col-md-16">
@@ -94,37 +152,5 @@ body {
 			<!-- /.col-->
 		</div>
 		<!-- /.row -->
-
-
-
-		<script src="js/jquery-1.11.1.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/chart.min.js"></script>
-		<script src="js/chart-data.js"></script>
-		<script src="js/easypiechart.js"></script>
-		<script src="js/easypiechart-data.js"></script>
-		<script src="js/bootstrap-datepicker.js"></script>
-		<script>
-			!function($) {
-				$(document).on(
-						"click",
-						"ul.nav li.parent > a > span.icon",
-						function() {
-							$(this).find('em:first').toggleClass(
-									"glyphicon-minus");
-						});
-				$(".sidebar span.icon").find('em:first').addClass(
-						"glyphicon-plus");
-			}(window.jQuery);
-
-			$(window).on('resize', function() {
-				if ($(window).width() > 768)
-					$('#sidebar-collapse').collapse('show')
-			})
-			$(window).on('resize', function() {
-				if ($(window).width() <= 767)
-					$('#sidebar-collapse').collapse('hide')
-			})
-		</script>
 </body>
 </html>

@@ -22,7 +22,7 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 	@Override
 	public List<InstitucionSQL> listInstituciones() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<InstitucionSQL> institucionesList = session.createQuery("from Institucion").list();
+		List<InstitucionSQL> institucionesList = session.createQuery("from Institucion WHERE activo=1").list();
 		for(InstitucionSQL us : institucionesList){
 //			logger.info("Usuario List::"+us);
 		}

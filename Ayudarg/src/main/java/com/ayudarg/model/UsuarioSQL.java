@@ -37,8 +37,8 @@ public class UsuarioSQL {
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "UsuarioHasRol", catalog = "ayudarg", joinColumns = {
-			@JoinColumn(name = "idUsuario", nullable = false, updatable = false) },
-			inverseJoinColumns = { @JoinColumn(name = "idRol",
+			@JoinColumn(name = "usuarioIdUsuario", nullable = false, updatable = false) },
+			inverseJoinColumns = { @JoinColumn(name = "rolIdRol",
 					nullable = false, updatable = false) })
 	private Set<Rol> rol = new HashSet<Rol>(0);
 	
