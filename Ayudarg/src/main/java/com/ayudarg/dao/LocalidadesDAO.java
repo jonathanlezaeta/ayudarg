@@ -5,5 +5,6 @@ import com.ayudarg.model.LocalidadesSQL;
 
 public interface LocalidadesDAO {
 	public List<LocalidadesSQL> getAllLocalidades();
-	public List<LocalidadesSQL> getLocalidadesByIdO(String id);
+	public List<LocalidadesSQL> getLocalidadesByIdProvincias(String id);
+	public LocalidadesSQL getLocalidadById(String id);
 }

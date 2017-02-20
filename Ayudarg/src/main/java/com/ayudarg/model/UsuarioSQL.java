@@ -35,7 +35,6 @@ public class UsuarioSQL {
 	private Date fechaDeNacimiento;
 	private boolean activo;
 
-	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "UsuarioHasRol", catalog = "ayudarg", joinColumns = {
 			@JoinColumn(name = "usuarioIdUsuario", nullable = false, updatable = false) },
@@ -43,29 +42,10 @@ public class UsuarioSQL {
 					nullable = false, updatable = false) })
 	private Set<Rol> rol = new HashSet<Rol>(0);
 	
-	
-	
-	public UsuarioSQL(){}
-	
-	public UsuarioSQL(String usuario, String contrasenia, String  nombre, String email, 
-			String telefono, String celular, Date fechaDeNacimiento, Set<Rol> rol, String localidadesId){
-		this.usuario = usuario;
-		this.contrasenia = contrasenia;
-		this.nombre = nombre;
-		this.email = email;
-		this.telefono = telefono;
-		this.celular = celular;
-		this.fechaDeNacimiento = fechaDeNacimiento;
-		this.rol = rol;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "localidadesId", referencedColumnName = "localidadesId")
+	private LocalidadesSQL localidadesId;	
 
-		
-	}
-	
-	//@ManyToOne(fetch = FetchType.LAZY)
-	@ManyToOne(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinColumn(name = "localidadesId", nullable = false)
-	LocalidadesSQL localidadesId;
-	
 	public LocalidadesSQL getLocalidadesId() {
 		return localidadesId;
 	}
@@ -74,9 +54,6 @@ public class UsuarioSQL {
 		this.localidadesId = localidadesId;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "idUsuario")
-    private Set<InstitucionSQL> institucion = new HashSet<InstitucionSQL>(0);
-	
 	public boolean getActivo() {
 		return activo;
 	}
@@ -137,13 +114,5 @@ public class UsuarioSQL {
 	public void setRol(Set<Rol> rol) {
 		this.rol = rol;
 	}
-	
-	public Set<InstitucionSQL> getInstitucion() {
-		return institucion;
-	}
-	public void setInstitucion(Set<InstitucionSQL> institucion) {
-		this.institucion = institucion;
-	}
-	
 	
 }

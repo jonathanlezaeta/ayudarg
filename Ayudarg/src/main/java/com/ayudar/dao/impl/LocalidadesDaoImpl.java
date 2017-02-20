@@ -29,9 +29,16 @@ public class LocalidadesDaoImpl implements LocalidadesDAO{
 	}
 
 	@Override
-	public List<LocalidadesSQL> getLocalidadesByIdO(String id) {
+	public List<LocalidadesSQL> getLocalidadesByIdProvincias(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<LocalidadesSQL> localidadesList = session.createQuery("from LocalidadesSQL WHERE idProvincia="+id).list();
+		return localidadesList;
+	}
+
+	@Override
+	public LocalidadesSQL getLocalidadById(String id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		LocalidadesSQL localidadesList = (LocalidadesSQL) session.createQuery("from LocalidadesSQL WHERE localidadesId="+id).uniqueResult();
 		return localidadesList;
 	}
 

@@ -53,7 +53,7 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	@Override
 	public LocalidadesSQL getLocalidadesById(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		LocalidadesSQL l = (LocalidadesSQL) session.createQuery("from LocalidadesSQL WHERE id='"+id+"'").uniqueResult();
+		LocalidadesSQL l = (LocalidadesSQL) session.createQuery("from LocalidadesSQL WHERE localidadesId='"+id+"'").uniqueResult();
 		return l;
 	}
 	
@@ -65,7 +65,8 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 		Rol r = new Rol();
 		r.setNombre("U");
 		r.setIdRol(1);
-		LocalidadesSQL lq = getLocalidadesById(localidadesId);
+		LocalidadesSQL lq = new LocalidadesSQL();
+		lq.setLocalidadesId(1);
 		UsuarioSQL us = new UsuarioSQL();
 		us.setUsuario(usuario);
 		us.setContrasenia(contrasenia);

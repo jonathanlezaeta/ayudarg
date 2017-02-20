@@ -22,6 +22,13 @@ public class LocalidadesSQL {
 	@Column(name="localidadesId")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int localidadesId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idProvincia", nullable = false)
+	private ProvinciasSQL provincia;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "localidadesId")
+    private Set<UsuarioSQL> usuario = new HashSet<UsuarioSQL>(0);	
+	
+	
 	public int getLocalidadesId() {
 		return localidadesId;
 	}
@@ -30,15 +37,13 @@ public class LocalidadesSQL {
 		this.localidadesId = localidadesId;
 	}
 	private String localidad;
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idProvincia", nullable = false)
-	private ProvinciasSQL provincia;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "localidadesId")
-	    private Set<InstitucionSQL> institucion = new HashSet<InstitucionSQL>(0);
+
+	
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "localidadesId")
+//	    private Set<InstitucionSQL> institucion = new HashSet<InstitucionSQL>(0);
 	 
-	@OneToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "localidadesId")
-	    private Set<UsuarioSQL> usuario = new HashSet<UsuarioSQL>(0);
+
 
 	public String getLocalidad() {
 		return localidad;
@@ -46,13 +51,6 @@ public class LocalidadesSQL {
 
 	public void setLocalidad(String localidad) {
 		this.localidad = localidad;
-	}
-	
-	public Set<InstitucionSQL> getInstitucion() {
-		return this.institucion;
-	}
-	public void setRecurso(Set<InstitucionSQL> institucion) {
-		this.institucion = institucion;
 	}
 	
 	public Set<UsuarioSQL> getUsuario() {

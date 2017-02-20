@@ -42,7 +42,7 @@ public class GeoServiceImpl implements GeoService{
 
 	@Override
 	public List<LocalidadesSQL> getLocalidadesByIdO(String id) {
-		return localidadesDao.getLocalidadesByIdO(id);
+		return localidadesDao.getLocalidadesByIdProvincias(id);
 	}
 	
 }
