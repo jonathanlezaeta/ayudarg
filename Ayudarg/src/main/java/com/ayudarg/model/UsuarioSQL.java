@@ -61,7 +61,8 @@ public class UsuarioSQL {
 		
 	}
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	//@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinColumn(name = "localidadesId", nullable = false)
 	LocalidadesSQL localidadesId;
 	

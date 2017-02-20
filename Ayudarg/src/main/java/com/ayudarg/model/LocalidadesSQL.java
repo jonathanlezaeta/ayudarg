@@ -21,7 +21,14 @@ public class LocalidadesSQL {
 	@Id
 	@Column(name="localidadesId")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private int localidadesId;
+	public int getLocalidadesId() {
+		return localidadesId;
+	}
+
+	public void setLocalidadesId(int localidadesId) {
+		this.localidadesId = localidadesId;
+	}
 	private String localidad;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idProvincia", nullable = false)
@@ -30,16 +37,8 @@ public class LocalidadesSQL {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "localidadesId")
 	    private Set<InstitucionSQL> institucion = new HashSet<InstitucionSQL>(0);
 	 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "localidadesId")
+	@OneToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "localidadesId")
 	    private Set<UsuarioSQL> usuario = new HashSet<UsuarioSQL>(0);
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getLocalidad() {
 		return localidad;

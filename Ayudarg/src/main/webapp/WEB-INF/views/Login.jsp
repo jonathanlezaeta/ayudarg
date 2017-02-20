@@ -125,14 +125,14 @@ body {
 								class="form-control" id='selectProvincias'
 								onchange='cargarLocalidades(this.value);'>
 								<form:option value="NONE" label="Seleccione su provincia"/>
-								<form:options items="${provincias}" itemValue="id"
+								<form:options items="${provincias}" itemValue="idProvincia"
 									itemLabel="provincia" />
 							</form:select>
 						</div>
 						<div class="form-group">
 							<form:select path="localidad" required="" multiple="false"
 								class="form-control" id="selectLocalidades">
-								<form:options items="${ciudad}" itemValue="id"
+								<form:options items="${localidades}" itemValue="localidadesId"
 									itemLabel="localidad" />
 							</form:select>
 						</div>

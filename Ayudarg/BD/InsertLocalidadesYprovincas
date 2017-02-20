@@ -1,5 +1,4 @@
-
-INSERT INTO `Provincias` (``, `provincia`) VALUES
+INSERT INTO `Provincias` (`idProvincia`, `provincia`) VALUES
 (1, 'Buenos Aires'),
 (2, 'Buenos Aires-GBA'),
 (3, 'Capital Federal'),
@@ -2100,9 +2099,10 @@ INSERT INTO `Localidades` (`localidadesId`, `idProvincia`, `localidad`) VALUES
 (2071, 22, 'Palacios'),
 (2072, 22, 'PavÃ³n'),
 (2073, 22, 'PavÃ³n Arriba');
+
 INSERT INTO `localidades` (`localidadesId`, `idProvincia`, `localidad`) VALUES
-(2074, 22, 'Pedro GÃ³mez Cello'),
-(2075, 22, 'PÃ©rez'),
+(2074, 22, 'Pedro Gómez Cello'),
+(2075, 22, 'Pérez'),
 (2076, 22, 'Peyrano'),
 (2077, 22, 'Piamonte'),
 (2078, 22, 'Pilar'),

@@ -16,19 +16,13 @@ import javax.persistence.Table;
 @Table(name="Provincias")
 public class ProvinciasSQL {
 	@Id
-	@Column(name="id")
+	@Column(name="idProvincia")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private int idProvincia;
 	private String provincia;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "provincia")
 	private Set<LocalidadesSQL> provincias = new HashSet<LocalidadesSQL>();
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getProvincia() {
 		return provincia;
 	}
@@ -40,5 +34,11 @@ public class ProvinciasSQL {
 	}
 	public void setProvincias(Set<LocalidadesSQL> provincias) {
 		this.provincias = provincias;
+	}
+	public int getIdProvincia() {
+		return idProvincia;
+	}
+	public void setIdProvincia(int idProvincia) {
+		this.idProvincia = idProvincia;
 	}
 }

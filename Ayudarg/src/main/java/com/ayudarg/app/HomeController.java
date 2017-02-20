@@ -69,7 +69,7 @@ public class HomeController {
 			ArrayList<OptionBean> optionResponse = new ArrayList<OptionBean>();
 			for(LocalidadesSQL l : localidades){
 				OptionBean data = new OptionBean();
-				data.setValue(String.valueOf(l.getId()));
+				data.setValue(String.valueOf(l.getLocalidadesId()));
 				data.setOption(l.getLocalidad());
 				optionResponse.add(data);
 			}
