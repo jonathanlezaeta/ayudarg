@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.LoggerFactory;
 
+import com.ayudar.elasticsearch.model.Institucion;
 import com.ayudarg.dao.InstitucionDAO;
 import com.ayudarg.dao.UsuarioDAO;
 import com.ayudarg.model.InstitucionSQL;
@@ -39,9 +40,9 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public Institucion getInstitucionById(String idIns) {
+	public InstitucionSQL getInstitucionById(String idIns) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Institucion i = (Institucion) session.createQuery("from Institucion WHERE idInstitucion='"+idIns+"'").uniqueResult();
+		InstitucionSQL i = (InstitucionSQL) session.createQuery("from Institucion WHERE idInstitucion='"+idIns+"'").uniqueResult();
 		return i;
 	}
 	
@@ -72,7 +73,7 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 	@Override
 	public void deleteInstitucion(String institucion) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Institucion insti = new Institucion ();
+		InstitucionSQL insti = new InstitucionSQL ();
 		insti.setIdInstitucion(Integer.parseInt(institucion));
 		session.delete(insti);
 		session.flush();

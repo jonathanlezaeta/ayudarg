@@ -1,6 +1,7 @@
 package com.ayudarg.app;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -18,15 +19,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ayudar.view.beans.CategoriaBean;
 import com.ayudar.view.beans.InstitucionBajaBean;
 import com.ayudar.view.beans.InstitucionBean;
-import com.ayudar.view.beans.UsuarioBean;
-import com.ayudarg.model.Categoria;
-import com.ayudarg.model.Institucion;
+import com.ayudarg.model.InstitucionSQL;
 import com.ayudarg.service.InstitucionService;
-import com.ayudarg.service.UsuarioService;
-
 /**
  * Handles requests for the application home page.
  */
@@ -61,16 +57,11 @@ public class ABMInstitucionController {
 		HttpSession session = request.getSession();
 		model.addAttribute("usuario", session.getAttribute("usuario"));
 		model.addAttribute("rol", session.getAttribute("rol"));
-		ArrayList<Institucion> instituciones = (ArrayList<Institucion>) serviceInstitucion.listInstituciones();
+		ArrayList<InstitucionSQL> instituciones = (ArrayList<InstitucionSQL>) serviceInstitucion.listInstituciones();
 		model.addAttribute("institucion", instituciones);
 		model.addAttribute("institucionBean", new InstitucionBean());
 		model.addAttribute("institucionBajaBean", new InstitucionBajaBean());
 		return "altaInstitucion";
-	}
-	
-	@RequestMapping(value = "/altaInstitucion2", method = RequestMethod.GET)
-	public String home2(Locale locale, Model model) {
-		return "altaInstitucion2";
 	}
 
 	@RequestMapping(value="/submitAltaInstitucion", method = RequestMethod.POST)

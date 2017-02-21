@@ -8,5 +8,5 @@ public interface InstitucionDAO {
 	public void insertInstitucion(String director, String ciudad, String tipo, String nombre, String direccion,
 			String telefono, String celular, String sitioWeb, String email);
 	public void deleteInstitucion(String institucion);
-	Institucion getInstitucionById(String idIns);
+	InstitucionSQL getInstitucionById(String idIns);
 }
