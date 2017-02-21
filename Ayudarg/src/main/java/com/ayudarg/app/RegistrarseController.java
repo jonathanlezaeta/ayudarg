@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 import org.junit.Test;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.ayudar.view.beans.RegistrarseBean;
 import com.ayudar.view.beans.UsuarioBean;
 import com.ayudarg.service.UsuarioService;
+import com.ayudarg.validators.ValidatorForm;
+import com.ayudarg.validators.ValidatorFormIsEmpty;
 
 /**
  * Handles requests for the application home page.
@@ -55,6 +58,13 @@ public class RegistrarseController {
 
 	@RequestMapping(value="/submitRegistrar", method = RequestMethod.POST)
 	public String submitRegistrar(Model model, @ModelAttribute("registrarseBean") RegistrarseBean registrarseBean) {
+		
+		  
+		HashMap<String, String> form = new HashMap<String, String>();
+		form.put("usuario", registrarseBean.getUsuario());
+		ValidatorForm validate = new ValidatorFormIsEmpty();
+		
+		validate.setValues(form);
 		if (!( esVacio(registrarseBean.getUsuario()) && esVacio(registrarseBean.getContrasenia()) && esVacio(registrarseBean.getNombre()) && esVacio(registrarseBean.getEmail())
 				&& esVacio(registrarseBean.getCelular())  && esVacio(registrarseBean.getProvincia()) && esVacio(registrarseBean.getLocalidad()))){
 			
