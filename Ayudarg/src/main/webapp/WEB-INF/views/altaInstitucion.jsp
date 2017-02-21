@@ -190,10 +190,33 @@
 									
 									
 									
-									<div class="tab-pane" id="2">
-										<h3>Notice the gap between the content and tab after
-											applying a background color</h3>
-									</div>
+										
+										
+										<div class="tab-pane" id="2">
+									<form:form id="altaInstitucionForm" method="post"
+ 											action="submitDeleteInstitucion" 
+											modelAttribute="institucionBajaBean" class="form-signin"> 
+											<fieldset>
+										<div class="form-group"> 
+ 														<label class="col-md-3 control-label" for="institucion">Institucion</label> 
+ 														<div class="col-md-9"> 
+ 															<form:select path="institucion" multiple="false" 
+ 																class="form-control"> 
+ 																<form:options items="${institucion}" 
+ 																	itemValue="idInstitucion" itemLabel="nombre" /> 
+ 															</form:select> 
+ 														</div> 
+ 													</div> 
+								
+ 										<div class="form-group"> 
+ 													<div class="col-md-12 widget-right"> 
+ 														<button type="submit" 
+ 															class="btn btn-default btn-md pull-right">Eliminar</button> 
+ 													</div> 
+ 												</div> 
+ 									</fieldset> 
+ 								</form:form> 
+								</div> 
 									
 									
 									

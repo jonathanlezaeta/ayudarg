@@ -83,5 +83,6 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 //        session.getTransaction().commit(); 
         session.flush();
 	}
+	
 
 }
