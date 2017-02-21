@@ -33,9 +33,11 @@ public class UsuarioServiceImpl implements UsuarioService{
 		return usuarioDao.usuarioByUsernameAndPassword(email, password);
 	}
 	
+
 	@Override
 	public void insertUsuario(String usuario, String contrasenia, String nombre, String email, String telefono, String celular, Date fechaDeCreacion, String localidadesId){
 		usuarioDao.insertUsuario(usuario, contrasenia, nombre, email, telefono, celular, fechaDeCreacion, localidadesId);
 	}
+	
 	
 }

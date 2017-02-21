@@ -66,12 +66,13 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 		r.setNombre("U");
 		r.setIdRol(1);
 		LocalidadesSQL lq = new LocalidadesSQL();
-		lq.setLocalidadesId(1);
+		lq.setLocalidadesId(Integer.parseInt(localidadesId));
 		UsuarioSQL us = new UsuarioSQL();
 		us.setUsuario(usuario);
 		us.setContrasenia(contrasenia);
 		us.setNombre(nombre);
 		us.setEmail(email);
+		us.setActivo(true);
 		us.setTelefono(telefono);
 		us.setCelular(celular);
 		us.setFechaDeNacimiento(fechaDeNacimiento);

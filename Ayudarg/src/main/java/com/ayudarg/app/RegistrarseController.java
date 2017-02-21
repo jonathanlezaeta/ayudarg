@@ -62,11 +62,16 @@ public class RegistrarseController {
 		  
 		HashMap<String, String> form = new HashMap<String, String>();
 		form.put("usuario", registrarseBean.getUsuario());
+		form.put("usuario", registrarseBean.getContrasenia());
+		form.put("usuario", registrarseBean.getNombre());
+		form.put("usuario", registrarseBean.getEmail());
+		form.put("usuario", registrarseBean.getCelular());
+		form.put("usuario", registrarseBean.getProvincia());
+		form.put("usuario", registrarseBean.getLocalidad());
 		ValidatorForm validate = new ValidatorFormIsEmpty();
-		
 		validate.setValues(form);
-		if (!( esVacio(registrarseBean.getUsuario()) && esVacio(registrarseBean.getContrasenia()) && esVacio(registrarseBean.getNombre()) && esVacio(registrarseBean.getEmail())
-				&& esVacio(registrarseBean.getCelular())  && esVacio(registrarseBean.getProvincia()) && esVacio(registrarseBean.getLocalidad()))){
+		
+		if (!(validate.validateString())){
 			
 			SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
 			Date fecha = null;
@@ -85,10 +90,6 @@ public class RegistrarseController {
 			return "menssage";		
 		}
 
-	}
-	
-	public boolean esVacio(String value) {
-		return value.isEmpty();
 	}
 
 }

@@ -18,28 +18,28 @@
 	        <form:form id="registrarseForm" method="post" action="submitRegistrar" modelAttribute="usuarioBean" class="form-signin">
 				<h2 class="form-signin-heading" style="text-align: center;">Ayudarg</h2>
 				<label for="inputEmail" class="sr-only">Usuario</label> 
-				<input type="text" id="usuario" class="form-control" placeholder="Ingrese un Nombre de Usuario" required="" autofocus="" name="usuario"> 
+				<input type="text" id="usuario" class="form-control" placeholder="Ingrese un Nombre de Usuario" autofocus="" name="usuario"> 
 				<br>
 				<label for="inputPassword" class="sr-only">Contraseña</label>
-				<input type="password" id="contrasenia" class="form-control" placeholder="Contraseña" required="" name="contrasenia">
+				<input type="password" id="contrasenia" class="form-control" placeholder="Contraseña"  name="contrasenia">
 				<br>
 				<label for="inputPassword" class="sr-only">Nombre y Apellido</label>
-				<input type="text" id="nombre" class="form-control" placeholder="Nombre y Apellido" required="" name="nombre">
+				<input type="text" id="nombre" class="form-control" placeholder="Nombre y Apellido"  name="nombre">
 				<br>
 				<label for="inputPassword" class="sr-only">Email</label>
-				<input type="email" id="email" class="form-control" placeholder="Email" required="" name="email">
+				<input type="email" id="email" class="form-control" placeholder="Email"  name="email">
 				<br>
 				<label for="inputPassword" class="sr-only">Telefono</label>
-				<input type="text" id="telefono" class="form-control" placeholder="Telefono" required="" name="telefono">
+				<input type="text" id="telefono" class="form-control" placeholder="Telefono"  name="telefono">
 				<br>
 				<label for="inputPassword" class="sr-only">Celular</label>
-				<input type="text" id="celular" class="form-control" placeholder="Celular" required="" name="celular">
+				<input type="text" id="celular" class="form-control" placeholder="Celular"  name="celular">
 				<br>
 				<label for="inputPassword" class="sr-only">Fecha de Nacimiento</label>
-				<input type="date" id="fechaDeNacimiento" class="form-control" placeholder="Fecha de Nacimiento" required="" name="fechaDeNacimiento" >
+				<input type="date" id="fechaDeNacimiento" class="form-control" placeholder="Fecha de Nacimiento"  name="fechaDeNacimiento" >
 				<br>
 				<label for="inputPassword" class="sr-only">Ciudad de origen</label>
-				<input type="text" id="ciudadOrigen" class="form-control" placeholder="Ciudad de Origen" required="" name="ciudadOrigen">
+				<input type="text" id="ciudadOrigen" class="form-control" placeholder="Ciudad de Origen"  name="ciudadOrigen">
 				<br>
 				<button class="btn btn-lg btn-primary btn-block" style="width:50%; margin-left:auto; margin-right:auto;" type="submit">Aceptar</button>
 	        </form:form>

@@ -59,11 +59,6 @@ public class ABMInstitucionController {
 		model.addAttribute("rol", session.getAttribute("rol"));
 		return "altaInstitucion";
 	}
-	
-	@RequestMapping(value = "/altaInstitucion2", method = RequestMethod.GET)
-	public String home2(Locale locale, Model model) {
-		return "altaInstitucion2";
-	}
 
 	@RequestMapping(value="/submitAltaInstitucion", method = RequestMethod.POST)
 	public String submitRegistrar(Model model, @ModelAttribute("institucionBean") InstitucionBean institucionBean) {
