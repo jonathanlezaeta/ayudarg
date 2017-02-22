@@ -14,15 +14,12 @@
 <head>
 <title>Donaciones</title>
 <script language="javascript">
-	function showmydiv() {
-		document.getElementById('donar').style.display = "block";
-	}
 	function cargarLocalidades(value){
 		$.ajax({
 			type: "POST",
 			data: $("#donarForm").serialize(),
 			dataType: 'json',
-			url: '/donar/getLocalidadesById', 
+			url: '/app/getLocalibadesByIdDonar', 
 			success: function(data) { 
 					var res = data; 
 					var options = '';
@@ -31,15 +28,13 @@
 						options += '<option value="' +value.value + '">' +value.option + '</option>';
 					});
 					$("select[id=selectLocalidades]").html(options);
- 				}
-//			},
+// 				}
+			},
 			error: function(e){ <!-- Si no ha podido conectar con el servidor -->
 				alert("Error en el servidor, por favor, intentalo de nuevo mas tarde");
 			}
 		});
 	}
-	
-
 </script>
 <style>
 body {

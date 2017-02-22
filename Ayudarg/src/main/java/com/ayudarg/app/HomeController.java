@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ayudar.elasticsearch.model.Institucion;
 import com.ayudar.elasticsearch.model.RecursoModelEs;
 import com.ayudar.elasticsearch.model.Usuario;
+import com.ayudar.view.beans.DonarBean;
 import com.ayudar.view.beans.OptionBean;
 import com.ayudar.view.beans.RegistrarseBean;
 import com.ayudar.view.beans.UsuarioBean;
@@ -39,7 +40,7 @@ import com.google.gson.Gson;
  */
 @Controller
 public class HomeController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	private GeoService serviceGeo;
@@ -48,8 +49,8 @@ public class HomeController {
 	@Qualifier(value = "GeoService")
 	public void setGeoServicee(GeoService ps) {
 		this.setServiceGeo(ps);
-	}	
-	
+	}
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -60,22 +61,36 @@ public class HomeController {
 		model.addAttribute("provincias", provincias);
 		return "Login";
 	}
-	
-	@RequestMapping(value = "/getLocalidadesById", method = RequestMethod.POST)
-    public @ResponseBody 
-    String getTime(RegistrarseBean registrarseBean) {
-			Gson gson = new Gson();
-			List<LocalidadesSQL> localidades = serviceGeo.getLocalidadesByIdO(registrarseBean.getProvincia());
-			ArrayList<OptionBean> optionResponse = new ArrayList<OptionBean>();
-			for(LocalidadesSQL l : localidades){
-				OptionBean data = new OptionBean();
-				data.setValue(String.valueOf(l.getLocalidadesId()));
-				data.setOption(l.getLocalidad());
-				optionResponse.add(data);
-			}
-			String jsonInString = gson.toJson(optionResponse);
-        return jsonInString;
-    }
+
+	@RequestMapping(value = "/getLocalidadesByRegristrarse", method = RequestMethod.POST)
+	public @ResponseBody String getLocalidadesByRegristrarse(RegistrarseBean registrarseBean) {
+		Gson gson = new Gson();
+		List<LocalidadesSQL> localidades = serviceGeo.getLocalidadesByIdO(registrarseBean.getProvincia());
+		ArrayList<OptionBean> optionResponse = new ArrayList<OptionBean>();
+		for (LocalidadesSQL l : localidades) {
+			OptionBean data = new OptionBean();
+			data.setValue(String.valueOf(l.getLocalidadesId()));
+			data.setOption(l.getLocalidad());
+			optionResponse.add(data);
+		}
+		String jsonInString = gson.toJson(optionResponse);
+		return jsonInString;
+	}
+
+	@RequestMapping(value = "/getLocalibadesByIdDonar", method = RequestMethod.POST)
+	public @ResponseBody String getLocalibadesByIdDonar(DonarBean donarBean) {
+		Gson gson = new Gson();
+		List<LocalidadesSQL> localidades = serviceGeo.getLocalidadesByIdO(donarBean.getProvincia());
+		ArrayList<OptionBean> optionResponse = new ArrayList<OptionBean>();
+		for (LocalidadesSQL l : localidades) {
+			OptionBean data = new OptionBean();
+			data.setValue(String.valueOf(l.getLocalidadesId()));
+			data.setOption(l.getLocalidad());
+			optionResponse.add(data);
+		}
+		String jsonInString = gson.toJson(optionResponse);
+		return jsonInString;
+	}
 
 	public GeoService getServiceGeo() {
 		return serviceGeo;
@@ -84,5 +99,5 @@ public class HomeController {
 	public void setServiceGeo(GeoService serviceGeo) {
 		this.serviceGeo = serviceGeo;
 	}
-	
+
 }

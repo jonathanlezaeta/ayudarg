@@ -22,7 +22,7 @@
 			type: "POST",
 			data: $("#registrarseForm").serialize(),
 			dataType: 'json',
-			url: '/app/getLocalidadesById', 
+			url: '/app/getLocalidadesByRegristrarse', 
 			success: function(data) { 
 					var res = data; 
 					var options = '';

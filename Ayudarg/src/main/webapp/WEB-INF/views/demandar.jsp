@@ -16,15 +16,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Demandas</title>
 <script language="javascript">
-	function showmydiv() {
-		document.getElementById('demandar').style.display = "block";
-	}
 	function cargarLocalidades(value){
 		$.ajax({
 			type: "POST",
-			data: $("#demandarForm").serialize(),
+			data: $("#donarForm").serialize(),
 			dataType: 'json',
-			url: '/demandar/getLocalidadesById', 
+			url: '/app/getLocalibadesByIdDonar', 
 			success: function(data) { 
 					var res = data; 
 					var options = '';
@@ -40,8 +37,6 @@
 			}
 		});
 	}
-	
-
 </script>
 <style>
 body {
