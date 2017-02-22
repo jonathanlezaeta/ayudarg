@@ -15,17 +15,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ayudar.view.beans.CategoriaBean;
+import com.ayudar.view.beans.DonarBean;
 import com.ayudar.view.beans.InstitucionBean;
+import com.ayudar.view.beans.OptionBean;
 import com.ayudar.view.beans.RecursoBean;
+import com.ayudar.view.beans.RegistrarseBean;
 import com.ayudar.view.beans.UsuarioBean;
 import com.ayudarg.model.Categoria;
 import com.ayudarg.model.InstitucionSQL;
+import com.ayudarg.model.LocalidadesSQL;
+import com.ayudarg.model.ProvinciasSQL;
 import com.ayudarg.service.CategoriaService;
+import com.ayudarg.service.GeoService;
 import com.ayudarg.service.InstitucionService;
 import com.ayudarg.service.RecursoService;
 import com.ayudarg.service.UsuarioService;
+import com.google.gson.Gson;
+
+import antlr.collections.List;
 
 /**
  * Handles requests for the application home page.
@@ -38,8 +48,8 @@ public class DonarController {
 	private RecursoService serviceRecurso;
 	private CategoriaService serviceCategoria;
 	private InstitucionService serviceInstitucion;
+	private GeoService serviceGeo;
 	
-
 	public CategoriaService getServiceCategoria() {
 		return serviceCategoria;
 	}
@@ -81,27 +91,41 @@ public class DonarController {
 	public void setInstitucionService(InstitucionService is) {
 		this.serviceInstitucion = is;
 	}
+	
+	@Autowired(required = true)
+	@Qualifier(value = "GeoService")
+	public void setGeoServicee(GeoService ol) {
+		this.serviceGeo = ol;
+	}	
+	
+	public GeoService getServiceGeo() {
+		return serviceGeo;
+	}
+
+	public void setServiceGeo(GeoService serviceGeo) {
+		this.serviceGeo = serviceGeo;
+	}
+	
 
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/donar", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		
+		ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
 		ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
+		model.addAttribute("donarBean", new DonarBean());
 		model.addAttribute("categoria", categorias);
-		model.addAttribute("recursoBean", new RecursoBean());
-		
-		ArrayList<InstitucionSQL> institucion = (ArrayList<InstitucionSQL>) serviceInstitucion.listInstituciones();
-		model.addAttribute("institucion", institucion);
+		model.addAttribute("provincias", provincias);
+
 		
 		return "donar";
 	}
 
 	@RequestMapping(value="/submitAltaDonacion", method = RequestMethod.POST)
 	public String submitRegistrar(Model model, @ModelAttribute("recursoBean") RecursoBean recursoBean) {
-		serviceRecurso.insertRecurso(recursoBean.getNombre(), recursoBean.getCantidad(), recursoBean.getCategoria(), recursoBean.getInstitucion());
+		//serviceRecurso.insertRecurso(recursoBean.getCategoria(), recursoBean.getInstitucion());
 		return "registrarseCorrectamente";
 	}
-
+	
 }

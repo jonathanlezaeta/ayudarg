@@ -53,7 +53,7 @@ public class RecursoDaoImpl implements RecursoDAO {
 	@Override
 	public InstitucionSQL getInstitucionById(String idIns) {
 		Session session = this.sessionFactory.getCurrentSession();
-		InstitucionSQL i = (InstitucionSQL) session.createQuery("from Institucion WHERE idInstitucion='"+idIns+"'").uniqueResult();
+		InstitucionSQL i = (InstitucionSQL) session.createQuery("from InstitucionSQL WHERE idInstitucion='"+idIns+"'").uniqueResult();
 		return i;
 	}
 	

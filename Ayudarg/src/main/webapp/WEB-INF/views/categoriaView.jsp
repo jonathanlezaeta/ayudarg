@@ -230,7 +230,7 @@
 												<div class="form-group">
 													<div class="col-md-12 widget-right">
 														<button type="submit"
-															class="btn btn-default btn-md pull-right">Registrar</button>
+															class="btn btn-default btn-md pull-right">Modificar</button>
 													</div>
 												</div>
 											</fieldset>

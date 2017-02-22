@@ -112,5 +112,6 @@ public class RecursoSQL {
 	public void setUsuarioIdUsuario(int usuarioIdUsuario) {
 		this.usuarioIdUsuario = usuarioIdUsuario;
 	}
+
 	
 }

@@ -8,10 +8,48 @@
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/styles.css" />"
 	rel="stylesheet">
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <html>
 <head>
 <title>Donaciones</title>
+<script language="javascript">
+	function showmydiv() {
+		document.getElementById('donar').style.display = "block";
+	}
+	function cargarLocalidades(value){
+		$.ajax({
+			type: "POST",
+			data: $("#donarForm").serialize(),
+			dataType: 'json',
+			url: '/donar/getLocalidadesById', 
+			success: function(data) { 
+					var res = data; 
+					var options = '';
+					options += '<option value="">Seleccione su ciudad</option>';
+					$.each(data, function (index, value) {
+						options += '<option value="' +value.value + '">' +value.option + '</option>';
+					});
+					$("select[id=selectLocalidades]").html(options);
+ 				}
+//			},
+			error: function(e){ <!-- Si no ha podido conectar con el servidor -->
+				alert("Error en el servidor, por favor, intentalo de nuevo mas tarde");
+			}
+		});
+	}
+	
+
+</script>
+<style>
+body {
+	background: transparent url("resources/img/background.jpg") no-repeat;
+	background-size: cover;
+	padding-top: 15px;
+}
+</style>
 </head>
+
 <body>
 
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -61,7 +99,9 @@
 			<li><a href="/app/altaCategoria"><svg
 						class="glyph stroked line-graph">
 						<use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
-			<li><a href="/app/bajaUsuario"><svg class="glyph stroked line-graph"><use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
+			<li><a href="/app/bajaUsuario"><svg
+						class="glyph stroked line-graph">
+						<use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
 		</ul>
 
 	</div>
@@ -76,56 +116,46 @@
 						Complete sus datos
 					</div>
 					<div class="panel-body">
-						
+
 						<form:form id="donarForm" method="post"
-							action="submitAltaDonacion" modelAttribute="recursoBean"
+							action="submitAltaDonacion" modelAttribute="donarBean"
 							class="form-signin">
 							<fieldset>
 
 
-								<!-- Recurso input-->
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="nombre">Recurso</label>
-									<div class="col-md-9">
-										<input id="nombre" name="nombre" type="text"
-											placeholder="Nombre del recurso" class="form-control">
-									</div>
-								</div>
-								<!-- Cantidad input-->
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="cantidad">Cantidad</label>
-									<div class="col-md-9">
-										<input id="cantidad" name="cantidad" type="text"
-											placeholder="Cantidad que donará" class="form-control">
-									</div>
-								</div>
-								<!-- Categoria input -->
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="ciudad">Categoria</label>
-									<div class="col-md-9">
-										<form:select path="categoria" multiple="false" class="form-control">
-											<form:options items="${categoria}" itemValue="idCategoria"
-												itemLabel="nombre" />
-										</form:select>
-									</div>
-								</div>
-								<!-- Institución input -->
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="institucion">Institucion</label>
-									<div class="col-md-9">
-										<form:select path="institucion" multiple="false" class="form-control">
-											<form:options items="${institucion}"
-												itemValue="idInstitucion" itemLabel="nombre" />
-										</form:select>
-									</div>
-								</div>
-								<!-- Form actions -->
+							
+								<td>
+								<label class="col-md-3 control-label" for="usuario">Elija la/s categorias</label>
+								<form:checkboxes path="idCategoria" items="${categoria}" itemValue="idCategoria" itemLabel="nombre" />
+								</td>
+		
+
+
+							<div class="form-group">
+							<form:select path="provincia" required="" multiple="false"
+								class="form-control" id='selectProvincias'
+								onchange='cargarLocalidades(this.value);'>
+								<form:option value="NONE" label="Seleccione su provincia"/>
+								<form:options items="${provincias}" itemValue="idProvincia"
+									itemLabel="provincia" />
+							</form:select>
+						</div>
+						
+						<div class="form-group">
+							<form:select path="localidad" required="" multiple="false"
+								class="form-control" id="selectLocalidades">
+								<form:options items="${localidades}" itemValue="localidadesId"
+									itemLabel="localidad" />
+							</form:select>
+						</div>
+
 								<div class="form-group">
 									<div class="col-md-12 widget-right">
 										<button type="submit"
 											class="btn btn-default btn-md pull-right">Donar</button>
 									</div>
 								</div>
+
 							</fieldset>
 						</form:form>
 					</div>

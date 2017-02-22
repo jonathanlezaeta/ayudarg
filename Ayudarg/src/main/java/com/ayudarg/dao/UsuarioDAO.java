@@ -12,5 +12,6 @@ public interface UsuarioDAO {
 	public UsuarioSQL usuarioByUsernameAndPassword(String email, String password);
 	public UsuarioSQL getUsuarioById(String id);
 	public LocalidadesSQL getLocalidadesById(String id);
-	void insertUsuario(String usuario, String contrasenia, String nombre, String email, String telefono, String celular, Date fechaDeNacimiento, String localidadesId);
+	public void insertUsuario(String usuario, String contrasenia, String nombre, String email, String telefono, String celular, Date fechaDeNacimiento, String localidadesId);
+	public UsuarioSQL getUsuarioByEmail(String id);
 }

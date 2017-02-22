@@ -51,6 +51,14 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	public UsuarioSQL getUsuarioByEmail(String id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		UsuarioSQL u = (UsuarioSQL) session.createQuery("from UsuarioSQL WHERE email='"+id+"'").uniqueResult();
+		return u;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
 	public LocalidadesSQL getLocalidadesById(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		LocalidadesSQL l = (LocalidadesSQL) session.createQuery("from LocalidadesSQL WHERE localidadesId='"+id+"'").uniqueResult();

@@ -35,7 +35,7 @@ public class RolDaoImpl implements RolDAO {
 	@Override
 	public Rol getRolById(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		return (Rol) session.createQuery("from Ro WHERE idRol = " + id).uniqueResult();
+		return (Rol) session.createQuery("from Rol WHERE idRol = " + id).uniqueResult();
 	}
 
 }

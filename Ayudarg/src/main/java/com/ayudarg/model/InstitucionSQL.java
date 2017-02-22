@@ -41,7 +41,7 @@ public class InstitucionSQL {
 	private boolean activo;
 	
     @ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", nullable = false)
+	@JoinColumn(name = "localidadesId", nullable = false)
     private LocalidadesSQL localidadesId;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
