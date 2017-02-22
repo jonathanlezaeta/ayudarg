@@ -1,7 +1,10 @@
 package com.ayudar.dao.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -10,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import com.ayudarg.dao.InstitucionDAO;
 import com.ayudarg.dao.UsuarioDAO;
+import com.ayudarg.model.Categoria;
 import com.ayudarg.model.InstitucionSQL;
 import com.ayudarg.model.Rol;
 import com.ayudarg.model.UsuarioSQL;
@@ -69,6 +73,25 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 		insti.setIdInstitucion(Integer.parseInt(institucion));
 		session.delete(insti);
 		session.flush();
-      
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<InstitucionSQL> getInstitucionesByCategoriaByLocalidd(String idLocalidd, String[] categorias){
+		Session session = this.sessionFactory.getCurrentSession();
+		List<InstitucionSQL> institucionesList = session.createQuery("from InstitucionSQL WHERE activo=1 AND localidadesId="+idLocalidd).list();
+		ArrayList<InstitucionSQL> result = new ArrayList<InstitucionSQL>();
+		for(InstitucionSQL inst : institucionesList){
+			Set<Categoria> categoriasByInstitucion = inst.getCategoria();
+			Iterator<Categoria> it = categoriasByInstitucion.iterator();
+			while(it.hasNext()){
+				Categoria categoria = it.next();
+				for(String id : categorias){
+					if(categoria.getIdCategoria() == Integer.parseInt(id))
+						result.add(inst);
+				}
+			}
+		}
+		return result;
 	}
 }

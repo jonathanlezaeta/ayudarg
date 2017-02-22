@@ -49,7 +49,7 @@ public class DonarController {
 	private CategoriaService serviceCategoria;
 	private InstitucionService serviceInstitucion;
 	private GeoService serviceGeo;
-	
+
 	public CategoriaService getServiceCategoria() {
 		return serviceCategoria;
 	}
@@ -57,7 +57,7 @@ public class DonarController {
 	public void setServiceCategoria(CategoriaService serviceCategoria) {
 		this.serviceCategoria = serviceCategoria;
 	}
-	
+
 	public RecursoService getServiceRecurso() {
 		return serviceRecurso;
 	}
@@ -73,31 +73,31 @@ public class DonarController {
 	public void setServiceInstitucion(InstitucionService serviceInstitucion) {
 		this.serviceInstitucion = serviceInstitucion;
 	}
-	
+
 	@Autowired(required = true)
 	@Qualifier(value = "RecursoService")
 	public void setRecursoService(RecursoService ps) {
 		this.serviceRecurso = ps;
 	}
-	
+
 	@Autowired(required = true)
 	@Qualifier(value = "CategoriaService")
 	public void setCategoriaService(CategoriaService cs) {
 		this.serviceCategoria = cs;
 	}
-	
+
 	@Autowired(required = true)
 	@Qualifier(value = "InstitucionService")
 	public void setInstitucionService(InstitucionService is) {
 		this.serviceInstitucion = is;
 	}
-	
+
 	@Autowired(required = true)
 	@Qualifier(value = "GeoService")
 	public void setGeoServicee(GeoService ol) {
 		this.serviceGeo = ol;
-	}	
-	
+	}
+
 	public GeoService getServiceGeo() {
 		return serviceGeo;
 	}
@@ -105,7 +105,6 @@ public class DonarController {
 	public void setServiceGeo(GeoService serviceGeo) {
 		this.serviceGeo = serviceGeo;
 	}
-	
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -118,14 +117,16 @@ public class DonarController {
 		model.addAttribute("categoria", categorias);
 		model.addAttribute("provincias", provincias);
 
-		
 		return "donar";
 	}
 
-	@RequestMapping(value="/submitAltaDonacion", method = RequestMethod.POST)
-	public String submitRegistrar(Model model, @ModelAttribute("recursoBean") RecursoBean recursoBean) {
-		//serviceRecurso.insertRecurso(recursoBean.getCategoria(), recursoBean.getInstitucion());
-		return "registrarseCorrectamente";
+	@RequestMapping(value = "/submitAltaDonacion", method = RequestMethod.POST)
+	public String submitRegistrar(Model model, @ModelAttribute("donarBean") DonarBean donarBean) {
+		ArrayList<InstitucionSQL> instituciones = (ArrayList<InstitucionSQL>) serviceInstitucion
+				.getInstitucionesByCategoriaByLocalidd(donarBean.getLocalidad(), donarBean.getIdCategoria());
+		model.addAttribute("registrarseBean", new RegistrarseBean());
+		model.addAttribute("instituciones", instituciones);
+		return "donarResult";
 	}
-	
+
 }

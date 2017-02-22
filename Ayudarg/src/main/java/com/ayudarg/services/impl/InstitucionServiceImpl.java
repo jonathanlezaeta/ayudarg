@@ -44,4 +44,8 @@ public class InstitucionServiceImpl implements InstitucionService{
 		
 	}
 
+	public List<InstitucionSQL> getInstitucionesByCategoriaByLocalidd(String idLocalidd, String[] categorias){
+		return institucionDao.getInstitucionesByCategoriaByLocalidd(idLocalidd, categorias);
+	}
+	
 }
