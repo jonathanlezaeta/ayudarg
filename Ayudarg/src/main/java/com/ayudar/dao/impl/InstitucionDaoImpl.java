@@ -23,9 +23,6 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 	public List<InstitucionSQL> listInstituciones() {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<InstitucionSQL> institucionesList = session.createQuery("from InstitucionSQL WHERE activo=1").list();
-		for(InstitucionSQL us : institucionesList){
-//			logger.info("Usuario List::"+us);
-		}
 		return institucionesList;
 	}
 	
@@ -39,12 +36,20 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	public InstitucionSQL getInstitucionById(String idIns) {
+		Session session = this.sessionFactory.getCurrentSession();
+		InstitucionSQL i = (InstitucionSQL) session.createQuery("from InstitucionSQL WHERE idInstitucion='"+idIns+"' AND activo=1").uniqueResult();
+		return i;
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	@Override
 	public void insertInstitucion(String director, String ciudad, String tipo, String nombre, String direccion,
 			String telefono, String celular, String sitioWeb, String email) {
 		Session session = this.sessionFactory.getCurrentSession();
 		InstitucionSQL us = new InstitucionSQL();
 		us.setDirector(director);
-		us.setCiudad(ciudad);
 		us.setTipo(tipo);
 		us.setNombre(nombre);
 		us.setDireccion(direccion);
@@ -52,10 +57,18 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 		us.setCelular(celular);
 		us.setSitioWeb(sitioWeb);
 		us.setEmail(email);
-        //Save the employee in database
         session.save(us);
-        //Commit the transaction
-        //session.getTransaction().commit(); 
         session.flush();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void deleteInstitucion(String institucion) {
+		Session session = this.sessionFactory.getCurrentSession();
+		InstitucionSQL insti = new InstitucionSQL ();
+		insti.setIdInstitucion(Integer.parseInt(institucion));
+		session.delete(insti);
+		session.flush();
+      
 	}
 }

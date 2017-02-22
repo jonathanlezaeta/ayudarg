@@ -10,6 +10,7 @@ import com.ayudarg.model.Rol;
 import com.ayudarg.model.UsuarioSQL;
 import com.ayudarg.service.RolService;
 import com.ayudarg.service.UsuarioService;
+
 @Transactional
 public class RolServiceImpl implements RolService{
 	

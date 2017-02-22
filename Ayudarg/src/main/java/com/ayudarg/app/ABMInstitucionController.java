@@ -1,6 +1,7 @@
 package com.ayudarg.app;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ayudar.view.beans.InstitucionBajaBean;
 import com.ayudar.view.beans.InstitucionBean;
 import com.ayudar.view.beans.UsuarioBean;
+import com.ayudarg.model.InstitucionSQL;
 import com.ayudarg.service.InstitucionService;
 import com.ayudarg.service.UsuarioService;
 
@@ -57,7 +60,16 @@ public class ABMInstitucionController {
 		HttpSession session = request.getSession();
 		model.addAttribute("usuario", session.getAttribute("usuario"));
 		model.addAttribute("rol", session.getAttribute("rol"));
-		return "altaInstitucion";
+		ArrayList<InstitucionSQL> instituciones = (ArrayList<InstitucionSQL>) serviceInstitucion.listInstituciones();
+		model.addAttribute("institucion", instituciones);
+		model.addAttribute("institucionBean", new InstitucionBean());
+		model.addAttribute("institucionBajaBean", new InstitucionBajaBean());
+		if(session.getAttribute("usuario")!= null){
+			return "altaInstitucion";
+		}else{
+		    model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
+			return "menssage";
+		}		
 	}
 
 	@RequestMapping(value="/submitAltaInstitucion", method = RequestMethod.POST)
@@ -66,5 +78,11 @@ public class ABMInstitucionController {
 				institucionBean.getTipo(), institucionBean.getNombre(), institucionBean.getDireccion(), institucionBean.getTelefono(),
 				institucionBean.getCelular(), institucionBean.getSitioWeb(), institucionBean.getEmail());
 		return "registrarseCorrectamente";
+	}
+	
+	@RequestMapping(value="/submitDeleteInstitucion", method = RequestMethod.POST)
+	public String submitRegistrar2(Model model, @ModelAttribute("institucionBajaBean") InstitucionBajaBean institucionBajaBean) {
+		serviceInstitucion.deleteInstitucion(institucionBajaBean.getInstitucion());
+		return "borradoCorrectamente";
 	}
 }
