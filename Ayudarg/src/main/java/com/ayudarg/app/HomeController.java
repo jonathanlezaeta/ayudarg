@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ayudar.elasticsearch.model.Institucion;
 import com.ayudar.elasticsearch.model.RecursoModelEs;
 import com.ayudar.elasticsearch.model.Usuario;
+import com.ayudar.view.beans.DemandarBean;
 import com.ayudar.view.beans.DonarBean;
 import com.ayudar.view.beans.OptionBean;
 import com.ayudar.view.beans.RegistrarseBean;
@@ -92,6 +93,21 @@ public class HomeController {
 		return jsonInString;
 	}
 
+	@RequestMapping(value = "/getLocalibadesByIdDemandar", method = RequestMethod.POST)
+	public @ResponseBody String getLocalibadesByIdDemandar(DemandarBean demandarBean) {
+		Gson gson = new Gson();
+		List<LocalidadesSQL> localidades = serviceGeo.getLocalidadesByIdO(demandarBean.getProvincia());
+		ArrayList<OptionBean> optionResponse = new ArrayList<OptionBean>();
+		for (LocalidadesSQL l : localidades) {
+			OptionBean data = new OptionBean();
+			data.setValue(String.valueOf(l.getLocalidadesId()));
+			data.setOption(l.getLocalidad());
+			optionResponse.add(data);
+		}
+		String jsonInString = gson.toJson(optionResponse);
+		return jsonInString;
+	}
+	
 	public GeoService getServiceGeo() {
 		return serviceGeo;
 	}

@@ -118,7 +118,6 @@ public class DonarController {
 		model.addAttribute("categoria", categorias);
 		model.addAttribute("provincias", provincias);
 
-		
 		return "donar";
 	}
 

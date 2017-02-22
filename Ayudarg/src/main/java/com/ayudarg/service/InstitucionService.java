@@ -7,4 +7,5 @@ public interface InstitucionService {
 	public List<InstitucionSQL> listInstituciones();
 	public void insertInstitucion(String director, String ciudad, String tipo, String nombre, String direccion,
 			String telefono, String celular, String sitioWeb, String email);
+	public List<InstitucionSQL> buscarInstituciones();
 }

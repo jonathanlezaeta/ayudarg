@@ -13,15 +13,14 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Demandas</title>
 <script language="javascript">
 	function cargarLocalidades(value){
 		$.ajax({
 			type: "POST",
-			data: $("#donarForm").serialize(),
+			data: $("#demandarForm").serialize(),
 			dataType: 'json',
-			url: '/app/getLocalibadesByIdDonar', 
+			url: '/app/getLocalibadesByIdDemandar', 
 			success: function(data) { 
 					var res = data; 
 					var options = '';
@@ -46,6 +45,7 @@ body {
 }
 </style>
 </head>
+
 <body>
 
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -121,7 +121,7 @@ body {
 
 							
 								<td>
-								<label class="col-md-3 control-label" for="usuario">Elija la/s categorias</label>
+								<label class="col-md-3 control-label" for="categoria">Elija la/s categorias</label>
 								<form:checkboxes path="idCategoria" items="${categoria}" itemValue="idCategoria" itemLabel="nombre" />
 								</td>
 		

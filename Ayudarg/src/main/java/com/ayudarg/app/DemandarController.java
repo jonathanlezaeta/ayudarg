@@ -2,6 +2,7 @@ package com.ayudarg.app;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ayudar.view.beans.DemandarBean;
+import com.ayudar.view.beans.DonarBean;
+import com.ayudar.view.beans.InstitucionBean;
 import com.ayudar.view.beans.OptionBean;
 import com.ayudar.view.beans.RecursoBean;
 import com.ayudar.view.beans.RegistrarseBean;
@@ -104,17 +107,15 @@ public class DemandarController {
 	public String home(Locale locale, Model model) {
 		ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
 		ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
-		model.addAttribute("categoria", categorias);
 		model.addAttribute("demandarBean", new DemandarBean());
+		model.addAttribute("categoria", categorias);
 		model.addAttribute("provincias", provincias);
 		return "demandar";
 	}
 
 	@RequestMapping(value="/submitAltaDemanda", method = RequestMethod.POST)
-	public String submitRegistrar(Model model, @ModelAttribute("recursoBean") RecursoBean recursoBean) {
-//		serviceRecurso.deleteRecurso(recursoBean.getNombre(), recursoBean.getCategoria());
-		System.out.printf("asd");
-		return null;
+	public List<InstitucionSQL> submitRegistrar(Model model, @ModelAttribute("InstitucionBean") InstitucionBean institucionBean) {
+		return serviceInstitucion.buscarInstituciones();
 	}
 	
 }

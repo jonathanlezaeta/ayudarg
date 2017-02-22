@@ -29,6 +29,14 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 		return institucionesList;
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<InstitucionSQL> buscarInstituciones() {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<InstitucionSQL> instituciones = session.createQuery("from InstitucionSQL I INNER JOIN InstitucionHasCategoria IHC on (I.idInstitucion = IHC.institucionIdInstitucion) INNER JOIN Categoria C on (IHC.idCategoria = C.categoriaIdCategoria)").list();
+		return instituciones;
+	}
+	
 	public void setSessionFactory(SessionFactory sf){
 		sessionFactory = sf;
 	}
