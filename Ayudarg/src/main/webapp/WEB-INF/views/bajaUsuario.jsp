@@ -83,10 +83,99 @@
 						<div class="container">
 							<div id="exTab2" class="col-md-10">
 								<ul class="nav nav-tabs">
+									<li><a href="#1" data-toggle="tab">Registrar</a></li>
 									<li><a href="#2" data-toggle="tab">Eliminar</a></li>
 									<li><a href="#3" data-toggle="tab">Modificar</a></li>
 								</ul>
+								<div class="tab-content ">
+									<div class="tab-pane active" id="1">
+<form:form id="usuarioForm" method="post"
+											action="submitModificacionUsuario"
+											modelAttribute="usuarioBean" class="form-signin">
+											<fieldset>
 
+
+												<!-- Contraseña input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="contrasenia">Contraseña</label>
+													<div class="col-md-9">
+														<input id="contrasenia" name="contrasenia" type="text"
+															placeholder="Ingrese nueva contraseña"
+															class="form-control">
+													</div>
+												</div>
+
+												<!-- Nombre input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="nombre">Nombre</label>
+													<div class="col-md-9">
+														<input id="nombre" name="nombre" type="text"
+															placeholder="Ingrese nuevo nombre" class="form-control">
+													</div>
+												</div>
+
+												<!-- Email input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="email">Email</label>
+													<div class="col-md-9">
+														<input id="email" name="email" type="text"
+															placeholder="Ingrese nuevo email" class="form-control">
+													</div>
+												</div>
+
+												<!-- Telefono input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="telefono">Telefono</label>
+													<div class="col-md-9">
+														<input id="telefono" name="telefono" type="text"
+															placeholder="Ingrese nuevo telefono" class="form-control">
+													</div>
+												</div>
+
+												<!-- Celular input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="celular">Celular</label>
+													<div class="col-md-9">
+														<input id="celular" name="celular" type="text"
+															placeholder="Ingrese nuevo celular" class="form-control">
+													</div>
+												</div>
+
+												<!-- Fecha Nacimiento input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label"
+														for="fechaDeNacimiento">Fecha de nacimiento</label>
+													<div class="col-md-9">
+														<input id="fechaDeNacimiento" name="fechaDeNacimiento"
+															type="text"
+															placeholder="Ingrese nueva fecha de nacimiento"
+															class="form-control">
+													</div>
+												</div>
+
+												<!-- Ciudad Origen input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="ciudadOrigen">Ciudad
+														de origen</label>
+													<div class="col-md-9">
+														<input id="ciudadOrigen" name="ciudadOrigen" type="text"
+															placeholder="Ingrese nueva ciudad de origen"
+															class="form-control">
+													</div>
+												</div>
+
+
+
+												<div class="form-group">
+													<div class="col-md-12 widget-right">
+														<button type="submit"
+															class="btn btn-default btn-md pull-right">Modificar</button>
+													</div>
+												</div>
+											</fieldset>
+										</form:form>	
+									</div>
+								</div>
 								<div class="tab-content ">
 									<div class="tab-pane active" id="2">
 										<form:form id="usuarioBajaForm" method="post"
@@ -108,113 +197,112 @@
 
 
 												<!-- Form actions -->
-													<div class="form-group"> 
- 													<div class="col-md-12 widget-right"> 
- 														<button type="submit" 
- 															class="btn btn-default btn-md pull-right">Eliminar</button> 
- 													</div> 
- 												</div> 
- 									</fieldset> 
- 								</form:form> 
-								</div> 
-							</div>		
-
-							<div class="tab-content ">
-								<div class="tab-pane active" id="3">
-									<form:form id="usuarioForm" method="post"
-										action="submitModificacionUsuario"
-										modelAttribute="usuarioBean" class="form-signin">
-										<fieldset>
-
-
-											<!-- Contraseña input-->
-											<div class="form-group">
-												<label class="col-md-3 control-label" for="contrasenia">Contraseña</label>
-												<div class="col-md-9">
-													<input id="contrasenia" name="contrasenia" type="text"
-														placeholder="Ingrese nueva contraseña"
-														class="form-control">
+												<div class="form-group">
+													<div class="col-md-12 widget-right">
+														<button type="submit"
+															class="btn btn-default btn-md pull-right">Eliminar</button>
+													</div>
 												</div>
-											</div>
+											</fieldset>
+										</form:form>
+									</div>
+								</div>
 
-											<!-- Nombre input-->
-											<div class="form-group">
-												<label class="col-md-3 control-label" for="nombre">Nombre</label>
-												<div class="col-md-9">
-													<input id="nombre" name="nombre" type="text"
-														placeholder="Ingrese nuevo nombre" class="form-control">
+								<div class="tab-content ">
+									<div class="tab-pane active" id="3">
+										<form:form id="usuarioForm" method="post"
+											action="submitModificacionUsuario"
+											modelAttribute="usuarioBean" class="form-signin">
+											<fieldset>
+
+
+												<!-- Contraseña input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="contrasenia">Contraseña</label>
+													<div class="col-md-9">
+														<input id="contrasenia" name="contrasenia" type="text"
+															placeholder="Ingrese nueva contraseña"
+															class="form-control">
+													</div>
 												</div>
-											</div>
 
-											<!-- Email input-->
-											<div class="form-group">
-												<label class="col-md-3 control-label" for="email">Email</label>
-												<div class="col-md-9">
-													<input id="email" name="email" type="text"
-														placeholder="Ingrese nuevo email" class="form-control">
+												<!-- Nombre input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="nombre">Nombre</label>
+													<div class="col-md-9">
+														<input id="nombre" name="nombre" type="text"
+															placeholder="Ingrese nuevo nombre" class="form-control">
+													</div>
 												</div>
-											</div>
 
-											<!-- Telefono input-->
-											<div class="form-group">
-												<label class="col-md-3 control-label" for="telefono">Telefono</label>
-												<div class="col-md-9">
-													<input id="telefono" name="telefono" type="text"
-														placeholder="Ingrese nuevo telefono" class="form-control">
+												<!-- Email input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="email">Email</label>
+													<div class="col-md-9">
+														<input id="email" name="email" type="text"
+															placeholder="Ingrese nuevo email" class="form-control">
+													</div>
 												</div>
-											</div>
 
-											<!-- Celular input-->
-											<div class="form-group">
-												<label class="col-md-3 control-label" for="celular">Celular</label>
-												<div class="col-md-9">
-													<input id="celular" name="celular" type="text"
-														placeholder="Ingrese nuevo celular" class="form-control">
+												<!-- Telefono input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="telefono">Telefono</label>
+													<div class="col-md-9">
+														<input id="telefono" name="telefono" type="text"
+															placeholder="Ingrese nuevo telefono" class="form-control">
+													</div>
 												</div>
-											</div>
 
-											<!-- Fecha Nacimiento input-->
-											<div class="form-group">
-												<label class="col-md-3 control-label"
-													for="fechaDeNacimiento">Fecha de nacimiento</label>
-												<div class="col-md-9">
-													<input id="fechaDeNacimiento" name="fechaDeNacimiento"
-														type="text"
-														placeholder="Ingrese nueva fecha de nacimiento"
-														class="form-control">
+												<!-- Celular input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="celular">Celular</label>
+													<div class="col-md-9">
+														<input id="celular" name="celular" type="text"
+															placeholder="Ingrese nuevo celular" class="form-control">
+													</div>
 												</div>
-											</div>
 
-											<!-- Ciudad Origen input-->
-											<div class="form-group">
-												<label class="col-md-3 control-label" for="ciudadOrigen">Ciudad
-													de origen</label>
-												<div class="col-md-9">
-													<input id="ciudadOrigen" name="ciudadOrigen" type="text"
-														placeholder="Ingrese nueva ciudad de origen"
-														class="form-control">
+												<!-- Fecha Nacimiento input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label"
+														for="fechaDeNacimiento">Fecha de nacimiento</label>
+													<div class="col-md-9">
+														<input id="fechaDeNacimiento" name="fechaDeNacimiento"
+															type="text"
+															placeholder="Ingrese nueva fecha de nacimiento"
+															class="form-control">
+													</div>
 												</div>
-											</div>
+
+												<!-- Ciudad Origen input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="ciudadOrigen">Ciudad
+														de origen</label>
+													<div class="col-md-9">
+														<input id="ciudadOrigen" name="ciudadOrigen" type="text"
+															placeholder="Ingrese nueva ciudad de origen"
+															class="form-control">
+													</div>
+												</div>
 
 
 
-												<div class="form-group"> 
- 													<div class="col-md-12 widget-right"> 
- 														<button type="submit" 
- 															class="btn btn-default btn-md pull-right">Modificar</button> 
- 													</div> 
- 												</div> 
- 										</fieldset> 
- 									</form:form> 
-								</div> 
-				
+												<div class="form-group">
+													<div class="col-md-12 widget-right">
+														<button type="submit"
+															class="btn btn-default btn-md pull-right">Modificar</button>
+													</div>
+												</div>
+											</fieldset>
+										</form:form>
+									</div>
 
-							<script
-								src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-							<script
-								src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-						</div>
-					</div>
-						
+
+									<script
+										src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+									<script
+										src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+								</div>
+							</div>
 </body>
 </html>

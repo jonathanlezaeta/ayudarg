@@ -61,7 +61,12 @@ public class ABMInstitucionController {
 		model.addAttribute("institucion", instituciones);
 		model.addAttribute("institucionBean", new InstitucionBean());
 		model.addAttribute("institucionBajaBean", new InstitucionBajaBean());
-		return "altaInstitucion";
+		if(session.getAttribute("usuario")!= null){
+			return "altaInstitucion";
+		}else{
+		    model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
+			return "menssage";
+		}		
 	}
 
 	@RequestMapping(value="/submitAltaInstitucion", method = RequestMethod.POST)

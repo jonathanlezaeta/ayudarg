@@ -202,7 +202,18 @@
 											action="submitAltaCategoria" modelAttribute="categoriaBean"
 											class="form-signin">
 											<fieldset>
-
+												<!-- SubCategoria input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="ciudad">Categoría a modificar</label>
+													<div class="col-md-9">
+														<form:select path="categoria" multiple="false"
+															class="form-control">
+															<form:options items="${categoria}"
+																itemValue="idCategoria" itemLabel="nombre" />
+														</form:select>
+													</div>
+												</div>
+												
 												<!-- Nombre put-->
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="director">Nombre</label>
@@ -212,7 +223,7 @@
 															class="form-control">
 													</div>
 												</div>
-
+												
 												<!-- SubCategoria input-->
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="ciudad">Subcategoria</label>
@@ -224,8 +235,7 @@
 														</form:select>
 													</div>
 												</div>
-
-
+												
 												<!-- Form actions -->
 												<div class="form-group">
 													<div class="col-md-12 widget-right">
@@ -239,16 +249,10 @@
 								</div>
 							</div>
 						</div>
-
-
-
 						<script
 							src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 						<script
 							src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-
-
 					</div>
 				</div>
 </body>

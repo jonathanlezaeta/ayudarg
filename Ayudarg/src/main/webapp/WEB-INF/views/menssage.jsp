@@ -16,11 +16,23 @@
 	height: 500px;
 }
 </style>
+<style>
+body {
+	background: transparent url("resources/img/background.jpg") no-repeat;
+	background-size: cover;
+	padding-top: 15px;
+}
+</style>
 </head>
 <body>
-	<div class="container" style="width: 275px; margin-left: auto; margin-rigth: auto; margin-top: 50px;">
-		<h1>"${menssage}"</h1>
+
+	<div class="col-md-6">
+	<div class="login-panel panel panel-default">
+		<div class="panel-heading">Ayudarg</div>
+	<div class="panel-body">
+	<h3>"${menssage}"</h3></div>
 	</div>
+	<div class="col-md-6"></div>
 	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>

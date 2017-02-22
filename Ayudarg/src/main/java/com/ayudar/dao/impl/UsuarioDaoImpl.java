@@ -3,13 +3,10 @@ package com.ayudar.dao.impl;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.slf4j.LoggerFactory;
 
 import com.ayudarg.dao.UsuarioDAO;
-import com.ayudarg.model.Categoria;
 import com.ayudarg.model.LocalidadesSQL;
 import com.ayudarg.model.Rol;
 import com.ayudarg.model.UsuarioSQL;
@@ -37,7 +34,7 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	@Override
 	public UsuarioSQL usuarioByUsernameAndPassword(String email, String password) {
 		Session session = this.sessionFactory.getCurrentSession();
-		UsuarioSQL usuario = (UsuarioSQL) session.createQuery("from UsuarioSQL WHERE email='"+ email + "' AND contrasenia='" + password + "'").uniqueResult();
+		UsuarioSQL usuario = (UsuarioSQL) session.createQuery("from UsuarioSQL WHERE email='"+ email + "' AND contrasenia='" + password + "' AND activo=1").uniqueResult();
 		return usuario;
 	}
 	
@@ -45,7 +42,7 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	@Override
 	public UsuarioSQL getUsuarioById(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		UsuarioSQL u = (UsuarioSQL) session.createQuery("from UsuarioSQL WHERE idUsuario='"+id+"'").uniqueResult();
+		UsuarioSQL u = (UsuarioSQL) session.createQuery("from UsuarioSQL WHERE idUsuario='"+id+"' AND activo=1").uniqueResult();
 		return u;
 	}
 	
@@ -53,7 +50,7 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	@Override
 	public LocalidadesSQL getLocalidadesById(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		LocalidadesSQL l = (LocalidadesSQL) session.createQuery("from LocalidadesSQL WHERE localidadesId='"+id+"'").uniqueResult();
+		LocalidadesSQL l = (LocalidadesSQL) session.createQuery("from LocalidadesSQL WHERE localidadesId='"+id+"' AND activo=1").uniqueResult();
 		return l;
 	}
 	
@@ -77,10 +74,7 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 		us.setFechaDeNacimiento(fechaDeNacimiento);
 		us.setLocalidadesId(lq);
 		us.getRol().add(r);
-        //Save the employee in database
         session.save(us);
-        //Commit the transaction
-//        session.getTransaction().commit(); 
         session.flush();
 	}
 	

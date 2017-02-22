@@ -1,19 +1,12 @@
 package com.ayudar.dao.impl;
 
-import java.util.Date;
 import java.util.List;
-
-import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.LoggerFactory;
 
-import com.ayudar.elasticsearch.model.Institucion;
 import com.ayudarg.dao.InstitucionDAO;
-import com.ayudarg.dao.UsuarioDAO;
 import com.ayudarg.model.InstitucionSQL;
-import com.ayudarg.model.Rol;
-import com.ayudarg.model.UsuarioSQL;
 
 public class InstitucionDaoImpl implements InstitucionDAO {
 	private SessionFactory sessionFactory;
@@ -23,10 +16,7 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 	@Override
 	public List<InstitucionSQL> listInstituciones() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<InstitucionSQL> institucionesList = session.createQuery("from Institucion WHERE activo=1").list();
-		for(InstitucionSQL us : institucionesList){
-//			logger.info("Usuario List::"+us);
-		}
+		List<InstitucionSQL> institucionesList = session.createQuery("from InstitucionSQL WHERE activo=1").list();
 		return institucionesList;
 	}
 	
@@ -42,7 +32,7 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 	@Override
 	public InstitucionSQL getInstitucionById(String idIns) {
 		Session session = this.sessionFactory.getCurrentSession();
-		InstitucionSQL i = (InstitucionSQL) session.createQuery("from Institucion WHERE idInstitucion='"+idIns+"'").uniqueResult();
+		InstitucionSQL i = (InstitucionSQL) session.createQuery("from InstitucionSQL WHERE idInstitucion='"+idIns+"' AND activo=1").uniqueResult();
 		return i;
 	}
 	
@@ -54,7 +44,6 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		InstitucionSQL us = new InstitucionSQL();
 		us.setDirector(director);
-		us.setCiudad(ciudad);
 		us.setTipo(tipo);
 		us.setNombre(nombre);
 		us.setDireccion(direccion);
@@ -62,10 +51,7 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 		us.setCelular(celular);
 		us.setSitioWeb(sitioWeb);
 		us.setEmail(email);
-        //Save the employee in database
         session.save(us);
-        //Commit the transaction
-        //session.getTransaction().commit(); 
         session.flush();
 	}
 	

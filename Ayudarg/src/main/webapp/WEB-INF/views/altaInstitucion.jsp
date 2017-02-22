@@ -47,12 +47,23 @@
 		<!--  			</div> -->
 		<%-- 		</form> --%>
 		<ul class="nav menu">
-			<li><a href="/app/dashboard"><svg class="glyph stroked dashboard-dial"><use xlink:href="/dashboard"></use></svg> Inicio</a></li>
-			<li><a href="/app/donar"><svg class="glyph stroked calendar"><use xlink:href="/donar"></use></svg> Donar</a></li>
-			<li><a href="/app/demandar"><svg class="glyph stroked line-graph"><use xlink:href="/demandar"></use></svg> Demandar</a></li>
-			<li><a href="/app/altaInstitucion"><svg class="glyph stroked line-graph"><use xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
-			<li><a href="/app/altaCategoria"><svg class="glyph stroked line-graph"><use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
-			<li><a href="/app/bajaUsuario"><svg class="glyph stroked line-graph"><use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
+			<li><a href="/app/dashboard"><svg
+						class="glyph stroked dashboard-dial">
+						<use xlink:href="/dashboard"></use></svg> Inicio</a></li>
+			<li><a href="/app/donar"><svg class="glyph stroked calendar">
+						<use xlink:href="/donar"></use></svg> Donar</a></li>
+			<li><a href="/app/demandar"><svg
+						class="glyph stroked line-graph">
+						<use xlink:href="/demandar"></use></svg> Demandar</a></li>
+			<li><a href="/app/altaInstitucion"><svg
+						class="glyph stroked line-graph">
+						<use xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
+			<li><a href="/app/altaCategoria"><svg
+						class="glyph stroked line-graph">
+						<use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
+			<li><a href="/app/bajaUsuario"><svg
+						class="glyph stroked line-graph">
+						<use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
 		</ul>
 
 
@@ -94,17 +105,7 @@
 															class="form-control">
 													</div>
 												</div>
-
-												<!-- Ciudad input-->
-												<div class="form-group">
-													<label class="col-md-3 control-label" for="ciudad">Ciudad</label>
-													<div class="col-md-9">
-														<input id="ciudad" name="ciudad" type="text"
-															placeholder="Ingrese ciudad de la Institucion"
-															class="form-control">
-													</div>
-												</div>
-
+												
 												<!-- Tipo input-->
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="tipo">Tipo</label>
@@ -114,7 +115,7 @@
 															class="form-control">
 													</div>
 												</div>
-
+												
 												<!-- Nombre input-->
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="nombre">Nombre</label>
@@ -124,7 +125,7 @@
 															class="form-control">
 													</div>
 												</div>
-
+												
 												<!-- Direccion input-->
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="direccion">Direccion</label>
@@ -134,7 +135,7 @@
 															class="form-control">
 													</div>
 												</div>
-
+												
 												<!-- Telefono input-->
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="telefono">Telefono</label>
@@ -144,7 +145,7 @@
 															class="form-control">
 													</div>
 												</div>
-
+												
 												<!-- Celular input-->
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="celular">Celular</label>
@@ -154,7 +155,7 @@
 															class="form-control">
 													</div>
 												</div>
-
+												
 												<!-- SitioWeb input-->
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="sitioWeb">Sitio
@@ -165,7 +166,7 @@
 															class="form-control">
 													</div>
 												</div>
-
+												
 												<!-- Email input-->
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="email">Email</label>
@@ -175,8 +176,7 @@
 															class="form-control">
 													</div>
 												</div>
-
-
+												
 												<!-- Form actions -->
 												<div class="form-group">
 													<div class="col-md-12 widget-right">
@@ -187,56 +187,135 @@
 											</fieldset>
 										</form:form>
 									</div>
-									
-									
-									
-										
-										
-										<div class="tab-pane" id="2">
-									<form:form id="altaInstitucionForm" method="post"
- 											action="submitDeleteInstitucion" 
-											modelAttribute="institucionBajaBean" class="form-signin"> 
+									<div class="tab-pane" id="2">
+										<form:form id="altaInstitucionForm" method="post"
+											action="submitDeleteInstitucion"
+											modelAttribute="institucionBajaBean" class="form-signin">
 											<fieldset>
-										<div class="form-group"> 
- 														<label class="col-md-3 control-label" for="institucion">Institucion</label> 
- 														<div class="col-md-9"> 
- 															<form:select path="institucion" multiple="false" 
- 																class="form-control"> 
- 																<form:options items="${institucion}" 
- 																	itemValue="idInstitucion" itemLabel="nombre" /> 
- 															</form:select> 
- 														</div> 
- 													</div> 
-								
- 										<div class="form-group"> 
- 													<div class="col-md-12 widget-right"> 
- 														<button type="submit" 
- 															class="btn btn-default btn-md pull-right">Eliminar</button> 
- 													</div> 
- 												</div> 
- 									</fieldset> 
- 								</form:form> 
-								</div> 
-									
-									
-									
-									
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="institucion">Institucion</label>
+													<div class="col-md-9">
+														<form:select path="institucion" multiple="false"
+															class="form-control">
+															<form:options items="${institucion}"
+																itemValue="idInstitucion" itemLabel="nombre" />
+														</form:select>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<div class="col-md-12 widget-right">
+														<button type="submit"
+															class="btn btn-default btn-md pull-right">Eliminar</button>
+													</div>
+												</div>
+											</fieldset>
+										</form:form>
+									</div>
 									<div class="tab-pane" id="3">
-										<h3>add clearfix to tab-content (see the css)</h3>
+										<form:form id="institucionForm" method="post"
+											action="submitAltaInstitucion"
+											modelAttribute="institucionBean" class="form-signin">
+											<fieldset>
+
+												<!-- Director input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="director">Director</label>
+													<div class="col-md-9">
+														<input id="director" name="director" type="text"
+															placeholder="Ingrese director de la Institucion"
+															class="form-control">
+													</div>
+												</div>
+												
+												<!-- Tipo input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="tipo">Tipo</label>
+													<div class="col-md-9">
+														<input id="tipo" name="tipo" type="text"
+															placeholder="Ingrese tipo de Institucion"
+															class="form-control">
+													</div>
+												</div>
+												
+												<!-- Nombre input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="nombre">Nombre</label>
+													<div class="col-md-9">
+														<input id="nombre" name="nombre" type="text"
+															placeholder="Ingrese nombre de la Institucion"
+															class="form-control">
+													</div>
+												</div>
+												
+												<!-- Direccion input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="direccion">Direccion</label>
+													<div class="col-md-9">
+														<input id="direccion" name="direccion" type="text"
+															placeholder="Ingrese direccion de la Institucion"
+															class="form-control">
+													</div>
+												</div>
+												
+												<!-- Telefono input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="telefono">Telefono</label>
+													<div class="col-md-9">
+														<input id="telefono" name="telefono" type="text"
+															placeholder="Ingrese telefono de la Institucion"
+															class="form-control">
+													</div>
+												</div>
+												
+												<!-- Celular input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="celular">Celular</label>
+													<div class="col-md-9">
+														<input id="celular" name="celular" type="text"
+															placeholder="Ingrese celular de la Institucion"
+															class="form-control">
+													</div>
+												</div>
+												
+												<!-- SitioWeb input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="sitioWeb">Sitio
+														Web</label>
+													<div class="col-md-9">
+														<input id="sitioWeb" name="sitioWeb" type="text"
+															placeholder="Ingrese sitio web de la Institucion"
+															class="form-control">
+													</div>
+												</div>
+												
+												<!-- Email input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="email">Email</label>
+													<div class="col-md-9">
+														<input id="email" name="email" type="text"
+															placeholder="Ingrese email de la Institucion"
+															class="form-control">
+													</div>
+												</div>
+												
+												<!-- Form actions -->
+												<div class="form-group">
+													<div class="col-md-12 widget-right">
+														<button type="submit"
+															class="btn btn-default btn-md pull-right">Registrar</button>
+													</div>
+												</div>
+											</fieldset>
+										</form:form>
 									</div>
 								</div>
 							</div>
 						</div>
-
-
-
 						<script
 							src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 						<script
 							src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-
-
 					</div>
 				</div>
 </body>

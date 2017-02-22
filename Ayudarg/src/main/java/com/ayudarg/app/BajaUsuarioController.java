@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,11 +54,17 @@ public class BajaUsuarioController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/bajaUsuario", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model, HttpServletRequest request) {
 			ArrayList<UsuarioSQL> usuarios = (ArrayList<UsuarioSQL>) serviceUsuarios.listUsuarios();
 			model.addAttribute("usuario", usuarios);
 			model.addAttribute("usuarioBajaBean", new UsuarioBajaBean());
-		return "bajaUsuario";
+		HttpSession session = request.getSession();
+			if(session.getAttribute("usuario")!= null){
+				return "bajaUsuario";
+			}else{
+			    model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
+				return "menssage";
+			}
 	}
 
 	@RequestMapping(value="/submitBajaUsuario", method = RequestMethod.POST)

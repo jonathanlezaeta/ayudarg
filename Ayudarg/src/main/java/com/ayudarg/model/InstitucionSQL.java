@@ -30,7 +30,6 @@ public class InstitucionSQL {
 	
 	private int idInstitucion;
 	private String director;
-	private String ciudad;
 	private String tipo;
 	private String nombre;
 	private String direccion;
@@ -41,7 +40,7 @@ public class InstitucionSQL {
 	private boolean activo;
 	
     @ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", nullable = false)
+	@JoinColumn(name = "localidadesId", nullable = false)
     private LocalidadesSQL localidadesId;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -98,12 +97,6 @@ public class InstitucionSQL {
 	}
 	public void setDirector(String director) {
 		this.director = director;
-	}
-	public String getCiudad() {
-		return ciudad;
-	}
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
 	}
 	public String getTipo() {
 		return tipo;
