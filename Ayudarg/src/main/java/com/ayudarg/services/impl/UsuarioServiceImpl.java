@@ -48,4 +48,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 	public void deleteUsuario(String idUsuario){
 		usuarioDao.deleteUsuario(idUsuario);
 	}
+
+	@Override
+	public UsuarioSQL getUsuarioById(String id) {
+		return usuarioDao.getUsuarioById(id);
+	}
 }

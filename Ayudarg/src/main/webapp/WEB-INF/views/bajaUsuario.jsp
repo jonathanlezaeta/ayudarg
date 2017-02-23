@@ -36,6 +36,28 @@ function cargarLocalidades(value){
 		}
 	});
 }
+
+function cargarModificar(value){
+	$.ajax({
+		type: "POST",
+		data: $(value).serialize(),
+		dataType: 'json',
+		url: '/app/getUsuariosById', 
+		success: function(data) { 
+				var res = data; 
+				var options = '';
+				options += '<option value="">Seleccione su ciudad</option>';
+				$.each(data, function (index, value) {
+					options += '<option value="' +value.value + '">' +value.option + '</option>';
+				});
+				$("select[id=selectLocalidades]").html(options);
+//				}
+		},
+		error: function(e){ <!-- Si no ha podido conectar con el servidor -->
+			alert("Error en el servidor, por favor, intentalo de nuevo mas tarde");
+		}
+	});
+}
 </script>
 <style>
 body {
@@ -133,16 +155,16 @@ body {
 			</c:when>
 		</c:choose>
 	</div>
-<!--/.sidebar-->
+	<!--/.sidebar-->
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<svg class="glyph stroked email">
-							<use xlink:href="#stroked-email"></use></svg>
+						<svg class="glyph stroked email"> <use
+							xlink:href="#stroked-email"></use></svg>
 						Usuario
-				</div>
+					</div>
 					<div class="panel-body">
 
 						<div class="container">
@@ -154,22 +176,30 @@ body {
 									<li><a href="#3" data-toggle="tab">Modificar</a></li>
 								</ul>
 
-								
+
 								<div class="tab-content ">
 									<div class="tab-pane active" id="1">
 										<form:form id="usuarioForm" method="post"
-											action="submitAltaUsuario"
-											modelAttribute="usuarioBean" class="form-signin">
+											action="submitAltaUsuario" modelAttribute="usuarioBean"
+											class="form-signin">
 											<fieldset>
 
+												<!-- Nombre input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="nombre">Usuario</label>
+													<div class="col-md-9">
+														<input type="text" id="usuario" class="form-control"
+															placeholder="Ingrese un Nombre de Usuario" required=""
+															autofocus="" name="usuario">
+													</div>
+												</div>
 
 												<!-- Contraseña input-->
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="contrasenia">Contraseña</label>
 													<div class="col-md-9">
-														<input id="contrasenia" name="contrasenia" type="text"
-															placeholder="Ingrese nueva contraseña"
-															class="form-control">
+														<input id="contrasenia" name="contrasenia" type="password"
+															placeholder="Ingrese contraseña" class="form-control" required="">
 													</div>
 												</div>
 
@@ -178,7 +208,7 @@ body {
 													<label class="col-md-3 control-label" for="nombre">Nombre</label>
 													<div class="col-md-9">
 														<input id="nombre" name="nombre" type="text"
-															placeholder="Ingrese nuevo nombre" class="form-control">
+															placeholder="Ingrese nombre" class="form-control" required="">
 													</div>
 												</div>
 
@@ -186,8 +216,8 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="email">Email</label>
 													<div class="col-md-9">
-														<input id="email" name="email" type="text"
-															placeholder="Ingrese nuevo email" class="form-control">
+														<input id="email" name="email" type="email"
+															placeholder="Ingrese email" class="form-control" required="">
 													</div>
 												</div>
 
@@ -196,7 +226,7 @@ body {
 													<label class="col-md-3 control-label" for="telefono">Telefono</label>
 													<div class="col-md-9">
 														<input id="telefono" name="telefono" type="text"
-															placeholder="Ingrese nuevo telefono" class="form-control">
+															placeholder="Ingrese telefono" class="form-control" required="">
 													</div>
 												</div>
 
@@ -205,7 +235,7 @@ body {
 													<label class="col-md-3 control-label" for="celular">Celular</label>
 													<div class="col-md-9">
 														<input id="celular" name="celular" type="text"
-															placeholder="Ingrese nuevo celular" class="form-control">
+															placeholder="Ingrese celular" class="form-control">
 													</div>
 												</div>
 
@@ -215,32 +245,31 @@ body {
 														for="fechaDeNacimiento">Fecha de nacimiento</label>
 													<div class="col-md-9">
 														<input id="fechaDeNacimiento" name="fechaDeNacimiento"
-															type="text"
-															placeholder="Ingrese nueva fecha de nacimiento"
-															class="form-control">
+															type="date" placeholder="Ingrese fecha de nacimiento"
+															class="form-control" required="">
 													</div>
 												</div>
-
-				
-												<label class="col-md-3 control-label" for="usuario">Elija la ubicacion</label>
 												<div class="form-group">
-													<form:select path="provincia" required="" multiple="false"
-														class="form-control" id='selectProvincias'
-														onchange='cargarLocalidades("#usuarioForm");'>
-														<form:option value="NONE" label="Seleccione su provincia" />
-														<form:options items="${provincias}"
-															itemValue="idProvincia" itemLabel="provincia" />
-													</form:select>
+													<label class="col-md-3 control-label" for="usuario">Provincias</label>
+													<div class="col-md-9">
+														<form:select path="provincia" required="" multiple="false"
+															class="form-control" id='selectProvincias'
+															onchange='cargarLocalidades("#usuarioForm");'>
+															<form:option value="NONE" label="Seleccione su provincia" />
+															<form:options items="${provincias}"
+																itemValue="idProvincia" itemLabel="provincia" />
+														</form:select>
+													</div>
 												</div>
-												
-												</br>
-												</br>
 												<div class="form-group">
-													<form:select path="localidad" required="" multiple="false"
-														class="form-control" id="selectLocalidades">
-														<form:options items="${localidades}"
-															itemValue="localidadesId" itemLabel="localidad" />
-													</form:select>
+													<label class="col-md-3 control-label" for="usuario">Localidades</label>
+													<div class="col-md-9">
+														<form:select path="localidad" required="" multiple="false"
+															class="form-control" id="selectLocalidades">
+															<form:options items="${localidades}"
+																itemValue="localidadesId" itemLabel="localidad" />
+														</form:select>
+													</div>
 												</div>
 
 												<!-- Form actions -->
@@ -288,17 +317,20 @@ body {
 
 									<div class="tab-pane" id="3">
 										<form:form id="modificarUsuario" method="post"
-											action="submitUpdateUsuario"
-											modelAttribute="usuarioBean" class="form-signin">
+											action="submitUpdateUsuario" modelAttribute="usuarioBean"
+											class="form-signin">
 											<fieldset>
 
-												
-											<div class="form-group">
-													<label class="col-md-3 control-label" for="usuario">Usuario a modificar</label>
+
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="usuario">Usuario
+														a modificar</label>
 													<div class="col-md-9">
 														<form:select path="idUsuario" multiple="false"
-															class="form-control">
-															<form:options items="${usuario}" itemValue="idUsuario"
+															class="form-control"
+															onchange='cargarModificar("#modificarUsuario");'>
+															<form:option value="NONE" label="Seleccione..." />
+															<form:options items="${usuario}" itemValue="idUsuario" required=""
 																itemLabel="nombre" />
 														</form:select>
 													</div>
@@ -308,7 +340,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="contrasenia">Contraseña</label>
 													<div class="col-md-9">
-														<input id="contrasenia" name="contrasenia" type="text"
+														<input id="contrasenia" name="contrasenia" type="password" required=""
 															placeholder="Ingrese nueva contraseña"
 															class="form-control">
 													</div>
@@ -318,7 +350,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="nombre">Nombre</label>
 													<div class="col-md-9">
-														<input id="nombre" name="nombre" type="text"
+														<input id="nombre" name="nombre" type="text" required=""
 															placeholder="Ingrese nuevo nombre" class="form-control">
 													</div>
 												</div>
@@ -327,7 +359,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="email">Email</label>
 													<div class="col-md-9">
-														<input id="email" name="email" type="text"
+														<input id="email" name="email" type="email" required=""
 															placeholder="Ingrese nuevo email" class="form-control">
 													</div>
 												</div>
@@ -336,7 +368,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="telefono">Telefono</label>
 													<div class="col-md-9">
-														<input id="telefono" name="telefono" type="text"
+														<input id="telefono" name="telefono" type="text" required=""
 															placeholder="Ingrese nuevo telefono" class="form-control">
 													</div>
 												</div>
@@ -356,32 +388,35 @@ body {
 														for="fechaDeNacimiento">Fecha de nacimiento</label>
 													<div class="col-md-9">
 														<input id="fechaDeNacimiento" name="fechaDeNacimiento"
-															type="text"
+															type="date" required=""
 															placeholder="Ingrese nueva fecha de nacimiento"
 															class="form-control">
 													</div>
 												</div>
 
-												<label class="col-md-3 control-label" for="usuario">Elija la ubicacion</label>
 												<div class="form-group">
-													<form:select path="provincia" required="" multiple="false"
-														class="form-control" id='selectProvincias'
-														onchange='cargarLocalidades("#usuarioForm");'>
-														<form:option value="NONE" label="Seleccione su provincia" />
-														<form:options items="${provincias}"
-															itemValue="idProvincia" itemLabel="provincia" />
-													</form:select>
+													<label class="col-md-3 control-label" for="usuario">Provincias</label>
+													<div class="col-md-9">
+														<form:select path="provincia" required="" multiple="false"
+															class="form-control" id='selectProvincias'
+															onchange='cargarLocalidades("#usuarioForm");'>
+															<form:option value="NONE" label="Seleccione su provincia" />
+															<form:options items="${provincias}"
+																itemValue="idProvincia" itemLabel="provincia" />
+														</form:select>
+													</div>
 												</div>
-												</br>
-												</br>
 												<div class="form-group">
-													<form:select path="localidad" required="" multiple="false"
-														class="form-control" id="selectLocalidades">
-														<form:options items="${localidades}"
-															itemValue="localidadesId" itemLabel="localidad" />
-													</form:select>
+													<label class="col-md-3 control-label" for="usuario">Localidades</label>
+													<div class="col-md-9">
+														<form:select path="localidad" required="" multiple="false"
+															class="form-control" id="selectLocalidades">
+															<form:options items="${localidades}"
+																itemValue="localidadesId" itemLabel="localidad" />
+														</form:select>
+													</div>
 												</div>
-												
+
 												<!-- Form actions -->
 												<div class="form-group">
 													<div class="col-md-12 widget-right">

@@ -19,7 +19,7 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	@Override
 	public List<UsuarioSQL> listUsuarios() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<UsuarioSQL> usuarioList = session.createQuery("from UsuarioSQL").list();
+		List<UsuarioSQL> usuarioList = session.createQuery("from UsuarioSQL WHERE activo=1").list();
 		return usuarioList;
 	}
 	
@@ -51,7 +51,7 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	@Override
 	public UsuarioSQL getUsuarioByEmail(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		UsuarioSQL u = (UsuarioSQL) session.createQuery("from UsuarioSQL WHERE email='"+id+"'").uniqueResult();
+		UsuarioSQL u = (UsuarioSQL) session.createQuery("from UsuarioSQL WHERE email='"+id+"' AND activo=1").uniqueResult();
 		return u;
 	}
 	
