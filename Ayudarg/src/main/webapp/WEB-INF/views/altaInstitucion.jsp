@@ -301,9 +301,21 @@ body {
 									</div>
 									<div class="tab-pane" id="3">
 										<form:form id="institucionForm" method="post"
-											action="submitAltaInstitucion"
+											action="submitUpdateInstitucion"
 											modelAttribute="institucionBean" class="form-signin">
 											<fieldset>
+											
+											
+											<div class="form-group">
+													<label class="col-md-3 control-label" for="institucion">Institucion a modificar</label>
+													<div class="col-md-9">
+														<form:select path="institucion" multiple="false"
+															class="form-control">
+															<form:options items="${institucion}"
+																itemValue="idInstitucion" itemLabel="nombre" />
+														</form:select>
+													</div>
+												</div>
 
 												<!-- Director input-->
 												<div class="form-group">

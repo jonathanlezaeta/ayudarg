@@ -7,4 +7,5 @@ public interface CategoriaService {
 	public List<Categoria> listCategorias();
 	void insertCategoria(String nombre, String subcategorias);
 	void deleteCategoria(String categoria);
+	void updateCategoria(String nombre, String subcategorias);
 }

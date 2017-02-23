@@ -14,6 +14,7 @@ public class InstitucionBean {
 	private boolean activo;
 	private String provincia;
 	private String localidad;
+	private String institucion;
 	
 	public String getDirector() {
 		return director;
@@ -86,6 +87,12 @@ public class InstitucionBean {
 	}
 	public void setActivo(boolean activo) {
 		this.activo = activo;
+	}
+	public String getInstitucion() {
+		return institucion;
+	}
+	public void setInstitucion(String institucion) {
+		this.institucion = institucion;
 	}
 	
 

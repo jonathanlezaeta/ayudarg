@@ -59,6 +59,18 @@ public class CategoriaDaoImpl implements CategoriaDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	public void updateCategoria(String nombre, String subcategorias){
+		Session session = this.sessionFactory.getCurrentSession();
+		Categoria categoria = new Categoria();
+		Categoria superior = getCategoriaById(subcategorias);
+		categoria.setNombre(nombre);
+        categoria.setSubcategoria(superior);
+        session.update(categoria);
+        session.flush();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
 	public void deleteCategoria(String idCategoria){
 		Session session = this.sessionFactory.getCurrentSession();
 		Categoria categoria = new Categoria();

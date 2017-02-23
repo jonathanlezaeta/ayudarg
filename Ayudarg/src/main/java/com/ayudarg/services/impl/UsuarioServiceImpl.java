@@ -38,6 +38,14 @@ public class UsuarioServiceImpl implements UsuarioService{
 	public void insertUsuario(String usuario, String contrasenia, String nombre, String email, String telefono, String celular, Date fechaDeCreacion, String localidadesId){
 		usuarioDao.insertUsuario(usuario, contrasenia, nombre, email, telefono, celular, fechaDeCreacion, localidadesId);
 	}
+
+	@Override
+	public void updateUsuario(String idUsuario, String usuario, String contrasenia, String nombre, String email,
+			String telefono, String celular, Date fechaDeNacimiento, String localidadesId) {
+		usuarioDao.updateUsuario(idUsuario, usuario, contrasenia, nombre, email, telefono, celular, fechaDeNacimiento, localidadesId);
+	}
 	
-	
+	public void deleteUsuario(String idUsuario){
+		usuarioDao.deleteUsuario(idUsuario);
+	}
 }

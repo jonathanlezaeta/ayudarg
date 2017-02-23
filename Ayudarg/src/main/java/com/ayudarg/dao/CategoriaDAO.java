@@ -8,4 +8,5 @@ public interface CategoriaDAO {
 	void insertCategoria(String nombre, String subcategorias);
 	Categoria getCategoriaById(String id);
 	void deleteCategoria(String categoria);
+	void updateCategoria(String nombre, String subcategorias);
 }

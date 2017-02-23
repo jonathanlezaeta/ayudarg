@@ -80,10 +80,11 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void updateInstitucion(String director, String ciudad, String tipo, String nombre, String direccion,
+	public void updateInstitucion(String institucion, String director, String ciudad, String tipo, String nombre, String direccion,
 			String telefono, String celular, String sitioWeb, String email, String localidadesId) {
 		Session session = this.sessionFactory.getCurrentSession();
-		InstitucionSQL us = new InstitucionSQL();
+		InstitucionSQL us = new InstitucionSQL ();
+		us.setIdInstitucion(Integer.parseInt(institucion));
 		LocalidadesSQL lq = new LocalidadesSQL();
 		lq.setLocalidadesId(Integer.parseInt(localidadesId));
 		us.setDirector(director);
@@ -106,8 +107,7 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		InstitucionSQL insti = new InstitucionSQL ();
 		insti.setIdInstitucion(Integer.parseInt(institucion));
-		insti.setActivo(false);
-		session.update(insti);
+		session.delete(insti);
 		session.flush();
 	}
 	

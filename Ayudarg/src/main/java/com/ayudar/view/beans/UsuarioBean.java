@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class UsuarioBean {
 	
+	private String idUsuario;
 	private String usuario;
 	private String contrasenia;
 	private String nombre;
@@ -68,6 +69,12 @@ public class UsuarioBean {
 	}
 	public void setProvincia(String provincia) {
 		this.provincia = provincia;
+	}
+	public String getIdUsuario() {
+		return idUsuario;
+	}
+	public void setIdUsuario(String idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	

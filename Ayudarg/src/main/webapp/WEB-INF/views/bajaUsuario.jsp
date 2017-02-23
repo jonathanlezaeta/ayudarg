@@ -293,6 +293,17 @@ body {
 											modelAttribute="usuarioBean" class="form-signin">
 											<fieldset>
 
+												
+											<div class="form-group">
+													<label class="col-md-3 control-label" for="usuario">Usuario a modificar</label>
+													<div class="col-md-9">
+														<form:select path="idUsuario" multiple="false"
+															class="form-control">
+															<form:options items="${usuario}" itemValue="idUsuario"
+																itemLabel="nombre" />
+														</form:select>
+													</div>
+												</div>
 
 												<!-- Contraseña input-->
 												<div class="form-group">

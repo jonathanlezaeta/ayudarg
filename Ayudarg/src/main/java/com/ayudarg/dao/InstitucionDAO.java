@@ -18,7 +18,7 @@ public interface InstitucionDAO {
 
 	public LocalidadesSQL getLocalidadesById(String id);
 
-	public void updateInstitucion(String director, String ciudad, String tipo, String nombre, String direccion,
-			String telefono, String celular, String sitioWeb, String email, String localidadesId);
+	void updateInstitucion(String institucion, String director, String ciudad, String tipo, String nombre,
+			String direccion, String telefono, String celular, String sitioWeb, String email, String localidadesId);
 
 }

@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.ayudarg.dao.UsuarioDAO;
+import com.ayudarg.model.InstitucionSQL;
 import com.ayudarg.model.LocalidadesSQL;
 import com.ayudarg.model.Rol;
 import com.ayudarg.model.UsuarioSQL;
@@ -64,12 +65,34 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void insertUsuario(String usuario, String contrasenia, String nombre, String email,
+	public void updateUsuario(String idUsuario, String usuario, String contrasenia, String nombre, String email,
 			String telefono, String celular, Date fechaDeNacimiento, String localidadesId) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Rol r = new Rol();
 		r.setNombre("U");
 		r.setIdRol(1);
+		LocalidadesSQL lq = new LocalidadesSQL();
+		lq.setLocalidadesId(Integer.parseInt(localidadesId));
+		UsuarioSQL us = new UsuarioSQL();
+		us.setIdUsuario(Integer.parseInt(idUsuario));
+		us.setUsuario(usuario);
+		us.setContrasenia(contrasenia);
+		us.setNombre(nombre);
+		us.setEmail(email);
+		us.setActivo(true);
+		us.setTelefono(telefono);
+		us.setCelular(celular);
+		us.setFechaDeNacimiento(fechaDeNacimiento);
+		us.setLocalidadesId(lq);
+		us.getRol().add(r);
+        session.update(us);
+        session.flush();
+	}
+
+	@Override
+	public void insertUsuario(String usuario, String contrasenia, String nombre, String email, String telefono,
+			String celular, Date fechaDeNacimiento, String localidadesId) {
+		Session session = this.sessionFactory.getCurrentSession();
 		LocalidadesSQL lq = new LocalidadesSQL();
 		lq.setLocalidadesId(Integer.parseInt(localidadesId));
 		UsuarioSQL us = new UsuarioSQL();
@@ -82,10 +105,17 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 		us.setCelular(celular);
 		us.setFechaDeNacimiento(fechaDeNacimiento);
 		us.setLocalidadesId(lq);
-		us.getRol().add(r);
         session.save(us);
         session.flush();
 	}
 	
-
+	@SuppressWarnings("unchecked")
+	@Override
+	public void deleteUsuario(String idUsuario) {
+		Session session = this.sessionFactory.getCurrentSession();
+		UsuarioSQL us = new UsuarioSQL();
+		us.setIdUsuario(Integer.parseInt(idUsuario));
+		session.delete(us);
+		session.flush();
+	}
 }
