@@ -80,6 +80,28 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	public void updateInstitucion(String director, String ciudad, String tipo, String nombre, String direccion,
+			String telefono, String celular, String sitioWeb, String email, String localidadesId) {
+		Session session = this.sessionFactory.getCurrentSession();
+		InstitucionSQL us = new InstitucionSQL();
+		LocalidadesSQL lq = new LocalidadesSQL();
+		lq.setLocalidadesId(Integer.parseInt(localidadesId));
+		us.setDirector(director);
+		us.setTipo(tipo);
+		us.setNombre(nombre);
+		us.setDireccion(direccion);
+		us.setTelefono(telefono);
+		us.setCelular(celular);
+		us.setSitioWeb(sitioWeb);
+		us.setEmail(email);
+		us.setLocalidadesId(lq);
+        session.update(us);
+        session.flush();
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	@Override
 	public void deleteInstitucion(String institucion) {
 		Session session = this.sessionFactory.getCurrentSession();
 		InstitucionSQL insti = new InstitucionSQL ();

@@ -386,11 +386,31 @@ body {
 													</div>
 												</div>
 												
+							<label class="col-md-3 control-label" for="usuario">Elija la ubicacion</label>
+							<div class="form-group">
+									<form:select path="provincia" required="" multiple="false"
+										class="form-control" id='selectProvincias'
+										onchange='cargarLocalidades(this.value);'>
+										<form:option value="NONE" label="Seleccione su provincia" />
+										<form:options items="${provincias}" itemValue="idProvincia"
+											itemLabel="provincia" />
+									</form:select>
+								</div>
+								</br>
+								</br>
+								<div class="form-group">
+									<form:select path="localidad" required="" multiple="false"
+										class="form-control" id="selectLocalidades">
+										<form:options items="${localidades}" itemValue="localidadesId"
+											itemLabel="localidad" />
+									</form:select>
+								</div>
+												
 												<!-- Form actions -->
 												<div class="form-group">
 													<div class="col-md-12 widget-right">
 														<button type="submit"
-															class="btn btn-default btn-md pull-right">Registrar</button>
+															class="btn btn-default btn-md pull-right">Modificar</button>
 													</div>
 												</div>
 											</fieldset>

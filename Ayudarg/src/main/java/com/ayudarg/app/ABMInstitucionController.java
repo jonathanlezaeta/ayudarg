@@ -101,4 +101,12 @@ public class ABMInstitucionController {
 		serviceInstitucion.deleteInstitucion(institucionBajaBean.getInstitucion());
 		return "borradoCorrectamente";
 	}
+	
+	@RequestMapping(value="/submitUpdateInstitucion", method = RequestMethod.POST)
+	public String submitRegistrar3(Model model, @ModelAttribute("institucionBean") InstitucionBean institucionBean) {
+		serviceInstitucion.insertInstitucion(institucionBean.getDirector(), institucionBean.getCiudad(),
+				institucionBean.getTipo(), institucionBean.getNombre(), institucionBean.getDireccion(), institucionBean.getTelefono(),
+				institucionBean.getCelular(), institucionBean.getSitioWeb(), institucionBean.getEmail(), institucionBean.getLocalidad());
+		return "registrarseCorrectamente";
+	}
 }

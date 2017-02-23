@@ -43,6 +43,11 @@ public class InstitucionServiceImpl implements InstitucionService{
 		institucionDao.deleteInstitucion(institucion);
 		
 	}
+	
+	public void updateInstitucion(String director, String ciudad, String tipo, String nombre, String direccion,
+			String telefono, String celular, String sitioWeb, String email, String localidadesId){
+		institucionDao.updateInstitucion(director, ciudad, tipo, nombre, direccion, telefono, celular, sitioWeb, email, localidadesId);
+	}
 
 	public List<InstitucionSQL> getInstitucionesByCategoriaByLocalidd(String idLocalidd, String[] categorias){
 		return institucionDao.getInstitucionesByCategoriaByLocalidd(idLocalidd, categorias);

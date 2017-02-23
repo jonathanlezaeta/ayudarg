@@ -23,7 +23,9 @@ import com.ayudar.view.beans.CategoriaBean;
 import com.ayudar.view.beans.UsuarioBajaBean;
 import com.ayudar.view.beans.UsuarioBean;
 import com.ayudarg.model.Categoria;
+import com.ayudarg.model.ProvinciasSQL;
 import com.ayudarg.model.UsuarioSQL;
+import com.ayudarg.service.GeoService;
 import com.ayudarg.service.UsuarioService;
 
 /**
@@ -35,6 +37,7 @@ public class BajaUsuarioController {
 	// private static final Logger logger =
 	// LoggerFactory.getLogger(RegistraseController.class);
 	private UsuarioService serviceUsuarios;
+	private GeoService serviceGeo;
 
 	public UsuarioService getServiceUsuarios() {
 		return serviceUsuarios;
@@ -50,14 +53,27 @@ public class BajaUsuarioController {
 		this.serviceUsuarios = ps;
 	}
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+	@Autowired(required = true)
+	@Qualifier(value = "GeoService")
+	public void setGeoServicee(GeoService ol) {
+		this.serviceGeo = ol;
+	}
+
+	public GeoService getServiceGeo() {
+		return serviceGeo;
+	}
+
+	public void setServiceGeo(GeoService serviceGeo) {
+		this.serviceGeo = serviceGeo;
+	}
+	
 	@RequestMapping(value = "/bajaUsuario", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest request) {
 			HttpSession session = request.getSession();
+			ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
 			ArrayList<UsuarioSQL> usuarios = (ArrayList<UsuarioSQL>) serviceUsuarios.listUsuarios();
 			model.addAttribute("usuario", usuarios);
+			model.addAttribute("provincias", provincias);
 			model.addAttribute("rol", session.getAttribute("rol"));
 			model.addAttribute("usuarioBajaBean", new UsuarioBajaBean());
 			if(session.getAttribute("usuario")!= null){

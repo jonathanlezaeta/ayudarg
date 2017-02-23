@@ -116,4 +116,18 @@ public class HomeController {
 		this.serviceGeo = serviceGeo;
 	}
 
+	@RequestMapping(value = "/getLocalibadesByIdUsuario", method = RequestMethod.POST)
+	public @ResponseBody String getLocalibadesByIdUsuario(UsuarioBean usuarioBean) {
+		Gson gson = new Gson();
+		List<LocalidadesSQL> localidades = serviceGeo.getLocalidadesByIdO(usuarioBean.getProvincia());
+		ArrayList<OptionBean> optionResponse = new ArrayList<OptionBean>();
+		for (LocalidadesSQL l : localidades) {
+			OptionBean data = new OptionBean();
+			data.setValue(String.valueOf(l.getLocalidadesId()));
+			data.setOption(l.getLocalidad());
+			optionResponse.add(data);
+		}
+		String jsonInString = gson.toJson(optionResponse);
+		return jsonInString;
+	}
 }
