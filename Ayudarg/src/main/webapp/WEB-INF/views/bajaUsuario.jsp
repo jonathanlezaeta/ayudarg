@@ -143,7 +143,7 @@ body {
 						<svg class="glyph stroked email">
 							<use xlink:href="#stroked-email"></use></svg>
 						Usuario
-					</div>
+				</div>
 					<div class="panel-body">
 
 						<div class="container">
@@ -233,6 +233,7 @@ body {
 															itemValue="idProvincia" itemLabel="provincia" />
 													</form:select>
 												</div>
+												
 												</br>
 												</br>
 												<div class="form-group">
@@ -243,6 +244,7 @@ body {
 													</form:select>
 												</div>
 
+												<!-- Form actions -->
 												<div class="form-group">
 													<div class="col-md-12 widget-right">
 														<button type="submit"
@@ -252,11 +254,9 @@ body {
 											</fieldset>
 										</form:form>
 									</div>
-								</div>
 
 
-								<div class="tab-content ">
-									<div class="tab-pane active" id="2">
+									<div class="tab-pane" id="2">
 										<form:form id="usuarioBajaForm" method="post"
 											action="submitBajaUsuario" modelAttribute="usuarioBajaBean"
 											class="form-signin">
@@ -282,13 +282,12 @@ body {
 															class="btn btn-default btn-md pull-right">Eliminar</button>
 													</div>
 												</div>
+
 											</fieldset>
 										</form:form>
 									</div>
-								</div>
 
-								<div class="tab-content ">
-									<div class="tab-pane active" id="3">
+									<div class="tab-pane" id="3">
 										<form:form id="usuarioForm" method="post"
 											action="submitUpdateUsuario"
 											modelAttribute="usuarioBean" class="form-signin">
@@ -375,6 +374,7 @@ body {
 
 
 
+												<!-- Form actions -->
 												<div class="form-group">
 													<div class="col-md-12 widget-right">
 														<button type="submit"
@@ -384,13 +384,14 @@ body {
 											</fieldset>
 										</form:form>
 									</div>
-
-
-									<script
-										src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-									<script
-										src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 								</div>
 							</div>
+						</div>
+						<script
+							src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+						<script
+							src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+					</div>
+				</div>
 </body>
 </html>
