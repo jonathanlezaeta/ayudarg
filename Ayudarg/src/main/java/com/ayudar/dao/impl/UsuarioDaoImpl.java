@@ -113,9 +113,9 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	@Override
 	public void deleteUsuario(String idUsuario) {
 		Session session = this.sessionFactory.getCurrentSession();
-		UsuarioSQL us = new UsuarioSQL();
-		us.setIdUsuario(Integer.parseInt(idUsuario));
-		session.delete(us);
+		UsuarioSQL us = this.getUsuarioById(idUsuario);
+		us.setActivo(false);
+		session.update(us);
 		session.flush();
 	}
 }

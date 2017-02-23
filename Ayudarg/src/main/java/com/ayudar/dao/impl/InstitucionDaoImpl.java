@@ -105,9 +105,9 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 	@Override
 	public void deleteInstitucion(String institucion) {
 		Session session = this.sessionFactory.getCurrentSession();
-		InstitucionSQL insti = new InstitucionSQL ();
-		insti.setIdInstitucion(Integer.parseInt(institucion));
-		session.delete(insti);
+		InstitucionSQL insti = this.getInstitucionById(institucion);
+		insti.setActivo(false);
+		session.update(insti);
 		session.flush();
 	}
 	

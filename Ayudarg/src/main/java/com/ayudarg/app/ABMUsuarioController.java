@@ -122,5 +122,12 @@ public class ABMUsuarioController {
 	    model.addAttribute("menssage", "Su registro fue exitoso y ya puede acceder a la plataforma.");
 		return "menssage";	
 	}
+	
+	@RequestMapping(value="/submitBajaUsuario", method = RequestMethod.POST)
+	public String submitBajaUsuario(Model model, @ModelAttribute("usuarioBajaBean") UsuarioBean usuarioBean) {
+		serviceUsuarios.deleteUsuario(usuarioBean.getIdUsuario());
+	    model.addAttribute("menssage", "Su registro fue exitoso y ya puede acceder a la plataforma.");
+		return "menssage";	
+	}
 
 }
