@@ -76,6 +76,7 @@ public class BajaUsuarioController {
 			model.addAttribute("provincias", provincias);
 			model.addAttribute("rol", session.getAttribute("rol"));
 			model.addAttribute("usuarioBajaBean", new UsuarioBajaBean());
+			model.addAttribute("usuarioBean", new UsuarioBean());
 			if(session.getAttribute("usuario")!= null){
 				return "bajaUsuario";
 			}else{
