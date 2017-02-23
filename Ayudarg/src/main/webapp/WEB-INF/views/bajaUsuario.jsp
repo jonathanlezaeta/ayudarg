@@ -148,10 +148,11 @@ body {
 						<div class="container">
 							<div id="exTab2" class="col-md-10">
 								<ul class="nav nav-tabs">
-									<li class="active"><a href="#1" data-toggle="tab">Registar</a>
-									</li>
+									<li class="active">
+									<a href="#1" data-toggle="tab">Registar</a></li>
 									<li><a href="#2" data-toggle="tab">Eliminar</a></li>
 									<li><a href="#3" data-toggle="tab">Modificar</a></li>
+									<li><a href="#4" data-toggle="tab">Asignar Institucion</a></li>
 								</ul>
 
 								
@@ -281,7 +282,6 @@ body {
 															class="btn btn-default btn-md pull-right">Eliminar</button>
 													</div>
 												</div>
-
 											</fieldset>
 										</form:form>
 									</div>
@@ -392,7 +392,34 @@ body {
 											</fieldset>
 										</form:form>
 									</div>
-								</div>
+											
+											
+									<div class="tab-pane" id="4">
+										<form:form id="asignarForm" method="post"
+											action="submitAsignarInstitucion"
+											modelAttribute="asignarBean" class="form-signin">
+											<fieldset>
+
+
+
+												<!-- Form actions -->
+												<div class="form-group">
+													<div class="col-md-12 widget-right">
+														<button type="submit"
+															class="btn btn-default btn-md pull-right">Asignar</button>
+													</div>
+												</div>
+											</fieldset>
+										</form:form>
+									</div>
+											
+											
+											
+											
+											
+											
+											
+								</div>		
 							</div>
 						</div>
 						<script
