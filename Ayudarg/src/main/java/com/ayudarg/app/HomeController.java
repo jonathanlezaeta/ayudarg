@@ -26,6 +26,7 @@ import com.ayudar.elasticsearch.model.Institucion;
 import com.ayudar.elasticsearch.model.RecursoModelEs;
 import com.ayudar.elasticsearch.model.Usuario;
 import com.ayudar.view.beans.DonarBean;
+import com.ayudar.view.beans.InstitucionBean;
 import com.ayudar.view.beans.OptionBean;
 import com.ayudar.view.beans.RegistrarseBean;
 import com.ayudar.view.beans.UsuarioBean;
@@ -91,7 +92,22 @@ public class HomeController {
 		String jsonInString = gson.toJson(optionResponse);
 		return jsonInString;
 	}
-
+	
+	@RequestMapping(value = "/getLocalibadesByIdInstitucion", method = RequestMethod.POST)
+	public @ResponseBody String getLocalibadesByIdInstitucion(InstitucionBean institucionBean) {
+		Gson gson = new Gson();
+		List<LocalidadesSQL> localidades = serviceGeo.getLocalidadesByIdO(institucionBean.getProvincia());
+		ArrayList<OptionBean> optionResponse = new ArrayList<OptionBean>();
+		for (LocalidadesSQL l : localidades) {
+			OptionBean data = new OptionBean();
+			data.setValue(String.valueOf(l.getLocalidadesId()));
+			data.setOption(l.getLocalidad());
+			optionResponse.add(data);
+		}
+		String jsonInString = gson.toJson(optionResponse);
+		return jsonInString;
+	}
+	
 	public GeoService getServiceGeo() {
 		return serviceGeo;
 	}

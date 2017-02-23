@@ -138,8 +138,7 @@ public class DonarController {
 	public String submitRegistrar(Model model, @ModelAttribute("donarBean") DonarBean donarBean,
 			HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		ArrayList<InstitucionSQL> instituciones = (ArrayList<InstitucionSQL>) serviceInstitucion
-				.getInstitucionesByCategoriaByLocalidd(donarBean.getLocalidad(), donarBean.getIdCategoria());
+		ArrayList<InstitucionSQL> instituciones = (ArrayList<InstitucionSQL>) serviceInstitucion.getInstitucionesByCategoriaByLocalidd(donarBean.getLocalidad(), donarBean.getIdCategoria());
 		model.addAttribute("usuario", session.getAttribute("usuario"));
 		model.addAttribute("rol", session.getAttribute("rol"));
 		model.addAttribute("registrarseBean", new RegistrarseBean());

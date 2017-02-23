@@ -15,6 +15,7 @@ import com.ayudarg.dao.InstitucionDAO;
 import com.ayudarg.dao.UsuarioDAO;
 import com.ayudarg.model.Categoria;
 import com.ayudarg.model.InstitucionSQL;
+import com.ayudarg.model.LocalidadesSQL;
 import com.ayudarg.model.Rol;
 import com.ayudarg.model.UsuarioSQL;
 
@@ -46,13 +47,23 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 		return i;
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public LocalidadesSQL getLocalidadesById(String id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		LocalidadesSQL l = (LocalidadesSQL) session.createQuery("from LocalidadesSQL WHERE localidadesId='"+id+"' AND activo=1").uniqueResult();
+		return l;
+	}
+	
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void insertInstitucion(String director, String ciudad, String tipo, String nombre, String direccion,
-			String telefono, String celular, String sitioWeb, String email) {
+			String telefono, String celular, String sitioWeb, String email, String localidadesId) {
 		Session session = this.sessionFactory.getCurrentSession();
 		InstitucionSQL us = new InstitucionSQL();
+		LocalidadesSQL lq = new LocalidadesSQL();
+		lq.setLocalidadesId(Integer.parseInt(localidadesId));
 		us.setDirector(director);
 		us.setTipo(tipo);
 		us.setNombre(nombre);
@@ -61,6 +72,8 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 		us.setCelular(celular);
 		us.setSitioWeb(sitioWeb);
 		us.setEmail(email);
+		us.setActivo(true);
+		us.setLocalidadesId(lq);
         session.save(us);
         session.flush();
 	}
@@ -71,7 +84,8 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		InstitucionSQL insti = new InstitucionSQL ();
 		insti.setIdInstitucion(Integer.parseInt(institucion));
-		session.delete(insti);
+		insti.setActivo(false);
+		session.update(insti);
 		session.flush();
 	}
 	

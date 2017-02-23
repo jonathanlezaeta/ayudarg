@@ -23,6 +23,8 @@ import com.ayudar.view.beans.InstitucionBajaBean;
 import com.ayudar.view.beans.InstitucionBean;
 import com.ayudar.view.beans.UsuarioBean;
 import com.ayudarg.model.InstitucionSQL;
+import com.ayudarg.model.ProvinciasSQL;
+import com.ayudarg.service.GeoService;
 import com.ayudarg.service.InstitucionService;
 import com.ayudarg.service.UsuarioService;
 
@@ -35,6 +37,7 @@ public class ABMInstitucionController {
 	// private static final Logger logger =
 	// LoggerFactory.getLogger(RegistraseController.class);
 	private InstitucionService serviceInstitucion;
+	private GeoService serviceGeo;
 	
 
 	public InstitucionService getServiceInstitucion() {
@@ -51,17 +54,30 @@ public class ABMInstitucionController {
 	public void setInstitucionService(InstitucionService ps) {
 		this.serviceInstitucion = ps;
 	}
+	
+	@Autowired(required = true)
+	@Qualifier(value = "GeoService")
+	public void setGeoServicee(GeoService ol) {
+		this.serviceGeo = ol;
+	}
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+	public GeoService getServiceGeo() {
+		return serviceGeo;
+	}
+
+	public void setServiceGeo(GeoService serviceGeo) {
+		this.serviceGeo = serviceGeo;
+	}
+
 	@RequestMapping(value = "/altaInstitucion", method = RequestMethod.GET)
 	public String home(Locale locale, Model model,  HttpServletRequest request) {
 		HttpSession session = request.getSession();
+		ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
+		ArrayList<InstitucionSQL> instituciones = (ArrayList<InstitucionSQL>) serviceInstitucion.listInstituciones();
 		model.addAttribute("usuario", session.getAttribute("usuario"));
 		model.addAttribute("rol", session.getAttribute("rol"));
-		ArrayList<InstitucionSQL> instituciones = (ArrayList<InstitucionSQL>) serviceInstitucion.listInstituciones();
 		model.addAttribute("institucion", instituciones);
+		model.addAttribute("provincias", provincias);
 		model.addAttribute("institucionBean", new InstitucionBean());
 		model.addAttribute("institucionBajaBean", new InstitucionBajaBean());
 		if(session.getAttribute("usuario")!= null){
@@ -76,7 +92,7 @@ public class ABMInstitucionController {
 	public String submitRegistrar(Model model, @ModelAttribute("institucionBean") InstitucionBean institucionBean) {
 		serviceInstitucion.insertInstitucion(institucionBean.getDirector(), institucionBean.getCiudad(),
 				institucionBean.getTipo(), institucionBean.getNombre(), institucionBean.getDireccion(), institucionBean.getTelefono(),
-				institucionBean.getCelular(), institucionBean.getSitioWeb(), institucionBean.getEmail());
+				institucionBean.getCelular(), institucionBean.getSitioWeb(), institucionBean.getEmail(), institucionBean.getLocalidad());
 		return "registrarseCorrectamente";
 	}
 	

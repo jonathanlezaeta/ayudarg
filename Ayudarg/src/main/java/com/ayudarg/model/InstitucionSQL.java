@@ -42,6 +42,9 @@ public class InstitucionSQL {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "localidadesId", nullable = false)
 	private LocalidadesSQL localidadesId;
+	
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "institucion")
+	private Set<UsuarioSQL> usuarios = new HashSet<UsuarioSQL>(0);
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "InstitucionHasCategoria", joinColumns = {
@@ -55,18 +58,6 @@ public class InstitucionSQL {
 
 	public void setCategoria(Set<Categoria> categoria) {
 		this.categoria = categoria;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idUsuario", nullable = false)
-	private UsuarioSQL idUsuario;
-
-	public UsuarioSQL getIdUsuario() {
-		return idUsuario;
-	}
-
-	public void setIdUsuario(UsuarioSQL idUsuario) {
-		this.idUsuario = idUsuario;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL)

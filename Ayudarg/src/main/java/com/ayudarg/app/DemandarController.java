@@ -4,6 +4,9 @@ package com.ayudarg.app;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -101,13 +104,21 @@ public class DemandarController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/demandar", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		model.addAttribute("usuario", session.getAttribute("usuario"));
+		model.addAttribute("rol", session.getAttribute("rol"));
 		ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
 		ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
 		model.addAttribute("categoria", categorias);
 		model.addAttribute("demandarBean", new DemandarBean());
 		model.addAttribute("provincias", provincias);
-		return "demandar";
+		if(session.getAttribute("usuario")!= null){
+			return "demandar";
+		}else{
+		    model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
+			return "menssage";
+		}
 	}
 
 	@RequestMapping(value="/submitAltaDemanda", method = RequestMethod.POST)

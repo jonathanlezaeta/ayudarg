@@ -10,6 +10,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Bienvenidos a Ayudarg</title>
+	<style>
+	body {
+		background: transparent url("resources/img/background.jpg") no-repeat;
+		background-size: cover;
+		padding-top: 35px;
+	}
+	</style>
 </head>
 <body>
 

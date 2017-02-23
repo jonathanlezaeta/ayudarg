@@ -12,12 +12,26 @@ public class InstitucionBean {
 	private String sitioWeb;
 	private String email;
 	private boolean activo;
+	private String provincia;
+	private String localidad;
 	
 	public String getDirector() {
 		return director;
 	}
 	public void setDirector(String director) {
 		this.director = director;
+	}
+	public String getProvincia() {
+		return provincia;
+	}
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+	public String getLocalidad() {
+		return localidad;
+	}
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
 	}
 	public String getCiudad() {
 		return ciudad;

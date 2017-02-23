@@ -55,19 +55,17 @@ public class DashboardController extends HttpServlet {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-	public String dashboard(Locale locale, Model model) {
-		// logger.info("Welcome home! The client locale is {}.", locale);
-		//
-		// Date date = new Date();
-		// DateFormat dateFormat =
-		// DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG,
-		// locale);
-		//
-		// String formattedDate = dateFormat.format(date);
-		//
-		// model.addAttribute("serverTime", formattedDate);
-
-		return "dashboard";
+	public String dashboard(Locale locale, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		model.addAttribute("usuario", session.getAttribute("usuario"));
+		model.addAttribute("rol", session.getAttribute("rol"));
+		
+		if(session.getAttribute("usuario")!= null){
+			return "dashboard";
+		}else{
+		    model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
+			return "menssage";
+		}
 	}	
 
 	@RequestMapping(method = RequestMethod.POST)

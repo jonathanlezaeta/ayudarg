@@ -55,10 +55,11 @@ public class BajaUsuarioController {
 	 */
 	@RequestMapping(value = "/bajaUsuario", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest request) {
+			HttpSession session = request.getSession();
 			ArrayList<UsuarioSQL> usuarios = (ArrayList<UsuarioSQL>) serviceUsuarios.listUsuarios();
 			model.addAttribute("usuario", usuarios);
+			model.addAttribute("rol", session.getAttribute("rol"));
 			model.addAttribute("usuarioBajaBean", new UsuarioBajaBean());
-		HttpSession session = request.getSession();
 			if(session.getAttribute("usuario")!= null){
 				return "bajaUsuario";
 			}else{

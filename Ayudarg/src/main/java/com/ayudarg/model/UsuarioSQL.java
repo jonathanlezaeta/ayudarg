@@ -42,6 +42,13 @@ public class UsuarioSQL {
 					nullable = false, updatable = false) })
 	private Set<Rol> rol = new HashSet<Rol>(0);
 	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "InstitucionHasUsuario", catalog = "ayudarg", joinColumns = {
+			@JoinColumn(name = "usuarioIdUsuario", nullable = false, updatable = false) },
+			inverseJoinColumns = { @JoinColumn(name = "institucionIdInstitucion",
+					nullable = false, updatable = false) })
+	private Set<InstitucionSQL> institucion = new HashSet<InstitucionSQL>(0);
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "localidadesId", referencedColumnName = "localidadesId")
 	private LocalidadesSQL localidadesId;	
@@ -113,6 +120,12 @@ public class UsuarioSQL {
 	}
 	public void setRol(Set<Rol> rol) {
 		this.rol = rol;
+	}
+	public Set<InstitucionSQL> getInstitucion() {
+		return institucion;
+	}
+	public void setInstitucion(Set<InstitucionSQL> institucion) {
+		this.institucion = institucion;
 	}
 	
 }

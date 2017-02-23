@@ -2,16 +2,18 @@
 <%@ page session="false"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<link href="<c:url value="/resources/css/css/datepicker3.css" />"
+<link href="<c:url value="/resources/css/datepicker3.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/styles.css" />"
 	rel="stylesheet">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">0
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Donaciones</title>
 <script language="javascript">
 	function cargarLocalidades(value){
@@ -35,29 +37,40 @@
 			}
 		});
 	}
-</script>
-<style>
-body {
-	background: transparent url("resources/img/background.jpg") no-repeat;
-	background-size: cover;
-	padding-top: 15px;
-}
-</style>
-</head>
+	</script>
+	<style>
+	body {
+		background: transparent url("resources/img/background.jpg") no-repeat;
+		background-size: cover;
+		padding-top: 35px;
+	}
+	</style>
+	</head>
+	<body>
 
-<body>
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#"><span>AYUD</span>ARG</a>
-				<ul class="user-menu">
-				</ul>
+			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#sidebar-collapse">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#"><span>AYUD</span>ARG</a>
+					<ul class="user-menu">
+						<!-- 					<li class="dropdown pull-right"> -->
+						<!-- 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> User <span class="caret"></span></a> -->
+						<!-- 						<ul class="dropdown-menu" role="menu"> -->
+						<!-- 							<li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li> -->
+						<!-- 							<li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li> -->
+						<!-- 							<li><a href="#"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li> -->
+						<!-- 						</ul> -->
+						<!-- 					</li> -->
+					</ul>
+				</div>
+
 			</div>
-
-		</div>
 		<!-- /.container-fluid -->
 	</nav>
 
@@ -138,14 +151,17 @@ body {
 							action="submitAltaDonacion" modelAttribute="donarBean"
 							class="form-signin">
 							<fieldset>
-								<label class="col-md-12 control-label"
-									style="margin-bottom: 10px;" for="usuario">Elija la/s
-									categorias</label>
-								<form:checkboxes style="margin-left:15px" path="idCategoria"
-									items="${categoria}" itemValue="idCategoria" itemLabel="nombre" />
+							
+								<td>
+								<label class="col-md-3 control-label" for="usuario">Elija la/s categorias</label>
+								<form:checkboxes  path="idCategoria" items="${categoria}" itemValue="idCategoria" itemLabel="nombre" />
+								</td>					
+								
+								</br>
+								</br>
+								<label class="col-md-3 control-label" for="usuario">Elija la ubicacion</label>
 								<div class="form-group">
-									<form:select path="provincia" required=""
-										style="margin-top: 10px;" multiple="false"
+									<form:select path="provincia" required="" multiple="false"
 										class="form-control" id='selectProvincias'
 										onchange='cargarLocalidades(this.value);'>
 										<form:option value="NONE" label="Seleccione su provincia" />
@@ -153,8 +169,9 @@ body {
 											itemLabel="provincia" />
 									</form:select>
 								</div>
-
-								<div class="form-group" style="margin-top: 10px;">
+								</br>
+								</br>
+								<div class="form-group">
 									<form:select path="localidad" required="" multiple="false"
 										class="form-control" id="selectLocalidades">
 										<form:options items="${localidades}" itemValue="localidadesId"
