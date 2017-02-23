@@ -96,6 +96,9 @@ body {
 					<li><a href="/app/bajaUsuario"><svg
 								class="glyph stroked line-graph">
 						<use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
+						<li><a href="/app/recurso"><svg
+								class="glyph stroked line-graph">
+						<use xlink:href="/recurso"></use></svg> Recursos</a></li>
 				</ul>
 			</c:when>
 			<c:when test="${rol.equals('U')}">
@@ -131,6 +134,9 @@ body {
 					<li><a href="/app/bajaUsuario"><svg
 								class="glyph stroked line-graph">
 						<use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
+						<li><a href="/app/recurso"><svg
+								class="glyph stroked line-graph">
+						<use xlink:href="/recurso"></use></svg> Recursos</a></li>
 				</ul>
 			</c:when>
 		</c:choose>

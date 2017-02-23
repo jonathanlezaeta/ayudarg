@@ -2,8 +2,9 @@ package com.ayudar.view.beans;
 
 public class RecursoBean {
 	
+	private String recurso;
 	private String nombre;
-	private String categoria;
+	private String[] categoria;
 	private String cantidad;
 	private String institucion;
 	
@@ -13,12 +14,7 @@ public class RecursoBean {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getCategoria() {
-		return categoria;
-	}
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
+
 	public String getCantidad() {
 		return cantidad;
 	}
@@ -30,5 +26,17 @@ public class RecursoBean {
 	}
 	public void setInstitucion(String institucion) {
 		this.institucion = institucion;
+	}
+	public String[] getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String[] categoria) {
+		this.categoria = categoria;
+	}
+	public String getRecurso() {
+		return recurso;
+	}
+	public void setRecurso(String recurso) {
+		this.recurso = recurso;
 	}
 }
