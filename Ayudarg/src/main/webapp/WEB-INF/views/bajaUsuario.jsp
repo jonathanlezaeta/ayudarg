@@ -9,34 +9,33 @@
 <link href="<c:url value="/resources/css/styles.css" />"
 	rel="stylesheet">
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-0
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <html>
 <head>
 <title>Usuarios</title>
 <script language="javascript">
-	function cargarLocalidades(value){
-		$.ajax({
-			type: "POST",
-			data: $("#usuarioForm").serialize(),
-			dataType: 'json',
-			url: '/app/getLocalibadesByIdUsuario', 
-			success: function(data) { 
-					var res = data; 
-					var options = '';
-					options += '<option value="">Seleccione su ciudad</option>';
-					$.each(data, function (index, value) {
-						options += '<option value="' +value.value + '">' +value.option + '</option>';
-					});
-					$("select[id=selectLocalidades]").html(options);
-// 				}
-			},
-			error: function(e){ <!-- Si no ha podido conectar con el servidor -->
-				alert("Error en el servidor, por favor, intentalo de nuevo mas tarde");
-			}
-		});
-	}
+function cargarLocalidades(value){
+	$.ajax({
+		type: "POST",
+		data: $(value).serialize(),
+		dataType: 'json',
+		url: '/app/getLocalibadesByIdUsuario', 
+		success: function(data) { 
+				var res = data; 
+				var options = '';
+				options += '<option value="">Seleccione su ciudad</option>';
+				$.each(data, function (index, value) {
+					options += '<option value="' +value.value + '">' +value.option + '</option>';
+				});
+				$("select[id=selectLocalidades]").html(options);
+//				}
+		},
+		error: function(e){ <!-- Si no ha podido conectar con el servidor -->
+			alert("Error en el servidor, por favor, intentalo de nuevo mas tarde");
+		}
+	});
+}
 </script>
 <style>
 body {
@@ -227,7 +226,7 @@ body {
 												<div class="form-group">
 													<form:select path="provincia" required="" multiple="false"
 														class="form-control" id='selectProvincias'
-														onchange='cargarLocalidades(this.value);'>
+														onchange='cargarLocalidades("#usuarioForm");'>
 														<form:option value="NONE" label="Seleccione su provincia" />
 														<form:options items="${provincias}"
 															itemValue="idProvincia" itemLabel="provincia" />
@@ -288,7 +287,7 @@ body {
 									</div>
 
 									<div class="tab-pane" id="3">
-										<form:form id="usuarioForm" method="post"
+										<form:form id="modificarUsuario" method="post"
 											action="submitUpdateUsuario"
 											modelAttribute="usuarioBean" class="form-signin">
 											<fieldset>
@@ -367,7 +366,7 @@ body {
 												<div class="form-group">
 													<form:select path="provincia" required="" multiple="false"
 														class="form-control" id='selectProvincias'
-														onchange='cargarLocalidades(this.value);'>
+														onchange='cargarLocalidades("#usuarioForm");'>
 														<form:option value="NONE" label="Seleccione su provincia" />
 														<form:options items="${provincias}"
 															itemValue="idProvincia" itemLabel="provincia" />
@@ -382,9 +381,7 @@ body {
 															itemValue="localidadesId" itemLabel="localidad" />
 													</form:select>
 												</div>
-
-
-
+												
 												<!-- Form actions -->
 												<div class="form-group">
 													<div class="col-md-12 widget-right">

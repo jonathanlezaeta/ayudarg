@@ -11,7 +11,7 @@ public class UsuarioBean {
 	private String email;
 	private String telefono;
 	private String celular;
-	private Date fechaDeNacimiento;
+	private String fechaDeNacimiento;
 	private String provincia;
 	private String localidad;
 
@@ -52,12 +52,6 @@ public class UsuarioBean {
 	public void setCelular(String celular) {
 		this.celular = celular;
 	}
-	public Date getFechaDeNacimiento() {
-		return fechaDeNacimiento;
-	}
-	public void setFechaDeNacimiento(Date fechaDeNacimiento) {
-		this.fechaDeNacimiento = fechaDeNacimiento;
-	}
 	public String getLocalidad() {
 		return localidad;
 	}
@@ -75,6 +69,12 @@ public class UsuarioBean {
 	}
 	public void setIdUsuario(String idUsuario) {
 		this.idUsuario = idUsuario;
+	}
+	public String getFechaDeNacimiento() {
+		return fechaDeNacimiento;
+	}
+	public void setFechaDeNacimiento(String fechaDeNacimiento) {
+		this.fechaDeNacimiento = fechaDeNacimiento;
 	}
 
 	

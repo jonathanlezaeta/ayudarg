@@ -18,7 +18,7 @@
 	function cargarLocalidades(value){
 		$.ajax({
 			type: "POST",
-			data: $("#institucionForm").serialize(),
+			data: $(value).serialize(),
 			dataType: 'json',
 			url: '/app/getLocalibadesByIdInstitucion', 
 			success: function(data) { 
@@ -36,6 +36,27 @@
 			}
 		});
 	}
+	function cargarModificars(value){
+		$.ajax({
+			type: "POST",
+			data: $(value).serialize(),
+			dataType: 'json',
+			url: '/app/getLocalibadesByIdInstitucion', 
+			success: function(data) { 
+					var res = data; 
+					var options = '';
+					options += '<option value="">Seleccione su ciudad</option>';
+					$.each(data, function (index, value) {
+						options += '<option value="' +value.value + '">' +value.option + '</option>';
+					});
+					$("select[id=selectLocalidades]").html(options);
+// 				}
+			},
+			error: function(e){ <!-- Si no ha podido conectar con el servidor -->
+				alert("Error en el servidor, por favor, intentalo de nuevo mas tarde");
+			}
+		});
+	}	
 	</script>
 <style>
 body {
@@ -248,7 +269,7 @@ body {
 							<div class="form-group">
 									<form:select path="provincia" required="" multiple="false"
 										class="form-control" id='selectProvincias'
-										onchange='cargarLocalidades(this.value);'>
+										onchange='cargarLocalidades("#institucionForm");'>
 										<form:option value="NONE" label="Seleccione su provincia" />
 										<form:options items="${provincias}" itemValue="idProvincia"
 											itemLabel="provincia" />
@@ -275,7 +296,7 @@ body {
 										</form:form>
 									</div>
 									<div class="tab-pane" id="2">
-										<form:form id="altaInstitucionForm" method="post"
+										<form:form id="bajaInstitucion" method="post"
 											action="submitDeleteInstitucion"
 											modelAttribute="institucionBajaBean" class="form-signin">
 											<fieldset>
@@ -300,7 +321,7 @@ body {
 										</form:form>
 									</div>
 									<div class="tab-pane" id="3">
-										<form:form id="institucionForm" method="post"
+										<form:form id="institucionBaja" method="post"
 											action="submitUpdateInstitucion"
 											modelAttribute="institucionBean" class="form-signin">
 											<fieldset>
@@ -402,7 +423,7 @@ body {
 							<div class="form-group">
 									<form:select path="provincia" required="" multiple="false"
 										class="form-control" id='selectProvincias'
-										onchange='cargarLocalidades(this.value);'>
+										onchange='cargarLocalidades("#institucionBaja");'>
 										<form:option value="NONE" label="Seleccione su provincia" />
 										<form:options items="${provincias}" itemValue="idProvincia"
 											itemLabel="provincia" />

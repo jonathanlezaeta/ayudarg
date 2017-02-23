@@ -86,7 +86,7 @@ public class RegistrarseController {
 		    model.addAttribute("menssage", "Su registro fue exitoso y ya puede acceder a la plataforma.");
 			return "menssage";			
 		}else{
-		    model.addAttribute("menssage", "Un atributo requerido no fue completado.");
+		    model.addAttribute("menssage", validate.getError());
 			return "menssage";		
 		}
 
