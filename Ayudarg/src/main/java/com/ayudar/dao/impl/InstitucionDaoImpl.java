@@ -87,8 +87,10 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 			while(it.hasNext()){
 				Categoria categoria = it.next();
 				for(String id : categorias){
-					if(categoria.getIdCategoria() == Integer.parseInt(id))
-						result.add(inst);
+					if(categoria.getIdCategoria() == Integer.parseInt(id)){
+						if(!result.contains(inst))
+							result.add(inst);
+					}
 				}
 			}
 		}

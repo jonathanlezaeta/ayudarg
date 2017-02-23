@@ -10,6 +10,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Bienvenidos a Ayudarg</title>
+<style>
+body {
+	background: transparent url("resources/img/background.jpg") no-repeat;
+	background-size: cover;
+	padding-top: 15px;
+}
+</style>
 </head>
 <body>
 
@@ -103,30 +110,36 @@
 	<!--/.sidebar-->
 
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-
+		</br>
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Categorias</h1>
+				<h1 class="page-header" style="color:#fff;">Instituciones disponibles para donar:</h1>
 			</div>
 		</div>
 		<!--/.row-->
 
 
 		<div class="row">
-			<div class="col-lg-12">
-				<c:forEach items="${instituciones}" var="element">
+			<c:forEach items="${instituciones}" var="element">
+				<div class="col-lg-6">
 					<div class="panel panel-default">
 						<div class="panel-body">
+
 							<div class="icon-grid">
-								<div class="col-lg-3 col-md-4 col-sm-6">
-								${element.nombre}
-								${element.direccion}
+								<div class="col-md-12">
+									<h2>
+										<p>${element.nombre}</p>
+									</h2>
+									<p>Direccion: ${element.direccion}</p>
 								</div>
 							</div>
+							<!-- 							<div class="col-md-1"></div> -->
+
 						</div>
 					</div>
-				</c:forEach>
-			</div>
+
+				</div>
+			</c:forEach>
 		</div>
 		<!--/.row-->
 
@@ -137,7 +150,7 @@
 	</div>
 	<!--/.main-->
 
-	
+
 </body>
 
 </html>

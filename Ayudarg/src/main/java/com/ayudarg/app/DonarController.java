@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ayudar.view.beans.CategoriaBean;
 import com.ayudar.view.beans.DonarBean;
+import com.ayudar.view.beans.InstitucionBajaBean;
 import com.ayudar.view.beans.InstitucionBean;
 import com.ayudar.view.beans.OptionBean;
 import com.ayudar.view.beans.RecursoBean;
@@ -110,20 +114,34 @@ public class DonarController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/donar", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
 		ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
+		ArrayList<InstitucionSQL> instituciones = (ArrayList<InstitucionSQL>) serviceInstitucion.listInstituciones();
+		model.addAttribute("usuario", session.getAttribute("usuario"));
+		model.addAttribute("rol", session.getAttribute("rol"));
 		model.addAttribute("donarBean", new DonarBean());
 		model.addAttribute("categoria", categorias);
 		model.addAttribute("provincias", provincias);
-
-		return "donar";
+		model.addAttribute("institucion", instituciones);
+		model.addAttribute("institucionBean", new InstitucionBean());
+		if (session.getAttribute("usuario") != null) {
+			return "donar";
+		} else {
+			model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
+			return "menssage";
+		}
 	}
 
 	@RequestMapping(value = "/submitAltaDonacion", method = RequestMethod.POST)
-	public String submitRegistrar(Model model, @ModelAttribute("donarBean") DonarBean donarBean) {
+	public String submitRegistrar(Model model, @ModelAttribute("donarBean") DonarBean donarBean,
+			HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		ArrayList<InstitucionSQL> instituciones = (ArrayList<InstitucionSQL>) serviceInstitucion
 				.getInstitucionesByCategoriaByLocalidd(donarBean.getLocalidad(), donarBean.getIdCategoria());
+		model.addAttribute("usuario", session.getAttribute("usuario"));
+		model.addAttribute("rol", session.getAttribute("rol"));
 		model.addAttribute("registrarseBean", new RegistrarseBean());
 		model.addAttribute("instituciones", instituciones);
 		return "donarResult";
