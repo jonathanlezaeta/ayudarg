@@ -72,6 +72,9 @@ body {
 					<li><a href="/app/bajaUsuario"><svg
 								class="glyph stroked line-graph">
 						<use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
+								<li><a href="/app/bajaUsuario"><svg
+								class="glyph stroked line-graph">
+						<use xlink:href="/bajaUsuario"></use></svg> Recursos</a></li>
 				</ul>
 			</c:when>
 			<c:when test="${rol.equals('U')}">
@@ -107,6 +110,9 @@ body {
 					<li><a href="/app/bajaUsuario"><svg
 								class="glyph stroked line-graph">
 						<use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
+								<li><a href="/app/bajaUsuario"><svg
+								class="glyph stroked line-graph">
+						<use xlink:href="/bajaUsuario"></use></svg> Recursos</a></li>
 				</ul>
 			</c:when>
 		</c:choose>
@@ -212,7 +218,7 @@ body {
 													<div class="col-md-9">
 														<input id="nombre" name="nombre" type="text"
 															placeholder="Ingrese nombre de la categoria"
-															class="form-control" required="">
+															class="form-control" required="" value="${nombre}">
 													</div>
 												</div>
 
@@ -222,6 +228,7 @@ body {
 													<div class="col-md-9">
 														<form:select path="categoria" multiple="false"
 															class="form-control">
+															<form:option value="${categoria}" label="Seleccione su Subcategoria" />
 															<form:options items="${categoria}"
 																itemValue="idCategoria" itemLabel="nombre" />
 														</form:select>
@@ -253,6 +260,7 @@ body {
 													<div class="col-md-9">
 														<form:select path="categoria" multiple="false"
 															class="form-control" required="">
+															<form:option value="${categoria}" label="Seleccione su Categoria" />
 															<form:options items="${categoria}"
 																itemValue="idCategoria" itemLabel="nombre" />
 														</form:select>
@@ -282,6 +290,7 @@ body {
 													<div class="col-md-9">
 														<form:select path="categoria" multiple="false"
 															class="form-control" required="">
+															<form:option value="${categoria}" label="Seleccione su Categoria" />
 															<form:options items="${categoria}"
 																itemValue="idCategoria" itemLabel="nombre" />
 														</form:select>
@@ -294,7 +303,7 @@ body {
 													<div class="col-md-9">
 														<input id="nombre" name="nombre" type="text"
 															placeholder="Ingrese nombre de la categoria"
-															class="form-control">
+															class="form-control" required="" value="${nombre}">
 													</div>
 												</div>
 												
@@ -304,6 +313,7 @@ body {
 													<div class="col-md-9">
 														<form:select path="categoria" multiple="false"
 															class="form-control">
+															<form:option value="${categoria}" label="Seleccione su Subcategoria" />
 															<form:options items="${categoria}"
 																itemValue="idCategoria" itemLabel="nombre" />
 														</form:select>

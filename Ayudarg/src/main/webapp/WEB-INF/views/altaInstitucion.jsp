@@ -116,6 +116,9 @@ body {
 					<li><a href="/app/bajaUsuario"><svg
 								class="glyph stroked line-graph"> <use
 								xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
+										<li><a href="/app/recurso"><svg
+								class="glyph stroked line-graph">
+						<use xlink:href="recurso"></use></svg> Recursos</a></li>
 				</ul>
 			</c:when>
 			<c:when test="${rol.equals('U')}">
@@ -151,6 +154,9 @@ body {
 					<li><a href="/app/bajaUsuario"><svg
 								class="glyph stroked line-graph"> <use
 								xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
+										<li><a href="/app/recurso"><svg
+								class="glyph stroked line-graph">
+						<use xlink:href="recurso"></use></svg> Recursos</a></li>
 				</ul>
 			</c:when>
 		</c:choose>
@@ -167,6 +173,7 @@ body {
 						Instituciones
 					</div>
 					<div class="panel-body">
+						<h4 style="color: red;">${menssage}</h4>
 
 						<div class="container">
 							<div id="exTab2" class="col-md-10">
@@ -189,8 +196,8 @@ body {
 													<label class="col-md-3 control-label" for="director">Director</label>
 													<div class="col-md-9">
 														<input id="director" name="director" type="text"
-															placeholder="Ingrese director de la Institucion"
-															class="form-control" required="">
+															placeholder="Ingrese director de la Institucion (Campo requerido)"
+															class="form-control" required="" value="${director}">
 													</div>
 												</div>
 
@@ -199,8 +206,8 @@ body {
 													<label class="col-md-3 control-label" for="tipo">Tipo</label>
 													<div class="col-md-9">
 														<input id="tipo" name="tipo" type="text"
-															placeholder="Ingrese tipo de Institucion"
-															class="form-control" required="">
+															placeholder="Ingrese tipo de Institucion (Campo requerido)"
+															class="form-control" required="" value="${tipo}">
 													</div>
 												</div>
 
@@ -209,8 +216,8 @@ body {
 													<label class="col-md-3 control-label" for="nombre">Nombre</label>
 													<div class="col-md-9">
 														<input id="nombre" name="nombre" type="text"
-															placeholder="Ingrese nombre de la Institucion"
-															class="form-control" required="">
+															placeholder="Ingrese nombre de la Institucion (Campo requerido)"
+															class="form-control" required="" value="${nombre}">
 													</div>
 												</div>
 
@@ -219,8 +226,8 @@ body {
 													<label class="col-md-3 control-label" for="direccion">Direccion</label>
 													<div class="col-md-9">
 														<input id="direccion" name="direccion" type="text"
-															placeholder="Ingrese direccion de la Institucion"
-															class="form-control" required="">
+															placeholder="Ingrese direccion de la Institucion (Campo requerido)"
+															class="form-control" required="" value="${direccion}">
 													</div>
 												</div>
 
@@ -229,8 +236,8 @@ body {
 													<label class="col-md-3 control-label" for="telefono">Telefono</label>
 													<div class="col-md-9">
 														<input id="telefono" name="telefono" type="text"
-															placeholder="Ingrese telefono de la Institucion"
-															class="form-control" required="">
+															placeholder="Ingrese telefono de la Institucion (Campo requerido)"
+															class="form-control" required="" value="${telefono}">
 													</div>
 												</div>
 
@@ -240,7 +247,7 @@ body {
 													<div class="col-md-9">
 														<input id="celular" name="celular" type="text"
 															placeholder="Ingrese celular de la Institucion"
-															class="form-control">
+															class="form-control" value="${celular}">
 													</div>
 												</div>
 
@@ -250,8 +257,8 @@ body {
 														Web</label>
 													<div class="col-md-9">
 														<input id="sitioWeb" name="sitioWeb" type="text"
-															placeholder="Ingrese sitio web de la Institucion"
-															class="form-control" required="">
+															placeholder="Ingrese sitio web de la Institucion (Campo requerido)"
+															class="form-control" required="" value="${sitioWeb}">
 													</div>
 												</div>
 
@@ -260,8 +267,8 @@ body {
 													<label class="col-md-3 control-label" for="email">Email</label>
 													<div class="col-md-9">
 														<input id="email" name="email" type="email"
-															placeholder="Ingrese email de la Institucion"
-															class="form-control" required="">
+															placeholder="Ingrese email de la Institucion (Campo requerido)"
+															class="form-control" required="" value="${email}">
 													</div>
 												</div>
 
@@ -273,8 +280,8 @@ body {
 															class="form-control" id='selectProvincias'
 															onchange='cargarLocalidades("#institucionForm");'>
 															<form:option value="NONE" label="Seleccione su provincia" />
-															<form:options items="${provincias}"
-																itemValue="idProvincia" itemLabel="provincia" />
+															<form:option value="${provincia}" label="Seleccione su Provincia" />
+															<form:options items="${provincias}" itemValue="idProvincia" itemLabel="provincia" />
 														</form:select>
 													</div>
 												</div>
@@ -283,6 +290,7 @@ body {
 													<div class="col-md-9">
 														<form:select path="localidad" required="" multiple="false"
 															class="form-control" id="selectLocalidades">
+															<form:option value="${localidad}" label="Seleccione su Ciudad" />
 															<form:options items="${localidades}"
 																itemValue="localidadesId" itemLabel="localidad" />
 														</form:select>
@@ -307,10 +315,10 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="institucion">Institucion</label>
 													<div class="col-md-9">
-														<form:select path="institucion" required="" multiple="false"
-															class="form-control">
+														<form:select path="institucion" required=""
+															multiple="false" class="form-control">
 															<form:options items="${institucion}"
-																itemValue="idInstitucion" itemLabel="nombre" />
+																itemValue="idInstitucion" itemLabel="nombre"  />
 														</form:select>
 													</div>
 												</div>
@@ -335,8 +343,8 @@ body {
 													<label class="col-md-3 control-label" for="institucion">Institucion
 														a modificar</label>
 													<div class="col-md-9">
-														<form:select path="institucion" required="" multiple="false"
-															class="form-control">
+														<form:select path="institucion" required=""
+															multiple="false" class="form-control">
 															<form:options items="${institucion}"
 																itemValue="idInstitucion" itemLabel="nombre" />
 														</form:select>
@@ -348,8 +356,8 @@ body {
 													<label class="col-md-3 control-label" for="director">Director</label>
 													<div class="col-md-9">
 														<input id="director" name="director" type="text"
-															placeholder="Ingrese director de la Institucion"
-															class="form-control">
+															placeholder="Ingrese director de la Institucion (Campo requerido)"
+															class="form-control" required="" value="${director}">
 													</div>
 												</div>
 
@@ -358,8 +366,8 @@ body {
 													<label class="col-md-3 control-label" for="tipo">Tipo</label>
 													<div class="col-md-9">
 														<input id="tipo" name="tipo" type="text"
-															placeholder="Ingrese tipo de Institucion"
-															class="form-control">
+															placeholder="Ingrese tipo de Institucion (Campo requerido)"
+															class="form-control" required="" value="${tipo}">
 													</div>
 												</div>
 
@@ -368,8 +376,8 @@ body {
 													<label class="col-md-3 control-label" for="nombre">Nombre</label>
 													<div class="col-md-9">
 														<input id="nombre" name="nombre" type="text"
-															placeholder="Ingrese nombre de la Institucion"
-															class="form-control">
+															placeholder="Ingrese nombre de la Institucion (Campo requerido)"
+															class="form-control" required="" value="${nombre}">
 													</div>
 												</div>
 
@@ -378,8 +386,8 @@ body {
 													<label class="col-md-3 control-label" for="direccion">Direccion</label>
 													<div class="col-md-9">
 														<input id="direccion" name="direccion" type="text"
-															placeholder="Ingrese direccion de la Institucion"
-															class="form-control">
+															placeholder="Ingrese direccion de la Institucion (Campo requerido)"
+															class="form-control" required="" value="${direccion}">
 													</div>
 												</div>
 
@@ -388,8 +396,8 @@ body {
 													<label class="col-md-3 control-label" for="telefono">Telefono</label>
 													<div class="col-md-9">
 														<input id="telefono" name="telefono" type="text"
-															placeholder="Ingrese telefono de la Institucion"
-															class="form-control" >
+															placeholder="Ingrese telefono de la Institucion (Campo requerido)"
+															class="form-control"  required="" value="${telefono}">
 													</div>
 												</div>
 
@@ -398,8 +406,8 @@ body {
 													<label class="col-md-3 control-label" for="celular">Celular</label>
 													<div class="col-md-9">
 														<input id="celular" name="celular" type="text"
-															placeholder="Ingrese celular de la Institucion"
-															class="form-control">
+															placeholder="Ingrese celular de la Institucion "
+															class="form-control" value="${celular}">
 													</div>
 												</div>
 
@@ -409,8 +417,8 @@ body {
 														Web</label>
 													<div class="col-md-9">
 														<input id="sitioWeb" name="sitioWeb" type="text"
-															placeholder="Ingrese sitio web de la Institucion"
-															class="form-control">
+															placeholder="Ingrese sitio web de la Institucion (Campo requerido)"
+															class="form-control" required="" value="${sitioWeb}">
 													</div>
 												</div>
 
@@ -419,8 +427,8 @@ body {
 													<label class="col-md-3 control-label" for="email">Email</label>
 													<div class="col-md-9">
 														<input id="email" name="email" type="email"
-															placeholder="Ingrese email de la Institucion"
-															class="form-control" >
+															placeholder="Ingrese email de la Institucion (Campo requerido)"
+															class="form-control" required="" value="${email}">
 													</div>
 												</div>
 
@@ -431,7 +439,8 @@ body {
 														<form:select path="provincia" required="" multiple="false"
 															class="form-control" id='selectProvincias'
 															onchange='cargarLocalidades("#institucionBaja");'>
-															<form:option value="NONE" label="Seleccione su provincia" />
+															<form:option value="NONE" label="Seleccione su Provincia" />
+															<form:option value="${provincias}" label="Seleccione su Provincia" />
 															<form:options items="${provincias}"
 																itemValue="idProvincia" itemLabel="provincia" />
 														</form:select>
@@ -442,6 +451,7 @@ body {
 													<div class="col-md-9">
 														<form:select path="localidad" required="" multiple="false"
 															class="form-control" id="selectLocalidades">
+															<form:option value="${localidad}" label="Seleccione su Ciudad" />
 															<form:options items="${localidades}"
 																itemValue="localidadesId" itemLabel="localidad" />
 														</form:select>
