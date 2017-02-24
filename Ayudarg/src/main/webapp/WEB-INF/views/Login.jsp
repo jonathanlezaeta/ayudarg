@@ -57,15 +57,17 @@ body {
 			<div class="login-panel panel panel-default">
 				<div class="panel-heading">Bienvenidos a Ayudarg</div>
 				<div class="panel-body">
+				<h4 style="color: red;">${menssageLogin}</h4>
+				<h4 style="color: red;">${menssage}</h4>
 					<form:form id="loginForm" method="post" action="dashboard"
 						modelAttribute="loginbean" class="form-signin">
 						<label for="inputEmail" class="sr-only">Email</label>
 						<input type="text" id="usuario" class="form-control"
-							placeholder="Email" required="" autofocus="" name="usuario">
+							placeholder="Email" required="" autofocus="" name="usuario" value="${email}">
 						<br>
 						<label for="inputPassword" class="sr-only">Contraseña</label>
 						<input type="password" id="contrasenia" class="form-control"
-							placeholder="Contraseña" required="" name="contrasenia">
+							placeholder="Contraseña" required="" name="contrasenia" value="${contrasenia}">
 						<br>
 						<div class="col-md-6">
 							<button class="btn btn-primary" type="submit"

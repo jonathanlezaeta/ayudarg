@@ -1,6 +1,5 @@
 package com.ayudarg.app;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -8,9 +7,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -20,17 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ayudar.view.beans.RegistrarseBean;
-import com.ayudar.view.beans.UsuarioBean;
-import com.ayudarg.model.InstitucionSQL;
 import com.ayudarg.model.ProvinciasSQL;
 import com.ayudarg.service.GeoService;
 import com.ayudarg.service.UsuarioService;
 import com.ayudarg.validators.ValidatorForm;
 import com.ayudarg.validators.ValidatorFormIsEmpty;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class RegistrarseController {
 
@@ -48,8 +39,8 @@ public class RegistrarseController {
 
 	public void setServiceGeo(GeoService serviceGeo) {
 		this.serviceGeo = serviceGeo;
-	}	
-	
+	}
+
 	private UsuarioService serviceUsuarios;
 
 	public UsuarioService getServiceUsuarios() {
@@ -66,16 +57,13 @@ public class RegistrarseController {
 		this.serviceUsuarios = ps;
 	}
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/registrarse", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		return "registrarse";
 	}
 
-	@RequestMapping(value="/submitRegistrar", method = RequestMethod.POST)
-	public String submitRegistrar(Model model, @ModelAttribute("registrarseBean") RegistrarseBean registrarseBean) {		  
+	@RequestMapping(value = "/submitRegistrar", method = RequestMethod.POST)
+	public String submitRegistrar(Model model, @ModelAttribute("registrarseBean") RegistrarseBean registrarseBean) {
 		HashMap<String, String> form = new HashMap<String, String>();
 		form.put("usuario", registrarseBean.getUsuario());
 		form.put("contrasenia", registrarseBean.getContrasenia());
@@ -86,22 +74,25 @@ public class RegistrarseController {
 		form.put("localidad", registrarseBean.getLocalidad());
 		ValidatorForm validate = new ValidatorFormIsEmpty();
 		validate.setValues(form);
-		if (!(validate.validateString())){
-			
+		if (!(validate.validateString())) {
 			SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
 			Date fecha = null;
 			try {
-			fecha = formatoDelTexto.parse(registrarseBean.getFechaDeNacimiento());
+				fecha = formatoDelTexto.parse(registrarseBean.getFechaDeNacimiento());
 			} catch (ParseException ex) {
-			ex.printStackTrace();
+				ex.printStackTrace();
 			}
-			
-			serviceUsuarios.insertUsuario(registrarseBean.getUsuario(), registrarseBean.getContrasenia(),registrarseBean.getNombre(), registrarseBean.getEmail(), registrarseBean.getTelefono(), registrarseBean.getCelular(),
-					fecha, registrarseBean.getLocalidad());	
+			serviceUsuarios.insertUsuario(registrarseBean.getUsuario(), registrarseBean.getContrasenia(),
+					registrarseBean.getNombre(), registrarseBean.getEmail(), registrarseBean.getTelefono(),
+					registrarseBean.getCelular(), fecha, registrarseBean.getLocalidad());
+			ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
+			model.addAttribute("provincias", provincias);
 			model.addAttribute("error", false);
-		    model.addAttribute("menssage", "Su registro fue exitoso y ya puede acceder a la plataforma.");
-			return "menssage";			
-		}else{
+			model.addAttribute("menssage", "Felicitaciones ya puede acceder a Ayudarg!");
+			model.addAttribute("email", registrarseBean.getEmail());
+			model.addAttribute("contrasenia", registrarseBean.getContrasenia());
+			return "Login";
+		} else {
 			ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
 			model.addAttribute("provincias", provincias);
 			model.addAttribute("error", true);
@@ -112,10 +103,8 @@ public class RegistrarseController {
 			model.addAttribute("telefono", registrarseBean.getCelular());
 			model.addAttribute("fechaDeNacimiento", registrarseBean.getFechaDeNacimiento());
 			model.addAttribute("localidad", registrarseBean.getLocalidad());
-		    model.addAttribute("menssage", "Error: " + validate.getError());
-			return "Login";		
+			model.addAttribute("menssage", "Error: " + validate.getError());
+			return "Login";
 		}
-
 	}
-
 }

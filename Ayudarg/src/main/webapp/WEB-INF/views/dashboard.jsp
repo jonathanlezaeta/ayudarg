@@ -10,41 +10,66 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Bienvenidos a Ayudarg</title>
-	<style>
-	body {
-		background: transparent url("resources/img/background.jpg") no-repeat;
-		background-size: cover;
-		padding-top: 35px;
-	}
-	</style>
+<style>
+body {
+	background: transparent url("resources/img/background.jpg") no-repeat;
+	background-size: cover;
+	padding-top: 35px;
+}
+</style>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFvyRF6_-o3_xkrXKvW3M-2S0syJtVwu4&callback=initMap"></script>
+<script>
+		var map;
+      function initMap(map) {
+        var uluru = {lat: -25.363, lng: 131.044};
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+        addMarker(map);
+      }
+      function addMarker(map) {
+          var uluru = {lat: -29.363, lng: 90.044};
+          var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+          });	  
+      }
+
+    </script>
 </head>
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#"><span>AYUD</span>ARG</a>
 				<ul class="user-menu">
-<!-- 					<li class="dropdown pull-right"> -->
-<!-- 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> User <span class="caret"></span></a> -->
-<!-- 						<ul class="dropdown-menu" role="menu"> -->
-<!-- 							<li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li> -->
-<!-- 							<li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li> -->
-<!-- 							<li><a href="#"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li> -->
-<!-- 						</ul> -->
-<!-- 					</li> -->
+					<!-- 					<li class="dropdown pull-right"> -->
+					<!-- 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> User <span class="caret"></span></a> -->
+					<!-- 						<ul class="dropdown-menu" role="menu"> -->
+					<!-- 							<li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li> -->
+					<!-- 							<li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li> -->
+					<!-- 							<li><a href="#"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li> -->
+					<!-- 						</ul> -->
+					<!-- 					</li> -->
 				</ul>
 			</div>
-							
-		</div><!-- /.container-fluid -->
+
+		</div>
+		<!-- /.container-fluid -->
 	</nav>
-		
+
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<c:choose>
 			<c:when test="${rol.equals('A')}">
@@ -105,62 +130,56 @@
 				</ul>
 			</c:when>
 		</c:choose>
-	</div><!--/.sidebar-->
-		
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-		
+	</div>
+	<!--/.sidebar-->
+
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+				<div id="map" style="width:100%;height:400px"></div>
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Categorias</h1>
 			</div>
-		</div><!--/.row-->
-				
-		
+		</div>
+		<!--/.row-->
+
+
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<div class="icon-grid">
-							<div class="col-lg-3 col-md-4 col-sm-6">
-								<svg class="glyph stroked app window with content"><use xlink:href="#stroked-app-window-with-content"/></svg>
-								<pre>&lt;svg class="glyph stroked app window with content">&lt;use xlink:href="#stroked-app-window-with-content"/>&lt;/svg></pre>
-							</div>
-							<div class="col-lg-3 col-md-4 col-sm-6">
-								<svg class="glyph stroked app-window"><use xlink:href="#stroked-app-window"></use></svg>
-								<pre>&lt;svg class="glyph stroked app-window">&lt;use xlink:href="#stroked-app-window">&lt;/use>&lt;/svg></pre>
-							</div>
 
-						</div>
-					</div>
-				</div>
 			</div>
-		</div><!--/.row-->		
-		
-		
-	</div><!--/.main-->
-		
-	</div><!--/.main-->
+		</div>
+		<!--/.row-->
 
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-		
+
+	</div>
+	<!--/.main-->
+
+	</div>
+	<!--/.main-->
+
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Demandas</h1>
 			</div>
-		</div><!--/.row-->
-				
-		
+		</div>
+		<!--/.row-->
+
+
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="icon-grid">
 							<div class="col-lg-3 col-md-4 col-sm-6">
-								<svg class="glyph stroked app window with content"><use xlink:href="#stroked-app-window-with-content"/></svg>
+								<svg class="glyph stroked app window with content">
+									<use xlink:href="#stroked-app-window-with-content" /></svg>
 								<pre>&lt;svg class="glyph stroked app window with content">&lt;use xlink:href="#stroked-app-window-with-content"/>&lt;/svg></pre>
 							</div>
 							<div class="col-lg-3 col-md-4 col-sm-6">
-								<svg class="glyph stroked app-window"><use xlink:href="#stroked-app-window"></use></svg>
+								<svg class="glyph stroked app-window">
+									<use xlink:href="#stroked-app-window"></use></svg>
 								<pre>&lt;svg class="glyph stroked app-window">&lt;use xlink:href="#stroked-app-window">&lt;/use>&lt;/svg></pre>
 							</div>
 
@@ -168,31 +187,36 @@
 					</div>
 				</div>
 			</div>
-		</div><!--/.row-->		
-		
-		
-	</div><!--/.main-->
-	
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-		
+		</div>
+		<!--/.row-->
+
+
+	</div>
+	<!--/.main-->
+
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Donaciones</h1>
 			</div>
-		</div><!--/.row-->
-				
-		
+		</div>
+		<!--/.row-->
+
+
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="icon-grid">
 							<div class="col-lg-3 col-md-4 col-sm-6">
-								<svg class="glyph stroked app window with content"><use xlink:href="#stroked-app-window-with-content"/></svg>
+								<svg class="glyph stroked app window with content">
+									<use xlink:href="#stroked-app-window-with-content" /></svg>
 								<pre>&lt;svg class="glyph stroked app window with content">&lt;use xlink:href="#stroked-app-window-with-content"/>&lt;/svg></pre>
 							</div>
 							<div class="col-lg-3 col-md-4 col-sm-6">
-								<svg class="glyph stroked app-window"><use xlink:href="#stroked-app-window"></use></svg>
+								<svg class="glyph stroked app-window">
+									<use xlink:href="#stroked-app-window"></use></svg>
 								<pre>&lt;svg class="glyph stroked app-window">&lt;use xlink:href="#stroked-app-window">&lt;/use>&lt;/svg></pre>
 							</div>
 
@@ -200,10 +224,12 @@
 					</div>
 				</div>
 			</div>
-		</div><!--/.row-->		
-		
-		
-	</div><!--/.main-->		
+		</div>
+		<!--/.row-->
+
+
+	</div>
+	<!--/.main-->
 
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -213,20 +239,27 @@
 	<script src="js/easypiechart-data.js"></script>
 	<script src="js/bootstrap-datepicker.js"></script>
 	<script>
-		!function ($) {
-			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
-				$(this).find('em:first').toggleClass("glyphicon-minus");	  
-			}); 
+		!function($) {
+			$(document)
+					.on(
+							"click",
+							"ul.nav li.parent > a > span.icon",
+							function() {
+								$(this).find('em:first').toggleClass(
+										"glyphicon-minus");
+							});
 			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
 		}(window.jQuery);
 
-		$(window).on('resize', function () {
-		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+		$(window).on('resize', function() {
+			if ($(window).width() > 768)
+				$('#sidebar-collapse').collapse('show')
 		})
-		$(window).on('resize', function () {
-		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+		$(window).on('resize', function() {
+			if ($(window).width() <= 767)
+				$('#sidebar-collapse').collapse('hide')
 		})
-	</script>	
+	</script>
 </body>
 
 </html>
