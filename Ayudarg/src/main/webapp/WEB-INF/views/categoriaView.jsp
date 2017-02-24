@@ -212,7 +212,7 @@ body {
 													<div class="col-md-9">
 														<input id="nombre" name="nombre" type="text"
 															placeholder="Ingrese nombre de la categoria"
-															class="form-control">
+															class="form-control" required="">
 													</div>
 												</div>
 
@@ -252,7 +252,7 @@ body {
 													<label class="col-md-3 control-label" for="ciudad">Categoria</label>
 													<div class="col-md-9">
 														<form:select path="categoria" multiple="false"
-															class="form-control">
+															class="form-control" required="">
 															<form:options items="${categoria}"
 																itemValue="idCategoria" itemLabel="nombre" />
 														</form:select>
@@ -281,7 +281,7 @@ body {
 													<label class="col-md-3 control-label" for="ciudad">Categoría a modificar</label>
 													<div class="col-md-9">
 														<form:select path="categoria" multiple="false"
-															class="form-control">
+															class="form-control" required="">
 															<form:options items="${categoria}"
 																itemValue="idCategoria" itemLabel="nombre" />
 														</form:select>

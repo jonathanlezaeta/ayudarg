@@ -190,7 +190,7 @@ body {
 													<div class="col-md-9">
 														<input id="director" name="director" type="text"
 															placeholder="Ingrese director de la Institucion"
-															class="form-control">
+															class="form-control" required="">
 													</div>
 												</div>
 
@@ -200,7 +200,7 @@ body {
 													<div class="col-md-9">
 														<input id="tipo" name="tipo" type="text"
 															placeholder="Ingrese tipo de Institucion"
-															class="form-control">
+															class="form-control" required="">
 													</div>
 												</div>
 
@@ -210,7 +210,7 @@ body {
 													<div class="col-md-9">
 														<input id="nombre" name="nombre" type="text"
 															placeholder="Ingrese nombre de la Institucion"
-															class="form-control">
+															class="form-control" required="">
 													</div>
 												</div>
 
@@ -220,7 +220,7 @@ body {
 													<div class="col-md-9">
 														<input id="direccion" name="direccion" type="text"
 															placeholder="Ingrese direccion de la Institucion"
-															class="form-control">
+															class="form-control" required="">
 													</div>
 												</div>
 
@@ -230,7 +230,7 @@ body {
 													<div class="col-md-9">
 														<input id="telefono" name="telefono" type="text"
 															placeholder="Ingrese telefono de la Institucion"
-															class="form-control">
+															class="form-control" required="">
 													</div>
 												</div>
 
@@ -251,7 +251,7 @@ body {
 													<div class="col-md-9">
 														<input id="sitioWeb" name="sitioWeb" type="text"
 															placeholder="Ingrese sitio web de la Institucion"
-															class="form-control">
+															class="form-control" required="">
 													</div>
 												</div>
 
@@ -259,9 +259,9 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="email">Email</label>
 													<div class="col-md-9">
-														<input id="email" name="email" type="text"
+														<input id="email" name="email" type="email"
 															placeholder="Ingrese email de la Institucion"
-															class="form-control">
+															class="form-control" required="">
 													</div>
 												</div>
 
@@ -307,7 +307,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="institucion">Institucion</label>
 													<div class="col-md-9">
-														<form:select path="institucion" multiple="false"
+														<form:select path="institucion" required="" multiple="false"
 															class="form-control">
 															<form:options items="${institucion}"
 																itemValue="idInstitucion" itemLabel="nombre" />
@@ -335,7 +335,7 @@ body {
 													<label class="col-md-3 control-label" for="institucion">Institucion
 														a modificar</label>
 													<div class="col-md-9">
-														<form:select path="institucion" multiple="false"
+														<form:select path="institucion" required="" multiple="false"
 															class="form-control">
 															<form:options items="${institucion}"
 																itemValue="idInstitucion" itemLabel="nombre" />
@@ -389,7 +389,7 @@ body {
 													<div class="col-md-9">
 														<input id="telefono" name="telefono" type="text"
 															placeholder="Ingrese telefono de la Institucion"
-															class="form-control">
+															class="form-control" >
 													</div>
 												</div>
 
@@ -418,9 +418,9 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="email">Email</label>
 													<div class="col-md-9">
-														<input id="email" name="email" type="text"
+														<input id="email" name="email" type="email"
 															placeholder="Ingrese email de la Institucion"
-															class="form-control">
+															class="form-control" >
 													</div>
 												</div>
 

@@ -60,6 +60,7 @@ public class HomeController {
 		List<ProvinciasSQL> provincias = serviceGeo.listAllProvincias();
 		model.addAttribute("registrarseBean", new RegistrarseBean());
 		model.addAttribute("provincias", provincias);
+		model.addAttribute("error", false);
 		return "Login";
 	}
 

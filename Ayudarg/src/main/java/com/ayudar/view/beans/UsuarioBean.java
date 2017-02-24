@@ -1,7 +1,5 @@
 package com.ayudar.view.beans;
 
-import java.sql.Date;
-
 public class UsuarioBean {
 	
 	private String idUsuario;

@@ -3,6 +3,7 @@ package com.ayudarg.app;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -20,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ayudar.view.beans.RegistrarseBean;
 import com.ayudar.view.beans.UsuarioBean;
+import com.ayudarg.model.InstitucionSQL;
+import com.ayudarg.model.ProvinciasSQL;
+import com.ayudarg.service.GeoService;
 import com.ayudarg.service.UsuarioService;
 import com.ayudarg.validators.ValidatorForm;
 import com.ayudarg.validators.ValidatorFormIsEmpty;
@@ -30,8 +34,22 @@ import com.ayudarg.validators.ValidatorFormIsEmpty;
 @Controller
 public class RegistrarseController {
 
-	// private static final Logger logger =
-	// LoggerFactory.getLogger(RegistraseController.class);
+	private GeoService serviceGeo;
+
+	@Autowired(required = true)
+	@Qualifier(value = "GeoService")
+	public void setGeoServicee(GeoService ps) {
+		this.setServiceGeo(ps);
+	}
+
+	public GeoService getServiceGeo() {
+		return serviceGeo;
+	}
+
+	public void setServiceGeo(GeoService serviceGeo) {
+		this.serviceGeo = serviceGeo;
+	}	
+	
 	private UsuarioService serviceUsuarios;
 
 	public UsuarioService getServiceUsuarios() {
@@ -57,20 +75,17 @@ public class RegistrarseController {
 	}
 
 	@RequestMapping(value="/submitRegistrar", method = RequestMethod.POST)
-	public String submitRegistrar(Model model, @ModelAttribute("registrarseBean") RegistrarseBean registrarseBean) {
-		
-		  
+	public String submitRegistrar(Model model, @ModelAttribute("registrarseBean") RegistrarseBean registrarseBean) {		  
 		HashMap<String, String> form = new HashMap<String, String>();
 		form.put("usuario", registrarseBean.getUsuario());
-		form.put("usuario", registrarseBean.getContrasenia());
-		form.put("usuario", registrarseBean.getNombre());
-		form.put("usuario", registrarseBean.getEmail());
-		form.put("usuario", registrarseBean.getCelular());
-		form.put("usuario", registrarseBean.getProvincia());
-		form.put("usuario", registrarseBean.getLocalidad());
+		form.put("contrasenia", registrarseBean.getContrasenia());
+		form.put("nombre", registrarseBean.getNombre());
+		form.put("email", registrarseBean.getEmail());
+		form.put("telefono", registrarseBean.getCelular());
+		form.put("fechaDeNacimiento", registrarseBean.getFechaDeNacimiento());
+		form.put("localidad", registrarseBean.getLocalidad());
 		ValidatorForm validate = new ValidatorFormIsEmpty();
 		validate.setValues(form);
-		
 		if (!(validate.validateString())){
 			
 			SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
@@ -82,12 +97,23 @@ public class RegistrarseController {
 			}
 			
 			serviceUsuarios.insertUsuario(registrarseBean.getUsuario(), registrarseBean.getContrasenia(),registrarseBean.getNombre(), registrarseBean.getEmail(), registrarseBean.getTelefono(), registrarseBean.getCelular(),
-					fecha, registrarseBean.getLocalidad());		
+					fecha, registrarseBean.getLocalidad());	
+			model.addAttribute("error", false);
 		    model.addAttribute("menssage", "Su registro fue exitoso y ya puede acceder a la plataforma.");
 			return "menssage";			
 		}else{
-		    model.addAttribute("menssage", validate.getError());
-			return "menssage";		
+			ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
+			model.addAttribute("provincias", provincias);
+			model.addAttribute("error", true);
+			model.addAttribute("usuario", registrarseBean.getUsuario());
+			model.addAttribute("contrasenia", registrarseBean.getContrasenia());
+			model.addAttribute("nombre", registrarseBean.getNombre());
+			model.addAttribute("email", registrarseBean.getEmail());
+			model.addAttribute("telefono", registrarseBean.getCelular());
+			model.addAttribute("fechaDeNacimiento", registrarseBean.getFechaDeNacimiento());
+			model.addAttribute("localidad", registrarseBean.getLocalidad());
+		    model.addAttribute("menssage", "Error: " + validate.getError());
+			return "Login";		
 		}
 
 	}

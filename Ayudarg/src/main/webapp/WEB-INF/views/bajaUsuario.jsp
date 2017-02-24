@@ -326,7 +326,7 @@ body {
 													<label class="col-md-3 control-label" for="usuario">Usuario
 														a modificar</label>
 													<div class="col-md-9">
-														<form:select path="idUsuario" multiple="false"
+														<form:select path="idUsuario" required="" multiple="false"
 															class="form-control"
 															onchange='cargarModificar("#modificarUsuario");'>
 															<form:option value="NONE" label="Seleccione..." />
