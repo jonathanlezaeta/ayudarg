@@ -3,6 +3,7 @@ package com.ayudarg.service;
 import java.util.Date;
 import java.util.List;
 
+import com.ayudarg.model.InstitucionSQL;
 import com.ayudarg.model.UsuarioSQL;
 
 public interface UsuarioService {
@@ -13,4 +14,5 @@ public interface UsuarioService {
 	public void updateUsuario(String idUsuario, String usuario, String contrasenia, String nombre, String email,
 			String telefono, String celular, Date fechaDeNacimiento, String localidadesId);
 	public void deleteUsuario(String idUsuario);
+	public void asignarInstitucion(UsuarioSQL usuario, InstitucionSQL institucion);
 }

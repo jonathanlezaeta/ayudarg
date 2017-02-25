@@ -1,6 +1,7 @@
 package com.ayudar.dao.impl;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -118,4 +119,17 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 		session.update(us);
 		session.flush();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void asignarInstitucion(UsuarioSQL usuario, InstitucionSQL institucion) {
+		Session session = this.sessionFactory.getCurrentSession();
+		HashSet<InstitucionSQL> inst = new HashSet<>();
+		inst.add(institucion);
+		usuario.setInstitucion(inst);
+		session.update(usuario);
+		session.flush();
+	}
+	
+	
 }

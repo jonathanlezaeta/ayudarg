@@ -12,5 +12,5 @@ public interface InstitucionService {
 	public List<InstitucionSQL> getInstitucionesByCategoriaByLocalidd(String idLocalidd, String[] categorias);
 	public void updateInstitucion(String institucion, String director, String ciudad, String tipo, String nombre, String direccion,
 			String telefono, String celular, String sitioWeb, String email, String localidadesId);
-	
+	public InstitucionSQL getInstitucionById(String idInstitucion);
 }

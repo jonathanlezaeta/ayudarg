@@ -116,9 +116,9 @@ body {
 					<li><a href="/app/bajaUsuario"><svg
 								class="glyph stroked line-graph"> <use
 								xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
-									<li><a href="/app/recurso"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="recurso"></use></svg> Recursos</a></li>
+					<li><a href="/app/recurso"><svg
+								class="glyph stroked line-graph"> <use
+								xlink:href="recurso"></use></svg> Recursos</a></li>
 				</ul>
 			</c:when>
 			<c:when test="${rol.equals('U')}">
@@ -154,9 +154,9 @@ body {
 					<li><a href="/app/bajaUsuario"><svg
 								class="glyph stroked line-graph"> <use
 								xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
-									<li><a href="/app/recurso"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="recurso"></use></svg> Recursos</a></li>
+					<li><a href="/app/recurso"><svg
+								class="glyph stroked line-graph"> <use
+								xlink:href="recurso"></use></svg> Recursos</a></li>
 				</ul>
 			</c:when>
 		</c:choose>
@@ -176,8 +176,7 @@ body {
 						<div class="container">
 							<div id="exTab2" class="col-md-10">
 								<ul class="nav nav-tabs">
-									<li class="active">
-									<a href="#1" data-toggle="tab">Registar</a></li>
+									<li class="active"><a href="#1" data-toggle="tab">Registar</a></li>
 									<li><a href="#2" data-toggle="tab">Eliminar</a></li>
 									<li><a href="#3" data-toggle="tab">Modificar</a></li>
 									<li><a href="#4" data-toggle="tab">Asignar Institucion</a></li>
@@ -206,7 +205,8 @@ body {
 													<label class="col-md-3 control-label" for="contrasenia">Contraseña</label>
 													<div class="col-md-9">
 														<input id="contrasenia" name="contrasenia" type="password"
-															placeholder="Ingrese contraseña" class="form-control" required="">
+															placeholder="Ingrese contraseña" class="form-control"
+															required="">
 													</div>
 												</div>
 
@@ -215,7 +215,8 @@ body {
 													<label class="col-md-3 control-label" for="nombre">Nombre</label>
 													<div class="col-md-9">
 														<input id="nombre" name="nombre" type="text"
-															placeholder="Ingrese nombre" class="form-control" required="">
+															placeholder="Ingrese nombre" class="form-control"
+															required="">
 													</div>
 												</div>
 
@@ -224,7 +225,8 @@ body {
 													<label class="col-md-3 control-label" for="email">Email</label>
 													<div class="col-md-9">
 														<input id="email" name="email" type="email"
-															placeholder="Ingrese email" class="form-control" required="">
+															placeholder="Ingrese email" class="form-control"
+															required="">
 													</div>
 												</div>
 
@@ -233,7 +235,8 @@ body {
 													<label class="col-md-3 control-label" for="telefono">Telefono</label>
 													<div class="col-md-9">
 														<input id="telefono" name="telefono" type="text"
-															placeholder="Ingrese telefono" class="form-control" required="">
+															placeholder="Ingrese telefono" class="form-control"
+															required="">
 													</div>
 												</div>
 
@@ -336,8 +339,8 @@ body {
 															class="form-control"
 															onchange='cargarModificar("#modificarUsuario");'>
 															<form:option value="NONE" label="Seleccione..." />
-															<form:options items="${usuario}" itemValue="idUsuario" required=""
-																itemLabel="nombre" />
+															<form:options items="${usuario}" itemValue="idUsuario"
+																required="" itemLabel="nombre" />
 														</form:select>
 													</div>
 												</div>
@@ -346,8 +349,8 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="contrasenia">Contraseña</label>
 													<div class="col-md-9">
-														<input id="contrasenia" name="contrasenia" type="password" required=""
-															placeholder="Ingrese nueva contraseña"
+														<input id="contrasenia" name="contrasenia" type="password"
+															required="" placeholder="Ingrese nueva contraseña"
 															class="form-control">
 													</div>
 												</div>
@@ -374,8 +377,9 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="telefono">Telefono</label>
 													<div class="col-md-9">
-														<input id="telefono" name="telefono" type="text" required=""
-															placeholder="Ingrese nuevo telefono" class="form-control">
+														<input id="telefono" name="telefono" type="text"
+															required="" placeholder="Ingrese nuevo telefono"
+															class="form-control">
 													</div>
 												</div>
 
@@ -433,16 +437,36 @@ body {
 											</fieldset>
 										</form:form>
 									</div>
-											
-											
+
+
 									<div class="tab-pane" id="4">
 										<form:form id="asignarForm" method="post"
 											action="submitAsignarInstitucion"
 											modelAttribute="asignarBean" class="form-signin">
 											<fieldset>
-											
-					
 
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="usuario">Usuario
+														a modificar</label>
+													<div class="col-md-9">
+														<form:select path="usuario" required="" multiple="false"
+															class="form-control">
+															<form:options items="${usuario}" itemValue="idUsuario"
+																required="" itemLabel="nombre" />
+														</form:select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="usuario">Usuario
+														a modificar</label>
+													<div class="col-md-9">
+														<form:select path="institucion" required="" multiple="false"
+															class="form-control">
+															<form:options items="${instituciones}" itemValue="idInstitucion"
+																required="" itemLabel="nombre" />
+														</form:select>
+													</div>
+												</div>
 
 												<!-- Form actions -->
 												<div class="form-group">
@@ -454,14 +478,14 @@ body {
 											</fieldset>
 										</form:form>
 									</div>
-											
-											
-											
-											
-											
-											
-											
-								</div>		
+
+
+
+
+
+
+
+								</div>
 							</div>
 						</div>
 						<script

@@ -53,4 +53,9 @@ public class InstitucionServiceImpl implements InstitucionService{
 		return institucionDao.getInstitucionesByCategoriaByLocalidd(idLocalidd, categorias);
 	}
 	
+	@Override
+	public InstitucionSQL getInstitucionById(String idInstitucion){
+		return institucionDao.getInstitucionById(idInstitucion);
+	}
+	
 }

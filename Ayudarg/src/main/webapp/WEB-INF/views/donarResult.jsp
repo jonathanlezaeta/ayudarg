@@ -130,14 +130,14 @@ body {
 									<h2>
 										<p>${element.nombre}</p>
 									</h2>
-									<p>Direccion: ${element.direccion}</p>
+									<p>Dirección: ${element.direccion}</p>
+									<p>Email: ${element.email}</p>
+									<p>Teléfono: ${element.telefono}</p>
+									<p>Web: ${element.sitioWeb}</p>
 								</div>
 							</div>
-							<!-- 							<div class="col-md-1"></div> -->
-
 						</div>
 					</div>
-
 				</div>
 			</c:forEach>
 		</div>

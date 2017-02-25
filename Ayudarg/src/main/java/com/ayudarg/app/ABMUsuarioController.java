@@ -23,16 +23,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ayudar.view.beans.AsignarBean;
 import com.ayudar.view.beans.CategoriaBean;
 import com.ayudar.view.beans.InstitucionBean;
 import com.ayudar.view.beans.OptionBean;
 import com.ayudar.view.beans.UsuarioBajaBean;
 import com.ayudar.view.beans.UsuarioBean;
 import com.ayudarg.model.Categoria;
+import com.ayudarg.model.InstitucionSQL;
 import com.ayudarg.model.LocalidadesSQL;
 import com.ayudarg.model.ProvinciasSQL;
 import com.ayudarg.model.UsuarioSQL;
 import com.ayudarg.service.GeoService;
+import com.ayudarg.service.InstitucionService;
 import com.ayudarg.service.UsuarioService;
 import com.google.gson.Gson;
 
@@ -46,7 +49,8 @@ public class ABMUsuarioController {
 	// LoggerFactory.getLogger(RegistraseController.class);
 	private UsuarioService serviceUsuarios;
 	private GeoService serviceGeo;
-
+	private InstitucionService servicesInst;
+	
 	public UsuarioService getServiceUsuarios() {
 		return serviceUsuarios;
 	}
@@ -66,6 +70,12 @@ public class ABMUsuarioController {
 	public void setGeoServicee(GeoService ol) {
 		this.serviceGeo = ol;
 	}
+	
+	@Autowired(required = true)
+	@Qualifier(value = "InstitucionService")
+	public void setInstitucionesServicee(InstitucionService inst) {
+		this.servicesInst = inst;
+	}
 
 	public GeoService getServiceGeo() {
 		return serviceGeo;
@@ -78,13 +88,16 @@ public class ABMUsuarioController {
 	@RequestMapping(value = "/bajaUsuario", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest request) {
 			HttpSession session = request.getSession();
-			ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
+			ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias(); 
 			ArrayList<UsuarioSQL> usuarios = (ArrayList<UsuarioSQL>) serviceUsuarios.listUsuarios();
+			List<InstitucionSQL> instituciones =  servicesInst.listInstituciones();
 			model.addAttribute("usuario", usuarios);
 			model.addAttribute("provincias", provincias);
 			model.addAttribute("rol", session.getAttribute("rol"));
 			model.addAttribute("usuarioBajaBean", new UsuarioBajaBean());
+			model.addAttribute("asignarBean", new AsignarBean());
 			model.addAttribute("usuarioBean", new UsuarioBean());
+			model.addAttribute("instituciones", instituciones);
 			if(session.getAttribute("usuario")!= null){
 				return "bajaUsuario";
 			}else{
@@ -129,5 +142,13 @@ public class ABMUsuarioController {
 	    model.addAttribute("menssage", "Su registro fue exitoso y ya puede acceder a la plataforma.");
 		return "menssage";	
 	}
-
+	
+	@RequestMapping(value="/submitAsignarInstitucion", method = RequestMethod.POST)
+	public String submitAsignarInstitucion(Model model, @ModelAttribute("asignarBean") AsignarBean asignarBean) {
+		InstitucionSQL institucion = servicesInst.getInstitucionById(asignarBean.getInstitucion());
+		UsuarioSQL usuario = serviceUsuarios.getUsuarioById(asignarBean.getUsuario());
+		serviceUsuarios.asignarInstitucion(usuario, institucion);
+	    model.addAttribute("menssage", "Su registro fue exitoso y ya puede acceder a la plataforma.");
+		return "menssage";	
+	}
 }

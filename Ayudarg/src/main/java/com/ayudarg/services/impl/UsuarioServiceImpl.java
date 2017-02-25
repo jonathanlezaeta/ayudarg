@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ayudarg.dao.LocalidadesDAO;
 import com.ayudarg.dao.ProvinciasDAO;
 import com.ayudarg.dao.UsuarioDAO;
+import com.ayudarg.model.InstitucionSQL;
 import com.ayudarg.model.UsuarioSQL;
 import com.ayudarg.service.UsuarioService;
 @Transactional
@@ -43,6 +44,11 @@ public class UsuarioServiceImpl implements UsuarioService{
 	public void updateUsuario(String idUsuario, String usuario, String contrasenia, String nombre, String email,
 			String telefono, String celular, Date fechaDeNacimiento, String localidadesId) {
 		usuarioDao.updateUsuario(idUsuario, usuario, contrasenia, nombre, email, telefono, celular, fechaDeNacimiento, localidadesId);
+	}
+	
+	@Override
+	public void asignarInstitucion(UsuarioSQL usuario, InstitucionSQL institucion) {
+		usuarioDao.asignarInstitucion(usuario, institucion);
 	}
 	
 	public void deleteUsuario(String idUsuario){
