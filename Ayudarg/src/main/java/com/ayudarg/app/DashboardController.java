@@ -1,5 +1,6 @@
 package com.ayudarg.app;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -19,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ayudar.view.beans.LoginBean;
 import com.ayudar.view.beans.RegistrarseBean;
+import com.ayudarg.model.ProvinciasSQL;
 import com.ayudarg.model.Rol;
 import com.ayudarg.model.UsuarioSQL;
+import com.ayudarg.service.GeoService;
 import com.ayudarg.service.RolService;
 import com.ayudarg.service.UsuarioService;
 import com.ayudarg.validators.ValidatorForm;
@@ -31,7 +34,21 @@ public class DashboardController extends HttpServlet {
 	private static final long serialVersionUID = -3450969163801147075L;
 	private UsuarioService serviceUsuarios;
 	private RolService serviceRol;
-	
+	private GeoService serviceGeo;
+
+	@Autowired(required = true)
+	@Qualifier(value = "GeoService")
+	public void setGeoServicee(GeoService ps) {
+		this.setServiceGeo(ps);
+	}
+
+	public GeoService getServiceGeo() {
+		return serviceGeo;
+	}
+
+	public void setServiceGeo(GeoService serviceGeo) {
+		this.serviceGeo = serviceGeo;
+	}	
 	public UsuarioService getServiceUsuarios() {
 		return serviceUsuarios;
 	}
@@ -73,6 +90,7 @@ public class DashboardController extends HttpServlet {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String submit(Model model, @ModelAttribute("loginbean") LoginBean loginBean, HttpServletRequest request) {
+		ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
 		HashMap<String, String> form = new HashMap<String, String>();
 		form.put("usuario", loginBean.getUsuario());
 		form.put("contrasenia", loginBean.getContrasenia());
@@ -95,6 +113,7 @@ public class DashboardController extends HttpServlet {
 			}			
 		}else{
 			model.addAttribute("registrarseBean", new RegistrarseBean());
+			model.addAttribute("provincias", provincias);
 			model.addAttribute("error", false);
 			model.addAttribute("menssageLogin", "Error: ingrese su mail y contraseña.");
 			return "Login";

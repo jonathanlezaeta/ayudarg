@@ -273,7 +273,16 @@ body {
 														</form:select>
 													</div>
 												</div>
-
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="usuario">Roles</label>
+													<div class="col-md-9">
+														<form:select path="roles" required="" multiple="false"
+															class="form-control" id="selectroles">
+															<form:options items="${roles}" itemValue="idRol"
+																itemLabel="nombre" />
+														</form:select>
+													</div>
+												</div>
 												<!-- Form actions -->
 												<div class="form-group">
 													<div class="col-md-12 widget-right">
@@ -418,7 +427,16 @@ body {
 														</form:select>
 													</div>
 												</div>
-
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="usuario">Roles</label>
+													<div class="col-md-9">
+														<form:select path="roles" required="" multiple="false"
+															class="form-control" id="selectroles">
+															<form:options items="${roles}" itemValue="idRol"
+																itemLabel="nombre" />
+														</form:select>
+													</div>
+												</div>
 												<!-- Form actions -->
 												<div class="form-group">
 													<div class="col-md-12 widget-right">
@@ -452,10 +470,10 @@ body {
 													<label class="col-md-3 control-label" for="usuario">Usuario
 														a modificar</label>
 													<div class="col-md-9">
-														<form:select path="institucion" required="" multiple="false"
-															class="form-control">
-															<form:options items="${instituciones}" itemValue="idInstitucion"
-																required="" itemLabel="nombre" />
+														<form:select path="institucion" required=""
+															multiple="false" class="form-control">
+															<form:options items="${instituciones}"
+																itemValue="idInstitucion" required="" itemLabel="nombre" />
 														</form:select>
 													</div>
 												</div>

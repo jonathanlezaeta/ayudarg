@@ -33,9 +33,11 @@ import com.ayudarg.model.Categoria;
 import com.ayudarg.model.InstitucionSQL;
 import com.ayudarg.model.LocalidadesSQL;
 import com.ayudarg.model.ProvinciasSQL;
+import com.ayudarg.model.Rol;
 import com.ayudarg.model.UsuarioSQL;
 import com.ayudarg.service.GeoService;
 import com.ayudarg.service.InstitucionService;
+import com.ayudarg.service.RolService;
 import com.ayudarg.service.UsuarioService;
 import com.google.gson.Gson;
 
@@ -45,11 +47,10 @@ import com.google.gson.Gson;
 @Controller
 public class ABMUsuarioController {
 
-	// private static final Logger logger =
-	// LoggerFactory.getLogger(RegistraseController.class);
 	private UsuarioService serviceUsuarios;
 	private GeoService serviceGeo;
 	private InstitucionService servicesInst;
+	private RolService servicesRol;
 	
 	public UsuarioService getServiceUsuarios() {
 		return serviceUsuarios;
@@ -57,6 +58,10 @@ public class ABMUsuarioController {
 
 	public void setServiceUsuarios(UsuarioService serviceUsuarios) {
 		this.serviceUsuarios = serviceUsuarios;
+	}
+	
+	public RolService getServiceRol() {
+		return servicesRol;
 	}
 
 	@Autowired(required = true)
@@ -76,6 +81,12 @@ public class ABMUsuarioController {
 	public void setInstitucionesServicee(InstitucionService inst) {
 		this.servicesInst = inst;
 	}
+	
+	@Autowired(required = true)
+	@Qualifier(value = "RolService")
+	public void rolServicee(RolService rol) {
+		this.servicesRol = rol;
+	}
 
 	public GeoService getServiceGeo() {
 		return serviceGeo;
@@ -91,6 +102,7 @@ public class ABMUsuarioController {
 			ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias(); 
 			ArrayList<UsuarioSQL> usuarios = (ArrayList<UsuarioSQL>) serviceUsuarios.listUsuarios();
 			List<InstitucionSQL> instituciones =  servicesInst.listInstituciones();
+			List<Rol> roles = servicesRol.listRoles();
 			model.addAttribute("usuario", usuarios);
 			model.addAttribute("provincias", provincias);
 			model.addAttribute("rol", session.getAttribute("rol"));
@@ -98,6 +110,7 @@ public class ABMUsuarioController {
 			model.addAttribute("asignarBean", new AsignarBean());
 			model.addAttribute("usuarioBean", new UsuarioBean());
 			model.addAttribute("instituciones", instituciones);
+			model.addAttribute("roles", roles);
 			if(session.getAttribute("usuario")!= null){
 				return "bajaUsuario";
 			}else{
@@ -129,9 +142,10 @@ public class ABMUsuarioController {
 		} catch (ParseException ex) {
 		ex.printStackTrace();
 		}
+		Rol rol = servicesRol.getRolById(usuarioBean.getRoles());
 		serviceUsuarios.insertUsuario(usuarioBean.getUsuario(), usuarioBean.getContrasenia(),
 				usuarioBean.getNombre(), usuarioBean.getEmail(), usuarioBean.getTelefono(), usuarioBean.getCelular(),
-				fecha, usuarioBean.getLocalidad());			
+				fecha, usuarioBean.getLocalidad(), rol);			
 	    model.addAttribute("menssage", "Su registro fue exitoso y ya puede acceder a la plataforma.");
 		return "menssage";	
 	}

@@ -30,8 +30,6 @@ public class Categoria {
 	private int idCategoria;
 	private String nombre;
 	private Date fechaCreacion;
-//	private int categoriaIdCategoria;
-	
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "InstitucionHasCategoria", 
@@ -85,13 +83,7 @@ public class Categoria {
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-//	public int getCategoriaIdCategoria() {
-//		return categoriaIdCategoria;
-//	}
-//	public void setCategoriaIdCategoria(int categoriaIdCategoria) {
-//		this.categoriaIdCategoria = categoriaIdCategoria;
-//	}
-
+	
     @Override
     public String toString() {
         return "CategoriaBean [id=" + idCategoria + ", name=" + nombre + "]";

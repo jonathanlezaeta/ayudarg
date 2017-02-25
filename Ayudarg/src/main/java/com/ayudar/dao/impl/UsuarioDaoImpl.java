@@ -92,7 +92,7 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 
 	@Override
 	public void insertUsuario(String usuario, String contrasenia, String nombre, String email, String telefono,
-			String celular, Date fechaDeNacimiento, String localidadesId) {
+			String celular, Date fechaDeNacimiento, String localidadesId, Rol rol) {
 		Session session = this.sessionFactory.getCurrentSession();
 		LocalidadesSQL lq = new LocalidadesSQL();
 		lq.setLocalidadesId(Integer.parseInt(localidadesId));
@@ -106,6 +106,9 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 		us.setCelular(celular);
 		us.setFechaDeNacimiento(fechaDeNacimiento);
 		us.setLocalidadesId(lq);
+		HashSet<Rol> r = new HashSet<Rol>();
+		r.add(rol);
+		us.setRol(r);
         session.save(us);
         session.flush();
 	}
