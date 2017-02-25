@@ -106,10 +106,10 @@ public class DemandarController {
 	@RequestMapping(value = "/demandar", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		model.addAttribute("usuario", session.getAttribute("usuario"));
-		model.addAttribute("rol", session.getAttribute("rol"));
 		ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
 		ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
+		model.addAttribute("usuario", session.getAttribute("usuario"));
+		model.addAttribute("rol", session.getAttribute("rol"));
 		model.addAttribute("categoria", categorias);
 		model.addAttribute("demandarBean", new DemandarBean());
 		model.addAttribute("provincias", provincias);

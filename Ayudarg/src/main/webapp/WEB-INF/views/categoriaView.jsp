@@ -151,7 +151,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="ciudad">Categoria Padre</label>
 													<div class="col-md-9">
-														<form:select path="categoria" multiple="false"
+														<form:select path="categoria" required="" multiple="false"
 															class="form-control">
 															<form:option value="${categoria}" label="Seleccione la Categoria Padre" />
 															<form:options items="${categoria}"
@@ -206,7 +206,7 @@ body {
 
 									<div class="tab-pane" id="3">
 										<form:form id="altaCategoriaForm" method="post"
-											action="submitAltaCategoria" modelAttribute="categoriaBean"
+											action="submitUpdateCategoria" modelAttribute="categoriaBean"
 											class="form-signin">
 											<fieldset>
 												<!-- SubCategoria input-->

@@ -88,7 +88,6 @@ public class ABMCategoriaController {
 	
 	@RequestMapping(value="/submitUpdateCategoria", method = RequestMethod.POST)
 	public String submitUpdateCategoria(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean) {
-		serviceCategoria.deleteCategoria(categoriaBean.getCategoria());
 		return "modificadoCorrectamente";
 	}
 }

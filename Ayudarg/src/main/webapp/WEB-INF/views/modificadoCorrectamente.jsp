@@ -10,7 +10,7 @@
 	rel="stylesheet">
 <html>
 <head>
-<title>Modificacion Correcta</title>
+<title>Borrado Correcto</title>
 <style type="text/css">
 #mapa {
 	height: 500px;
@@ -19,7 +19,7 @@
 </head>
 <body>
 	<div class="container" style="width: 275px; margin-left: auto; margin-rigth: auto; margin-top: 50px;">
-		<h1>La modificacion se realizó correctamente.</h1>
+		<h1>Se ha eliminado correctamente.</h1>
 	</div>
 	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>

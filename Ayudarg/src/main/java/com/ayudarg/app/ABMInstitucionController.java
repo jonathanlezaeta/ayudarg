@@ -107,6 +107,6 @@ public class ABMInstitucionController {
 		serviceInstitucion.insertInstitucion(institucionBean.getDirector(), institucionBean.getCiudad(),
 				institucionBean.getTipo(), institucionBean.getNombre(), institucionBean.getDireccion(), institucionBean.getTelefono(),
 				institucionBean.getCelular(), institucionBean.getSitioWeb(), institucionBean.getEmail(), institucionBean.getLocalidad());
-		return "registrarseCorrectamente";
+		return "modificadoCorrectamente";
 	}
 }

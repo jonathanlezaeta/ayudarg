@@ -187,7 +187,7 @@ body {
 													<label class="col-md-3 control-label" for="nombre">Usuario</label>
 													<div class="col-md-9">
 														<input type="text" id="usuario" class="form-control"
-															placeholder="Ingrese un Nombre de Usuario" required=""
+															placeholder="Ingrese un Nombre de Usuario (Campo requerido)" required=""
 															autofocus="" name="usuario">
 													</div>
 												</div>
@@ -197,7 +197,7 @@ body {
 													<label class="col-md-3 control-label" for="contrasenia">Contraseña</label>
 													<div class="col-md-9">
 														<input id="contrasenia" name="contrasenia" type="password"
-															placeholder="Ingrese contraseña" class="form-control"
+															placeholder="Ingrese contraseña (Campo requerido)" class="form-control"
 															required="">
 													</div>
 												</div>
@@ -207,7 +207,7 @@ body {
 													<label class="col-md-3 control-label" for="nombre">Nombre</label>
 													<div class="col-md-9">
 														<input id="nombre" name="nombre" type="text"
-															placeholder="Ingrese nombre" class="form-control"
+															placeholder="Ingrese nombre (Campo requerido)" class="form-control"
 															required="">
 													</div>
 												</div>
@@ -217,7 +217,7 @@ body {
 													<label class="col-md-3 control-label" for="email">Email</label>
 													<div class="col-md-9">
 														<input id="email" name="email" type="email"
-															placeholder="Ingrese email" class="form-control"
+															placeholder="Ingrese email (Campo requerido)" class="form-control"
 															required="">
 													</div>
 												</div>
@@ -227,7 +227,7 @@ body {
 													<label class="col-md-3 control-label" for="telefono">Telefono</label>
 													<div class="col-md-9">
 														<input id="telefono" name="telefono" type="text"
-															placeholder="Ingrese telefono" class="form-control"
+															placeholder="Ingrese telefono (Campo requerido)" class="form-control"
 															required="">
 													</div>
 												</div>
@@ -247,12 +247,12 @@ body {
 														for="fechaDeNacimiento">Fecha de nacimiento</label>
 													<div class="col-md-9">
 														<input id="fechaDeNacimiento" name="fechaDeNacimiento"
-															type="date" placeholder="Ingrese fecha de nacimiento"
+															type="date" placeholder="Ingrese fecha de nacimiento (Campo requerido)"
 															class="form-control" required="">
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="col-md-3 control-label" for="usuario">Provincias</label>
+													<label class="col-md-3 control-label" for="usuario">Provincia</label>
 													<div class="col-md-9">
 														<form:select path="provincia" required="" multiple="false"
 															class="form-control" id='selectProvincias'
@@ -264,7 +264,7 @@ body {
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="col-md-3 control-label" for="usuario">Localidades</label>
+													<label class="col-md-3 control-label" for="usuario">Localidad</label>
 													<div class="col-md-9">
 														<form:select path="localidad" required="" multiple="false"
 															class="form-control" id="selectLocalidades">
@@ -274,7 +274,7 @@ body {
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="col-md-3 control-label" for="usuario">Roles</label>
+													<label class="col-md-3 control-label" for="usuario">Rol</label>
 													<div class="col-md-9">
 														<form:select path="roles" required="" multiple="false"
 															class="form-control" id="selectroles">
@@ -351,7 +351,7 @@ body {
 													<label class="col-md-3 control-label" for="contrasenia">Contraseña</label>
 													<div class="col-md-9">
 														<input id="contrasenia" name="contrasenia" type="password"
-															required="" placeholder="Ingrese nueva contraseña"
+															required="" placeholder="Ingrese nueva contraseña (Campo requerido)"
 															class="form-control">
 													</div>
 												</div>
@@ -361,7 +361,7 @@ body {
 													<label class="col-md-3 control-label" for="nombre">Nombre</label>
 													<div class="col-md-9">
 														<input id="nombre" name="nombre" type="text" required=""
-															placeholder="Ingrese nuevo nombre" class="form-control">
+															placeholder="Ingrese nuevo nombre (Campo requerido)" class="form-control">
 													</div>
 												</div>
 
@@ -370,7 +370,7 @@ body {
 													<label class="col-md-3 control-label" for="email">Email</label>
 													<div class="col-md-9">
 														<input id="email" name="email" type="email" required=""
-															placeholder="Ingrese nuevo email" class="form-control">
+															placeholder="Ingrese nuevo email (Campo requerido)" class="form-control">
 													</div>
 												</div>
 
@@ -379,7 +379,7 @@ body {
 													<label class="col-md-3 control-label" for="telefono">Telefono</label>
 													<div class="col-md-9">
 														<input id="telefono" name="telefono" type="text"
-															required="" placeholder="Ingrese nuevo telefono"
+															required="" placeholder="Ingrese nuevo telefono (Campo requerido)"
 															class="form-control">
 													</div>
 												</div>
@@ -389,7 +389,7 @@ body {
 													<label class="col-md-3 control-label" for="celular">Celular</label>
 													<div class="col-md-9">
 														<input id="celular" name="celular" type="text"
-															placeholder="Ingrese nuevo celular" class="form-control">
+															placeholder="Ingrese nuevo celular (Campo requerido)" class="form-control">
 													</div>
 												</div>
 
@@ -400,13 +400,13 @@ body {
 													<div class="col-md-9">
 														<input id="fechaDeNacimiento" name="fechaDeNacimiento"
 															type="date" required=""
-															placeholder="Ingrese nueva fecha de nacimiento"
+															placeholder="Ingrese nueva fecha de nacimiento (Campo requerido)"
 															class="form-control">
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-md-3 control-label" for="usuario">Provincias</label>
+													<label class="col-md-3 control-label" for="usuario">Provincia</label>
 													<div class="col-md-9">
 														<form:select path="provincia" required="" multiple="false"
 															class="form-control" id='selectProvincias'
@@ -418,7 +418,7 @@ body {
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="col-md-3 control-label" for="usuario">Localidades</label>
+													<label class="col-md-3 control-label" for="usuario">Localidad</label>
 													<div class="col-md-9">
 														<form:select path="localidad" required="" multiple="false"
 															class="form-control" id="selectLocalidades">
@@ -428,7 +428,7 @@ body {
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="col-md-3 control-label" for="usuario">Roles</label>
+													<label class="col-md-3 control-label" for="usuario">Rol</label>
 													<div class="col-md-9">
 														<form:select path="roles" required="" multiple="false"
 															class="form-control" id="selectroles">
@@ -456,8 +456,7 @@ body {
 											<fieldset>
 
 												<div class="form-group">
-													<label class="col-md-3 control-label" for="usuario">Usuario
-														a modificar</label>
+													<label class="col-md-3 control-label" for="usuario">Usuario</label>
 													<div class="col-md-9">
 														<form:select path="usuario" required="" multiple="false"
 															class="form-control">
@@ -467,8 +466,7 @@ body {
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="col-md-3 control-label" for="usuario">Usuario
-														a modificar</label>
+													<label class="col-md-3 control-label" for="usuario">Institucion a asignar</label>
 													<div class="col-md-9">
 														<form:select path="institucion" required=""
 															multiple="false" class="form-control">

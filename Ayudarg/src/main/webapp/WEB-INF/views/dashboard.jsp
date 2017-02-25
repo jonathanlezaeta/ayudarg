@@ -1,14 +1,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
-<link href="<c:url value="/resources/css/css/datepicker3.css" />"
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<link href="<c:url value="/resources/css/datepicker3.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/styles.css" />"
 	rel="stylesheet">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">0
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Bienvenidos a Ayudarg</title>
 <style>
 body {
@@ -17,30 +21,6 @@ body {
 	padding-top: 35px;
 }
 </style>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFvyRF6_-o3_xkrXKvW3M-2S0syJtVwu4&callback=initMap"></script>
-<script>
-		var map;
-      function initMap(map) {
-        var uluru = {lat: -25.363, lng: 131.044};
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-        addMarker(map);
-      }
-      function addMarker(map) {
-          var uluru = {lat: -29.363, lng: 90.044};
-          var marker = new google.maps.Marker({
-            position: uluru,
-            map: map
-          });	  
-      }
-
-    </script>
 </head>
 <body>
 
@@ -62,7 +42,7 @@ body {
 		<!-- /.container-fluid -->
 	</nav>
 
-	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<c:choose>
 			<c:when test="${rol.equals('A')}">
 				<ul class="nav menu">
@@ -126,136 +106,48 @@ body {
 				</ul>
 			</c:when>
 		</c:choose>
+		
 	</div>
-	<!--/.sidebar-->
-
+	 
+	 <!--/.sidebar-->
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-				<div id="map" style="width:100%;height:400px"></div>
 		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">Categorias</h1>
-			</div>
-		</div>
-		<!--/.row-->
-
-
-		<div class="row">
-			<div class="col-lg-12">
-
-			</div>
-		</div>
-		<!--/.row-->
-
-
-	</div>
-	<!--/.main-->
-
-	</div>
-	<!--/.main-->
-
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">Demandas</h1>
-			</div>
-		</div>
-		<!--/.row-->
-
-
-		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-md-12">
 				<div class="panel panel-default">
+					<div class="panel-heading">
+						<svg class="glyph stroked email">
+							<use xlink:href="#stroked-email"></use></svg>
+						Somos Ayudarg
+					</div>
 					<div class="panel-body">
-						<div class="icon-grid">
-							<div class="col-lg-3 col-md-4 col-sm-6">
-								<svg class="glyph stroked app window with content">
-									<use xlink:href="#stroked-app-window-with-content" /></svg>
-								<pre>&lt;svg class="glyph stroked app window with content">&lt;use xlink:href="#stroked-app-window-with-content"/>&lt;/svg></pre>
-							</div>
-							<div class="col-lg-3 col-md-4 col-sm-6">
-								<svg class="glyph stroked app-window">
-									<use xlink:href="#stroked-app-window"></use></svg>
-								<pre>&lt;svg class="glyph stroked app-window">&lt;use xlink:href="#stroked-app-window">&lt;/use>&lt;/svg></pre>
-							</div>
 
-						</div>
+						<label class="col-md-12 control-label" for="usuario">Muchos organismos internacionales consideran a las ONGs como instrumentos fundamentales para atacar la pobreza y fortalecer el desarrollo sostenido.
+
+Sin embargo, aunque se habla permanentemente de este tipo de entidades, muchos no saben con exactitud la labor que cumplen esos organismos.
+
+En este sentido, varias publicaciones consignan la clase de actividades que desarrollan las ONGs y definen su carácter.
+
+
+Aunque diversas entidades han hecho aproximaciones, la definición del Banco Mundial parece ser la que contiene la tipología implícita de lo que son ellas.
+
+En concepto de dicho banco las Organizaciones No Gubernamentales (ONGs), son entidades privadas que se dedican a aliviar sufrimientos, promover los intereses de los pobres, proteger el medio ambiente, proveer servicios sociales fundamentales o fomentar el desarrollo comunitario.
+
+
+Comprenden muchos grupos e instituciones total o parcialmente independientes del gobierno, cuyos objetivos son principalmente de índole humanitaria, más que comercial.
+
+Son entidades privadas en países industriales que apoyan el desarrollo internacional; grupos locales organizados en los planos regional o nacional y grupos comunitarios dirigidos por sus propios miembros.
+
+
+Las ONGs incluyen asociaciones religiosas y de beneficencia, que movilizan fondos privados para el desarrollo, proporcionan alimentos y servicios de planificación familiar y fomentan la organización comunitaria.
+
+También abarcan cooperativas independientes, asociaciones comunitarias, sociedades de usuarios de servicios públicos, grupos de mujeres y asociaciones pastorales.
+
+
+Así mismo, son Organizaciones No Gubernamentales los grupos cívicos que procuran que se tome conciencia de los problemas sociales y ambientales e influir en las políticas pertinentes .
+
+Según una publicación de Fundación Social, aunque esta definición es conceptualmente insuficiente ofrece una caracterización de diversas formas de ONGs, que aporta elementos para la elaboración de una tipología del fenómeno y para sectorizar su universo .</label>
+						
 					</div>
 				</div>
-			</div>
-		</div>
-		<!--/.row-->
-
-
-	</div>
-	<!--/.main-->
-
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">Donaciones</h1>
-			</div>
-		</div>
-		<!--/.row-->
-
-
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<div class="icon-grid">
-							<div class="col-lg-3 col-md-4 col-sm-6">
-								<svg class="glyph stroked app window with content">
-									<use xlink:href="#stroked-app-window-with-content" /></svg>
-								<pre>&lt;svg class="glyph stroked app window with content">&lt;use xlink:href="#stroked-app-window-with-content"/>&lt;/svg></pre>
-							</div>
-							<div class="col-lg-3 col-md-4 col-sm-6">
-								<svg class="glyph stroked app-window">
-									<use xlink:href="#stroked-app-window"></use></svg>
-								<pre>&lt;svg class="glyph stroked app-window">&lt;use xlink:href="#stroked-app-window">&lt;/use>&lt;/svg></pre>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--/.row-->
-
-
-	</div>
-	<!--/.main-->
-
-	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/chart.min.js"></script>
-	<script src="js/chart-data.js"></script>
-	<script src="js/easypiechart.js"></script>
-	<script src="js/easypiechart-data.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
-	<script>
-		!function($) {
-			$(document)
-					.on(
-							"click",
-							"ul.nav li.parent > a > span.icon",
-							function() {
-								$(this).find('em:first').toggleClass(
-										"glyphicon-minus");
-							});
-			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-		}(window.jQuery);
-
-		$(window).on('resize', function() {
-			if ($(window).width() > 768)
-				$('#sidebar-collapse').collapse('show')
-		})
-		$(window).on('resize', function() {
-			if ($(window).width() <= 767)
-				$('#sidebar-collapse').collapse('hide')
-		})
-	</script>
 </body>
-
 </html>
