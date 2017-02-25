@@ -35,14 +35,6 @@ body {
 				</button>
 				<a class="navbar-brand" href="#"><span>AYUD</span>ARG</a>
 				<ul class="user-menu">
-					<!-- 					<li class="dropdown pull-right"> -->
-					<!-- 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> User <span class="caret"></span></a> -->
-					<!-- 						<ul class="dropdown-menu" role="menu"> -->
-					<!-- 							<li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li> -->
-					<!-- 							<li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li> -->
-					<!-- 							<li><a href="#"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li> -->
-					<!-- 						</ul> -->
-					<!-- 					</li> -->
 				</ul>
 			</div>
 
@@ -62,7 +54,7 @@ body {
 						<use xlink:href="/donar"></use></svg> Donar</a></li>
 					<li><a href="/app/demandar"><svg
 								class="glyph stroked line-graph">
-						<use xlink:href="/demandar"></use></svg> Demandar</a></li>
+						<use xlink:href="/demandar"></use></svg> Solicitar un recurso</a></li>
 					<li><a href="/app/altaInstitucion"><svg
 								class="glyph stroked line-graph">
 						<use xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
@@ -71,10 +63,8 @@ body {
 						<use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
 					<li><a href="/app/bajaUsuario"><svg
 								class="glyph stroked line-graph">
-						<use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
-								<li><a href="/app/bajaUsuario"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="/bajaUsuario"></use></svg> Recursos</a></li>
+						<use xlink:href="recurso"></use></svg> Usuarios</a></li>
+
 				</ul>
 			</c:when>
 			<c:when test="${rol.equals('U')}">
@@ -100,7 +90,7 @@ body {
 						<use xlink:href="/donar"></use></svg> Donar</a></li>
 					<li><a href="/app/demandar"><svg
 								class="glyph stroked line-graph">
-						<use xlink:href="/demandar"></use></svg> Demandar</a></li>
+						<use xlink:href="/demandar"></use></svg> Solicitar un recurso</a></li>
 					<li><a href="/app/altaInstitucion"><svg
 								class="glyph stroked line-graph">
 						<use xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
@@ -110,80 +100,15 @@ body {
 					<li><a href="/app/bajaUsuario"><svg
 								class="glyph stroked line-graph">
 						<use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
-								<li><a href="/app/bajaUsuario"><svg
+								<li><a href="/app/recurso"><svg
 								class="glyph stroked line-graph">
-						<use xlink:href="/bajaUsuario"></use></svg> Recursos</a></li>
+						<use xlink:href="recurso"></use></svg> Recursos</a></li>
 				</ul>
 			</c:when>
 		</c:choose>
 	</div>
 		<!-- /.container-fluid -->
 	</nav>
-
-	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-		<c:choose>
-			<c:when test="${rol.equals('A')}">
-				<ul class="nav menu">
-					<li><a href="/app/dashboard"><svg
-								class="glyph stroked dashboard-dial">
-						<use xlink:href="/dashboard"></use></svg> Inicio</a></li>
-					<li><a href="/app/donar"><svg
-								class="glyph stroked calendar">
-						<use xlink:href="/donar"></use></svg> Donar</a></li>
-					<li><a href="/app/demandar"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="/demandar"></use></svg> Demandar</a></li>
-					<li><a href="/app/altaInstitucion"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
-					<li><a href="/app/altaCategoria"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
-					<li><a href="/app/bajaUsuario"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
-				</ul>
-			</c:when>
-			<c:when test="${rol.equals('U')}">
-				<ul class="nav menu">
-					<li><a href="/app/dashboard"><svg
-								class="glyph stroked dashboard-dial">
-						<use xlink:href="/dashboard"></use></svg> Inicio</a></li>
-					<li><a href="/app/donar"><svg
-								class="glyph stroked calendar">
-						<use xlink:href="/donar"></use></svg> Donar</a></li>
-					<li><a href="/app/demandar"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="/demandar"></use></svg>Solicitar un recurso</a></li>
-				</ul>
-			</c:when>
-			<c:when test="${rol.equals('I')}">
-				<ul class="nav menu">
-					<li><a href="/app/dashboard"><svg
-								class="glyph stroked dashboard-dial">
-						<use xlink:href="/dashboard"></use></svg> Inicio</a></li>
-					<li><a href="/app/donar"><svg
-								class="glyph stroked calendar">
-						<use xlink:href="/donar"></use></svg> Donar</a></li>
-					<li><a href="/app/demandar"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="/demandar"></use></svg> Demandar</a></li>
-					<li><a href="/app/altaInstitucion"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
-					<li><a href="/app/altaCategoria"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
-					<li><a href="/app/bajaUsuario"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
-				</ul>
-			</c:when>
-		</c:choose>
-
-
-
-	</div>
 	<!--/.sidebar-->
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
@@ -224,11 +149,11 @@ body {
 
 												<!-- SubCategoria input-->
 												<div class="form-group">
-													<label class="col-md-3 control-label" for="ciudad">Subcategoria</label>
+													<label class="col-md-3 control-label" for="ciudad">Categoria Padre</label>
 													<div class="col-md-9">
 														<form:select path="categoria" multiple="false"
 															class="form-control">
-															<form:option value="${categoria}" label="Seleccione su Subcategoria" />
+															<form:option value="${categoria}" label="Seleccione la Categoria Padre" />
 															<form:options items="${categoria}"
 																itemValue="idCategoria" itemLabel="nombre" />
 														</form:select>
@@ -309,11 +234,11 @@ body {
 												
 												<!-- SubCategoria input-->
 												<div class="form-group">
-													<label class="col-md-3 control-label" for="ciudad">Subcategoria</label>
+													<label class="col-md-3 control-label" for="ciudad">Categoria Padre</label>
 													<div class="col-md-9">
 														<form:select path="categoria" multiple="false"
 															class="form-control">
-															<form:option value="${categoria}" label="Seleccione su Subcategoria" />
+															<form:option value="${categoria}" label="Seleccione la Categoria Padre" />
 															<form:options items="${categoria}"
 																itemValue="idCategoria" itemLabel="nombre" />
 														</form:select>
