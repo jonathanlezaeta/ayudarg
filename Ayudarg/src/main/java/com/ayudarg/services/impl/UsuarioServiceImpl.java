@@ -60,4 +60,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 	public UsuarioSQL getUsuarioById(String id) {
 		return usuarioDao.getUsuarioById(id);
 	}
+
+	@Override
+	public UsuarioSQL getUsuarioByEmail(String email) {
+		return usuarioDao.getUsuarioByEmail(email);
+	}
 }

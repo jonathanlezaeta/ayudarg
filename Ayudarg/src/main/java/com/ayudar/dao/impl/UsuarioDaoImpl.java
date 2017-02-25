@@ -50,9 +50,9 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public UsuarioSQL getUsuarioByEmail(String id) {
+	public UsuarioSQL getUsuarioByEmail(String email) {
 		Session session = this.sessionFactory.getCurrentSession();
-		UsuarioSQL u = (UsuarioSQL) session.createQuery("from UsuarioSQL WHERE email='"+id+"' AND activo=1").uniqueResult();
+		UsuarioSQL u = (UsuarioSQL) session.createQuery("from UsuarioSQL WHERE email='"+email+"' AND activo=1").uniqueResult();
 		return u;
 	}
 	

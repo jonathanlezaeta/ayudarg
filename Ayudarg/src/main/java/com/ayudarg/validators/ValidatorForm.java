@@ -7,7 +7,7 @@ public abstract class ValidatorForm {
 	protected HashMap<String, String> values;
 	protected String error;
 	
-	public abstract boolean validateString();
+	public abstract boolean validate();
 
 	public HashMap<String, String> getValues() {
 		return values;

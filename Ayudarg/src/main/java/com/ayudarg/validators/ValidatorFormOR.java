@@ -12,8 +12,8 @@ public class ValidatorFormOR extends ValidatorForm{
 	}
 	
 	@Override
-	public boolean validateString() {
-		return v1.validateString() || v2.validateString();
+	public boolean validate() {
+		return v1.validate() || v2.validate();
 	}
 	
 }

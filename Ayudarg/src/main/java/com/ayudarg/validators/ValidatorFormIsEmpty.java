@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 public class ValidatorFormIsEmpty extends ValidatorForm {
 
 	@Override
-	public boolean validateString() {
+	public boolean validate() {
 		for (Entry<String, String> clave : values.entrySet()) {
 			if (clave.getValue() != null) {
 				if (clave.getValue().isEmpty()) {

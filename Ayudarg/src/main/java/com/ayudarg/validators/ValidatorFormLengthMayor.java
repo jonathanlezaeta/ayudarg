@@ -19,7 +19,7 @@ public class ValidatorFormLengthMayor extends ValidatorForm{
 	}
 	
 	@Override
-	public boolean validateString() {
+	public boolean validate() {
 		for (Entry<String, String> clave : values.entrySet()) {
 			   if(Integer.parseInt(clave.getValue()) > val){
 				   error = "El campo "+ clave.getKey() + "no puede ser menor a "+ val + ".";

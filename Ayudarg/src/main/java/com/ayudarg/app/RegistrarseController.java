@@ -20,7 +20,9 @@ import com.ayudarg.model.ProvinciasSQL;
 import com.ayudarg.model.Rol;
 import com.ayudarg.service.GeoService;
 import com.ayudarg.service.UsuarioService;
+import com.ayudarg.validators.ValidatorExisteUsuario;
 import com.ayudarg.validators.ValidatorForm;
+import com.ayudarg.validators.ValidatorFormCompuesto;
 import com.ayudarg.validators.ValidatorFormIsEmpty;
 
 @Controller
@@ -67,15 +69,20 @@ public class RegistrarseController {
 	public String submitRegistrar(Model model, @ModelAttribute("registrarseBean") RegistrarseBean registrarseBean) {
 		HashMap<String, String> form = new HashMap<String, String>();
 		form.put("usuario", registrarseBean.getUsuario());
-		form.put("contrasenia", registrarseBean.getContrasenia());
-		form.put("nombre", registrarseBean.getNombre());
+		form.put("contraseña", registrarseBean.getContrasenia());
+		form.put("nombre ", registrarseBean.getNombre());
 		form.put("email", registrarseBean.getEmail());
 		form.put("telefono", registrarseBean.getCelular());
-		form.put("fechaDeNacimiento", registrarseBean.getFechaDeNacimiento());
+		form.put("fecha deNacimiento", registrarseBean.getFechaDeNacimiento());
 		form.put("localidad", registrarseBean.getLocalidad());
-		ValidatorForm validate = new ValidatorFormIsEmpty();
-		validate.setValues(form);
-		if (!(validate.validateString())) {
+		ValidatorForm validateVacio = new ValidatorFormIsEmpty();
+		ValidatorForm validateExisteUsuario = new ValidatorExisteUsuario(serviceUsuarios);
+		ArrayList<ValidatorForm> validadores = new ArrayList<ValidatorForm>();
+		validadores.add(validateVacio);
+		validadores.add(validateExisteUsuario);
+		ValidatorForm validador = new ValidatorFormCompuesto(validadores);
+		validador.setValues(form);
+		if (!(validador.validate())) {
 			String f = null;
 			Date dtDob = new Date(registrarseBean.getFechaDeNacimiento());
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -112,7 +119,7 @@ public class RegistrarseController {
 			model.addAttribute("telefono", registrarseBean.getCelular());
 			model.addAttribute("fechaDeNacimiento", registrarseBean.getFechaDeNacimiento());
 			model.addAttribute("localidad", registrarseBean.getLocalidad());
-			model.addAttribute("menssage", "Error: " + validate.getError());
+			model.addAttribute("menssage", "Error: " + validador.getError());
 			return "Login";
 		}
 	}

@@ -16,4 +16,5 @@ public interface UsuarioService {
 			String telefono, String celular, Date fechaDeNacimiento, String localidadesId);
 	public void deleteUsuario(String idUsuario);
 	public void asignarInstitucion(UsuarioSQL usuario, InstitucionSQL institucion);
+	public UsuarioSQL getUsuarioByEmail(String email);
 }

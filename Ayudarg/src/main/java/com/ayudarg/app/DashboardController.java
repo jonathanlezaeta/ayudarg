@@ -96,7 +96,7 @@ public class DashboardController extends HttpServlet {
 		form.put("contrasenia", loginBean.getContrasenia());
 		ValidatorForm validate = new ValidatorFormIsEmpty();
 		validate.setValues(form);
-		if (!(validate.validateString())){
+		if (!(validate.validate())){
 			UsuarioSQL usuario = serviceUsuarios.usuarioByUsernameAndPassword(loginBean.getUsuario(), loginBean.getContrasenia());
 			if(usuario != null ){
 				HttpSession session = request.getSession(true);
