@@ -104,9 +104,9 @@ public class RegistrarseController {
 			ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
 			model.addAttribute("provincias", provincias);
 			model.addAttribute("error", false);
-			model.addAttribute("menssage", "Felicitaciones ya puede acceder a Ayudarg!");
-			model.addAttribute("email", registrarseBean.getEmail());
-			model.addAttribute("contrasenia", registrarseBean.getContrasenia());
+			model.addAttribute("menssageLogin", "Felicitaciones ya puede acceder a Ayudarg!");
+			model.addAttribute("emailLogin", registrarseBean.getEmail());
+			model.addAttribute("contraseniaLogin", registrarseBean.getContrasenia());
 			return "Login";
 		} else {
 			ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
@@ -116,7 +116,7 @@ public class RegistrarseController {
 			model.addAttribute("contrasenia", registrarseBean.getContrasenia());
 			model.addAttribute("nombre", registrarseBean.getNombre());
 			model.addAttribute("email", registrarseBean.getEmail());
-			model.addAttribute("telefono", registrarseBean.getCelular());
+			model.addAttribute("telefono", registrarseBean.getTelefono());
 			model.addAttribute("fechaDeNacimiento", registrarseBean.getFechaDeNacimiento());
 			model.addAttribute("localidad", registrarseBean.getLocalidad());
 			model.addAttribute("menssage", "Error: " + validador.getError());

@@ -124,11 +124,11 @@ public class ABMUsuarioController {
 		Gson gson = new Gson();
 		UsuarioSQL usuario = serviceUsuarios.getUsuarioById(usuarioBean.getIdUsuario());
 		UsuarioBean usuariobean = new UsuarioBean();
-		usuariobean.setContrasenia(usuario.getContrasenia());
+		usuariobean.setContrasenia(usuario.getContrasenia().toString());
 		usuariobean.setNombre(usuario.getNombre());
-		usuarioBean.setEmail(usuario.getEmail());
-		usuariobean.setTelefono(usuario.getTelefono());
-		usuarioBean.setCelular(usuario.getCelular());
+		usuariobean.setEmail(usuario.getEmail());
+		usuariobean.setTelefono(usuario.getTelefono().toString());
+		usuariobean.setCelular(usuario.getCelular().toString());
 		String jsonInString = gson.toJson(usuarioBean);
 		return jsonInString;
 	}
@@ -162,7 +162,7 @@ public class ABMUsuarioController {
 		InstitucionSQL institucion = servicesInst.getInstitucionById(asignarBean.getInstitucion());
 		UsuarioSQL usuario = serviceUsuarios.getUsuarioById(asignarBean.getUsuario());
 		serviceUsuarios.asignarInstitucion(usuario, institucion);
-	    model.addAttribute("menssage", "La asignacion se realizó correctamente.");
+	    model.addAttribute("menssage", "La asignacion se realizï¿½ correctamente.");
 		return "menssage";	
 	}
 	

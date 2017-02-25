@@ -69,12 +69,12 @@ body {
 						<label for="inputEmail" class="sr-only">Email</label>
 						<input type="text" id="usuario" class="form-control"
 							placeholder="Email" required="" autofocus="" name="usuario"
-							value="${email}">
+							value="${emailLogin}">
 						<br>
 						<label for="inputPassword" class="sr-only">Contraseña</label>
 						<input type="password" id="contrasenia" class="form-control"
 							placeholder="Contraseña" required="" name="contrasenia"
-							value="${contrasenia}">
+							value="${contraseniaLogin}">
 						<br>
 						<div class="col-md-6">
 							<button class="btn btn-primary" type="submit"
@@ -134,7 +134,7 @@ body {
 					<br>
 					<label for="inputPassword" class="sr-only">Celular</label>
 					<input type="text" id="celular" class="form-control"
-						placeholder="Celular" required="" name="celular"
+						placeholder="Celular" name="celular"
 						value="${celular}">
 					<br>
 					<label for="inputPassword" class="sr-only">Fecha de

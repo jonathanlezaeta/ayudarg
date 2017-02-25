@@ -81,6 +81,4 @@ public class UsuarioBean {
 		this.roles = roles;
 	}
 
-	
-
 }

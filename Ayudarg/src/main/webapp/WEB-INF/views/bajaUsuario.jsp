@@ -45,13 +45,7 @@ function cargarModificar(value){
 		url: '/app/getUsuariosById', 
 		success: function(data) { 
 				var res = data; 
-				var options = '';
-				options += '<option value="">Seleccione su ciudad</option>';
-				$.each(data, function (index, value) {
-					options += '<option value="' +value.value + '">' +value.option + '</option>';
-				});
-				$("select[id=selectLocalidades]").html(options);
-//				}
+				document.getElementById("emailModificar").value= res.email;
 		},
 		error: function(e){ <!-- Si no ha podido conectar con el servidor -->
 			alert("Error en el servidor, por favor, intentalo de nuevo mas tarde");
@@ -369,7 +363,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="email">Email</label>
 													<div class="col-md-9">
-														<input id="email" name="email" type="email" required=""
+														<input id="emailModificar" name="email" type="email" required=""
 															placeholder="Ingrese nuevo email (Campo requerido)" class="form-control">
 													</div>
 												</div>
@@ -410,7 +404,7 @@ body {
 													<div class="col-md-9">
 														<form:select path="provincia" required="" multiple="false"
 															class="form-control" id='selectProvincias'
-															onchange='cargarLocalidades("#usuarioForm");'>
+															onchange='cargarLocalidades("#modificarUsuario");'>
 															<form:option value="NONE" label="Seleccione su provincia" />
 															<form:options items="${provincias}"
 																itemValue="idProvincia" itemLabel="provincia" />

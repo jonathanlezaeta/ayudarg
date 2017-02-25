@@ -2,7 +2,6 @@ package com.ayudarg.app;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
 
@@ -48,21 +47,22 @@ public class DashboardController extends HttpServlet {
 
 	public void setServiceGeo(GeoService serviceGeo) {
 		this.serviceGeo = serviceGeo;
-	}	
+	}
+
 	public UsuarioService getServiceUsuarios() {
 		return serviceUsuarios;
 	}
-	
+
 	@Autowired(required = true)
 	@Qualifier(value = "UsuarioService")
 	public void setServiceUsuarios(UsuarioService serviceUsuarios) {
 		this.serviceUsuarios = serviceUsuarios;
 	}
-	
+
 	public RolService getServiceRol() {
 		return serviceRol;
 	}
-	
+
 	@Autowired(required = true)
 	@Qualifier(value = "RolService")
 	public void setServiceRol(RolService serviceRol) {
@@ -79,14 +79,14 @@ public class DashboardController extends HttpServlet {
 	public String dashboard(Locale locale, Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		model.addAttribute("usuario", session.getAttribute("usuario"));
-		model.addAttribute("rol", session.getAttribute("rol"));		
-		if(session.getAttribute("usuario")!= null){
+		model.addAttribute("rol", session.getAttribute("rol"));
+		if (session.getAttribute("usuario") != null) {
 			return "dashboard";
-		}else{
-		    model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
+		} else {
+			model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
 			return "menssage";
 		}
-	}	
+	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String submit(Model model, @ModelAttribute("loginbean") LoginBean loginBean, HttpServletRequest request) {
@@ -96,29 +96,25 @@ public class DashboardController extends HttpServlet {
 		form.put("contrasenia", loginBean.getContrasenia());
 		ValidatorForm validate = new ValidatorFormIsEmpty();
 		validate.setValues(form);
-		if (!(validate.validate())){
-			UsuarioSQL usuario = serviceUsuarios.usuarioByUsernameAndPassword(loginBean.getUsuario(), loginBean.getContrasenia());
-			if(usuario != null ){
-				HttpSession session = request.getSession(true);
-				Iterator rolIterator = usuario.getRol().iterator();
-				while(rolIterator.hasNext()){
-					Rol rolAsignado = (Rol) rolIterator.next();
-					session.setAttribute("rol", rolAsignado.getNombre());
-					model.addAttribute("rol", rolAsignado.getNombre());
-				}
-				session.setAttribute("usuario",usuario);
-				return "dashboard";
-			}else{
-				return "errorLoginIncorrecto";
-			}			
-		}else{
+		UsuarioSQL usuario = serviceUsuarios.usuarioByUsernameAndPassword(loginBean.getUsuario(),
+				loginBean.getContrasenia());
+		if (!(validate.validate()) && usuario != null) {
+			HttpSession session = request.getSession(true);
+			Iterator rolIterator = usuario.getRol().iterator();
+			while (rolIterator.hasNext()) {
+				Rol rolAsignado = (Rol) rolIterator.next();
+				session.setAttribute("rol", rolAsignado.getNombre());
+				model.addAttribute("rol", rolAsignado.getNombre());
+			}
+			session.setAttribute("usuario", usuario);
+			return "dashboard";
+		} else {
 			model.addAttribute("registrarseBean", new RegistrarseBean());
 			model.addAttribute("provincias", provincias);
 			model.addAttribute("error", false);
-			model.addAttribute("menssageLogin", "Error: ingrese su mail y contraseña.");
+			model.addAttribute("menssageLogin", "Error: Usuario o contraseña incorrectos.");
 			return "Login";
 		}
-		
 
 	}
 
