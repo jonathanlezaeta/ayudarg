@@ -149,31 +149,39 @@
 							<fieldset>
 							
 								<td>
-								<label class="col-md-3 control-label" for="usuario">Elija la/s categorias</label>
+								<label class="col-md-3 control-label" for="usuario">Elija la/s categoria/s</label>
 								<form:checkboxes  path="idCategoria" items="${categoria}" itemValue="idCategoria" itemLabel="nombre" />
 								</td>					
 								
 								</br>
 								</br>
-								<label class="col-md-3 control-label" for="usuario">Elija la ubicacion</label>
+								
 								<div class="form-group">
+								<label class="col-md-3 control-label" for="usuario">Provincia</label>
+								<div class="col-md-9">
 									<form:select path="provincia" required="" multiple="false"
 										class="form-control" id='selectProvincias'
 										onchange='cargarLocalidades(this.value);'>
-										<form:option value="NONE" label="Seleccione su provincia" />
+										<form:option value="${provincias}" label="Seleccione su Provincia" />
 										<form:options items="${provincias}" itemValue="idProvincia"
 											itemLabel="provincia" />
 									</form:select>
 								</div>
-								</br>
-								</br>
+								</div>
+
+						
 								<div class="form-group">
+								<label class="col-md-3 control-label" for="usuario">Localidad</label>
+									<div class="col-md-9">
 									<form:select path="localidad" required="" multiple="false"
 										class="form-control" id="selectLocalidades">
+										<form:option value="${localidades}" label="Seleccione su Ciudad" />
 										<form:options items="${localidades}" itemValue="localidadesId"
 											itemLabel="localidad" />
 									</form:select>
 								</div>
+							</div>
+									
 								<div class="form-group">
 									<div class="col-md-12 widget-right">
 										<button type="submit"

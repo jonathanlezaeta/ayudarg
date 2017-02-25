@@ -264,7 +264,7 @@ body {
 
 
 												<div class="form-group">
-													<label class="col-md-3 control-label" for="usuario">Provincias</label>
+													<label class="col-md-3 control-label" for="usuario">Provincia</label>
 													<div class="col-md-9">
 														<form:select path="provincia" required="" multiple="false"
 															class="form-control" id='selectProvincias'
@@ -276,7 +276,7 @@ body {
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="col-md-3 control-label" for="usuario">Localidades</label>
+													<label class="col-md-3 control-label" for="usuario">Localidad</label>
 													<div class="col-md-9">
 														<form:select path="localidad" required="" multiple="false"
 															class="form-control" id="selectLocalidades">
@@ -424,7 +424,7 @@ body {
 
 
 												<div class="form-group">
-													<label class="col-md-3 control-label" for="usuario">Provincias</label>
+													<label class="col-md-3 control-label" for="usuario">Provincia</label>
 													<div class="col-md-9">
 														<form:select path="provincia" required="" multiple="false"
 															class="form-control" id='selectProvincias'
@@ -437,7 +437,7 @@ body {
 												</div>
 												
 												<div class="form-group">
-													<label class="col-md-3 control-label" for="usuario">Localidades</label>
+													<label class="col-md-3 control-label" for="usuario">Localidad</label>
 													<div class="col-md-9">
 														<form:select path="localidad" required="" multiple="false"
 															class="form-control" id="selectLocalidades">

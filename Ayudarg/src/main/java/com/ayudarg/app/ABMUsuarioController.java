@@ -162,7 +162,12 @@ public class ABMUsuarioController {
 		InstitucionSQL institucion = servicesInst.getInstitucionById(asignarBean.getInstitucion());
 		UsuarioSQL usuario = serviceUsuarios.getUsuarioById(asignarBean.getUsuario());
 		serviceUsuarios.asignarInstitucion(usuario, institucion);
-	    model.addAttribute("menssage", "Su registro fue exitoso y ya puede acceder a la plataforma.");
+	    model.addAttribute("menssage", "La asignacion se realizó correctamente.");
 		return "menssage";	
+	}
+	
+	@RequestMapping(value="/submitUpdateUsuario", method = RequestMethod.POST)
+	public String submitUpdateUsuario(Model model, @ModelAttribute("usuarioBajaBean") UsuarioBean usuarioBean) {
+		return "modificadoCorrectamente";	
 	}
 }
