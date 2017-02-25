@@ -10,6 +10,10 @@
 	rel="stylesheet">
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <html>
 <head>
 <title>Ayudarg</title>
@@ -39,7 +43,9 @@
 		});
 	}
 	
-
+	$( function() {
+	    $( "#fechaDeNacimiento" ).datepicker();
+	  } );
 </script>
 <style>
 body {
@@ -57,17 +63,18 @@ body {
 			<div class="login-panel panel panel-default">
 				<div class="panel-heading">Bienvenidos a Ayudarg</div>
 				<div class="panel-body">
-				<h4 style="color: red;">${menssageLogin}</h4>
-				<h4 style="color: red;">${menssage}</h4>
+					<h4 style="color: red;">${menssageLogin}</h4>
 					<form:form id="loginForm" method="post" action="dashboard"
 						modelAttribute="loginbean" class="form-signin">
 						<label for="inputEmail" class="sr-only">Email</label>
 						<input type="text" id="usuario" class="form-control"
-							placeholder="Email" required="" autofocus="" name="usuario" value="${email}">
+							placeholder="Email" required="" autofocus="" name="usuario"
+							value="${email}">
 						<br>
 						<label for="inputPassword" class="sr-only">Contraseña</label>
 						<input type="password" id="contrasenia" class="form-control"
-							placeholder="Contraseña" required="" name="contrasenia" value="${contrasenia}">
+							placeholder="Contraseña" required="" name="contrasenia"
+							value="${contrasenia}">
 						<br>
 						<div class="col-md-6">
 							<button class="btn btn-primary" type="submit"
@@ -132,7 +139,7 @@ body {
 					<br>
 					<label for="inputPassword" class="sr-only">Fecha de
 						Nacimiento (*)</label>
-					<input type="date" id="fechaDeNacimiento" class="form-control"
+					<input type="text" id="fechaDeNacimiento" class="form-control"
 						placeholder="Fecha de Nacimiento (Campo requerido)" required=""
 						name="fechaDeNacimiento" value="${fechaDeNacimiento}">
 					<br>

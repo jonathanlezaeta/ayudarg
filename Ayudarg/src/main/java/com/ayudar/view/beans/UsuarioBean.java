@@ -12,7 +12,7 @@ public class UsuarioBean {
 	private String fechaDeNacimiento;
 	private String provincia;
 	private String localidad;
-
+	private String roles;
 	
 	public String getUsuario() {
 		return usuario;
@@ -73,6 +73,12 @@ public class UsuarioBean {
 	}
 	public void setFechaDeNacimiento(String fechaDeNacimiento) {
 		this.fechaDeNacimiento = fechaDeNacimiento;
+	}
+	public String getRoles() {
+		return roles;
+	}
+	public void setRoles(String roles) {
+		this.roles = roles;
 	}
 
 	

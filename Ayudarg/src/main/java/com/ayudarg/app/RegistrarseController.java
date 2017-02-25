@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ayudar.view.beans.RegistrarseBean;
 import com.ayudarg.model.ProvinciasSQL;
+import com.ayudarg.model.Rol;
 import com.ayudarg.service.GeoService;
 import com.ayudarg.service.UsuarioService;
 import com.ayudarg.validators.ValidatorForm;
@@ -75,16 +76,24 @@ public class RegistrarseController {
 		ValidatorForm validate = new ValidatorFormIsEmpty();
 		validate.setValues(form);
 		if (!(validate.validateString())) {
-			SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+			String f = null;
+			Date dtDob = new Date(registrarseBean.getFechaDeNacimiento());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			f = sdf.format(dtDob);
 			Date fecha = null;
 			try {
-				fecha = formatoDelTexto.parse(registrarseBean.getFechaDeNacimiento());
-			} catch (ParseException ex) {
-				ex.printStackTrace();
+				fecha = sdf.parse(f);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			//Siempre seteo el Rol de Usuauario cuando se registran
+			Rol rol = new Rol();
+			rol.setIdRol(1);
+			rol.setNombre("U");
 			serviceUsuarios.insertUsuario(registrarseBean.getUsuario(), registrarseBean.getContrasenia(),
 					registrarseBean.getNombre(), registrarseBean.getEmail(), registrarseBean.getTelefono(),
-					registrarseBean.getCelular(), fecha, registrarseBean.getLocalidad());
+					registrarseBean.getCelular(), fecha, registrarseBean.getLocalidad(), rol);
 			ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
 			model.addAttribute("provincias", provincias);
 			model.addAttribute("error", false);

@@ -9,6 +9,7 @@ import com.ayudarg.dao.LocalidadesDAO;
 import com.ayudarg.dao.ProvinciasDAO;
 import com.ayudarg.dao.UsuarioDAO;
 import com.ayudarg.model.InstitucionSQL;
+import com.ayudarg.model.Rol;
 import com.ayudarg.model.UsuarioSQL;
 import com.ayudarg.service.UsuarioService;
 @Transactional
@@ -36,8 +37,8 @@ public class UsuarioServiceImpl implements UsuarioService{
 	
 
 	@Override
-	public void insertUsuario(String usuario, String contrasenia, String nombre, String email, String telefono, String celular, Date fechaDeCreacion, String localidadesId){
-		usuarioDao.insertUsuario(usuario, contrasenia, nombre, email, telefono, celular, fechaDeCreacion, localidadesId);
+	public void insertUsuario(String usuario, String contrasenia, String nombre, String email, String telefono, String celular, Date fechaDeCreacion, String localidadesId, Rol rol){
+		usuarioDao.insertUsuario(usuario, contrasenia, nombre, email, telefono, celular, fechaDeCreacion, localidadesId, rol);
 	}
 
 	@Override

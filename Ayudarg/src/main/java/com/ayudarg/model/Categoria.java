@@ -30,17 +30,6 @@ public class Categoria {
 	private int idCategoria;
 	private String nombre;
 	private Date fechaCreacion;
-//	private int categoriaIdCategoria;
-	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "RecursoHasCategoria", 
-	    joinColumns = { @JoinColumn(name = "recursoIdRecurso") }, 
-	    inverseJoinColumns = { @JoinColumn(name = "categoriaIdCategoria") })
-	private Set<RecursoSQL> recurso = new HashSet<RecursoSQL>(0);
-		
-	public Set<RecursoSQL> getRecurso() {
-		return recurso;
-	}
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "InstitucionHasCategoria", 
@@ -93,18 +82,6 @@ public class Categoria {
 	}
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
-	}
-//	public int getCategoriaIdCategoria() {
-//		return categoriaIdCategoria;
-//	}
-//	public void setCategoriaIdCategoria(int categoriaIdCategoria) {
-//		this.categoriaIdCategoria = categoriaIdCategoria;
-//	}
-	public Set<RecursoSQL> getRecursos() {
-		return recurso;
-	}
-	public void setRecurso(Set<RecursoSQL> recurso) {
-		this.recurso = recurso;
 	}
 	
     @Override
