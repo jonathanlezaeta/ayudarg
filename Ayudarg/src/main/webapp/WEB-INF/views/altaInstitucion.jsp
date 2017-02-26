@@ -165,6 +165,10 @@ body {
 					<div class="panel-body">
 						<h4 style="color: red;">${menssage}</h4>
 
+						<div class="col-md-10">
+							<h4 style="color:red;">${errorRegistrar}</h4>
+							</div>
+							
 						<div class="container">
 							<div id="exTab2" class="col-md-10">
 								<ul class="nav nav-tabs">
@@ -280,7 +284,7 @@ body {
 													<div class="col-md-9">
 														<form:select path="localidad" required="" multiple="false"
 															class="form-control" id="selectLocalidades">
-															<form:option value="${localidad}" label="Seleccione su Ciudad" />
+															<form:option value="${localidad}" label="Seleccione su Localidad" />
 															<form:options items="${localidades}"
 																itemValue="localidadesId" itemLabel="localidad" />
 														</form:select>
@@ -307,6 +311,7 @@ body {
 													<div class="col-md-9">
 														<form:select path="institucion" required=""
 															multiple="false" class="form-control">
+															<form:option value="" label="Seleccione una institucion" />
 															<form:options items="${institucion}"
 																itemValue="idInstitucion" itemLabel="nombre"  />
 														</form:select>
@@ -441,7 +446,7 @@ body {
 													<div class="col-md-9">
 														<form:select path="localidad" required="" multiple="false"
 															class="form-control" id="selectLocalidades">
-															<form:option value="${localidad}" label="Seleccione su Ciudad" />
+															<form:option value="${localidad}" label="Seleccione su Localidad" />
 															<form:options items="${localidades}"
 																itemValue="localidadesId" itemLabel="localidad" />
 														</form:select>
