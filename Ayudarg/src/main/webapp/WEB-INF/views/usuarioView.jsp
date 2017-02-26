@@ -55,7 +55,7 @@ function cargarModificar(value){
 				document.getElementById("telefonoModificar").value= res.telefono;
 				document.getElementById("fechaDeNacimientoModicar").value= res.fechaDeNacimiento;
 				document.getElementById("celularModificar").value= res.celular;
-				$('#selectLocalidadesModificar')[res.localidadesId].selected = true;
+				$('#selectLocalidadesModificar').val(res.localidad); 
 		},
 		error: function(e){ <!-- Si no ha podido conectar con el servidor -->
 			alert("Error en el servidor, por favor, intentalo de nuevo mas tarde");
