@@ -13,7 +13,7 @@ public interface UsuarioService {
 	public UsuarioSQL getUsuarioById(String id);
 	public void insertUsuario(String usuario, String contrasenia, String nombre, String email, String telefono, String celular, Date fechaDeCreacion, String localidadesId , Rol rol);
 	public void updateUsuario(String idUsuario, String usuario, String contrasenia, String nombre, String email,
-			String telefono, String celular, Date fechaDeNacimiento, String localidadesId);
+			String telefono, String celular, Date fechaDeNacimiento, String localidadesId, Rol rol);
 	public void deleteUsuario(String idUsuario);
 	public void asignarInstitucion(UsuarioSQL usuario, InstitucionSQL institucion);
 	public UsuarioSQL getUsuarioByEmail(String email);

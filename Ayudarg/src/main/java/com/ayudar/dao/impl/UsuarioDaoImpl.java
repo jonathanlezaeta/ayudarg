@@ -67,11 +67,9 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void updateUsuario(String idUsuario, String usuario, String contrasenia, String nombre, String email,
-			String telefono, String celular, Date fechaDeNacimiento, String localidadesId) {
+			String telefono, String celular, Date fechaDeNacimiento, String localidadesId, Rol rol) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Rol r = new Rol();
-		r.setNombre("U");
-		r.setIdRol(1);
+		Rol r = rol;
 		LocalidadesSQL lq = new LocalidadesSQL();
 		lq.setLocalidadesId(Integer.parseInt(localidadesId));
 		UsuarioSQL us = new UsuarioSQL();

@@ -25,7 +25,7 @@ public class LocalidadesSQL {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idProvincia", nullable = false)
 	private ProvinciasSQL provincia;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "localidadesId")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "localidadesId")
     private Set<UsuarioSQL> usuario = new HashSet<UsuarioSQL>(0);	
 	
 	

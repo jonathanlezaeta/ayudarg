@@ -16,8 +16,8 @@ public interface UsuarioDAO {
 	public LocalidadesSQL getLocalidadesById(String id);
 	public void insertUsuario(String usuario, String contrasenia, String nombre, String email, String telefono, String celular, Date fechaDeNacimiento, String localidadesId, Rol rol);
 	public UsuarioSQL getUsuarioByEmail(String id);
-	public void updateUsuario(String idUsuario, String usuario, String contrasenia, String nombre, String email,
-			String telefono, String celular, Date fechaDeNacimiento, String localidadesId);
 	public void deleteUsuario(String idUsuario);
 	public void asignarInstitucion(UsuarioSQL usuario, InstitucionSQL institucion);
+	public void updateUsuario(String idUsuario, String usuario, String contrasenia, String nombre, String email,
+			String telefono, String celular, Date fechaDeNacimiento, String localidadesId, Rol rol);
 }

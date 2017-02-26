@@ -49,7 +49,7 @@ public class UsuarioSQL {
 					nullable = false, updatable = false) })
 	private Set<InstitucionSQL> institucion = new HashSet<InstitucionSQL>(0);
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "localidadesId", referencedColumnName = "localidadesId")
 	private LocalidadesSQL localidadesId;	
 

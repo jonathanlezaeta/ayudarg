@@ -73,7 +73,7 @@ public class RegistrarseController {
 		form.put("nombre ", registrarseBean.getNombre());
 		form.put("email", registrarseBean.getEmail());
 		form.put("telefono", registrarseBean.getCelular());
-		form.put("fecha deNacimiento", registrarseBean.getFechaDeNacimiento());
+		form.put("fechaDeNacimiento", registrarseBean.getFechaDeNacimiento());
 		form.put("localidad", registrarseBean.getLocalidad());
 		ValidatorForm validateVacio = new ValidatorFormIsEmpty();
 		ValidatorForm validateExisteUsuario = new ValidatorExisteUsuario(serviceUsuarios);
@@ -104,7 +104,7 @@ public class RegistrarseController {
 			ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
 			model.addAttribute("provincias", provincias);
 			model.addAttribute("error", false);
-			model.addAttribute("menssageLogin", "Felicitaciones ya puede acceder a Ayudarg!");
+			model.addAttribute("menssageLogin", "Felicitaciones, ya puede acceder a Ayudarg!");
 			model.addAttribute("emailLogin", registrarseBean.getEmail());
 			model.addAttribute("contraseniaLogin", registrarseBean.getContrasenia());
 			return "Login";

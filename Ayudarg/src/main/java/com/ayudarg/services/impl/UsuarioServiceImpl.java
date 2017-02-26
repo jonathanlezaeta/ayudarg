@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ayudarg.dao.LocalidadesDAO;
-import com.ayudarg.dao.ProvinciasDAO;
 import com.ayudarg.dao.UsuarioDAO;
 import com.ayudarg.model.InstitucionSQL;
 import com.ayudarg.model.Rol;
@@ -43,8 +41,8 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 	@Override
 	public void updateUsuario(String idUsuario, String usuario, String contrasenia, String nombre, String email,
-			String telefono, String celular, Date fechaDeNacimiento, String localidadesId) {
-		usuarioDao.updateUsuario(idUsuario, usuario, contrasenia, nombre, email, telefono, celular, fechaDeNacimiento, localidadesId);
+			String telefono, String celular, Date fechaDeNacimiento, String localidadesId, Rol rol) {
+		usuarioDao.updateUsuario(idUsuario, usuario, contrasenia, nombre, email, telefono, celular, fechaDeNacimiento, localidadesId, rol);
 	}
 	
 	@Override
