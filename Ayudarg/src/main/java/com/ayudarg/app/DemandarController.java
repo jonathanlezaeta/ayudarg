@@ -2,6 +2,7 @@ package com.ayudarg.app;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,22 +15,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ayudar.view.beans.DemandarBean;
-import com.ayudar.view.beans.OptionBean;
-import com.ayudar.view.beans.RecursoBean;
+import com.ayudar.view.beans.DonarDemandarBean;
+import com.ayudar.view.beans.InstitucionBean;
 import com.ayudar.view.beans.RegistrarseBean;
 import com.ayudarg.model.Categoria;
 import com.ayudarg.model.InstitucionSQL;
-import com.ayudarg.model.LocalidadesSQL;
 import com.ayudarg.model.ProvinciasSQL;
-import com.ayudarg.model.RecursoSQL;
 import com.ayudarg.service.CategoriaService;
 import com.ayudarg.service.GeoService;
 import com.ayudarg.service.InstitucionService;
 import com.ayudarg.service.RecursoService;
-import com.google.gson.Gson;
+import com.ayudarg.validators.ValidatorForm;
+import com.ayudarg.validators.ValidatorFormIsEmpty;
 
 
 /**
@@ -121,11 +120,50 @@ public class DemandarController {
 		}
 	}
 
-	@RequestMapping(value="/submitAltaDemanda", method = RequestMethod.POST)
-	public String submitRegistrar(Model model, @ModelAttribute("recursoBean") RecursoBean recursoBean) {
-//		serviceRecurso.deleteRecurso(recursoBean.getNombre(), recursoBean.getCategoria());
-		System.out.printf("asd");
-		return null;
+	@RequestMapping(value="/submitDemandar", method = RequestMethod.POST)
+	public String submitRegistrar(Model model, @ModelAttribute("recursoBean") DonarDemandarBean recursoBean,
+			HttpServletRequest request)  {
+		HttpSession session = request.getSession();
+		//Valido la sesion 
+		if (session.getAttribute("usuario") != null) {
+			// Validacion del formulario
+			HashMap<String, String> form = new HashMap<String, String>();
+			/*
+			 * Por ser un checkbox me fijo si el primer elemento del arreglo de String viene nulo
+			 * no ingreso ningun valor. Deser asi le paso el vacio al validator par aque de mensaje
+			 * de error.
+			 */
+			if(recursoBean.getIdCategoria().length > 0)
+				form.put("idCategoria", recursoBean.getIdCategoria()[0]);
+			else
+				form.put("idCategoria", "");
+			form.put("selectLocalidades", recursoBean.getLocalidad());
+			ValidatorForm validateVacio = new ValidatorFormIsEmpty();
+			validateVacio.setValues(form);
+			if(!(validateVacio.validate())){
+				System.out.printf("aca va el elasticsearch");				
+				model.addAttribute("usuario", session.getAttribute("usuario"));
+				model.addAttribute("rol", session.getAttribute("rol"));
+				model.addAttribute("registrarseBean", new RegistrarseBean());
+				return null;
+			}else{
+				ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
+				ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
+				ArrayList<InstitucionSQL> instituciones = (ArrayList<InstitucionSQL>) serviceInstitucion.listInstituciones();
+				model.addAttribute("usuario", session.getAttribute("usuario"));
+				model.addAttribute("rol", session.getAttribute("rol"));
+				model.addAttribute("donarBean", new DonarDemandarBean());
+				model.addAttribute("categoria", categorias);
+				model.addAttribute("provincias", provincias);
+				model.addAttribute("institucion", instituciones);
+				model.addAttribute("institucionBean", new InstitucionBean());			
+				model.addAttribute("errorRegistrar", validateVacio.getError());
+				return "donarView";				
+			}
+		} else {
+			model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
+			return "menssage";
+		}
 	}
 	
 }

@@ -56,6 +56,7 @@ function cargarModificar(value){
 				document.getElementById("fechaDeNacimientoModicar").value= res.fechaDeNacimiento;
 				document.getElementById("celularModificar").value= res.celular;
 				$('#selectLocalidadesModificar').val(res.localidad); 
+				$('#selectRolesModificar').val(res.roles); 
 		},
 		error: function(e){ <!-- Si no ha podido conectar con el servidor -->
 			alert("Error en el servidor, por favor, intentalo de nuevo mas tarde");
@@ -450,7 +451,7 @@ body {
 													<label class="col-md-3 control-label" for="usuario">Rol</label>
 													<div class="col-md-9">
 														<form:select path="roles" required="" multiple="false"
-															class="form-control" id="selectroles">
+															class="form-control" id="selectRolesModificar">
 															<form:options items="${roles}" itemValue="idRol"
 																itemLabel="nombre" />
 														</form:select>

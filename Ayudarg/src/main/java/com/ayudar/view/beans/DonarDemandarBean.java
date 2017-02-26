@@ -1,6 +1,6 @@
 package com.ayudar.view.beans;
 
-public class DonarBean {
+public class DonarDemandarBean {
 	private String localidad;
 	private String provincia;
 	private String[] idCategoria;

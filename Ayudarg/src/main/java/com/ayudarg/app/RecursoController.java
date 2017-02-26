@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ayudar.view.beans.DonarDemandarBean;
 import com.ayudar.view.beans.LoginBean;
-import com.ayudar.view.beans.RecursoBean;
 import com.ayudarg.model.Rol;
 import com.ayudarg.model.UsuarioSQL;
 import com.ayudarg.service.InstitucionService;
@@ -49,7 +49,7 @@ public class RecursoController {
 		HttpSession session = request.getSession();
 		model.addAttribute("usuario", session.getAttribute("usuario"));
 		model.addAttribute("rol", session.getAttribute("rol"));
-		model.addAttribute("recursoBean", new RecursoBean());
+		model.addAttribute("donarDemandarBean", new DonarDemandarBean());
 		if(session.getAttribute("usuario")!= null){
 			return "recurso";
 		}else{

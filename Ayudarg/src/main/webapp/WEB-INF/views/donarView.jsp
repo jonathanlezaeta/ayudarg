@@ -15,12 +15,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Demandas</title>
+<title>Donaciones</title>
 <script language="javascript">
 	function cargarLocalidades(value){
 		$.ajax({
 			type: "POST",
-			data: $("#demandarForm").serialize(),
+			data: $("#donarForm").serialize(),
 			dataType: 'json',
 			url: '/app/getLocalibadesByIdDonar', 
 			success: function(data) { 
@@ -38,7 +38,7 @@
 			}
 		});
 	}
-</script>
+	</script>
 <style>
 body {
 	background: transparent url("resources/img/background.jpg") no-repeat;
@@ -131,7 +131,6 @@ body {
 			</c:when>
 		</c:choose>
 	</div>
-
 	<!--/.sidebar-->
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
@@ -143,14 +142,16 @@ body {
 						Complete sus datos
 					</div>
 					<div class="panel-body">
-
-						<form:form id="demandarForm" method="post" action="submitDemandar"
-							modelAttribute="demandarBean" class="form-signin">
+							<h4 style="color: red;">${errorRegistrar}</h4>
+						<form:form id="donarForm" method="post"
+							action="submitAltaDonacion" modelAttribute="donarBean"
+							class="form-signin">
 							<fieldset>
+
 								<td><label class="col-md-3 control-label" for="usuario">Elija
-										la/s categoria/s</label> <form:checkboxes path="idCategoria"
-										items="${categoria}" itemValue="idCategoria"
-										itemLabel="nombre" /></td> </br> </br>
+										la/s categoria/s</label> <form:checkboxes id="idCategoria"
+										path="idCategoria" items="${categoria}"
+										itemValue="idCategoria" itemLabel="nombre" /></td> </br> </br>
 
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="usuario">Provincia</label>
@@ -165,6 +166,7 @@ body {
 										</form:select>
 									</div>
 								</div>
+
 
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="usuario">Localidad</label>
@@ -182,7 +184,7 @@ body {
 								<div class="form-group">
 									<div class="col-md-12 widget-right">
 										<button type="submit"
-											class="btn btn-default btn-md pull-right">Solicitar</button>
+											class="btn btn-default btn-md pull-right">Donar</button>
 									</div>
 								</div>
 

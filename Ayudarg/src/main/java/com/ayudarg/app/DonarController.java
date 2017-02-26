@@ -1,16 +1,12 @@
 package com.ayudarg.app;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -18,28 +14,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ayudar.view.beans.CategoriaBean;
-import com.ayudar.view.beans.DonarBean;
-import com.ayudar.view.beans.InstitucionBajaBean;
+import com.ayudar.view.beans.DonarDemandarBean;
 import com.ayudar.view.beans.InstitucionBean;
-import com.ayudar.view.beans.OptionBean;
-import com.ayudar.view.beans.RecursoBean;
 import com.ayudar.view.beans.RegistrarseBean;
-import com.ayudar.view.beans.UsuarioBean;
 import com.ayudarg.model.Categoria;
 import com.ayudarg.model.InstitucionSQL;
-import com.ayudarg.model.LocalidadesSQL;
 import com.ayudarg.model.ProvinciasSQL;
 import com.ayudarg.service.CategoriaService;
 import com.ayudarg.service.GeoService;
 import com.ayudarg.service.InstitucionService;
 import com.ayudarg.service.RecursoService;
-import com.ayudarg.service.UsuarioService;
-import com.google.gson.Gson;
-
-import antlr.collections.List;
+import com.ayudarg.validators.ValidatorExisteUsuario;
+import com.ayudarg.validators.ValidatorForm;
+import com.ayudarg.validators.ValidatorFormIsEmpty;
 
 /**
  * Handles requests for the application home page.
@@ -47,8 +35,6 @@ import antlr.collections.List;
 @Controller
 public class DonarController {
 
-	// private static final Logger logger =
-	// LoggerFactory.getLogger(RegistraseController.class);
 	private RecursoService serviceRecurso;
 	private CategoriaService serviceCategoria;
 	private InstitucionService serviceInstitucion;
@@ -118,16 +104,13 @@ public class DonarController {
 		HttpSession session = request.getSession();
 		ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
 		ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
-		ArrayList<InstitucionSQL> instituciones = (ArrayList<InstitucionSQL>) serviceInstitucion.listInstituciones();
 		model.addAttribute("usuario", session.getAttribute("usuario"));
 		model.addAttribute("rol", session.getAttribute("rol"));
-		model.addAttribute("donarBean", new DonarBean());
+		model.addAttribute("donarBean", new DonarDemandarBean());
 		model.addAttribute("categoria", categorias);
 		model.addAttribute("provincias", provincias);
-		model.addAttribute("institucion", instituciones);
-		model.addAttribute("institucionBean", new InstitucionBean());
 		if (session.getAttribute("usuario") != null) {
-			return "donar";
+			return "donarView";
 		} else {
 			model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
 			return "menssage";
@@ -135,15 +118,51 @@ public class DonarController {
 	}
 
 	@RequestMapping(value = "/submitAltaDonacion", method = RequestMethod.POST)
-	public String submitRegistrar(Model model, @ModelAttribute("donarBean") DonarBean donarBean,
+	public String submitRegistrar(Model model, @ModelAttribute("donarBean") DonarDemandarBean donarBean,
 			HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		ArrayList<InstitucionSQL> instituciones = (ArrayList<InstitucionSQL>) serviceInstitucion.getInstitucionesByCategoriaByLocalidd(donarBean.getLocalidad(), donarBean.getIdCategoria());
-		model.addAttribute("usuario", session.getAttribute("usuario"));
-		model.addAttribute("rol", session.getAttribute("rol"));
-		model.addAttribute("registrarseBean", new RegistrarseBean());
-		model.addAttribute("instituciones", instituciones);
-		return "donarResult";
+		//Valido la sesion 
+		if (session.getAttribute("usuario") != null) {
+			// Validacion del formulario
+			HashMap<String, String> form = new HashMap<String, String>();
+			/*
+			 * Por ser un checkbox me fijo si el primer elemento del arreglo de String viene nulo
+			 * no ingreso ningun valor. Deser asi le paso el vacio al validator par aque de mensaje
+			 * de error.
+			 */
+			if(donarBean.getIdCategoria().length > 0)
+				form.put("idCategoria", donarBean.getIdCategoria()[0]);
+			else
+				form.put("idCategoria", "");
+			form.put("selectLocalidades", donarBean.getLocalidad());
+			ValidatorForm validateVacio = new ValidatorFormIsEmpty();
+			validateVacio.setValues(form);
+			if(!(validateVacio.validate())){
+				ArrayList<InstitucionSQL> instituciones = (ArrayList<InstitucionSQL>) serviceInstitucion.getInstitucionesByCategoriaByLocalidd(donarBean.getLocalidad(), donarBean.getIdCategoria());
+				model.addAttribute("usuario", session.getAttribute("usuario"));
+				model.addAttribute("rol", session.getAttribute("rol"));
+				model.addAttribute("registrarseBean", new RegistrarseBean());
+				model.addAttribute("instituciones", instituciones);
+				return "donarResult";
+			}else{
+				ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
+				ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
+				ArrayList<InstitucionSQL> instituciones = (ArrayList<InstitucionSQL>) serviceInstitucion.listInstituciones();
+				model.addAttribute("usuario", session.getAttribute("usuario"));
+				model.addAttribute("rol", session.getAttribute("rol"));
+				model.addAttribute("donarBean", new DonarDemandarBean());
+				model.addAttribute("categoria", categorias);
+				model.addAttribute("provincias", provincias);
+				model.addAttribute("institucion", instituciones);
+				model.addAttribute("institucionBean", new InstitucionBean());			
+				model.addAttribute("errorRegistrar", validateVacio.getError());
+				return "donarView";				
+			}
+		} else {
+			model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
+			return "menssage";
+		}
+
 	}
 
 }
