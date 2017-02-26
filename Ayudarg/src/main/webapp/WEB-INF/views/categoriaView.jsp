@@ -121,6 +121,10 @@ body {
 					</div>
 					<div class="panel-body">
 
+						<div class="col-md-10">
+							<h4 style="color:red;">${errorRegistrar}</h4>
+							</div>
+
 						<div class="container">
 							<div id="exTab2" class="col-md-10">
 								<ul class="nav nav-tabs">
@@ -153,7 +157,7 @@ body {
 													<div class="col-md-9">
 														<form:select path="categoria" required="" multiple="false"
 															class="form-control">
-															<form:option value="${categoria}" label="Seleccione la Categoria Padre" />
+															<form:option value="" label="Seleccione la Categoria Padre" />
 															<form:options items="${categoria}"
 																itemValue="idCategoria" itemLabel="nombre" />
 														</form:select>
@@ -185,7 +189,7 @@ body {
 													<div class="col-md-9">
 														<form:select path="categoria" multiple="false"
 															class="form-control" required="">
-															<form:option value="${categoria}" label="Seleccione su Categoria" />
+															<form:option value="" label="Seleccione su Categoria" />
 															<form:options items="${categoria}"
 																itemValue="idCategoria" itemLabel="nombre" />
 														</form:select>
@@ -215,7 +219,7 @@ body {
 													<div class="col-md-9">
 														<form:select path="categoria" multiple="false"
 															class="form-control" required="">
-															<form:option value="${categoria}" label="Seleccione su Categoria" />
+															<form:option value="" label="Seleccione su Categoria" />
 															<form:options items="${categoria}"
 																itemValue="idCategoria" itemLabel="nombre" />
 														</form:select>
@@ -236,9 +240,9 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="ciudad">Categoria Padre</label>
 													<div class="col-md-9">
-														<form:select path="categoria" multiple="false"
+														<form:select path="categoria" required="" multiple="false"
 															class="form-control">
-															<form:option value="${categoria}" label="Seleccione la Categoria Padre" />
+															<form:option value="" label="Seleccione la Categoria Padre" />
 															<form:options items="${categoria}"
 																itemValue="idCategoria" itemLabel="nombre" />
 														</form:select>

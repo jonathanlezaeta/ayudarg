@@ -3,6 +3,8 @@ package com.ayudarg.app;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,13 +22,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ayudar.view.beans.CategoriaBean;
+import com.ayudar.view.beans.InstitucionBajaBean;
 import com.ayudar.view.beans.InstitucionBean;
 import com.ayudar.view.beans.UsuarioBean;
 import com.ayudarg.model.Categoria;
+import com.ayudarg.model.InstitucionSQL;
+import com.ayudarg.model.LocalidadesSQL;
+import com.ayudarg.model.ProvinciasSQL;
 import com.ayudarg.model.UsuarioSQL;
 import com.ayudarg.service.CategoriaService;
 import com.ayudarg.service.InstitucionService;
 import com.ayudarg.service.UsuarioService;
+import com.ayudarg.validators.ValidatorForm;
+import com.ayudarg.validators.ValidatorFormCompuesto;
+import com.ayudarg.validators.ValidatorFormIsEmpty;
 
 /**
  * Handles requests for the application home page.
@@ -74,20 +83,94 @@ public class ABMCategoriaController {
 	}
 
 	@RequestMapping(value="/submitAltaCategoria", method = RequestMethod.POST)
-	public String submitRegistrar(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean) {
-		serviceCategoria.insertCategoria(categoriaBean.getNombre(), categoriaBean.getCategoria());
-		return "registrarseCorrectamente";
+	public String submitRegistrar(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean, HttpServletRequest request) {
+		// Chequeo el inicio de session
+		HttpSession session = request.getSession();
+		if (session.getAttribute("usuario") != null) {
+			model.addAttribute("rol", session.getAttribute("rol"));
+			// Validacion del formulario
+			HashMap<String, String> form = new HashMap<String, String>();
+			form.put("nombre", categoriaBean.getNombre());
+			form.put("categoria", categoriaBean.getCategoria());
+			ValidatorForm validateVacio = new ValidatorFormIsEmpty();
+			validateVacio.setValues(form);
+			if (!(validateVacio.validate())) {
+				serviceCategoria.insertCategoria(categoriaBean.getNombre(), categoriaBean.getCategoria());
+				model.addAttribute("menssage", "Categoria registrada correctamente.");
+				return "menssageDashboard";
+			} else {
+				List<Categoria> categorias = serviceCategoria.listCategorias();
+				model.addAttribute("institucion", categorias);
+				model.addAttribute("categoriaBean", new CategoriaBean());
+				model.addAttribute("errorRegistrar", "En la pestaña registrar: " + validateVacio.getError());
+				return "categoriaView";
+			}
+		} else {
+			model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
+			return "menssage";
+		}
 	}
-
+		
 	
 	@RequestMapping(value="/submitDeleteCategoria", method = RequestMethod.POST)
-	public String submitDeleteCategoria(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean) {
-		serviceCategoria.deleteCategoria(categoriaBean.getCategoria());
-		return "borradoCorrectamente";
+	public String submitDeleteCategoria(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		// Chequeo el inicio de session
+		if (session.getAttribute("usuario") != null) {
+			model.addAttribute("rol", session.getAttribute("rol"));
+			// Validacion del formulario
+			HashMap<String, String> form = new HashMap<String, String>();
+			form.put("categoria", categoriaBean.getCategoria());
+			ValidatorForm validateVacio = new ValidatorFormIsEmpty();
+			ArrayList<ValidatorForm> validadores = new ArrayList<ValidatorForm>();
+			validadores.add(validateVacio);
+			ValidatorForm validador = new ValidatorFormCompuesto(validadores);
+			validador.setValues(form);
+			if (!(validador.validate())) {
+				serviceCategoria.deleteCategoria(categoriaBean.getCategoria());
+				model.addAttribute("menssage", "Baja de categoria exitosa.");
+				return "menssageDashboard";
+			} else {
+				List<Categoria> categorias = serviceCategoria.listCategorias();
+				model.addAttribute("institucion", categorias);
+				model.addAttribute("categoriaBean", new CategoriaBean());
+				model.addAttribute("errorRegistrar", "En la pestaña eliminar: " + validateVacio.getError());
+				return "categoriaView";
+			}
+		} else {
+			model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
+			return "menssage";
+		}
 	}
-	
+
+
 	@RequestMapping(value="/submitUpdateCategoria", method = RequestMethod.POST)
-	public String submitUpdateCategoria(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean) {
-		return "modificadoCorrectamente";
+	public String submitUpdateCategoria(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean, HttpServletRequest request) {
+		// Chequeo el inicio de session
+		HttpSession session = request.getSession();
+		if (session.getAttribute("usuario") != null) {
+			model.addAttribute("rol", session.getAttribute("rol"));
+			// Validacion del formulario
+			HashMap<String, String> form = new HashMap<String, String>();
+			form.put("nombre", categoriaBean.getNombre());
+			form.put("categoria", categoriaBean.getCategoria());
+			form.put("subcategoria", categoriaBean.getCategoria());
+			ValidatorForm validateVacio = new ValidatorFormIsEmpty();
+			validateVacio.setValues(form);
+			if (!(validateVacio.validate())) {
+				serviceCategoria.updateCategoria(categoriaBean.getNombre(), categoriaBean.getCategoria());
+				model.addAttribute("menssage", "Categoria modificada correctamente.");
+				return "menssageDashboard";
+			} else {
+				List<Categoria> categorias = serviceCategoria.listCategorias();
+				model.addAttribute("institucion", categorias);
+				model.addAttribute("categoriaBean", new CategoriaBean());
+				model.addAttribute("errorRegistrar", "En la pestaña modificar: " + validateVacio.getError());
+				return "categoriaView";
+			}
+		} else {
+			model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
+			return "menssage";
+		}
 	}
 }
