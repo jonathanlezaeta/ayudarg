@@ -59,32 +59,12 @@ public class RecursoDaoImpl implements RecursoDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void insertRecurso(String nombre,  String cantidad, String categoria, String institucion){
+	public void insertRecurso(String nombre,  String cantidad, String categoria){
 		Session session = this.sessionFactory.getCurrentSession();
-		
-		Categoria c = getCategoriaById(categoria);
+	
 
-		InstitucionSQL i = getInstitucionById(institucion);
-		
-		HashSet<Categoria> cat = new HashSet<Categoria> ();
-		cat.add(c);
-		
-		RecursoSQL us = new RecursoSQL();
-		us.setIdRecuso(1);
-		us.setNombre(nombre);
-		java.sql.Date fechaCreacion = new java.sql.Date(new java.util.Date().getTime());
-        us.setFechaCreacion(fechaCreacion);
-		us.setUsuarioIdUsuario(1);
-//		us.setInstitucionIdInstitucion(1);
-		us.setCantidad(2);
-		us.setActivo(true);
-		us.setSubInstitucion(i);
-		us.setCategoria(cat);
-        //Save the employee in database
-        session.save(us);
-        //Commit the transaction
-        //session.getTransaction().commit(); 
-        session.flush();
+//        session.save();
+//        session.flush();
 	}
 	
 	@SuppressWarnings("unchecked")

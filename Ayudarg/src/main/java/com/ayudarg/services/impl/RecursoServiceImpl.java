@@ -31,8 +31,8 @@ public class RecursoServiceImpl implements RecursoService{
 	}
 
 	@Override
-	public void insertRecurso(String nombre, String cantidad, String categoria, String institucion) {
-		recursoDao.insertRecurso(nombre, cantidad, categoria, institucion);
+	public void insertRecurso(String nombre, String cantidad, String idCategoria) {
+		recursoDao.insertRecurso(nombre, cantidad, idCategoria);
 	}
 	
 	public void deleteRecurso(String nombre, String categoria) {

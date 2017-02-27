@@ -15,6 +15,7 @@ public class InstitucionBean {
 	private String provincia;
 	private String localidad;
 	private String institucion;
+	private String[] idCategoria;
 	
 	public String getDirector() {
 		return director;
@@ -93,6 +94,12 @@ public class InstitucionBean {
 	}
 	public void setInstitucion(String institucion) {
 		this.institucion = institucion;
+	}
+	public String[] getIdCategoria() {
+		return idCategoria;
+	}
+	public void setIdCategoria(String[] idCategoria) {
+		this.idCategoria = idCategoria;
 	}
 	
 

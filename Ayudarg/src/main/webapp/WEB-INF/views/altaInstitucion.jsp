@@ -294,6 +294,12 @@ body {
 														</form:select>
 													</div>
 												</div>
+												
+												
+												<td><label class="col-md-3 control-label" for="usuario">Elija
+										la/s categoria/s</label> <form:checkboxes id="idCategoria"
+ 										path="idCategoria" items="${categoria}" 
+ 										itemValue="idCategoria" required="" itemLabel="nombre" /></td> 
 
 												<!-- Form actions -->
 												<div class="form-group">
@@ -448,7 +454,10 @@ body {
 												</div>
 
 
-
+												<td><label class="col-md-3 control-label" for="usuario">Elija
+										la/s categoria/s</label> <form:checkboxes id="idCategoria"
+ 										path="idCategoria" items="${categoria}" 
+ 										itemValue="idCategoria"  required="" itemLabel="nombre" /></td> 
 
 
 												<!-- Form actions -->

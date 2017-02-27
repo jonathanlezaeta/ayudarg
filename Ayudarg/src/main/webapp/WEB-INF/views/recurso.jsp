@@ -136,8 +136,34 @@ body {
 											action="submitAltaRecurso"
 											modelAttribute="recursoBean" class="form-signin">
 											<fieldset>
+											
+											<td><label class="col-md-3 control-label" for="usuario">Elija
+										la/s categoria/s</label> <form:checkboxes id="idCategoria"
+ 										path="idCategoria" items="${categoria}" 
+ 										itemValue="idCategoria" itemLabel="nombre" /></td> 
+ 										
+ 										</br>
+ 										</br>
 							
-									
+											<!-- Nombre input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="nombre">Nombre</label>
+													<div class="col-md-9">
+														<input id="nombre" name="nombre" type="text"
+															placeholder="Ingrese nombre del recurso"
+															class="form-control" required="" value="${nombre}">
+													</div>
+												</div>
+												
+												<!-- Cantidad input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="cantidad">Cantidad</label>
+													<div class="col-md-9">
+														<input id="cantidad" name="cantidad" type="text"
+															placeholder="Ingrese cantidad a donar"
+															class="form-control" required="" value="${cantidad}">
+													</div>
+												</div>
 												
 												<!-- Form actions -->
 												<div class="form-group">
@@ -150,10 +176,23 @@ body {
 										</form:form>
 									</div>
 									<div class="tab-pane" id="2">
-										<form:form id="bajaInstitucion" method="post"
-											action="submitDeleteInstitucion"
-											modelAttribute="institucionBajaBean" class="form-signin">
+										<form:form id="bajaRecurso" method="post"
+											action="submitDeleteRecursp"
+											modelAttribute="recursoBean" class="form-signin">
 											<fieldset>
+											
+											
+											<div class="form-group">
+													<label class="col-md-3 control-label" for="nombre">Recurso</label>
+													<div class="col-md-9">
+														<form:select path="nombre" required=""
+															multiple="false" class="form-control">
+															<form:option value="" label="Seleccione un recurso" />
+															<form:options items="${recurso}"
+																itemValue="nombre" itemLabel="nombre"  />
+														</form:select>
+													</div>
+												</div>
 											
 
 												<div class="form-group">
@@ -169,12 +208,39 @@ body {
 									
 									
 									<div class="tab-pane" id="3">
-										<form:form id="institucionBaja" method="post"
-											action="submitUpdateInstitucion"
-											modelAttribute="institucionBean" class="form-signin">
+										<form:form id="recursoModificacion" method="post"
+											action="submitUpdateRecursp"
+											modelAttribute="recursoBean" class="form-signin">
 											<fieldset>
 											
 											
+											<td><label class="col-md-3 control-label" for="usuario">Elija
+										la/s categoria/s</label> <form:checkboxes id="idCategoria"
+ 										path="idCategoria" items="${categoria}" 
+ 										itemValue="idCategoria" itemLabel="nombre" /></td> 
+ 										
+ 										</br>
+ 										</br>
+							
+											<!-- Nombre input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="nombre">Nombre</label>
+													<div class="col-md-9">
+														<input id="nombre" name="nombre" type="text"
+															placeholder="Ingrese nombre del recurso"
+															class="form-control" required="" value="${nombre}">
+													</div>
+												</div>
+												
+												<!-- Cantidad input-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="cantidad">Cantidad</label>
+													<div class="col-md-9">
+														<input id="cantidad" name="cantidad" type="text"
+															placeholder="Ingrese cantidad a donar"
+															class="form-control" required="" value="${cantidad}">
+													</div>
+												</div>
 											
 												
 												<!-- Form actions -->
