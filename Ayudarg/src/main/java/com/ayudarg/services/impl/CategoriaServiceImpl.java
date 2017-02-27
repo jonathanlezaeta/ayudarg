@@ -41,10 +41,14 @@ public class CategoriaServiceImpl implements CategoriaService{
 	}
 	
 	@Override
-	public void updateCategoria(String nombre, String subcategorias){
-		categoriaDao.updateCategoria(nombre, subcategorias);
+	public void updateCategoria(String idCategoria, String nombre, String subcategorias){
+		categoriaDao.updateCategoria(idCategoria, nombre, subcategorias);
 		
 	}
 
+	@Override
+	public Categoria getCategoriaById(String idCategoria){
+		return categoriaDao.getCategoriaById(idCategoria);
+	}
 	
 }

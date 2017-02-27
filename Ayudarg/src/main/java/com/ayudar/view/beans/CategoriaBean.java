@@ -1,14 +1,10 @@
 package com.ayudar.view.beans;
 
-import java.sql.Date;
-import java.util.ArrayList;
-
-import com.ayudarg.model.Categoria;
-
 public class CategoriaBean {
 	
 	private String nombre;
 	private String categoria;
+	private String categoriaPadre;
 	
 	public String getNombre() {
 		return nombre;
@@ -21,5 +17,11 @@ public class CategoriaBean {
 	}
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
+	}
+	public String getCategoriaPadre() {
+		return categoriaPadre;
+	}
+	public void setCategoriaPadre(String categoriaPadre) {
+		this.categoriaPadre = categoriaPadre;
 	}
 }

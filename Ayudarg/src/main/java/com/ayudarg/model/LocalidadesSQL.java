@@ -38,13 +38,6 @@ public class LocalidadesSQL {
 	}
 	private String localidad;
 	
-
-	
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "localidadesId")
-//	    private Set<InstitucionSQL> institucion = new HashSet<InstitucionSQL>(0);
-	 
-
-
 	public String getLocalidad() {
 		return localidad;
 	}

@@ -96,6 +96,7 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 		us.setSitioWeb(sitioWeb);
 		us.setEmail(email);
 		us.setLocalidadesId(lq);
+		us.setActivo(true);
         session.update(us);
         session.flush();
 	}

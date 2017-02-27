@@ -5,8 +5,8 @@ import com.ayudarg.model.Categoria;
 
 public interface CategoriaDAO {
 	public List<Categoria> listCategorias();
-	void insertCategoria(String nombre, String subcategorias);
-	Categoria getCategoriaById(String id);
-	void deleteCategoria(String categoria);
-	void updateCategoria(String nombre, String subcategorias);
+	public void insertCategoria(String nombre, String subcategorias);
+	public Categoria getCategoriaById(String id);
+	public void deleteCategoria(String categoria);
+	public void updateCategoria(String idcategoria, String nombre, String subcategorias);
 }

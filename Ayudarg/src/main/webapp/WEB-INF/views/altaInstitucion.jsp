@@ -30,28 +30,29 @@
 						options += '<option value="' +value.value + '">' +value.option + '</option>';
 					});
 					$("select[id=selectLocalidades]").html(options);
-// 				}
 			},
 			error: function(e){ <!-- Si no ha podido conectar con el servidor -->
 				alert("Error en el servidor, por favor, intentalo de nuevo mas tarde");
 			}
 		});
 	}
-	function cargarModificarse(value){
+	function cargarModificar(value){
 		$.ajax({
 			type: "POST",
 			data: $(value).serialize(),
 			dataType: 'json',
-			url: '/app/getLocalibadesByIdInstitucion', 
+			url: '/app/getInstitucionById', 
 			success: function(data) { 
-					var res = data; 
-					var options = '';
-					options += '<option value="">Seleccione su ciudad</option>';
-					$.each(data, function (index, value) {
-						options += '<option value="' +value.value + '">' +value.option + '</option>';
-					});
-					$("select[id=selectLocalidades]").html(options);
-// 				}
+				var res = data; 
+				document.getElementById("directorModificar").value= res.director;
+				document.getElementById("tipoModificar").value= res.tipo;
+				document.getElementById("nombreModificar").value= res.nombre;
+				document.getElementById("direccionModificar").value= res.direccion;
+				document.getElementById("telefonoModificar").value= res.telefono;
+				document.getElementById("sitioWebModificar").value= res.sitioWeb;
+				document.getElementById("emailModificar").value= res.email;
+				$('#selectLocalidadesModificar').val(res.localidad); 
+				document.getElementById("celularModificar").value= res.celular;
 			},
 			error: function(e){ <!-- Si no ha podido conectar con el servidor -->
 				alert("Error en el servidor, por favor, intentalo de nuevo mas tarde");
@@ -91,62 +92,62 @@ body {
 			<c:when test="${rol.equals('A')}">
 				<ul class="nav menu">
 					<li><a href="/app/dashboard"><svg
-								class="glyph stroked dashboard-dial">
-						<use xlink:href="/dashboard"></use></svg> Inicio</a></li>
+								class="glyph stroked dashboard-dial"> <use
+								xlink:href="/dashboard"></use></svg> Inicio</a></li>
 					<li><a href="/app/donar"><svg
-								class="glyph stroked calendar">
-						<use xlink:href="/donar"></use></svg> Donar</a></li>
+								class="glyph stroked calendar"> <use xlink:href="/donar"></use></svg>
+							Donar</a></li>
 					<li><a href="/app/demandar"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="/demandar"></use></svg> Solicitar un recurso</a></li>
+								class="glyph stroked line-graph"> <use
+								xlink:href="/demandar"></use></svg> Solicitar un recurso</a></li>
 					<li><a href="/app/altaInstitucion"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
+								class="glyph stroked line-graph"> <use
+								xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
 					<li><a href="/app/altaCategoria"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
+								class="glyph stroked line-graph"> <use
+								xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
 					<li><a href="/app/bajaUsuario"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="recurso"></use></svg> Usuarios</a></li>
+								class="glyph stroked line-graph"> <use
+								xlink:href="recurso"></use></svg> Usuarios</a></li>
 
 				</ul>
 			</c:when>
 			<c:when test="${rol.equals('U')}">
 				<ul class="nav menu">
 					<li><a href="/app/dashboard"><svg
-								class="glyph stroked dashboard-dial">
-						<use xlink:href="/dashboard"></use></svg> Inicio</a></li>
+								class="glyph stroked dashboard-dial"> <use
+								xlink:href="/dashboard"></use></svg> Inicio</a></li>
 					<li><a href="/app/donar"><svg
-								class="glyph stroked calendar">
-						<use xlink:href="/donar"></use></svg> Donar</a></li>
+								class="glyph stroked calendar"> <use xlink:href="/donar"></use></svg>
+							Donar</a></li>
 					<li><a href="/app/demandar"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="/demandar"></use></svg>Solicitar un recurso</a></li>
+								class="glyph stroked line-graph"> <use
+								xlink:href="/demandar"></use></svg>Solicitar un recurso</a></li>
 				</ul>
 			</c:when>
 			<c:when test="${rol.equals('I')}">
 				<ul class="nav menu">
 					<li><a href="/app/dashboard"><svg
-								class="glyph stroked dashboard-dial">
-						<use xlink:href="/dashboard"></use></svg> Inicio</a></li>
+								class="glyph stroked dashboard-dial"> <use
+								xlink:href="/dashboard"></use></svg> Inicio</a></li>
 					<li><a href="/app/donar"><svg
-								class="glyph stroked calendar">
-						<use xlink:href="/donar"></use></svg> Donar</a></li>
+								class="glyph stroked calendar"> <use xlink:href="/donar"></use></svg>
+							Donar</a></li>
 					<li><a href="/app/demandar"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="/demandar"></use></svg> Solicitar un recurso</a></li>
+								class="glyph stroked line-graph"> <use
+								xlink:href="/demandar"></use></svg> Solicitar un recurso</a></li>
 					<li><a href="/app/altaInstitucion"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
+								class="glyph stroked line-graph"> <use
+								xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
 					<li><a href="/app/altaCategoria"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
+								class="glyph stroked line-graph"> <use
+								xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
 					<li><a href="/app/bajaUsuario"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
-								<li><a href="/app/recurso"><svg
-								class="glyph stroked line-graph">
-						<use xlink:href="recurso"></use></svg> Recursos</a></li>
+								class="glyph stroked line-graph"> <use
+								xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
+					<li><a href="/app/recurso"><svg
+								class="glyph stroked line-graph"> <use
+								xlink:href="recurso"></use></svg> Recursos</a></li>
 				</ul>
 			</c:when>
 		</c:choose>
@@ -166,9 +167,9 @@ body {
 						<h4 style="color: red;">${menssage}</h4>
 
 						<div class="col-md-10">
-							<h4 style="color:red;">${errorRegistrar}</h4>
-							</div>
-							
+							<h4 style="color: red;">${errorRegistrar}</h4>
+						</div>
+
 						<div class="container">
 							<div id="exTab2" class="col-md-10">
 								<ul class="nav nav-tabs">
@@ -273,9 +274,11 @@ body {
 														<form:select path="provincia" required="" multiple="false"
 															class="form-control" id='selectProvincias'
 															onchange='cargarLocalidades("#institucionForm");'>
-															<form:option value="NONE" label="Seleccione su provincia" />
-															<form:option value="${provincia}" label="Seleccione su Provincia" />
-															<form:options items="${provincias}" itemValue="idProvincia" itemLabel="provincia" />
+															<form:option value="" label="Seleccione su provincia" />
+															<form:option value="${provincia}"
+																label="Seleccione su Provincia" />
+															<form:options items="${provincias}"
+																itemValue="idProvincia" itemLabel="provincia" />
 														</form:select>
 													</div>
 												</div>
@@ -284,7 +287,8 @@ body {
 													<div class="col-md-9">
 														<form:select path="localidad" required="" multiple="false"
 															class="form-control" id="selectLocalidades">
-															<form:option value="${localidad}" label="Seleccione su Localidad" />
+															<form:option value="${localidad}"
+																label="Seleccione su Localidad" />
 															<form:options items="${localidades}"
 																itemValue="localidadesId" itemLabel="localidad" />
 														</form:select>
@@ -313,7 +317,7 @@ body {
 															multiple="false" class="form-control">
 															<form:option value="" label="Seleccione una institucion" />
 															<form:options items="${institucion}"
-																itemValue="idInstitucion" itemLabel="nombre"  />
+																itemValue="idInstitucion" itemLabel="nombre" />
 														</form:select>
 													</div>
 												</div>
@@ -339,7 +343,9 @@ body {
 														a modificar</label>
 													<div class="col-md-9">
 														<form:select path="institucion" required=""
-															multiple="false" class="form-control">
+															multiple="false" class="form-control"
+															onchange='cargarModificar("#updateInstitucion");'>
+															<form:option value="" label="Seleccione su provincia" />
 															<form:options items="${institucion}"
 																itemValue="idInstitucion" itemLabel="nombre" />
 														</form:select>
@@ -350,7 +356,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="director">Director</label>
 													<div class="col-md-9">
-														<input id="director" name="director" type="text"
+														<input id="directorModificar" name="director" type="text"
 															placeholder="Ingrese director de la Institucion (Campo requerido)"
 															class="form-control" required="" value="${director}">
 													</div>
@@ -360,7 +366,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="tipo">Tipo</label>
 													<div class="col-md-9">
-														<input id="tipo" name="tipo" type="text"
+														<input id="tipoModificar" name="tipo" type="text"
 															placeholder="Ingrese tipo de Institucion (Campo requerido)"
 															class="form-control" required="" value="${tipo}">
 													</div>
@@ -370,7 +376,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="nombre">Nombre</label>
 													<div class="col-md-9">
-														<input id="nombre" name="nombre" type="text"
+														<input id="nombreModificar" name="nombre" type="text"
 															placeholder="Ingrese nombre de la Institucion (Campo requerido)"
 															class="form-control" required="" value="${nombre}">
 													</div>
@@ -380,7 +386,8 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="direccion">Direccion</label>
 													<div class="col-md-9">
-														<input id="direccion" name="direccion" type="text"
+														<input id="direccionModificar" name="direccion"
+															type="text"
 															placeholder="Ingrese direccion de la Institucion (Campo requerido)"
 															class="form-control" required="" value="${direccion}">
 													</div>
@@ -390,9 +397,9 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="telefono">Telefono</label>
 													<div class="col-md-9">
-														<input id="telefono" name="telefono" type="text"
+														<input id="telefonoModificar" name="telefono" type="text"
 															placeholder="Ingrese telefono de la Institucion (Campo requerido)"
-															class="form-control"  required="" value="${telefono}">
+															class="form-control" required="" value="${telefono}">
 													</div>
 												</div>
 
@@ -400,7 +407,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="celular">Celular</label>
 													<div class="col-md-9">
-														<input id="celular" name="celular" type="text"
+														<input id="celularModificar" name="celular" type="text"
 															placeholder="Ingrese celular de la Institucion "
 															class="form-control" value="${celular}">
 													</div>
@@ -411,7 +418,7 @@ body {
 													<label class="col-md-3 control-label" for="sitioWeb">Sitio
 														Web</label>
 													<div class="col-md-9">
-														<input id="sitioWeb" name="sitioWeb" type="text"
+														<input id="sitioWebModificar" name="sitioWeb" type="text"
 															placeholder="Ingrese sitio web de la Institucion (Campo requerido)"
 															class="form-control" required="" value="${sitioWeb}">
 													</div>
@@ -421,32 +428,19 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="email">Email</label>
 													<div class="col-md-9">
-														<input id="email" name="email" type="email"
+														<input id="emailModificar" name="email" type="email"
 															placeholder="Ingrese email de la Institucion (Campo requerido)"
 															class="form-control" required="" value="${email}">
 													</div>
 												</div>
 
-
-												<div class="form-group">
-													<label class="col-md-3 control-label" for="usuario">Provincia</label>
-													<div class="col-md-9">
-														<form:select path="provincia" required="" multiple="false"
-															class="form-control" id='selectProvincias'
-															onchange='cargarLocalidades("#institucionBaja");'>
-															<form:option value="${provincias}" label="Seleccione su Provincia" />
-															<form:options items="${provincias}"
-																itemValue="idProvincia" itemLabel="provincia" />
-														</form:select>
-													</div>
-												</div>
-												
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="usuario">Localidad</label>
 													<div class="col-md-9">
 														<form:select path="localidad" required="" multiple="false"
-															class="form-control" id="selectLocalidades">
-															<form:option value="${localidad}" label="Seleccione su Localidad" />
+															class="form-control" id="selectLocalidadesModificar">
+															<form:option value="${localidad}"
+																label="Seleccione su Localidad" />
 															<form:options items="${localidades}"
 																itemValue="localidadesId" itemLabel="localidad" />
 														</form:select>

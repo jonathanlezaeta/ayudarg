@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,7 +46,7 @@ public class Categoria {
 		this.institucion = institucion;
 	}
 	
-	@ManyToOne(cascade={CascadeType.REFRESH})
+	@ManyToOne(cascade={CascadeType.REFRESH}, fetch = FetchType.EAGER)
 	@JoinColumn(name="categoriaIdCategoria")
 	private Categoria subcategoria;
 
@@ -56,15 +57,15 @@ public class Categoria {
 		this.subcategoria = subcategoria;
 	}
 
-	@OneToMany(mappedBy="subcategoria")
-	private Set<Categoria> subcategorias = new HashSet<Categoria>();	
-	
-	public Set<Categoria> getSubcategorias() {
-		return subcategorias;
-	}
-	public void setSubcategorias(Set<Categoria> subcategorias) {
-		this.subcategorias = subcategorias;
-	}
+//	@OneToMany(mappedBy="subcategoria")
+//	private Set<Categoria> subcategorias = new HashSet<Categoria>();	
+//	
+//	public Set<Categoria> getSubcategorias() {
+//		return subcategorias;
+//	}
+//	public void setSubcategorias(Set<Categoria> subcategorias) {
+//		this.subcategorias = subcategorias;
+//	}
 	public int getIdCategoria() {
 		return idCategoria;
 	}
