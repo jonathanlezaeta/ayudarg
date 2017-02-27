@@ -33,8 +33,8 @@ public class InstitucionServiceImpl implements InstitucionService{
 
 	@Override
 	public void insertInstitucion(String director, String ciudad, String tipo, String nombre, String direccion,
-			String telefono, String celular, String sitioWeb, String email, String localidadesId) {
-		institucionDao.insertInstitucion(director, ciudad, tipo, nombre, direccion, telefono, celular, sitioWeb, email, localidadesId);
+			String telefono, String celular, String sitioWeb, String email, String localidadesId, String[] idCategoria) {
+		institucionDao.insertInstitucion(director, ciudad, tipo, nombre, direccion, telefono, celular, sitioWeb, email, localidadesId, idCategoria);
 		
 	}
 	
@@ -45,8 +45,8 @@ public class InstitucionServiceImpl implements InstitucionService{
 	}
 	
 	public void updateInstitucion(String institucion, String director, String ciudad, String tipo, String nombre, String direccion,
-			String telefono, String celular, String sitioWeb, String email, String localidadesId){
-		institucionDao.updateInstitucion(institucion, director, ciudad, tipo, nombre, direccion, telefono, celular, sitioWeb, email, localidadesId);
+			String telefono, String celular, String sitioWeb, String email, String localidadesId, String[] idCategoria){
+		institucionDao.updateInstitucion(institucion, director, ciudad, tipo, nombre, direccion, telefono, celular, sitioWeb, email, localidadesId, idCategoria);
 	}
 
 	public List<InstitucionSQL> getInstitucionesByCategoriaByLocalidd(String idLocalidd, String[] categorias){

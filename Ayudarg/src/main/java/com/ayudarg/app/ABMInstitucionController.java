@@ -28,11 +28,13 @@ import com.ayudar.view.beans.InstitucionBajaBean;
 import com.ayudar.view.beans.InstitucionBean;
 import com.ayudar.view.beans.UsuarioBajaBean;
 import com.ayudar.view.beans.UsuarioBean;
+import com.ayudarg.model.Categoria;
 import com.ayudarg.model.InstitucionSQL;
 import com.ayudarg.model.LocalidadesSQL;
 import com.ayudarg.model.ProvinciasSQL;
 import com.ayudarg.model.Rol;
 import com.ayudarg.model.UsuarioSQL;
+import com.ayudarg.service.CategoriaService;
 import com.ayudarg.service.GeoService;
 import com.ayudarg.service.InstitucionService;
 import com.ayudarg.service.UsuarioService;
@@ -51,6 +53,7 @@ public class ABMInstitucionController {
 	// LoggerFactory.getLogger(RegistraseController.class);
 	private InstitucionService serviceInstitucion;
 	private GeoService serviceGeo;
+	private CategoriaService serviceCategoria;
 	
 
 	public InstitucionService getServiceInstitucion() {
@@ -59,6 +62,14 @@ public class ABMInstitucionController {
 
 	public void setServiceInstitucion(InstitucionService serviceInstitucion) {
 		this.serviceInstitucion = serviceInstitucion;
+	}
+	
+	public CategoriaService getServiceCategoria() {
+		return serviceCategoria;
+	}
+
+	public void setServiceCategoria(CategoriaService serviceCategoria) {
+		this.serviceCategoria = serviceCategoria;
 	}
 
 	
@@ -73,6 +84,12 @@ public class ABMInstitucionController {
 	public void setGeoServicee(GeoService ol) {
 		this.serviceGeo = ol;
 	}
+	
+	@Autowired(required = true)
+	@Qualifier(value = "CategoriaService")
+	public void setCategoriaServicee(CategoriaService cs) {
+		this.serviceCategoria = cs;
+	}
 
 	public GeoService getServiceGeo() {
 		return serviceGeo;
@@ -85,12 +102,14 @@ public class ABMInstitucionController {
 	@RequestMapping(value = "/altaInstitucion", method = RequestMethod.GET)
 	public String home(Locale locale, Model model,  HttpServletRequest request) {
 		HttpSession session = request.getSession();
+		ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
 		ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
 		ArrayList<InstitucionSQL> instituciones = (ArrayList<InstitucionSQL>) serviceInstitucion.listInstituciones();
 		model.addAttribute("usuario", session.getAttribute("usuario"));
 		model.addAttribute("rol", session.getAttribute("rol"));
 		model.addAttribute("institucion", instituciones);
 		model.addAttribute("provincias", provincias);
+		model.addAttribute("categoria", categorias);
 		model.addAttribute("institucionBean", new InstitucionBean());
 		model.addAttribute("institucionBajaBean", new InstitucionBajaBean());
 		if(session.getAttribute("usuario")!= null){
@@ -123,7 +142,7 @@ public class ABMInstitucionController {
 				if (!(validateVacio.validate())) {
 					serviceInstitucion.insertInstitucion(institucionBean.getDirector(), institucionBean.getCiudad(),
 							institucionBean.getTipo(), institucionBean.getNombre(), institucionBean.getDireccion(), institucionBean.getTelefono(),
-							institucionBean.getCelular(), institucionBean.getSitioWeb(), institucionBean.getEmail(), institucionBean.getLocalidad());
+							institucionBean.getCelular(), institucionBean.getSitioWeb(), institucionBean.getEmail(), institucionBean.getLocalidad(), institucionBean.getIdCategoria());
 					model.addAttribute("menssage", "Institucion registrada correctamente.");
 					return "menssageDashboard";
 				} else {
@@ -204,7 +223,7 @@ public class ABMInstitucionController {
 				if (!(validateVacio.validate())) {
 					serviceInstitucion.insertInstitucion(institucionBean.getDirector(), institucionBean.getCiudad(),
 							institucionBean.getTipo(), institucionBean.getNombre(), institucionBean.getDireccion(), institucionBean.getTelefono(),
-							institucionBean.getCelular(), institucionBean.getSitioWeb(), institucionBean.getEmail(), institucionBean.getLocalidad());
+							institucionBean.getCelular(), institucionBean.getSitioWeb(), institucionBean.getEmail(), institucionBean.getLocalidad(), institucionBean.getIdCategoria());
 					model.addAttribute("menssage", "Institucion actualizada correctamente.");
 					return "menssageDashboard";
 				} else {

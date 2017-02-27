@@ -1,7 +1,9 @@
 package com.ayudar.dao.impl;
 
 import java.util.ArrayList;
+
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -13,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import com.ayudarg.dao.InstitucionDAO;
 import com.ayudarg.dao.UsuarioDAO;
+import com.ayudarg.dao.CategoriaDAO;
 import com.ayudarg.model.Categoria;
 import com.ayudarg.model.InstitucionSQL;
 import com.ayudarg.model.LocalidadesSQL;
@@ -55,14 +58,26 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 		return l;
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Categoria getCategoriaById(String id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Categoria c = (Categoria) session.createQuery("from Categoria WHERE idCategoria='"+id+"'").uniqueResult();
+		return c;
+	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void insertInstitucion(String director, String ciudad, String tipo, String nombre, String direccion,
-			String telefono, String celular, String sitioWeb, String email, String localidadesId) {
+			String telefono, String celular, String sitioWeb, String email, String localidadesId, String[] idCategoria) {
 		Session session = this.sessionFactory.getCurrentSession();
 		InstitucionSQL us = new InstitucionSQL();
 		LocalidadesSQL lq = new LocalidadesSQL();
+		HashSet<Categoria> categoriaSet = new HashSet<>();
+		for (String cat : idCategoria) {
+			Categoria catid = getCategoriaById(cat);
+			categoriaSet.add(catid);
+		}
 		lq.setLocalidadesId(Integer.parseInt(localidadesId));
 		us.setDirector(director);
 		us.setTipo(tipo);
@@ -74,6 +89,7 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 		us.setEmail(email);
 		us.setActivo(true);
 		us.setLocalidadesId(lq);
+		us.setCategoria(categoriaSet);
         session.save(us);
         session.flush();
 	}
@@ -81,12 +97,17 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void updateInstitucion(String institucion, String director, String ciudad, String tipo, String nombre, String direccion,
-			String telefono, String celular, String sitioWeb, String email, String localidadesId) {
+			String telefono, String celular, String sitioWeb, String email, String localidadesId, String[] idCategoria) {
 		Session session = this.sessionFactory.getCurrentSession();
 		InstitucionSQL us = new InstitucionSQL ();
 		us.setIdInstitucion(Integer.parseInt(institucion));
 		LocalidadesSQL lq = new LocalidadesSQL();
 		lq.setLocalidadesId(Integer.parseInt(localidadesId));
+		HashSet<Categoria> categoriaSet = new HashSet<>();
+		for (String cat : idCategoria) {
+			Categoria catid = getCategoriaById(cat);
+			categoriaSet.add(catid);
+		}
 		us.setDirector(director);
 		us.setTipo(tipo);
 		us.setNombre(nombre);
@@ -96,6 +117,7 @@ public class InstitucionDaoImpl implements InstitucionDAO {
 		us.setSitioWeb(sitioWeb);
 		us.setEmail(email);
 		us.setLocalidadesId(lq);
+		us.setCategoria(categoriaSet);
         session.update(us);
         session.flush();
 	}
