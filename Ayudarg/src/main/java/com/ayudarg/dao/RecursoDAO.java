@@ -11,6 +11,6 @@ public interface RecursoDAO {
 	public List<RecursoSQL> listRecursos();
 	Categoria getCategoriaById(String id);
 	InstitucionSQL getInstitucionById(String idIns);
-	public void insertRecurso(String nombre, String cantidad, String categoria, String institucion);
+	public void insertRecurso(String nombre, String cantidad, String categoria);
 	void deleteRecurso(String nombre, String categoria);
 }
