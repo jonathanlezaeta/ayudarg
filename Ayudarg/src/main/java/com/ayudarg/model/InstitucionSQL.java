@@ -39,7 +39,7 @@ public class InstitucionSQL {
 	private String email;
 	private boolean activo;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "localidadesId", nullable = false)
 	private LocalidadesSQL localidadesId;
 	
@@ -59,9 +59,6 @@ public class InstitucionSQL {
 	public void setCategoria(Set<Categoria> categoria) {
 		this.categoria = categoria;
 	}
-
-	@OneToMany(cascade = CascadeType.ALL)
-	private Set<RecursoSQL> recurso = new HashSet<RecursoSQL>(0);
 
 	public LocalidadesSQL getLocalidadesId() {
 		return localidadesId;
@@ -149,14 +146,6 @@ public class InstitucionSQL {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public Set<RecursoSQL> getRecursos() {
-		return this.recurso;
-	}
-
-	public void setRecurso(Set<RecursoSQL> recurso) {
-		this.recurso = recurso;
 	}
 
 	@Override
