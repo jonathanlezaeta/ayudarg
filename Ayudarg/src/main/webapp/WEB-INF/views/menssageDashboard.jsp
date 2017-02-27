@@ -113,12 +113,9 @@ body {
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">
-						<svg class="glyph stroked email"> <use
-							xlink:href="#stroked-email"></use></svg>
-							Ayudarg
-					</div>
-					<div class="col-md-12"><h3>${menssage}</h3></div>
+					
+					<div class="col-md-12"><h3 style="color:white;">${menssage}</h3></div>
+					
 				</div>
 			</div>
 </body>
