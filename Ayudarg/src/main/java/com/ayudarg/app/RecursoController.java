@@ -3,27 +3,17 @@ package com.ayudarg.app;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.elasticsearch.action.delete.DeleteRequestBuilder;
-import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.index.IndexResponse;
-import org.elasticsearch.action.search.SearchRequestBuilder;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.client.Client;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.SearchHits;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -36,29 +26,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ayudar.elasticsearch.model.Institucion;
 import com.ayudar.elasticsearch.model.RecursoModelEs;
 import com.ayudar.elasticsearch.model.Usuario;
-import com.ayudar.view.beans.CategoriaBean;
-import com.ayudar.view.beans.DonarDemandarBean;
-import com.ayudar.view.beans.InstitucionBajaBean;
-import com.ayudar.view.beans.InstitucionBean;
-import com.ayudar.view.beans.LoginBean;
 import com.ayudar.view.beans.RecursoBean;
 import com.ayudarg.elasticsearch.ElasticSearchConector;
 import com.ayudarg.model.Categoria;
 import com.ayudarg.model.InstitucionSQL;
-import com.ayudarg.model.LocalidadesSQL;
-import com.ayudarg.model.ProvinciasSQL;
-import com.ayudarg.model.Rol;
 import com.ayudarg.model.UsuarioSQL;
 import com.ayudarg.service.CategoriaService;
 import com.ayudarg.service.InstitucionService;
-import com.ayudarg.service.RecursoService;
-import com.ayudarg.service.RolService;
-import com.ayudarg.service.UsuarioService;
 import com.ayudarg.validators.ValidatorForm;
 import com.ayudarg.validators.ValidatorFormCompuesto;
 import com.ayudarg.validators.ValidatorFormIsEmpty;
 import com.google.gson.Gson;
-import com.spatial4j.core.distance.GeodesicSphereDistCalc.Haversine;
 
 @Controller
 public class RecursoController {
@@ -92,39 +70,9 @@ public class RecursoController {
 	
 	@RequestMapping(value = "/recurso", method = RequestMethod.GET)
 	public String dashboard(Locale locale, Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
-		model.addAttribute("usuario", session.getAttribute("usuario"));
-		model.addAttribute("rol", session.getAttribute("rol"));
-		model.addAttribute("recursoBean", new RecursoBean());
-		model.addAttribute("categoria", categorias);		
+		HttpSession session = request.getSession();	
 		if(session.getAttribute("usuario")!= null){
-			RecursoModelEs nuevoRecurso = new RecursoModelEs();
-			UsuarioSQL us = (UsuarioSQL) session.getAttribute("usuario");
-			Set<InstitucionSQL> inst = us.getInstitucion();
-			ArrayList<InstitucionSQL> instituciones = new ArrayList<InstitucionSQL>();
-			Iterator it = inst.iterator();
-			while(it.hasNext()){
-				InstitucionSQL institcuion = (InstitucionSQL) it.next();
-				instituciones.add(institcuion);
-			}
-	 		Gson gson = new Gson();
-			Client client = es.getElasticSearchClient();
-			SearchResponse requestBuilder = client.prepareSearch("ayudarg")
-					.setTypes("recurso")
-					.setSearchType(SearchType.QUERY_AND_FETCH)
-				    .setQuery(QueryBuilders.matchQuery("institucion.idInstitucion", String.valueOf(instituciones.get(0).getIdInstitucion())))
-				    .setFrom(0).setSize(60).setExplain(true)
-				    .execute()
-				    .actionGet();
-			SearchHit[] results = requestBuilder.getHits().getHits(); 
-			ArrayList<RecursoModelEs> resp = new ArrayList<RecursoModelEs>();
-			for (SearchHit hit : results) {
-				RecursoModelEs recurso = gson.fromJson(hit.getSourceAsString(), RecursoModelEs.class);
-				resp.add(recurso);
-			}		
-			model.addAttribute("recursos", resp);
-			model.addAttribute("instituciones", instituciones);
+			model = loadModel(model, session);
 			return "recurso";
 		}else{
 		    model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
@@ -149,7 +97,6 @@ public class RecursoController {
 				ValidatorForm validateVacio = new ValidatorFormIsEmpty();
 				validateVacio.setValues(form);
 				if (!(validateVacio.validate())) {
-					//serviceRecurso.insertRecurso(recursoBean.getNombre(), recursoBean.getCantidad(), recursoBean.getIdCategoria());
 					String uniqueId = UUID.randomUUID().toString();	
 					RecursoModelEs nuevoRecurso = new RecursoModelEs();
 					UsuarioSQL us = (UsuarioSQL) session.getAttribute("usuario");
@@ -260,10 +207,6 @@ public class RecursoController {
 			ValidatorForm validateVacio = new ValidatorFormIsEmpty();
 			validateVacio.setValues(form);
 			if (!(validateVacio.validate())) {
-				
-				
-				
-				
 				RecursoModelEs recurso =  es.getRecursoById(recursoBean.getId());
 				recurso.setNombre(recursoBean.getNombre());
 				recurso.setDescripcion(recursoBean.getDescripcion());
@@ -328,5 +271,51 @@ public class RecursoController {
 	public void setServiceInstitucion(InstitucionService serviceInstitucion) {
 		this.serviceInstitucion = serviceInstitucion;
 	}
+	
+	public Model loadModel(Model model, HttpSession session){
+		ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
+		model.addAttribute("usuario", session.getAttribute("usuario"));
+		model.addAttribute("rol", session.getAttribute("rol"));
+		model.addAttribute("recursoBean", new RecursoBean());
+		model.addAttribute("categoria", categorias);		
+		UsuarioSQL us = (UsuarioSQL) session.getAttribute("usuario");
+		Set<InstitucionSQL> inst = us.getInstitucion();
+		ArrayList<InstitucionSQL> instituciones = new ArrayList<InstitucionSQL>();
+		Iterator it = inst.iterator();
+		while(it.hasNext()){
+			InstitucionSQL institcuion = (InstitucionSQL) it.next();
+			instituciones.add(institcuion);
+		}
+		ArrayList<RecursoModelEs> resp = es.getRecursosByInsitucion(String.valueOf(instituciones.get(0).getIdInstitucion()));
+		model.addAttribute("recursos", resp);
+		model.addAttribute("instituciones", instituciones);		
+		return model;
+	}
+	
+	public Usuario uuarioaAdapter(UsuarioSQL us){
+		Usuario usuario = new Usuario();
+		usuario.setIdUsuario(us.getIdUsuario());
+		usuario.setEmail(us.getEmail());
+		usuario.setLocalidadesId(String.valueOf(us.getLocalidadesId().getLocalidadesId()));
+		usuario.setTelefono(us.getTelefono());
+		usuario.setCelular(us.getCelular());
+		usuario.setActivo(us.getActivo());
+		return usuario;
+	}
+	
+	public Institucion institucionAdapter(InstitucionSQL institucion){
+		Institucion inst = new Institucion();
+		inst.setId(String.valueOf(institucion.getIdInstitucion()));
+		inst.setDireccion(institucion.getDireccion());
+		inst.setDirector(institucion.getDirector());
+		inst.setLocalidadId(String.valueOf(institucion.getLocalidadesId()));
+		inst.setMail(institucion.getEmail());
+		inst.setNombre(institucion.getNombre());
+		inst.setSitioWeb(institucion.getSitioWeb());
+		inst.setTelefono(institucion.getTelefono());
+		inst.setTipo(institucion.getTipo());
+		return inst;
+	}
+	
   }
 

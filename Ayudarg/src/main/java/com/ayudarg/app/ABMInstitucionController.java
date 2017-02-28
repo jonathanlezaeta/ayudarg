@@ -106,18 +106,7 @@ public class ABMInstitucionController {
 	@RequestMapping(value = "/altaInstitucion", method = RequestMethod.GET)
 	public String home(Locale locale, Model model,  HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
-		ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
-		ArrayList<InstitucionSQL> instituciones = (ArrayList<InstitucionSQL>) serviceInstitucion.listInstituciones();
-		ArrayList<LocalidadesSQL> localidades = (ArrayList<LocalidadesSQL>) serviceGeo.listAllLocalidades();
-		model.addAttribute("localidades", localidades);
-		model.addAttribute("usuario", session.getAttribute("usuario"));
-		model.addAttribute("rol", session.getAttribute("rol"));
-		model.addAttribute("institucion", instituciones);
-		model.addAttribute("provincias", provincias);
-		model.addAttribute("categoria", categorias);
-		model.addAttribute("institucionBean", new InstitucionBean());
-		model.addAttribute("institucionBajaBean", new InstitucionBajaBean());
+		loadModel(model, session);
 		if(session.getAttribute("usuario")!= null){
 			return "altaInstitucion";
 		}else{
@@ -152,14 +141,7 @@ public class ABMInstitucionController {
 					model.addAttribute("menssage", "Institucion registrada correctamente.");
 					return "menssageDashboard";
 				} else {
-					ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
-					ArrayList<LocalidadesSQL> localidades = (ArrayList<LocalidadesSQL>) serviceGeo.listAllLocalidades();
-					List<InstitucionSQL> instituciones = serviceInstitucion.listInstituciones();
-					model.addAttribute("institucion", instituciones);
-					model.addAttribute("provincias", provincias);
-					model.addAttribute("localidades", localidades);
-					model.addAttribute("institucionBajaBean", new InstitucionBajaBean());
-					model.addAttribute("institucionBean", new InstitucionBean());
+					loadModel(model, session);
 					model.addAttribute("errorRegistrar", "En la pestaña registrar: " + validateVacio.getError());
 					return "altaInstitucion";
 				}
@@ -189,14 +171,7 @@ public class ABMInstitucionController {
 					model.addAttribute("menssage", "Baja de institucion exitosa.");
 					return "menssageDashboard";
 				} else {
-					ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
-					ArrayList<LocalidadesSQL> localidades = (ArrayList<LocalidadesSQL>) serviceGeo.listAllLocalidades();
-					List<InstitucionSQL> instituciones = serviceInstitucion.listInstituciones();
-					model.addAttribute("institucion", instituciones);
-					model.addAttribute("provincias", provincias);
-					model.addAttribute("localidades", localidades);
-					model.addAttribute("institucionBajaBean", new InstitucionBajaBean());
-					model.addAttribute("institucionBean", new InstitucionBean());
+					loadModel(model, session);
 					model.addAttribute("errorRegistrar", "En la pestaña eliminar: " + validateVacio.getError());
 					return "altaInstitucion";
 				}
@@ -233,15 +208,7 @@ public class ABMInstitucionController {
 					model.addAttribute("menssage", "Institucion actualizada correctamente.");
 					return "menssageDashboard";
 				} else {
-					ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
-					ArrayList<LocalidadesSQL> localidades = (ArrayList<LocalidadesSQL>) serviceGeo.listAllLocalidades();
-					List<InstitucionSQL> instituciones = serviceInstitucion.listInstituciones();
-					model.addAttribute("localidades", localidades);
-					model.addAttribute("institucion", instituciones);
-					model.addAttribute("provincias", provincias);
-					model.addAttribute("localidades", localidades);
-					model.addAttribute("institucionBajaBean", new InstitucionBajaBean());
-					model.addAttribute("institucionBean", new InstitucionBean());
+					loadModel(model, session);
 					model.addAttribute("errorRegistrar", "En la pestaña modificar: " + validateVacio.getError());
 					return "altaInstitucion";
 				}
@@ -269,4 +236,21 @@ public class ABMInstitucionController {
 		String jsonInString = gson.toJson(institucionBean);
 		return jsonInString;
 	}
+	
+	public Model loadModel(Model model, HttpSession session){
+		ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
+		ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
+		ArrayList<InstitucionSQL> instituciones = (ArrayList<InstitucionSQL>) serviceInstitucion.listInstituciones();
+		ArrayList<LocalidadesSQL> localidades = (ArrayList<LocalidadesSQL>) serviceGeo.listAllLocalidades();
+		model.addAttribute("localidades", localidades);
+		model.addAttribute("usuario", session.getAttribute("usuario"));
+		model.addAttribute("rol", session.getAttribute("rol"));
+		model.addAttribute("institucion", instituciones);
+		model.addAttribute("provincias", provincias);
+		model.addAttribute("categoria", categorias);
+		model.addAttribute("institucionBean", new InstitucionBean());
+		model.addAttribute("institucionBajaBean", new InstitucionBajaBean());
+		return model;
+	}
+	
 }
