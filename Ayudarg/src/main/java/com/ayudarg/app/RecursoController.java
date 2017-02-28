@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.elasticsearch.action.delete.DeleteRequestBuilder;
-import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -89,6 +88,7 @@ public class RecursoController {
 				// Validacion del formulario
 				HashMap<String, String> form = new HashMap<String, String>();
 				form.put("nombre", recursoBean.getNombre());
+				form.put("descripcion", recursoBean.getDescripcion());
 				form.put("cantidad", recursoBean.getCantidad());
 				if(recursoBean.getIdCategoria().length > 0)
 					form.put("categoria", recursoBean.getIdCategoria()[0]);
@@ -100,25 +100,9 @@ public class RecursoController {
 					String uniqueId = UUID.randomUUID().toString();	
 					RecursoModelEs nuevoRecurso = new RecursoModelEs();
 					UsuarioSQL us = (UsuarioSQL) session.getAttribute("usuario");
-					Usuario usuario = new Usuario();
-					usuario.setIdUsuario(us.getIdUsuario());
-					usuario.setEmail(us.getEmail());
-					usuario.setLocalidadesId(String.valueOf(us.getLocalidadesId().getLocalidadesId()));
-					usuario.setTelefono(us.getTelefono());
-					usuario.setCelular(us.getCelular());
-					usuario.setActivo(us.getActivo());
-//					nuevoRecurso.setUsuario(us);
+					Usuario usuario = uuarioaAdapter(us);
 					InstitucionSQL institucion = serviceInstitucion.getInstitucionById(recursoBean.getIdInstitucion());
-					Institucion inst = new Institucion();
-					inst.setId(String.valueOf(institucion.getIdInstitucion()));
-					inst.setDireccion(institucion.getDireccion());
-					inst.setDirector(institucion.getDirector());
-					inst.setLocalidadId(String.valueOf(institucion.getLocalidadesId()));
-					inst.setMail(institucion.getEmail());
-					inst.setNombre(institucion.getNombre());
-					inst.setSitioWeb(institucion.getSitioWeb());
-					inst.setTelefono(institucion.getTelefono());
-					inst.setTipo(institucion.getTipo());
+					Institucion inst = institucionAdapter(institucion);
 					ArrayList<Long> categorias = new ArrayList<Long>();
 					for(String s : recursoBean.getIdCategoria()){
 						categorias.add(Long.parseLong(s));
@@ -132,22 +116,12 @@ public class RecursoController {
 					nuevoRecurso.setFechaIngreso(fecha);
 					nuevoRecurso.setUsuario(usuario);
 					nuevoRecurso.setInstitucion(inst);
-					Gson gson = new Gson();
-			 		Client client = es.getElasticSearchClient();
-			 		IndexResponse responseAdd = client.prepareIndex("ayudarg", "recurso", uniqueId)
-							.setSource(gson.toJson(nuevoRecurso)).execute().actionGet();
-					if(!responseAdd.isCreated()){
-						System.out.println("The document was not added");
-					}
-					client.admin().indices().prepareRefresh("ayudarg").get();				
+					es.insertRecurso(uniqueId, nuevoRecurso);
 					model.addAttribute("menssage", "Recurso registrado correctamente.");
 					return "menssageDashboard";
 				} else {
-					ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
-					model.addAttribute("nombre", recursoBean.getNombre());
-					model.addAttribute("cantidad", recursoBean.getCantidad());
-					model.addAttribute("categoria", categorias);
-					model.addAttribute("errorRegistrar", "En la pestaña registrar: " + validateVacio.getError());
+					loadModel(model, session);
+					model.addAttribute("menssage", "En la pestaña registrar: " + validateVacio.getError());
 					return "recurso";
 				}
 			} else {
@@ -164,7 +138,7 @@ public class RecursoController {
 			model.addAttribute("rol", session.getAttribute("rol"));
 			// Validacion del formulario
 			HashMap<String, String> form = new HashMap<String, String>();
-			form.put("recurso", recursoBean.getNombre());
+			form.put("recurso", recursoBean.getId());
 			ValidatorForm validateVacio = new ValidatorFormIsEmpty();
 			ArrayList<ValidatorForm> validadores = new ArrayList<ValidatorForm>();
 			validadores.add(validateVacio);
@@ -177,11 +151,8 @@ public class RecursoController {
 				model.addAttribute("menssage", "Baja de recurso exitosa.");
 				return "menssageDashboard";
 			} else {
-				ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
-				model.addAttribute("nombre", recursoBean.getNombre());
-				model.addAttribute("cantidad", recursoBean.getCantidad());
-				model.addAttribute("categoria", categorias);
-				model.addAttribute("errorRegistrar", "En la pestaña eliminar: " + validateVacio.getError());
+				loadModel(model, session);
+				model.addAttribute("menssage", "En la pestaña eliminar: " + validateVacio.getError());
 				return "recurso";
 			}
 		} else {
@@ -203,6 +174,7 @@ public class RecursoController {
 			else
 				form.put("categoria", "");
 			form.put("nombre", recursoBean.getNombre());
+			form.put("descripcion", recursoBean.getDescripcion());
 			form.put("cantidad", recursoBean.getCantidad());
 			ValidatorForm validateVacio = new ValidatorFormIsEmpty();
 			validateVacio.setValues(form);
@@ -218,15 +190,11 @@ public class RecursoController {
 				}
 				recurso.setCategorias(cat);
 				es.updateRecurso(recurso);
-				
 				model.addAttribute("menssage", "Recurso modificado correctamente.");
 				return "menssageDashboard";
 			} else {
-				ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
-				model.addAttribute("nombre", recursoBean.getNombre());
-				model.addAttribute("cantidad", recursoBean.getCantidad());
-				model.addAttribute("categoria", categorias);
-				model.addAttribute("errorRegistrar", "En la pestaña modificar: " + validateVacio.getError());
+				loadModel(model, session);
+				model.addAttribute("menssage", "En la pestaña modificar: " + validateVacio.getError());
 				return "recurso";
 			}
 		} else {
@@ -308,7 +276,7 @@ public class RecursoController {
 		inst.setId(String.valueOf(institucion.getIdInstitucion()));
 		inst.setDireccion(institucion.getDireccion());
 		inst.setDirector(institucion.getDirector());
-		inst.setLocalidadId(String.valueOf(institucion.getLocalidadesId()));
+		inst.setLocalidadId(String.valueOf(institucion.getLocalidadesId().getLocalidadesId()));
 		inst.setMail(institucion.getEmail());
 		inst.setNombre(institucion.getNombre());
 		inst.setSitioWeb(institucion.getSitioWeb());

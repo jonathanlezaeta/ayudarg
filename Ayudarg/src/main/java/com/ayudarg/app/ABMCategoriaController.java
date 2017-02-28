@@ -37,7 +37,6 @@ import com.google.gson.Gson;
 public class ABMCategoriaController {
 
 	private CategoriaService serviceCategoria;
-	
 
 	public CategoriaService getServiceCategoria() {
 		return serviceCategoria;
@@ -47,7 +46,6 @@ public class ABMCategoriaController {
 		this.serviceCategoria = serviceCategoria;
 	}
 
-	
 	@Autowired(required = true)
 	@Qualifier(value = "CategoriaService")
 	public void setCategoriaService(CategoriaService ps) {
@@ -65,16 +63,17 @@ public class ABMCategoriaController {
 		HttpSession session = request.getSession();
 		model.addAttribute("usuario", session.getAttribute("usuario"));
 		model.addAttribute("rol", session.getAttribute("rol"));
-		if(session.getAttribute("usuario")!= null){
+		if (session.getAttribute("usuario") != null) {
 			return "categoriaView";
-		}else{
-		    model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
+		} else {
+			model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
 			return "menssage";
 		}
 	}
 
-	@RequestMapping(value="/submitAltaCategoria", method = RequestMethod.POST)
-	public String submitRegistrar(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean, HttpServletRequest request) {
+	@RequestMapping(value = "/submitAltaCategoria", method = RequestMethod.POST)
+	public String submitRegistrar(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean,
+			HttpServletRequest request) {
 		// Chequeo el inicio de session
 		HttpSession session = request.getSession();
 		if (session.getAttribute("usuario") != null) {
@@ -101,42 +100,52 @@ public class ABMCategoriaController {
 			return "menssage";
 		}
 	}
-		
-	
-	@RequestMapping(value="/submitDeleteCategoria", method = RequestMethod.POST)
-	public String submitDeleteCategoria(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		// Chequeo el inicio de session
-		if (session.getAttribute("usuario") != null) {
-			model.addAttribute("rol", session.getAttribute("rol"));
-			// Validacion del formulario
-			HashMap<String, String> form = new HashMap<String, String>();
-			form.put("categoria", categoriaBean.getCategoria());
-			ValidatorForm validateVacio = new ValidatorFormIsEmpty();
-			ArrayList<ValidatorForm> validadores = new ArrayList<ValidatorForm>();
-			validadores.add(validateVacio);
-			ValidatorForm validador = new ValidatorFormCompuesto(validadores);
-			validador.setValues(form);
-			if (!(validador.validate())) {
-				serviceCategoria.deleteCategoria(categoriaBean.getCategoria());
-				model.addAttribute("menssage", "Baja de categoria exitosa.");
-				return "menssageDashboard";
+
+	@RequestMapping(value = "/submitDeleteCategoria", method = RequestMethod.POST)
+	public String submitDeleteCategoria(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean,
+			HttpServletRequest request) {
+		try {
+			HttpSession session = request.getSession();
+			// Chequeo el inicio de session
+			if (session.getAttribute("usuario") != null) {
+				model.addAttribute("rol", session.getAttribute("rol"));
+				// Validacion del formulario
+				HashMap<String, String> form = new HashMap<String, String>();
+				form.put("categoria", categoriaBean.getCategoria());
+				ValidatorForm validateVacio = new ValidatorFormIsEmpty();
+				ArrayList<ValidatorForm> validadores = new ArrayList<ValidatorForm>();
+				validadores.add(validateVacio);
+				ValidatorForm validador = new ValidatorFormCompuesto(validadores);
+				validador.setValues(form);
+				if (!(validador.validate())) {
+					if (categoriaBean.getCategoria() == "1")
+						serviceCategoria.deleteCategoria(categoriaBean.getCategoria());
+					else
+						throw new RuntimeException("La categoria base no se puede eliminar");
+					model.addAttribute("menssage", "Baja de categoria exitosa.");
+					return "menssageDashboard";
+				} else {
+					List<Categoria> categorias = serviceCategoria.listCategorias();
+					model.addAttribute("categoria", categorias);
+					model.addAttribute("categoriaBean", new CategoriaBean());
+					model.addAttribute("errorRegistrar", "En la pestaña eliminar: " + validateVacio.getError());
+					return "categoriaView";
+				}
 			} else {
-				List<Categoria> categorias = serviceCategoria.listCategorias();
-				model.addAttribute("categoria", categorias);
-				model.addAttribute("categoriaBean", new CategoriaBean());
-				model.addAttribute("errorRegistrar", "En la pestaña eliminar: " + validateVacio.getError());
-				return "categoriaView";
+				model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
+				return "menssage";
 			}
-		} else {
-			model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
-			return "menssage";
+		} catch (Exception e) {
+			System.out.println("Error al elmininar en la base de datos");
+			model.addAttribute("menssage",
+					"Atencion existe una institución que tiene asignada la categoria que desea eliminar, por favor verifiquelo. Si esta intentando eliminar la categoria 'Ninguna' el sistema no lo permitira. Si ya verifico lo anterior y el error continua comuniquese con el administrador del sistema.");
+			return "menssageDashboard";
 		}
 	}
 
-
-	@RequestMapping(value="/submitUpdateCategoria", method = RequestMethod.POST)
-	public String submitUpdateCategoria(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean, HttpServletRequest request) {
+	@RequestMapping(value = "/submitUpdateCategoria", method = RequestMethod.POST)
+	public String submitUpdateCategoria(Model model, @ModelAttribute("categoriaBean") CategoriaBean categoriaBean,
+			HttpServletRequest request) {
 		// Chequeo el inicio de session
 		HttpSession session = request.getSession();
 		if (session.getAttribute("usuario") != null) {
@@ -149,7 +158,8 @@ public class ABMCategoriaController {
 			ValidatorForm validateVacio = new ValidatorFormIsEmpty();
 			validateVacio.setValues(form);
 			if (!(validateVacio.validate())) {
-				serviceCategoria.updateCategoria(categoriaBean.getCategoria() ,categoriaBean.getNombre(), categoriaBean.getCategoria());
+				serviceCategoria.updateCategoria(categoriaBean.getCategoria(), categoriaBean.getNombre(),
+						categoriaBean.getCategoria());
 				model.addAttribute("menssage", "Categoria modificada correctamente.");
 				return "menssageDashboard";
 			} else {
@@ -164,15 +174,15 @@ public class ABMCategoriaController {
 			return "menssage";
 		}
 	}
-	
+
 	@RequestMapping(value = "/getCategoriaById", method = RequestMethod.POST)
 	public @ResponseBody String getUsuariosById(CategoriaBean categoriaBean) {
 		Gson gson = new Gson();
 		Categoria categoria = serviceCategoria.getCategoriaById(categoriaBean.getCategoria());
 		CategoriaBean cat = new CategoriaBean();
-		cat.setNombre(categoria.getNombre());	
+		cat.setNombre(categoria.getNombre());
 		cat.setCategoriaPadre(String.valueOf(categoria.getSubcategoria().getIdCategoria()));
 		String jsonInString = gson.toJson(cat);
 		return jsonInString;
-	}	
+	}
 }

@@ -3,6 +3,7 @@ package com.ayudarg.elasticsearch;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
 
+import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.action.update.UpdateRequestBuilder;
@@ -87,6 +88,36 @@ public class ElasticSearchConector {
 		br.setDoc(json.getBytes());
 		br.execute();
 		client.admin().indices().prepareRefresh("ayudarg").get();		
+	}
+	
+	public void insertRecurso(String uniqueId, RecursoModelEs recurso){
+		Gson gson = new Gson();
+ 		IndexResponse responseAdd = this.elasticSearchClient.prepareIndex("ayudarg", "recurso", uniqueId)
+				.setSource(gson.toJson(recurso)).execute().actionGet();		
+		if(!responseAdd.isCreated()){
+			System.out.println("The document was not added");
+		}
+		 this.elasticSearchClient.admin().indices().prepareRefresh("ayudarg").get();	
+	}
+	
+	public ArrayList<RecursoModelEs> searchRecursos(String localidadId, ArrayList<Long> categorias){
+		Gson gson = new Gson();
+		Client client = this.getElasticSearchClient();
+		SearchResponse requestBuilder = client.prepareSearch("ayudarg")
+				.setTypes("recurso")
+				.setSearchType(SearchType.QUERY_AND_FETCH)
+			    .setQuery(QueryBuilders.matchQuery("institucion.localidadId", localidadId))
+			    .setQuery(QueryBuilders.termsQuery("categorias", categorias))
+			    .setFrom(0).setSize(60).setExplain(true)
+			    .execute()
+			    .actionGet();
+		SearchHit[] results = requestBuilder.getHits().getHits(); 
+		ArrayList<RecursoModelEs> resp = new ArrayList<RecursoModelEs>();
+		for (SearchHit hit : results) {
+			RecursoModelEs recurso = gson.fromJson(hit.getSourceAsString(), RecursoModelEs.class);
+			resp.add(recurso);
+		}		
+		return resp;		
 	}
 	
 }

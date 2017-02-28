@@ -22,49 +22,50 @@ body {
 }
 </style>
 <script language="javascript">
-	function cargarModificar(value){
-		if(document.getElementById("recursoModificar").value != ""){
-			$.ajax({
-				type: "POST",
-				data: $(value).serialize(),
-				dataType: 'json',
-				url: '/app/getRecursoById', 
-				success: function(data) { 
-					var res = data; 
-					document.getElementById("nombreModificar").value= res.nombre;
-					document.getElementById("descripcionModificar").value= res.descripcion;
-					document.getElementById("cantidadModificar").value= res.cantidad;
-			        checkboxes=document.getElementsByTagName('input'); //obtenemos todos los controles del tipo Input
-			 		for(i=0;i<checkboxes.length;i++) //recoremos todos los controles
-			 		{
-			 			if(checkboxes[i].type == "checkbox") //solo si es un checkbox entramos
-			 			{
-			 				for(j=0;j < res.idCategoria.length; j++){
-			 					if(checkboxes[i].value == res.idCategoria[j])
-			 						checkboxes[i].checked= true; //si es un checkbox le damos el valor del checkbox que lo llamó (Marcar/Desmarcar Todos)
-			 				}
-			 			}
-			 		}
-				},
-				error: function(e){ 
-					alert("Error en el servidor, por favor, intentalo de nuevo mas tarde");
+	function cargarModificar(value) {
+		if (document.getElementById("recursoModificar").value != "") {
+			$
+					.ajax({
+						type : "POST",
+						data : $(value).serialize(),
+						dataType : 'json',
+						url : '/app/getRecursoById',
+						success : function(data) {
+							var res = data;
+							document.getElementById("nombreModificar").value = res.nombre;
+							document.getElementById("descripcionModificar").value = res.descripcion;
+							document.getElementById("cantidadModificar").value = res.cantidad;
+							checkboxes = document.getElementsByTagName('input'); //obtenemos todos los controles del tipo Input
+							for (i = 0; i < checkboxes.length; i++) //recoremos todos los controles
+							{
+								if (checkboxes[i].type == "checkbox") //solo si es un checkbox entramos
+								{
+									for (j = 0; j < res.idCategoria.length; j++) {
+										if (checkboxes[i].value == res.idCategoria[j])
+											checkboxes[i].checked = true; //si es un checkbox le damos el valor del checkbox que lo llamó (Marcar/Desmarcar Todos)
+									}
+								}
+							}
+						},
+						error : function(e) {
+							alert("Error en el servidor, por favor, intentalo de nuevo mas tarde");
+						}
+					});
+		} else {
+			document.getElementById("nombreModificar").value = "";
+			document.getElementById("descripcionModificar").value = "";
+			document.getElementById("cantidadModificar").value = "";
+			checkboxes = document.getElementsByTagName('input'); //obtenemos todos los controles del tipo Input
+			for (i = 0; i < checkboxes.length; i++) //recoremos todos los controles
+			{
+				if (checkboxes[i].type == "checkbox") //solo si es un checkbox entramos
+				{
+					checkboxes[i].checked = false; //si es un checkbox le damos el valor del checkbox que lo llamó (Marcar/Desmarcar Todos)
 				}
-			});
-		}else{
-			document.getElementById("nombreModificar").value= "";
-			document.getElementById("descripcionModificar").value= "";
-			document.getElementById("cantidadModificar").value= "";
-	        checkboxes=document.getElementsByTagName('input'); //obtenemos todos los controles del tipo Input
-	 		for(i=0;i<checkboxes.length;i++) //recoremos todos los controles
-	 		{
-	 			if(checkboxes[i].type == "checkbox") //solo si es un checkbox entramos
-	 			{
-	 				checkboxes[i].checked= false; //si es un checkbox le damos el valor del checkbox que lo llamó (Marcar/Desmarcar Todos)
-	 			}
-	 		}			
+			}
 		}
-	}	
-	</script>
+	}
+</script>
 </head>
 <body>
 
@@ -163,7 +164,7 @@ body {
 						Recursos
 					</div>
 					<div class="panel-body">
-
+						<h4 style="color: red;">${menssage}</h4>
 						<div class="container">
 							<div id="exTab2" class="col-md-10">
 								<ul class="nav nav-tabs">
@@ -201,7 +202,7 @@ body {
 													<div class="col-md-9">
 														<input id="nombre" name="nombre" type="text"
 															placeholder="Ingrese nombre del recurso"
-															class="form-control" required="" value="${nombre}">
+															class="form-control" required="" value="">
 													</div>
 												</div>
 
@@ -209,7 +210,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="cantidad">Cantidad</label>
 													<div class="col-md-9">
-														<input id="cantidad" name="cantidad" type="text"
+														<input id="cantidad" name="cantidad" type="number"
 															placeholder="Ingrese cantidad a donar"
 															class="form-control" required="" value="${cantidad}">
 													</div>
@@ -220,7 +221,7 @@ body {
 													<div class="col-md-9">
 														<textarea id="descripcion" name="descripcion"
 															placeholder="Ingrese una breve descripcion"
-															class="form-control" required="" value="${descripcion}"></textarea>
+															class="form-control" required="" value=""></textarea>
 													</div>
 												</div>
 
@@ -300,7 +301,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="cantidad">Cantidad</label>
 													<div class="col-md-9">
-														<input id="cantidadModificar" name="cantidad" type="text"
+														<input id="cantidadModificar" name="cantidad" type="number"
 															placeholder="Ingrese cantidad a donar"
 															class="form-control" required="" value="">
 													</div>

@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ayudar.elasticsearch.model.RecursoModelEs;
 import com.ayudar.view.beans.DemandarBean;
 import com.ayudar.view.beans.DonarDemandarBean;
 import com.ayudar.view.beans.InstitucionBean;
 import com.ayudar.view.beans.RegistrarseBean;
+import com.ayudarg.elasticsearch.ElasticSearchConector;
 import com.ayudarg.model.Categoria;
 import com.ayudarg.model.InstitucionSQL;
 import com.ayudarg.model.ProvinciasSQL;
@@ -36,13 +38,16 @@ import com.ayudarg.validators.ValidatorFormIsEmpty;
  */
 @Controller
 public class DemandarController {
-
+	private ElasticSearchConector es;
 	private RecursoService serviceRecurso;
 	private CategoriaService serviceCategoria;
 	private InstitucionService serviceInstitucion;
 	private GeoService serviceGeo;
 	
-
+	public DemandarController(){
+		es = new ElasticSearchConector();
+	}
+	
 	public CategoriaService getServiceCategoria() {
 		return serviceCategoria;
 	}
@@ -141,11 +146,17 @@ public class DemandarController {
 			ValidatorForm validateVacio = new ValidatorFormIsEmpty();
 			validateVacio.setValues(form);
 			if(!(validateVacio.validate())){
-				System.out.printf("aca va el elasticsearch");				
+				System.out.printf("aca va el elasticsearch");	
+				ArrayList<Long> categorias = new ArrayList<Long>();
+				for(String s: recursoBean.getIdCategoria()){
+					categorias.add(Long.parseLong(s));
+				}
+				ArrayList<RecursoModelEs> recursos  = es.searchRecursos(recursoBean.getLocalidad(), categorias);
+				model.addAttribute("recursos", recursos);
 				model.addAttribute("usuario", session.getAttribute("usuario"));
 				model.addAttribute("rol", session.getAttribute("rol"));
 				model.addAttribute("registrarseBean", new RegistrarseBean());
-				return null;
+				return "demandarResult";
 			}else{
 				ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
 				ArrayList<Categoria> categorias = (ArrayList<Categoria>) serviceCategoria.listCategorias();
@@ -164,6 +175,14 @@ public class DemandarController {
 			model.addAttribute("menssage", "Por favor inicie sesion para poder acceder al sistema.");
 			return "menssage";
 		}
+	}
+
+	public ElasticSearchConector getEs() {
+		return es;
+	}
+
+	public void setEs(ElasticSearchConector es) {
+		this.es = es;
 	}
 	
 }
