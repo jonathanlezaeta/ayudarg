@@ -360,8 +360,8 @@ body {
 														<form:select path="idUsuario" required="" multiple="false"
 															class="form-control"
 															onchange='cargarModificar("#modificarUsuario");'>
-															<form:option value="NONE" label="Seleccione..." />
-															<form:options items="${usuario}" itemValue="idUsuario"
+															<form:option value="" label="Seleccione..." />
+															<form:options items="${recursos}" itemValue="id"
 																required="" itemLabel="nombre" />
 														</form:select>
 													</div>

@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class RecursoModelEs {
+	private String id;
 	private String nombre;
 	private Date fechaIngreso;
 	private Usuario usuario;
 	private Institucion institucion;
-	private boolean activo;
 	private ArrayList<Long> categorias;
+	private String descripcion;
+	private String cantidad;
 	
 	public String getNombre() {
 		return nombre;
@@ -35,16 +37,28 @@ public class RecursoModelEs {
 	public void setInstitucion(Institucion institucion) {
 		this.institucion = institucion;
 	}
-	public boolean isActivo() {
-		return activo;
-	}
-	public void setActivo(boolean activo) {
-		this.activo = activo;
-	}
 	public ArrayList<Long> getCategorias() {
 		return categorias;
 	}
 	public void setCategorias(ArrayList<Long> categorias) {
 		this.categorias = categorias;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public String getCantidad() {
+		return cantidad;
+	}
+	public void setCantidad(String cantidad) {
+		this.cantidad = cantidad;
 	}
 }

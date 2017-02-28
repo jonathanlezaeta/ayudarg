@@ -1,10 +1,13 @@
 package com.ayudar.view.beans;
 
 public class RecursoBean {
-	
+	private String id;
 	private String nombre;
 	private String cantidad;
 	private String[] idCategoria;
+	private String descripcion;
+	private String idInstitucion;
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -22,6 +25,24 @@ public class RecursoBean {
 	}
 	public void setIdCategoria(String[] idCategoria) {
 		this.idCategoria = idCategoria;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public String getIdInstitucion() {
+		return idInstitucion;
+	}
+	public void setIdInstitucion(String idInstitucion) {
+		this.idInstitucion = idInstitucion;
 	}
 	
 	

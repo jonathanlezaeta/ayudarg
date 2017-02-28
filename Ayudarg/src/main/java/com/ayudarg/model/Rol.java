@@ -26,10 +26,6 @@ public class Rol {
 	private int idRol;
 	private String nombre;
 	
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	@JoinTable(name = "UsuarioHasRol", 
-//	    joinColumns = { @JoinColumn(name = "idUsuario") }, 
-//	    inverseJoinColumns = { @JoinColumn(name = "idRol") })
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "rol")
 	private Set<UsuarioSQL> usuarios = new HashSet<UsuarioSQL>(0);
     

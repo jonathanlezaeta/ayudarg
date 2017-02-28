@@ -1,21 +1,21 @@
 package com.ayudar.elasticsearch.model;
 
 public class Institucion {
-	private String id;
+	private String idInstitucion;
 	private String nombre;
 	private String director;
-	private String ciudad;
 	private String tipo;
 	private String direccion;
 	private String mail;
 	private String sitioWeb;
 	private String telefono;
+	private String localidadId;
 	
 	public String getId() {
-		return id;
+		return idInstitucion;
 	}
 	public void setId(String id) {
-		this.id = id;
+		this.idInstitucion = id;
 	}
 	public String getNombre() {
 		return nombre;
@@ -28,12 +28,6 @@ public class Institucion {
 	}
 	public void setDirector(String director) {
 		this.director = director;
-	}
-	public String getCiudad() {
-		return ciudad;
-	}
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
 	}
 	public String getTipo() {
 		return tipo;
@@ -64,5 +58,11 @@ public class Institucion {
 	}
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+	public String getLocalidadId() {
+		return localidadId;
+	}
+	public void setLocalidadId(String localidadId) {
+		this.localidadId = localidadId;
 	}
 }
