@@ -68,11 +68,11 @@ body {
 						modelAttribute="loginbean" class="form-signin">
 						<label for="inputEmail" class="sr-only">Email</label>
 						<input type="text" id="usuario" class="form-control"
-							placeholder="Email" required="" autofocus="" name="usuario"
+							placeholder="Email" required="" autofocus="" name="usuario" maxlength="40"
 							value="${emailLogin}">
 						<br>
 						<label for="inputPassword" class="sr-only">Contraseña</label>
-						<input type="password" id="contrasenia" class="form-control"
+						<input type="password" id="contrasenia" class="form-control" maxlength="40"
 							placeholder="Contraseña" required="" name="contrasenia"
 							value="${contraseniaLogin}">
 						<br>
@@ -107,40 +107,40 @@ body {
 					action="submitRegistrar" modelAttribute="registrarseBean"
 					class="form-signin">
 					<label for="inputEmail" class="sr-only">Usuario (*)</label>
-					<input type="text" id="usuario" class="form-control"
+					<input type="text" id="usuario" class="form-control" maxlength="40"
 						placeholder="Nombre de usuario (Campo requerido)" required=""
 						autofocus="" name="usuario" value="${usuario}">
 					<br>
 					<label for="inputPassword" class="sr-only">Contraseña (*)</label>
-					<input type="password" id="contrasenia" class="form-control"
+					<input type="password" id="contrasenia" class="form-control" maxlength="40"
 						placeholder="Contraseña (Campo requerido)" required=""
 						name="contrasenia" value="${contrasenia}">
 					<br>
 					<label for="inputPassword" class="sr-only">Nombre y
 						Apellido (*)</label>
-					<input type="text" id="nombre" class="form-control"
+					<input type="text" id="nombre" class="form-control" maxlength="40"
 						placeholder="Nombre y Apellido (Campo requerido)" required=""
 						name="nombre" value="${nombre}">
 					<br>
 					<label for="inputPassword" class="sr-only">Email (*)</label>
-					<input type="email" id="email" class="form-control"
+					<input type="email" id="email" class="form-control" maxlength="40"
 						placeholder="Email (Campo requerido)" required="" name="email"
 						value="${email}">
 					<br>
 					<label for="inputPassword" class="sr-only">Telefono (*)</label>
-					<input type="text" id="telefono" class="form-control"
+					<input type="text" id="telefono" class="form-control" maxlength="40"
 						placeholder="Telefono (Campo requerido)" name="telefono"
 						value="${telefono}">
 					<br>
 					<label for="inputPassword" class="sr-only">Celular</label>
-					<input type="text" id="celular" class="form-control"
+					<input type="text" id="celular" class="form-control" maxlength="40"
 						placeholder="Celular" name="celular"
 						value="${celular}">
 					<br>
 					<label for="inputPassword" class="sr-only">Fecha de
 						Nacimiento (*)</label>
 					<input type="text" id="fechaDeNacimiento" class="form-control"
-						placeholder="Fecha de Nacimiento (Campo requerido)" required=""
+						placeholder="Fecha de Nacimiento (Campo requerido)" required="" maxlength="40"
 						name="fechaDeNacimiento" value="${fechaDeNacimiento}">
 					<br>
 					<div class="form-group">

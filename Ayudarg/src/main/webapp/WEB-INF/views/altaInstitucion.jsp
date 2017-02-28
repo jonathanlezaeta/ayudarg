@@ -157,12 +157,12 @@ body {
 					<div class="panel-body">
 						<h4 style="color: red;">${menssage}</h4>
 
-						<div class="col-md-10">
+						<div class="col-md-12">
 							<h4 style="color: red;">${errorRegistrar}</h4>
 						</div>
 
-						<div class="container">
-							<div id="exTab2" class="col-md-10">
+						<div class="container" style="width: 100%;">
+							<div id="exTab2" class="col-md-12">
 								<ul class="nav nav-tabs">
 									<li class="active"><a href="#1" data-toggle="tab">Registar</a>
 									</li>
@@ -181,7 +181,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="director">Director</label>
 													<div class="col-md-9">
-														<input id="director" name="director" type="text"
+														<input id="director" name="director" type="text" maxlength="40"
 															placeholder="Ingrese director de la Institucion (Campo requerido)"
 															class="form-control" required="" value="${director}">
 													</div>
@@ -191,7 +191,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="tipo">Tipo</label>
 													<div class="col-md-9">
-														<input id="tipo" name="tipo" type="text"
+														<input id="tipo" name="tipo" type="text" maxlength="40"
 															placeholder="Ingrese tipo de Institucion (Campo requerido)"
 															class="form-control" required="" value="${tipo}">
 													</div>
@@ -201,7 +201,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="nombre">Nombre</label>
 													<div class="col-md-9">
-														<input id="nombre" name="nombre" type="text"
+														<input id="nombre" name="nombre" type="text" maxlength="40"
 															placeholder="Ingrese nombre de la Institucion (Campo requerido)"
 															class="form-control" required="" value="${nombre}">
 													</div>
@@ -211,7 +211,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="direccion">Direccion</label>
 													<div class="col-md-9">
-														<input id="direccion" name="direccion" type="text"
+														<input id="direccion" name="direccion" type="text" maxlength="40"
 															placeholder="Ingrese direccion de la Institucion (Campo requerido)"
 															class="form-control" required="" value="${direccion}">
 													</div>
@@ -221,7 +221,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="telefono">Telefono</label>
 													<div class="col-md-9">
-														<input id="telefono" name="telefono" type="text"
+														<input id="telefono" name="telefono" type="text" maxlength="40"
 															placeholder="Ingrese telefono de la Institucion (Campo requerido)"
 															class="form-control" required="" value="${telefono}">
 													</div>
@@ -231,7 +231,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="celular">Celular</label>
 													<div class="col-md-9">
-														<input id="celular" name="celular" type="text"
+														<input id="celular" name="celular" type="text" maxlength="40"
 															placeholder="Ingrese celular de la Institucion"
 															class="form-control" value="${celular}">
 													</div>
@@ -242,7 +242,7 @@ body {
 													<label class="col-md-3 control-label" for="sitioWeb">Sitio
 														Web</label>
 													<div class="col-md-9">
-														<input id="sitioWeb" name="sitioWeb" type="text"
+														<input id="sitioWeb" name="sitioWeb" type="text" maxlength="40"
 															placeholder="Ingrese sitio web de la Institucion (Campo requerido)"
 															class="form-control" required="" value="${sitioWeb}">
 													</div>
@@ -252,25 +252,9 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="email">Email</label>
 													<div class="col-md-9">
-														<input id="email" name="email" type="email"
+														<input id="email" name="email" type="email" maxlength="40"
 															placeholder="Ingrese email de la Institucion (Campo requerido)"
 															class="form-control" required="" value="${email}">
-													</div>
-												</div>
-
-
-												<div class="form-group">
-													<label class="col-md-3 control-label" for="usuario">Provincia</label>
-													<div class="col-md-9">
-														<form:select path="provincia" required="" multiple="false"
-															class="form-control" id='selectProvincias'
-															onchange='cargarLocalidades("#institucionForm");'>
-															<form:option value="" label="Seleccione su provincia" />
-															<form:option value="${provincia}"
-																label="Seleccione su Provincia" />
-															<form:options items="${provincias}"
-																itemValue="idProvincia" itemLabel="provincia" />
-														</form:select>
 													</div>
 												</div>
 												<div class="form-group">
@@ -353,7 +337,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="director">Director</label>
 													<div class="col-md-9">
-														<input id="directorModificar" name="director" type="text"
+														<input id="directorModificar" name="director" type="text" maxlength="40"
 															placeholder="Ingrese director de la Institucion (Campo requerido)"
 															class="form-control" required="" value="${director}">
 													</div>
@@ -363,7 +347,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="tipo">Tipo</label>
 													<div class="col-md-9">
-														<input id="tipoModificar" name="tipo" type="text"
+														<input id="tipoModificar" name="tipo" type="text" maxlength="40"
 															placeholder="Ingrese tipo de Institucion (Campo requerido)"
 															class="form-control" required="" value="${tipo}">
 													</div>
@@ -373,7 +357,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="nombre">Nombre</label>
 													<div class="col-md-9">
-														<input id="nombreModificar" name="nombre" type="text"
+														<input id="nombreModificar" name="nombre" type="text" maxlength="40"
 															placeholder="Ingrese nombre de la Institucion (Campo requerido)"
 															class="form-control" required="" value="${nombre}">
 													</div>
@@ -384,7 +368,7 @@ body {
 													<label class="col-md-3 control-label" for="direccion">Direccion</label>
 													<div class="col-md-9">
 														<input id="direccionModificar" name="direccion"
-															type="text"
+															type="text" maxlength="40"
 															placeholder="Ingrese direccion de la Institucion (Campo requerido)"
 															class="form-control" required="" value="${direccion}">
 													</div>
@@ -394,7 +378,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="telefono">Telefono</label>
 													<div class="col-md-9">
-														<input id="telefonoModificar" name="telefono" type="text"
+														<input id="telefonoModificar" name="telefono" type="text" maxlength="40"
 															placeholder="Ingrese telefono de la Institucion (Campo requerido)"
 															class="form-control" required="" value="${telefono}">
 													</div>
@@ -404,7 +388,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="celular">Celular</label>
 													<div class="col-md-9">
-														<input id="celularModificar" name="celular" type="text"
+														<input id="celularModificar" name="celular" type="text" maxlength="40"
 															placeholder="Ingrese celular de la Institucion "
 															class="form-control" value="${celular}">
 													</div>
@@ -415,7 +399,7 @@ body {
 													<label class="col-md-3 control-label" for="sitioWeb">Sitio
 														Web</label>
 													<div class="col-md-9">
-														<input id="sitioWebModificar" name="sitioWeb" type="text"
+														<input id="sitioWebModificar" name="sitioWeb" type="text" maxlength="40"
 															placeholder="Ingrese sitio web de la Institucion (Campo requerido)"
 															class="form-control" required="" value="${sitioWeb}">
 													</div>
@@ -425,7 +409,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="email">Email</label>
 													<div class="col-md-9">
-														<input id="emailModificar" name="email" type="email"
+														<input id="emailModificar" name="email" type="email" maxlength="40"
 															placeholder="Ingrese email de la Institucion (Campo requerido)"
 															class="form-control" required="" value="${email}">
 													</div>

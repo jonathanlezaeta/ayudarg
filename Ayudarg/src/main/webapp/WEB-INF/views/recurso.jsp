@@ -9,6 +9,7 @@
 <link href="<c:url value="/resources/css/styles.css" />"
 	rel="stylesheet">
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+0
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <html>
@@ -156,8 +157,8 @@ body {
 					</div>
 					<div class="panel-body">
 						<h4 style="color: red;">${menssage}</h4>
-						<div class="container">
-							<div id="exTab2" class="col-md-10">
+						<div class="container" style="width: 100%;">
+							<div id="exTab2" class="col-md-12">
 								<ul class="nav nav-tabs">
 									<li class="active"><a href="#1" data-toggle="tab">Registar</a>
 									</li>
@@ -191,7 +192,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="nombre">Nombre</label>
 													<div class="col-md-9">
-														<input id="nombre" name="nombre" type="text"
+														<input id="nombre" name="nombre" type="text" maxlength="40"
 															placeholder="Ingrese nombre del recurso"
 															class="form-control" required="" value="">
 													</div>
@@ -201,7 +202,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="cantidad">Cantidad</label>
 													<div class="col-md-9">
-														<input id="cantidad" name="cantidad" type="number"
+														<input id="cantidad" name="cantidad" type="number" maxlength="40"
 															placeholder="Ingrese cantidad a donar"
 															class="form-control" required="" value="${cantidad}">
 													</div>
@@ -282,7 +283,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="nombre">Nombre</label>
 													<div class="col-md-9">
-														<input id="nombreModificar" name="nombre" type="text"
+														<input id="nombreModificar" name="nombre" type="text" maxlength="40"
 															placeholder="Ingrese nombre del recurso"
 															class="form-control" required="" value="">
 													</div>
@@ -292,7 +293,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="cantidad">Cantidad</label>
 													<div class="col-md-9">
-														<input id="cantidadModificar" name="cantidad" type="number"
+														<input id="cantidadModificar" name="cantidad" type="number" maxlength="40"
 															placeholder="Ingrese cantidad a donar"
 															class="form-control" required="" value="">
 													</div>

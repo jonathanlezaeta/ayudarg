@@ -23,8 +23,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ayudar.view.beans.AsignarBean;
+import com.ayudar.view.beans.InstitucionBajaBean;
+import com.ayudar.view.beans.InstitucionBean;
 import com.ayudar.view.beans.UsuarioBajaBean;
 import com.ayudar.view.beans.UsuarioBean;
+import com.ayudarg.model.Categoria;
 import com.ayudarg.model.InstitucionSQL;
 import com.ayudarg.model.LocalidadesSQL;
 import com.ayudarg.model.ProvinciasSQL;
@@ -98,20 +101,7 @@ public class ABMUsuarioController {
 	@RequestMapping(value = "/bajaUsuario", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
-		ArrayList<LocalidadesSQL> localidades = (ArrayList<LocalidadesSQL>) serviceGeo.listAllLocalidades();
-		ArrayList<UsuarioSQL> usuarios = (ArrayList<UsuarioSQL>) serviceUsuarios.listUsuarios();
-		List<InstitucionSQL> instituciones = servicesInst.listInstituciones();
-		List<Rol> roles = servicesRol.listRoles();
-		model.addAttribute("usuario", usuarios);
-		model.addAttribute("provincias", provincias);
-		model.addAttribute("localidades", localidades);
-		model.addAttribute("rol", session.getAttribute("rol"));
-		model.addAttribute("usuarioBajaBean", new UsuarioBajaBean());
-		model.addAttribute("asignarBean", new AsignarBean());
-		model.addAttribute("usuarioBean", new UsuarioBean());
-		model.addAttribute("instituciones", instituciones);
-		model.addAttribute("roles", roles);
+		loadModel(model, session);
 		if (session.getAttribute("usuario") != null) {
 			return "usuarioView";
 		} else {
@@ -182,19 +172,7 @@ public class ABMUsuarioController {
 				model.addAttribute("menssage", "Usuario registrado correctamente.");
 				return "menssageDashboard";
 			} else {
-				ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
-				ArrayList<LocalidadesSQL> localidades = (ArrayList<LocalidadesSQL>) serviceGeo.listAllLocalidades();
-				ArrayList<UsuarioSQL> usuarios = (ArrayList<UsuarioSQL>) serviceUsuarios.listUsuarios();
-				List<InstitucionSQL> instituciones = servicesInst.listInstituciones();
-				List<Rol> roles = servicesRol.listRoles();
-				model.addAttribute("usuario", usuarios);
-				model.addAttribute("provincias", provincias);
-				model.addAttribute("localidades", localidades);
-				model.addAttribute("usuarioBajaBean", new UsuarioBajaBean());
-				model.addAttribute("asignarBean", new AsignarBean());
-				model.addAttribute("usuarioBean", new UsuarioBean());
-				model.addAttribute("instituciones", instituciones);
-				model.addAttribute("roles", roles);
+				loadModel(model, session);
 				model.addAttribute("errorRegistrar", "En la pestaña registrar: " + validador.getError());
 				return "usuarioView";
 			}
@@ -224,19 +202,7 @@ public class ABMUsuarioController {
 				model.addAttribute("menssage", "Baja de usuario exitosa.");
 				return "menssageDashboard";
 			} else {
-				ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
-				ArrayList<LocalidadesSQL> localidades = (ArrayList<LocalidadesSQL>) serviceGeo.listAllLocalidades();
-				ArrayList<UsuarioSQL> usuarios = (ArrayList<UsuarioSQL>) serviceUsuarios.listUsuarios();
-				List<InstitucionSQL> instituciones = servicesInst.listInstituciones();
-				List<Rol> roles = servicesRol.listRoles();
-				model.addAttribute("usuario", usuarios);
-				model.addAttribute("provincias", provincias);
-				model.addAttribute("localidades", localidades);
-				model.addAttribute("usuarioBajaBean", new UsuarioBajaBean());
-				model.addAttribute("asignarBean", new AsignarBean());
-				model.addAttribute("usuarioBean", new UsuarioBean());
-				model.addAttribute("instituciones", instituciones);
-				model.addAttribute("roles", roles);
+				loadModel(model, session);
 				model.addAttribute("errorRegistrar", "En la pestaña elminar: " + validador.getError());
 				return "usuarioView";
 			}
@@ -266,19 +232,7 @@ public class ABMUsuarioController {
 				model.addAttribute("menssage", "La asignacion se realizo correctamente.");
 				return "menssageDashboard";				
 			}else{
-				ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
-				ArrayList<LocalidadesSQL> localidades = (ArrayList<LocalidadesSQL>) serviceGeo.listAllLocalidades();
-				ArrayList<UsuarioSQL> usuarios = (ArrayList<UsuarioSQL>) serviceUsuarios.listUsuarios();
-				List<InstitucionSQL> instituciones = servicesInst.listInstituciones();
-				List<Rol> roles = servicesRol.listRoles();
-				model.addAttribute("usuario", usuarios);
-				model.addAttribute("provincias", provincias);
-				model.addAttribute("localidades", localidades);
-				model.addAttribute("usuarioBajaBean", new UsuarioBajaBean());
-				model.addAttribute("asignarBean", new AsignarBean());
-				model.addAttribute("usuarioBean", new UsuarioBean());
-				model.addAttribute("instituciones", instituciones);
-				model.addAttribute("roles", roles);
+				loadModel(model, session);
 				model.addAttribute("errorRegistrar", "En la pestaña asignar: " + validateVacio.getError());
 				return "usuarioView";				
 			}
@@ -322,19 +276,7 @@ public class ABMUsuarioController {
 				model.addAttribute("menssage", "Usuario actualizado correctamente.");
 				return "menssageDashboard";
 			} else {
-				ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
-				ArrayList<LocalidadesSQL> localidades = (ArrayList<LocalidadesSQL>) serviceGeo.listAllLocalidades();
-				ArrayList<UsuarioSQL> usuarios = (ArrayList<UsuarioSQL>) serviceUsuarios.listUsuarios();
-				List<InstitucionSQL> instituciones = servicesInst.listInstituciones();
-				List<Rol> roles = servicesRol.listRoles();
-				model.addAttribute("usuario", usuarios);
-				model.addAttribute("provincias", provincias);
-				model.addAttribute("localidades", localidades);
-				model.addAttribute("usuarioBajaBean", new UsuarioBajaBean());
-				model.addAttribute("asignarBean", new AsignarBean());
-				model.addAttribute("usuarioBean", new UsuarioBean());
-				model.addAttribute("instituciones", instituciones);
-				model.addAttribute("roles", roles);
+				loadModel(model, session);
 				model.addAttribute("errorRegistrar", "En la pestaña modificar: " + validateVacio.getError());
 				return "usuarioView";
 			}
@@ -343,4 +285,22 @@ public class ABMUsuarioController {
 			return "menssage";
 		}
 	}
+	
+	public Model loadModel(Model model, HttpSession session){
+		ArrayList<ProvinciasSQL> provincias = (ArrayList<ProvinciasSQL>) serviceGeo.listAllProvincias();
+		ArrayList<LocalidadesSQL> localidades = (ArrayList<LocalidadesSQL>) serviceGeo.listAllLocalidades();
+		ArrayList<UsuarioSQL> usuarios = (ArrayList<UsuarioSQL>) serviceUsuarios.listUsuarios();
+		List<InstitucionSQL> instituciones = servicesInst.listInstituciones();
+		List<Rol> roles = servicesRol.listRoles();
+		model.addAttribute("usuario", usuarios);
+		model.addAttribute("provincias", provincias);
+		model.addAttribute("localidades", localidades);
+		model.addAttribute("rol", session.getAttribute("rol"));
+		model.addAttribute("usuarioBajaBean", new UsuarioBajaBean());
+		model.addAttribute("asignarBean", new AsignarBean());
+		model.addAttribute("usuarioBean", new UsuarioBean());
+		model.addAttribute("instituciones", instituciones);
+		model.addAttribute("roles", roles);		
+		return model;
+	}	
 }

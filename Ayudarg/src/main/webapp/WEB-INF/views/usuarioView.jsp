@@ -8,8 +8,9 @@
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/styles.css" />"
 	rel="stylesheet">
-	
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+0
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <link rel="stylesheet"
@@ -34,7 +35,6 @@ function cargarLocalidades(value){
 					options += '<option value="' +value.value + '">' +value.option + '</option>';
 				});
 				$("select[id=selectLocalidades]").html(options);
-//				}
 		},
 		error: function(e){ <!-- Si no ha podido conectar con el servidor -->
 			alert("Error en el servidor, por favor, intentalo de nuevo mas tarde");
@@ -81,6 +81,7 @@ body {
 	background: transparent url("resources/img/background.jpg") no-repeat;
 	background-size: cover;
 	padding-top: 35px;
+	width: 100%;
 }
 </style>
 </head>
@@ -172,13 +173,13 @@ body {
 					</div>
 					<div class="panel-body">
 
-						<div class="container">
-						
-							<div class="col-md-10">
-							<h4 style="color:red;">${errorRegistrar}</h4>
+						<div class="container" style="width: 100%;">
+
+							<div class="col-md-12">
+								<h4 style="color: red;">${errorRegistrar}</h4>
 							</div>
-						
-							<div id="exTab2" class="col-md-10">
+
+							<div id="exTab2" class="col-md-12">
 								<ul class="nav nav-tabs">
 									<li class="active"><a href="#1" data-toggle="tab">Registar</a></li>
 									<li><a href="#2" data-toggle="tab">Eliminar</a></li>
@@ -195,7 +196,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="nombre">Usuario</label>
 													<div class="col-md-9">
-														<input type="text" id="usuario" class="form-control"
+														<input type="text" id="usuario" class="form-control" maxlength="40"
 															placeholder="Ingrese un Nombre de Usuario (Campo requerido)"
 															required="" autofocus="" name="usuario">
 													</div>
@@ -205,7 +206,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="contrasenia">Contraseña</label>
 													<div class="col-md-9">
-														<input id="contrasenia" name="contrasenia" type="password"
+														<input id="contrasenia" name="contrasenia" type="password" maxlength="40"
 															placeholder="Ingrese contraseña (Campo requerido)"
 															class="form-control" required="">
 													</div>
@@ -215,7 +216,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="nombre">Nombre</label>
 													<div class="col-md-9">
-														<input id="nombre" name="nombre" type="text"
+														<input id="nombre" name="nombre" type="text" maxlength="40"
 															placeholder="Ingrese nombre (Campo requerido)"
 															class="form-control" required="">
 													</div>
@@ -225,7 +226,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="email">Email</label>
 													<div class="col-md-9">
-														<input id="email" name="email" type="email"
+														<input id="email" name="email" type="email" maxlength="40"
 															placeholder="Ingrese email (Campo requerido)"
 															class="form-control" required="">
 													</div>
@@ -235,7 +236,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="telefono">Telefono</label>
 													<div class="col-md-9">
-														<input id="telefono" name="telefono" type="text"
+														<input id="telefono" name="telefono" type="text" maxlength="40"
 															placeholder="Ingrese telefono (Campo requerido)"
 															class="form-control" required="">
 													</div>
@@ -245,7 +246,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="celular">Celular</label>
 													<div class="col-md-9">
-														<input id="celular" name="celular" type="text"
+														<input id="celular" name="celular" type="text" maxlength="40"
 															placeholder="Ingrese celular" class="form-control">
 													</div>
 												</div>
@@ -259,18 +260,6 @@ body {
 															type="text"
 															placeholder="Ingrese fecha de nacimiento (Campo requerido)"
 															class="form-control" required="">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-md-3 control-label" for="usuario">Provincia</label>
-													<div class="col-md-9">
-														<form:select path="provincia" required="" multiple="false"
-															class="form-control" id='selectProvincias'
-															onchange='cargarLocalidades("#usuarioForm");'>
-															<form:option value="" label="Seleccione su provincia" />
-															<form:options items="${provincias}"
-																itemValue="idProvincia" itemLabel="provincia" />
-														</form:select>
 													</div>
 												</div>
 												<div class="form-group">
@@ -346,11 +335,10 @@ body {
 													<label class="col-md-3 control-label" for="usuario">Usuario
 														a modificar</label>
 													<div class="col-md-9">
-														<form:select path="idUsuario" required="" multiple="false"
-															class="form-control"
-															onchange='cargarModificar("#modificarUsuario");'>
-															<form:option value="" label="Seleccione..." />
-															<form:options items="${recursos}" itemValue="id"
+														<form:select path="idUsuario" required="" multiple="false" name="idUsuario"
+															class="form-control" onchange='cargarModificar("#modificarUsuario");'>>
+															<form:option value="" label="Seleccione un usuario" />
+															<form:options items="${usuario}" itemValue="idUsuario"
 																required="" itemLabel="nombre" />
 														</form:select>
 													</div>
@@ -359,7 +347,8 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="nombre">Usuario</label>
 													<div class="col-md-9">
-														<input type="text" id="usuarioModificar" class="form-control"
+														<input type="text" id="usuarioModificar"
+															class="form-control" maxlength="40"
 															placeholder="Ingrese un Nombre de Usuario (Campo requerido)"
 															required="" autofocus="" name="usuario">
 													</div>
@@ -368,7 +357,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="contrasenia">Contraseña</label>
 													<div class="col-md-9">
-														<input id="contraseniaModificar" name="contrasenia"
+														<input id="contraseniaModificar" name="contrasenia" maxlength="40"
 															type="password" required=""
 															placeholder="Ingrese nueva contraseña (Campo requerido)"
 															class="form-control">
@@ -379,7 +368,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="nombre">Nombre</label>
 													<div class="col-md-9">
-														<input id="nombreModificar" name="nombre" type="text"
+														<input id="nombreModificar" name="nombre" type="text" maxlength="40"
 															required=""
 															placeholder="Ingrese nuevo nombre (Campo requerido)"
 															class="form-control">
@@ -390,7 +379,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="email">Email</label>
 													<div class="col-md-9">
-														<input id="emailModificar" name="email" type="email"
+														<input id="emailModificar" name="email" type="email" maxlength="40"
 															required=""
 															placeholder="Ingrese nuevo email (Campo requerido)"
 															class="form-control">
@@ -401,7 +390,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="telefono">Telefono</label>
 													<div class="col-md-9">
-														<input id="telefonoModificar" name="telefono" type="text"
+														<input id="telefonoModificar" name="telefono" type="text" maxlength="40"
 															required=""
 															placeholder="Ingrese nuevo telefono (Campo requerido)"
 															class="form-control">
@@ -412,7 +401,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="celular">Celular</label>
 													<div class="col-md-9">
-														<input id="celularModificar" name="celular" type="text"
+														<input id="celularModificar" name="celular" type="text" maxlength="40"
 															placeholder="Ingrese nuevo celular (Campo requerido)"
 															class="form-control">
 													</div>
@@ -424,7 +413,7 @@ body {
 														for="fechaDeNacimiento">Fecha de nacimiento</label>
 													<div class="col-md-9">
 														<input id="fechaDeNacimientoModicar"
-															name="fechaDeNacimiento" type="text" required=""
+															name="fechaDeNacimiento" type="text" required="" maxlength="40"
 															placeholder="Ingrese nueva fecha de nacimiento (Campo requerido)"
 															class="form-control">
 													</div>

@@ -130,12 +130,12 @@ body {
 					</div>
 					<div class="panel-body">
 
-						<div class="col-md-10">
+						<div class="col-md-12">
 							<h4 style="color: red;">${errorRegistrar}</h4>
 						</div>
 
-						<div class="container">
-							<div id="exTab2" class="col-md-10">
+						<div class="container" style="width: 100%;">
+							<div id="exTab2" class="col-md-12">
 								<ul class="nav nav-tabs">
 									<li class="active"><a href="#1" data-toggle="tab">Registrar</a>
 									</li>
@@ -154,7 +154,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="director">Nombre</label>
 													<div class="col-md-9">
-														<input id="nombre" name="nombre" type="text"
+														<input id="nombre" name="nombre" type="text" maxlength="40"
 															placeholder="Ingrese nombre de la categoria"
 															class="form-control" required="" value="${nombre}">
 													</div>
@@ -243,7 +243,7 @@ body {
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="director">Nombre</label>
 													<div class="col-md-9">
-														<input id="nombreModificar" name="nombre" type="text"
+														<input id="nombreModificar" name="nombre" type="text" maxlength="40"
 															placeholder="Ingrese nombre de la categoria"
 															class="form-control" required="" value="${nombre}">
 													</div>
