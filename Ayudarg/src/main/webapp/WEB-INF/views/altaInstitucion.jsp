@@ -136,15 +136,6 @@ body {
 					<li><a href="/app/demandar"><svg
 								class="glyph stroked line-graph"> <use
 								xlink:href="/demandar"></use></svg> Solicitar un recurso</a></li>
-					<li><a href="/app/altaInstitucion"><svg
-								class="glyph stroked line-graph"> <use
-								xlink:href="/altaInstitucion"></use></svg> Instituciones</a></li>
-					<li><a href="/app/altaCategoria"><svg
-								class="glyph stroked line-graph"> <use
-								xlink:href="/altaCategoria"></use></svg> Categorias</a></li>
-					<li><a href="/app/bajaUsuario"><svg
-								class="glyph stroked line-graph"> <use
-								xlink:href="/bajaUsuario"></use></svg> Usuarios</a></li>
 					<li><a href="/app/recurso"><svg
 								class="glyph stroked line-graph"> <use
 								xlink:href="recurso"></use></svg> Recursos</a></li>
