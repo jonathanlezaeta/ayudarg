@@ -91,7 +91,6 @@ public class RegistrarseController {
 			try {
 				fecha = sdf.parse(f);
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			//Siempre seteo el Rol de Usuauario cuando se registran

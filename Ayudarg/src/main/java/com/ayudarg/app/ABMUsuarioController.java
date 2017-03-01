@@ -158,12 +158,17 @@ public class ABMUsuarioController {
 			ValidatorForm validador = new ValidatorFormCompuesto(validadores);
 			validador.setValues(form);
 			if (!(validador.validate())) {
-				SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+				String f = null;
+				Date dtDob = new Date(usuarioBean.getFechaDeNacimiento());
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				f = sdf.format(dtDob);
 				Date fecha = null;
 				try {
-					fecha = formatoDelTexto.parse(usuarioBean.getFechaDeNacimiento());
-				} catch (ParseException ex) {
-					ex.printStackTrace();
+					fecha = sdf.parse(f);
+				} catch (ParseException e) {
+					e.printStackTrace();
+					model.addAttribute("menssage", "Usuario registrado correctamente.");
+					return "menssageDashboard";
 				}
 				Rol rol = servicesRol.getRolById(usuarioBean.getRoles());
 				serviceUsuarios.insertUsuario(usuarioBean.getUsuario(), usuarioBean.getContrasenia(),
