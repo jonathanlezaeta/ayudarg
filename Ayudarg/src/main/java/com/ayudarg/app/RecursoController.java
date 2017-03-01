@@ -90,6 +90,7 @@ public class RecursoController {
 				form.put("nombre", recursoBean.getNombre());
 				form.put("descripcion", recursoBean.getDescripcion());
 				form.put("cantidad", recursoBean.getCantidad());
+				form.put("idInstitucion", recursoBean.getIdInstitucion());
 				if(recursoBean.getIdCategoria().length > 0)
 					form.put("categoria", recursoBean.getIdCategoria()[0]);
 				else
@@ -254,7 +255,10 @@ public class RecursoController {
 			InstitucionSQL institcuion = (InstitucionSQL) it.next();
 			instituciones.add(institcuion);
 		}
-		ArrayList<RecursoModelEs> resp = es.getRecursosByInsitucion(String.valueOf(instituciones.get(0).getIdInstitucion()));
+		ArrayList<RecursoModelEs> resp = new ArrayList<RecursoModelEs>();
+		if(instituciones.size() > 0){
+			resp = es.getRecursosByInsitucion(String.valueOf(instituciones.get(0).getIdInstitucion()));
+		}
 		model.addAttribute("recursos", resp);
 		model.addAttribute("instituciones", instituciones);		
 		return model;
